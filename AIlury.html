@@ -653,7 +653,7 @@
             }
             .container{
               display: flex;
-              justify-content: space-between;
+              justify-content: center;
               align-items: center;
               margin-top: 20px;
             }
@@ -1083,8 +1083,8 @@
     });
     // real v
     function sendMassaga(){
-        document.getElementById('button1').style.backgroundColor = "#232323";
-        document.getElementById('button2').style.backgroundColor = "#232323";
+        document.getElementById('button1').style.backgroundColor = "var(--232323-color)";
+        document.getElementById('button2').style.backgroundColor = "var(--232323-color)";
         document.getElementById("remember").textContent = document.getElementById("user-input").value;
         document.getElementById("nmy").style.display = "none";
         //say();
