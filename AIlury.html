@@ -2305,9 +2305,15 @@
     document.querySelectorAll('.speakon').forEach(function(element) {
       element.addEventListener('click', function() {
         if (element.textContent == "speak: on") {
-          element.textContent = "speak: off";
+          document.querySelectorAll('.speakon').forEach(function(element) {
+      element.addEventListener('click', function() {
+            element.textContent = "speak: off";
+          });
         }else {
-          element.textContent = "speak: on";
+          document.querySelectorAll('.speakon').forEach(function(element) {
+      element.addEventListener('click', function() {
+            element.textContent = "speak: on";
+          });
         }
         // Ändert den Textinhalt des geklickten Elements
       });
