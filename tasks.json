@@ -1,6 +1,6 @@
 [
     {
-        "Level": "mittel",
+        "Level": "leicht",
         "Frage": "übersetze: hallo",
         "Antwort": "hello"
     },
@@ -10,13 +10,53 @@
         "Antwort": "bye"
     },
     {
-        "Level": "schwer",
+        "Level": "leicht",
         "Frage": "übersetze: essen",
         "Antwort": "eat"
     },
     {
-        "Level": "schwer",
-        "Frage": "laufen",
+        "Level": "leicht",
+        "Frage": "übersetze: laufen",
         "Antwort": "walk"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: rennen",
+        "Antwort": "run"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: reden",
+        "Antwort": "talk"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: sprechen",
+        "Antwort": "talk"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: du",
+        "Antwort": "you"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: ihr",
+        "Antwort": "you"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: ich",
+        "Antwort": "me"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: land",
+        "Antwort": "country"
+    },
+    {
+        "Level": "mittel",
+        "Frage": "übersetze: ich esse",
+        "Antwort": "i am eating"
     }
 ]
