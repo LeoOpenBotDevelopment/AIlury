@@ -2243,12 +2243,15 @@
 
     // Function to update the mode information
     function updateModeInfo() {
+        var modeInfo2 = document.getElementById("changetheme");
         var modeInfo = document.querySelector('.bcft');
         if (isDarkMode()) {
             modeInfo.textContent = "Light theme";
+            modeInfo2.textContent = "Light theme";
             change_mood()
         }else {
             modeInfo.textContent = "Dark theme";
+            modeInfo2.textContent = "Dark theme";
             change_mood()
         }
     }
