@@ -2302,7 +2302,12 @@
     });*/
     document.querySelectorAll('.speakon').forEach(function(element) {
       element.addEventListener('click', function() {
-        speakonoff(); // Ändert den Textinhalt des geklickten Elements
+        if (element.textContent == "speak: on") {
+          element.textContent = "speak: off";
+        }else {
+          element.textContent = "speak: on";
+        }
+        // Ändert den Textinhalt des geklickten Elements
       });
     });
     function speakonoff() {
