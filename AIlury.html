@@ -2292,10 +2292,12 @@
       voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
     }
     function say2(textfs) {
-      if (speakon.textContent == "speak: on"){
-        speech.text = textfs;
-        window.speechSynthesis.speak(speech);
-      }
+      document.querySelectorAll('.speakon').forEach(function(element) {
+        if (element.textContent == "speak: on"){
+          speech.text = textfs;
+          window.speechSynthesis.speak(speech);
+        }
+      });
     }
     /*speakon.addEventListener("click", () => {
       speakonoff();
