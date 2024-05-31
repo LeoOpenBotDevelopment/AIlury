@@ -1960,8 +1960,8 @@
               const operator = ['+', '-'][Math.floor(Math.random() * 2)];
               themathquestion = `${num1} ${operator} ${num2}`;
               themathanswer = eval(`${num1} ${operator} ${num2}`);
-              return themathquestion;
               leicht1 = "leicht";
+              return themathquestion;
               // if the user question == the answer to the mathematical question, return "correct"
 
           }else if (themathquestion == "" && !userQuestion.includes("leicht")) {
@@ -1974,7 +1974,7 @@
               return themathquestion;
               // if the user question == the answer to the mathematical question, return "correct"
 
-          }else if (userQuestion == themathanswer && leicht1 !== "leicht") {
+          }else if (userQuestion == themathanswer && leicht1 != "leicht") {
               // create random math question
               const num1 = Math.floor(Math.random() * 10) + 1;
               const num2 = Math.floor(Math.random() * 10) + 1;
@@ -1990,7 +1990,7 @@
               themathquestion = `${num1} ${operator} ${num2}`;
               themathanswer = eval(`${num1} ${operator} ${num2}`);
               return 'Richtig! hier hast du die nächste aufgabe ' + themathquestion;
-          }else if (themathquestion != "" && userQuestion.includes("idk") && leicht1 !== "leicht"){
+          }else if (themathquestion != "" && userQuestion.includes("idk") && leicht1 != "leicht"){
               const num1 = Math.floor(Math.random() * 10) + 1;
               const num2 = Math.floor(Math.random() * 10) + 1;
               const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
@@ -2092,7 +2092,7 @@
                   return themathquestion;
                   // if the user question == the answer to the mathematical question, return "correct"
 
-              }else if (userQuestion == themathanswer && leicht2 !== "easy") {
+              }else if (userQuestion == themathanswer && leicht2 != "easy") {
                   // create random math question
                   const num1 = Math.floor(Math.random() * 10) + 1;
                   const num2 = Math.floor(Math.random() * 10) + 1;
@@ -2108,7 +2108,7 @@
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return 'correct! there you have the next question: ' + themathquestion;
-              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 !== "easy"){
+              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 != "easy"){
                     const num1 = Math.floor(Math.random() * 10) + 1;
                     const num2 = Math.floor(Math.random() * 10) + 1;
                     const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
