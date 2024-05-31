@@ -1949,7 +1949,17 @@
           const knowledgeBase = await loadKnowledgeBase('knowledge_base.json');
           const questions = knowledgeBase.questions.map(q => q.question);
           const bestMatch2 = findBestMatch(userQuestion, questions);
-          if (themathquestion == "") {
+          if (themathquestion == "" && userQuestion.includes("leicht")) {
+              // create random math question
+              const num1 = Math.floor(Math.random() * 10) + 1;
+              const num2 = Math.floor(Math.random() * 10) + 1;
+              const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+              themathquestion = `${num1} ${operator} ${num2}`;
+              themathanswer = eval(`${num1} ${operator} ${num2}`);
+              return themathquestion;
+              // if the user question == the answer to the mathematical question, return "correct"
+
+          }else if (themathquestion == "" && !userQuestion.includes("leicht")) {
               // create random math question
               const num1 = Math.floor(Math.random() * 10) + 1;
               const num2 = Math.floor(Math.random() * 10) + 1;
@@ -1974,7 +1984,7 @@
               theoldmathanswer = themathanswer;
               themathquestion = `${num1} ${operator} ${num2}`;
               themathanswer = eval(`${num1} ${operator} ${num2}`);
-              return "die richtige antwort ist: " + theoldmathanswer + " die neue aufgabe ist: " + themathquestion;
+              return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
           }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                 chalange = "python";
                 clean();
@@ -2065,7 +2075,7 @@
                     theoldmathanswer = themathanswer;
                     themathquestion = `${num1} ${operator} ${num2}`;
                     themathanswer = eval(`${num1} ${operator} ${num2}`);
-                    return "the right answer is: " + theoldmathanswer + " the new question is: " + themathquestion;
+                    return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
               }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                     chalange = "python";
                     clean();
