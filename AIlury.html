@@ -2071,7 +2071,7 @@
               const knowledgeBase = await loadKnowledgeBase('knowledge_base.json');
               const questions = knowledgeBase.questions.map(q => q.question);
               const bestMatch2 = findBestMatch(userQuestion, questions);
-              if (themathquestion == "" && !userQuestion.includes("leicht")) {
+              if (themathquestion == "" && !userQuestion.includes("easy")) {
                   // create random math question
                   const num1 = Math.floor(Math.random() * 10) + 1;
                   const num2 = Math.floor(Math.random() * 10) + 1;
@@ -2081,18 +2081,18 @@
                   return themathquestion;
                   // if the user question == the answer to the mathematical question, return "correct"
 
-              }else if (themathquestion == "" && userQuestion.includes("leicht")) {
+              }else if (themathquestion == "" && userQuestion.includes("easy")) {
                   // create random math question
                   const num1 = Math.floor(Math.random() * 10) + 1;
                   const num2 = Math.floor(Math.random() * 10) + 1;
                   const operator = ['+', '-'][Math.floor(Math.random() * 2)];
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
-                  leicht2 = "leicht";
+                  leicht2 = "easy";
                   return themathquestion;
                   // if the user question == the answer to the mathematical question, return "correct"
 
-              }else if (userQuestion == themathanswer && leicht2 !== "leicht") {
+              }else if (userQuestion == themathanswer && leicht2 !== "easy") {
                   // create random math question
                   const num1 = Math.floor(Math.random() * 10) + 1;
                   const num2 = Math.floor(Math.random() * 10) + 1;
@@ -2100,7 +2100,7 @@
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return 'correct! there you have the next question: ' + themathquestion;
-              }else if (userQuestion == themathanswer && leicht2 == "leicht") {
+              }else if (userQuestion == themathanswer && leicht2 == "easy") {
                   // create random math question
                   const num1 = Math.floor(Math.random() * 10) + 1;
                   const num2 = Math.floor(Math.random() * 10) + 1;
@@ -2108,7 +2108,7 @@
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return 'correct! there you have the next question: ' + themathquestion;
-              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 !== "leicht"){
+              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 !== "easy"){
                     const num1 = Math.floor(Math.random() * 10) + 1;
                     const num2 = Math.floor(Math.random() * 10) + 1;
                     const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
@@ -2116,7 +2116,7 @@
                     themathquestion = `${num1} ${operator} ${num2}`;
                     themathanswer = eval(`${num1} ${operator} ${num2}`);
                     return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
-              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 == "leicht"){
+              }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 == "easy"){
                     const num1 = Math.floor(Math.random() * 10) + 1;
                     const num2 = Math.floor(Math.random() * 10) + 1;
                     const operator = ['+', '-'][Math.floor(Math.random() * 2)];
