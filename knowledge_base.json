@@ -6031,6 +6031,14 @@
     {
       "question": "ja",
       "answer": "okay"
+    },
+    {
+      "question": "was jetzt?",
+      "answer": "weiss nicht!"
+    },
+    {
+      "question": "was jetzt",
+      "answer": "weiss nicht"
     }
   ]
 }
