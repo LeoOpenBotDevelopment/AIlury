@@ -5989,8 +5989,48 @@
       "answer": "okay"
     },
     {
-      "question": "was bist du",
+      "question": "was bist du?",
       "answer": "ich bin AIlury, ein bot der von maximilian/leoOpenBotDevelopment entwickelt wurde"
+    },
+    {
+      "question": "ich liebe dich",
+      "answer": "ich kann damit leider nicht umgehen"
+    },
+    {
+      "question": "du bist toll",
+      "answer": "danke"
+    },
+    {
+      "question": "du bist nett",
+      "answer": "danke"
+    },
+    {
+      "question": "du bist schön",
+      "answer": "danke"
+    },
+    {
+      "question": "du bist dumm",
+      "answer": "entschuldingung"
+    },
+    {
+      "question": "du bist langweilig",
+      "answer": "entschuldigung"
+    },
+    {
+      "question": "du bist scheisse",
+      "answer": "entschuldigung"
+    },
+    {
+      "question": "was soll das",
+      "answer": "?"
+    },
+    {
+      "question": "du bist schlau",
+      "answer": "danke"
+    },
+    {
+      "question": "ja",
+      "answer": "okay"
     }
   ]
 }
