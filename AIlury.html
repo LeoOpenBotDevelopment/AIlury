@@ -1754,7 +1754,31 @@
         }
 
       } else {
-        response = { message: 'sorry but i do not know how to answer to that question' };
+        if (userQuestion.includes("?") && !userQuestion.includes(" ?")) {
+          let userQuestion2 = userQuestion.replace("?", " ?");
+          const knowledgeBase2 = await loadKnowledgeBase('knowledge_base.json');
+          const questions2 = knowledgeBase.questions.map(q => q.question);
+          const bestMatch2 = findBestMatch(userQuestion2, questions2);
+          if (bestMatch2){
+            const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
+            response = { message: `${newanswer}` };
+          }else {
+            response = { message: 'sorry but i do not know how to answer to that question' };
+          }
+        }else if (userQuestion.includes(" ?") && !userQuestion.includes("?")) {
+          let userQuestion2 = userQuestion.replace(" ?", "?");
+          const knowledgeBase2 = await loadKnowledgeBase('knowledge_base.json');
+          const questions2 = knowledgeBase.questions.map(q => q.question);
+          const bestMatch2 = findBestMatch(userQuestion2, questions2);
+          if (bestMatch2){
+            const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
+            response = { message: `${newanswer}` };
+          }else {
+            response = { message: 'sorry but i do not know how to answer to that question' };
+          }
+        }else {
+          response = { message: 'sorry but i do not know how to answer to that question' };
+        }
       }
 
       return response.message;
