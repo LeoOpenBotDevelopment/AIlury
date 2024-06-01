@@ -18,6 +18,9 @@
         --ngrey-color: #ccc;
         --232323-color: #BCBCBC;
         --676767-color: #FBFBFB;
+        --newc-color: #367af6;
+        --2323232-color: #BCBCBC;
+        --2323233-color: #BCBCBC;
       }
       /* #5c3884 */
       .dark-theme{
@@ -32,13 +35,46 @@
         --ngrey-color: #1a1f2c;
         --232323-color: #232323;
         --676767-color: #676767;
+        --newc-color: #367af6;
+        --2323232-color: #fff;
+        --2323233-color: #232323;
+      }
+      .nice-theme{
+        --primary-color: white;
+        --sekundary-color: black;
+        --grey-color: #0f87ff;
+        --darkgrey-color: #403d80;
+        --lightcyan-color: #7d9eff;
+        --cyan-color: darkcyan;
+        --white-color: #010758;
+        --bcolor-color: #ff2963;
+        --ngrey-color: linear-gradient(45deg, #010758, #490d61);
+        --232323-color: linear-gradient(45deg, #010758, #490d61);
+        --676767-color: #fff;
+        --newc-color: #ff2963;
+        --2323232-color: #BCBCBC;
+        --2323233-color: #403d80;
+      }
+      input[type=text] {
+        background: transparent;/*linear-gradient(45deg, #010758, #490d61);*/
+        color: #fff;
+        font-weight: bold;
+        font-size: 35px;
+        text-align: center;
+      }
+      input[type=text]:focus{
+        outline: none;
+        border: none;
       }
       @media(min-width: 750px){
             body {
               font-family: Arial, sans-serif;
-              background-color: var(--ngrey-color);
+              background: var(--ngrey-color);
               margin: 0;
               transition: 1s;
+            }
+            #navlinks{
+              display: none;
             }
             .chat{
                 display: flex;
@@ -56,7 +92,7 @@
               width: 900px;
               border: 1px solid var(--darkgrey-color);
               border-radius: 10px;
-              background-color: var(--darkgrey-color);
+              background: var(--darkgrey-color);
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
               display: flex;
               flex-direction: column;
@@ -75,8 +111,8 @@
             }
 
             .bigscreenbtns a{
-               background-color: #367af6;/*#82be5d;*/
-               color: var(--232323-color);
+               background: var(--newc-color);/*#82be5d;*/
+               color: var(--2323232-color);
                border: none;
                padding: 5px 10px;
                cursor: pointer;
@@ -96,7 +132,7 @@
             }
 
             .sent {
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               align-self: flex-end;
               text-align: left;
               font-size: 40px;
@@ -112,7 +148,7 @@
             }
 
             .received {
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               align-self: flex-start;
               text-align: left;
               color: var(--primary-color);
@@ -141,16 +177,17 @@
               border: none;
               border-radius: 10px;
               color: var(--primary-color);
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               font-size: 35px;
               font-weight: bold;
+              text-align: left;
               transition: 1s;
             }
 
             .chat-input button {
               padding: 8px 15px;
               border: none;
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               color: var(--primary-color);
               border-radius: 10px;
               cursor: pointer;
@@ -161,43 +198,49 @@
               color: var(--white-color);
             }
             .chat-input input:focus{
-              outline: none;
+              outline: 2px solid var(--newc-color);
+              border: none;
             }
             ::placeholder{
               color: #676767;
             }
             .nav-links{
-              flex: 1;
-              text-align: right;
-              cursor: pointer;
               display: none;
+              height: 0px;
+              /*flex: 1;
+              text-align: right;
+              cursor: pointer;*/
             }
             .nav-links ul li{
-              list-style: none;
+              display: none;
+              /*list-style: none;
               display: inline-block;
               padding: 8px 12px;
-              position: relative;
+              position: relative;*/
             }
             .nav-links ul li a{
-              color: var(--primary-color);
+              display: none;
+              /*color: var(--primary-color);
               text-decoration: none;
               font-size: 20px;
-              transition: 1s;
+              transition: 1s;*/
             }
             .nav-links ul li::after{
-              content: '';
+              display: none;
+              /*content: '';
               width: 0%;
               height: 2px;
               background: var(--cyan-color);
               display: block;
               margin: auto;
-              transition: 0.5s;
+              transition: 0.5s;*/
             }
             .bcft{
-              background-color: var(--grey-color);
+              display: none;
+              /*background: var(--newc-color);
               border-radius: 10px;
               padding: 10px;
-              transition: 1s;
+              transition: 1s;*/
             }
             #button1 img{
               height: 50px;
@@ -224,11 +267,12 @@
               transition: 1s;
             }
             .bcft1{
-              background-color: var(--grey-color);
+              display: none;
+              /*background: var(--newc-color);
               border-radius: 10px;
               padding: 10px;
               height: 30px;
-              transition: 1s;
+              transition: 1s;*/
             }
             #nmy{
               transition: 0.5s;
@@ -305,7 +349,7 @@
                 /* make every item have a space on top and bottom */
 
                 border-radius: 10px;
-                background-color: var(--232323-color);
+                background: var(--2323233-color);
                 color: var(--676767-color);
                 max-width: 400px;
                 height: 100vh;
@@ -334,8 +378,8 @@
             }
             #logout{
               display: flex;
-              background-color: #367af6;
-              color: var(--232323-color);
+              background: var(--newc-color);
+              color: var(--2323232-color);
               border: none;
               cursor: pointer;
               font-size: 25px;
@@ -352,7 +396,7 @@
             }
             #Löschbtn {
               display: none;
-              background-color: var(--232323-color);/*var(--bcolor-color);*/
+              background: var(--232323-color);/*var(--bcolor-color);*/
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -364,7 +408,7 @@
             }
             #Editbtn {
               display: none;
-              background-color: var(--232323-color);/*var(--bcolor-color);*/
+              background: var(--232323-color);/*var(--bcolor-color);*/
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -376,7 +420,7 @@
             }
             #Breakbtn {
               display: none;
-              background-color: var(--232323-color);/*var(--bcolor-color);*/
+              background: var(--232323-color);/*var(--bcolor-color);*/
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -387,8 +431,8 @@
             }
             #speakon {
               display: flex;
-              background-color: #367af6;/*#82be5d;*/
-              color: var(--232323-color);
+              background: var(--newc-color);/*#82be5d;*/
+              color: var(--2323232-color);
               border: none;
               padding: 5px 10px;
               cursor: pointer;
@@ -401,8 +445,8 @@
             .RandomQuestion {
               display: flex;
               margin-top: 20px;
-              background-color: #367af6;/*#82be5d;*/
-              color: var(--232323-color);
+              background: var(--newc-color);/*#82be5d;*/
+              color: var(--2323232-color);
               border: none;
               padding: 5px 10px;
               cursor: pointer;
@@ -413,7 +457,7 @@
               transition: 1s;
             }
             #inscructionlink{
-                  background-color: var(--232323-color);/*#ff5722;*/
+                  background: var(--232323-color);/*#ff5722;*/
                   color: var(--sekundary-color);
                   border: none;
                   padding: 5px 10px;
@@ -428,9 +472,19 @@
       @media(max-width: 750px){
             body {
               font-family: Arial, sans-serif;
-              background-color: var(--ngrey-color);
+              background: var(--ngrey-color);
               margin: 0;
               transition: 1s;
+            }
+            input[type=text] {
+              background: transparent;/*linear-gradient(45deg, #010758, #490d61);*/
+              color: var(--sekundary-color);
+              font-weight: bold;
+              font-size: 16px;
+              text-align: center;
+            }
+            #fontS{
+              display: none;
             }
             .bigscreenbtns{
               display: none;
@@ -447,7 +501,7 @@
               margin: 20px auto;
               border: 1px solid transparent;
               border-radius: 10px;
-              background-color: var(--darkgrey-color);
+              background: var(--darkgrey-color);
               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
               display: flex;
               flex-direction: column;
@@ -473,7 +527,7 @@
             }
 
             .sent {
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               align-self: flex-end;
               text-align: right;
               color: var(--primary-color);
@@ -487,7 +541,7 @@
             }
 
             .received {
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               align-self: flex-start;
               text-align: left;
               color: var(--primary-color);
@@ -513,16 +567,17 @@
               border: none;
               border-radius: 10px;
               color: var(--primary-color);
-              background-color: var(--232323-color);
+              background: var(--232323-color);
               font-size: 20px;
               font-weight: bold;
+              text-align: left;
               transition: 1s;
             }
 
             .chat-input button {
               padding: 8px 15px;
               border: none;
-              background-color: lightgrey;
+              background: var(--232323-color);
               color: var(--darkgrey-color);
               border-radius: 10px;
               cursor: pointer;
@@ -532,7 +587,8 @@
               color: var(--white-color);
             }
             .chat-input input:focus{
-              outline: 2px solid #0f87ff;
+              outline: 2px solid var(--newc-color);
+              border: none;
             }
             .nav-links{
               flex: 1;
@@ -562,7 +618,7 @@
               transition: 0.5s;
             }
             .bcft{
-              background-color: var(--grey-color);
+              background: var(--newc-color);
               border-radius: 10px;
               padding: 10px;
 
@@ -588,7 +644,7 @@
               transition: 1s;
             }
             .bcft1{
-              background-color: var(--grey-color);
+              background: var(--newc-color);
               border-radius: 10px;
               padding: 10px;
               height: 30px;
@@ -631,7 +687,7 @@
               top: 0;
               width: 100%;
               height: 100vh;
-              background-color: #161616;
+              background: #161616;
               transition: 1s;
             }
             .logo-header{
@@ -670,7 +726,7 @@
                 margin-top: 20px;
                 padding: 20px;
                 border-radius: 10px;
-                background-color: var(--sekundary-color);
+                background: var(--2323233-color);
                 color: var(--primary-color);
                 width: 580px;
                 border: 1px solid transparent;
@@ -692,7 +748,7 @@
                 object-fit: cover;
             }
             #logout{
-              background-color: #367af6;
+              background: var(--newc-color);/*#367af6*/
               color: #fff;
               border: none;
               padding: 5px 10px;
@@ -707,7 +763,7 @@
             }
             #Löschbtn {
               display: none;
-              background-color: var(--bcolor-color);
+              background: var(--bcolor-color);
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -719,7 +775,7 @@
             }
             #Editbtn {
               display: none;
-              background-color: var(--bcolor-color);
+              background: var(--bcolor-color);
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -731,7 +787,7 @@
             }
             #Breakbtn {
               display: none;
-              background-color: var(--bcolor-color);
+              background: var(--bcolor-color);
               color: var(--primary-color);
               border: none;
               border-radius: 10px;
@@ -742,7 +798,7 @@
               transition: 1s;
             }
             #speakon {
-              background-color: #367af6;/*#ff5722;*/
+              background: var(--newc-color);/*#367af6*//*#ff5722;*/
               color: #fff;
               border: none;
               padding: 5px 10px;
@@ -753,17 +809,18 @@
               transition: 1s;
             }
             #inscructionlink{
-                  background-color: #367af6;/*#ff5722;*/
-                  color: #fff;
-                  border: none;
-                  padding: 5px 10px;
-                  cursor: pointer;
-                  border-radius: 5px;
-                  font-size: 15px;
-                  margin-left: 5px;
-                  transition: 1s;
+              background: var(--newc-color);/*#367af6*//*#ff5722;*/
+              color: #fff;
+              border: none;
+              padding: 5px 10px;
+              cursor: pointer;
+              border-radius: 5px;
+              font-size: 15px;
+              margin-left: 5px;
+              transition: 1s;
             }
       }
+      /* only if true the values are the next*/
   </style>
 </head>
 
@@ -798,7 +855,7 @@
     })
   </script>
   <div class="chat">
-      <div class="container">
+        <div class="container">
             <div class="user-profile" id="user-profile">
                 <div>
                     <img src="default_avatar.png" alt="User Avatar" id="user-avatar">
@@ -1193,7 +1250,7 @@
     function findBestMatch(userQuestion, questions) {
       // Simulierte Funktion für Übereinstimmungsvergleich
       let bestMatch = null;
-      let bestScore = 0.5; // Beispielschwellenwert
+      let bestScore = 0.7; // Beispielschwellenwert
       questions.forEach(question => {
         let score = similarity(userQuestion, question); // similarity() muss implementiert werden
         if (score > bestScore) {
@@ -1210,7 +1267,6 @@
       const commonWords = words1.filter(word => words2.includes(word));
       return commonWords.length / Math.max(words1.length, words2.length);
     }
-
     // Funktion zum Abrufen der Antwort für eine Frage
     function getAnswerForQuestion(question, knowledgeBase) {
       for (let q of knowledgeBase.questions) {
@@ -1656,7 +1712,13 @@
                   zahl = uword;
               }
               return `Ich wähle: ${zahl}`;
-          } else if (userQuestion.includes("gib mir") && userQuestion.includes("name")) {
+          }else if (userQuestion.includes("du") && userQuestion.includes("schön") && !userQuestion.includes("nicht")){
+            nicetheme();
+            return "Danke, dass du mich schön findest!";
+          } else if (userQuestion.includes("you") && userQuestion.includes("nice") && !userQuestion.includes("not")){
+            nicetheme();
+            return "thank you, for finding me nice!";
+          }else if (userQuestion.includes("gib mir") && userQuestion.includes("name")) {
               if (userQuestion.includes("männlich") || userQuestion.includes("jung")) {
                   return 'Wie wäre es mit: ' + Jnamen[Math.floor(Math.random() * Jnamen.length)] + '.';
               } else if (userQuestion.includes("weiblich") || userQuestion.includes("mädchen")) {
@@ -1702,11 +1764,11 @@
                   return `${answer}`;
               }
           } else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
-              chalange = "python";
+              chalange = "englisch";
               clean();
               return "okay, du lernst jetzt englisch";
           } else if (userQuestion.includes('englisch') && userQuestion.includes('üben')) {
-                chalange = "python";
+                chalange = "englisch";
                 clean();
                 return "okay, du übst jetzt englisch";
           } else if (userQuestion.includes('mathe') && userQuestion.includes('lernen')) {
@@ -1718,11 +1780,11 @@
                 clean();
                 return "okay, du übst jetzt mathe";
           } else if (userQuestion.includes('learn') && userQuestion.includes('german')) {
-                chalange = "pythone";
+                chalange = "german";
                 clean();
                 return "okay, you're going to learn german now";
           } else if (userQuestion.includes('practice') && userQuestion.includes('german')) {
-                chalange = "pythone";
+                chalange = "german";
                 clean();
                 return "okay, you are going to practice german now";
           } else if (userQuestion.includes('learn') && userQuestion.includes('math')) {
@@ -2336,12 +2398,19 @@
 
 
     }
+    function nicetheme() {
+      document.body.classList.toggle("nice-theme");
+    }
 
     function change_mood(){
       document.body.classList.toggle("dark-theme");
       if(document.body.classList.contains("dark-theme")){
         document.getElementById("changetheme").textContent = "Light theme";
         document.querySelector(".bcft").textContent = "Light theme";
+      } else if(document.body.classList.contains("nice-theme")){
+        document.body.classList.toggle("nice-theme");
+        document.getElementById("changetheme").textContent = "nice theme";
+        document.querySelector(".bcft").textContent = "nice theme";
       } else {
         document.getElementById("changetheme").textContent = "Dark theme";
         document.querySelector(".bcft").textContent = "Dark theme";
