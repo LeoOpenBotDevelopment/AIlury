@@ -1259,9 +1259,30 @@
       });
       return bestMatch;
     }
+    function findBestMatch2(userQuestion, questions) {
+      // Simulierte Funktion für Übereinstimmungsvergleich
+      let bestMatch = null;
+      let bestScore = 0.7; // Beispielschwellenwert
+      questions.forEach(question => {
+        // similarity() muss implementiert werden
+        // take "!?.," out of the user question
+        let filterdUserQ = userQuestion.replace(/[.,!?]/g, "");
+        
+        if (question.includes(filterdUserQ)){
+          bestMatch = question;
+        }
+      });
+      return bestMatch;
+    }
 
     // Funktion zur Berechnung der Ähnlichkeit (eine einfache Implementierung)
     function similarity(str1, str2) {
+      const words1 = str1.split(' ');
+      const words2 = str2.split(' ');
+      const commonWords = words1.filter(word => words2.includes(word));
+      return commonWords.length / Math.max(words1.length, words2.length);
+    }
+    function similarity2(str1, str2) {
       const words1 = str1.split(' ');
       const words2 = str2.split(' ');
       const commonWords = words1.filter(word => words2.includes(word));
@@ -1843,7 +1864,16 @@
                   }
                   response = { message: `i dont know what ${word2} is` };
                 }else{
-                  response = { message: 'sorry but i do not know how to answer to that question' };
+                  let userQuestion3 = userQuestion.replace(" ?", "?");
+                  const knowledgeBase3= await loadKnowledgeBase('knowledge_base.json');
+                  const questions3 = knowledgeBase.questions.map(q => q.question);
+                  const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                  if (bestMatch3){
+                    const newanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                    response = { message: `${newanswer}` };
+                  }else{
+                    response = { message: 'sorry but i do not know how to answer to that question' };
+                  }
                 }
               }
             }else if (userQuestion.includes(" ?") && !userQuestion.includes("?")) {
@@ -1868,7 +1898,16 @@
                   }
                   response = { message: `i dont know what ${word2} is` };
                 }else{
-                  response = { message: 'sorry but i do not know how to answer to that question' };
+                  let userQuestion3 = userQuestion.replace(" ?", "?");
+                  const knowledgeBase3= await loadKnowledgeBase('knowledge_base.json');
+                  const questions3 = knowledgeBase.questions.map(q => q.question);
+                  const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                  if (bestMatch3){
+                    const newanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                    response = { message: `${newanswer}` };
+                  }else{
+                    response = { message: 'sorry but i do not know how to answer to that question' };
+                  }
                 }
               }
             }else {
@@ -1885,7 +1924,16 @@
                 }
                 response = { message: `i dont know what ${word2} is` };
               }else {
-                response = { message: 'sorry but i do not know how to answer to that question' };
+                let userQuestion2 = userQuestion.replace(" ?", "?");
+                const knowledgeBase2 = await loadKnowledgeBase('knowledge_base.json');
+                const questions2 = knowledgeBase.questions.map(q => q.question);
+                const bestMatch2 = findBestMatch2(userQuestion2, questions2);
+                if (bestMatch2){
+                  const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
+                  response = { message: `${newanswer}` };
+                }else{
+                  response = { message: 'sorry but i do not know how to answer to that question' };
+                }
               }
             }
           }
