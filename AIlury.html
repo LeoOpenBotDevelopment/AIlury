@@ -2030,7 +2030,17 @@
                         }
                         return response.message;
                     }else {
-                       return 'Falsch! Versuchen Sie es erneut.';
+                       let userQuestion3 = userQuestion.replace(" ?", "?");
+                       const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
+                       const questions3 = knowledgeBase.questions.map(q => q.question);
+                       const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                       if (bestMatch3){
+                         const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                         response = { message: `${rnewanswer}` };
+                       }else{
+                         response = { message: 'Falsch! Versuchen Sie es erneut.' };
+                       }
+                       return response.message;
                     }
               }
 
@@ -2125,7 +2135,17 @@
                           }
                           return response.message;
                     }else {
-                        return 'wrong! try again.';
+                         let userQuestion3 = userQuestion.replace(" ?", "?");
+                         const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
+                         const questions3 = knowledgeBase.questions.map(q => q.question);
+                         const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                         if (bestMatch3){
+                           const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                           response = { message: `${rnewanswer}` };
+                         }else{
+                           response = { message: 'wrong! try again.' };
+                         }
+                         return response.message;
                     }
                }
 
@@ -2245,7 +2265,17 @@
                   }
                   return response.message;
               }else {
-                  return 'Falsch! Versuchen Sie es erneut.';
+                  let userQuestion3 = userQuestion.replace(" ?", "?");
+                   const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
+                   const questions3 = knowledgeBase.questions.map(q => q.question);
+                   const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                   if (bestMatch3){
+                     const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                     response = { message: `${rnewanswer}` };
+                   }else{
+                     response = { message: 'Falsch! Versuchen Sie es erneut.' };
+                   }
+                   return response.message;
               }
          }else if (chalange == "math") {
                   const userQuestion = userMessage.toLowerCase();
@@ -2363,7 +2393,17 @@
                         }
                         return response.message;
                   }else {
-                      return 'wrong! try again.';
+                     let userQuestion3 = userQuestion.replace(" ?", "?");
+                     const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
+                     const questions3 = knowledgeBase.questions.map(q => q.question);
+                     const bestMatch3 = findBestMatch2(userQuestion3, questions3);
+                     if (bestMatch3){
+                       const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
+                       response = { message: `${rnewanswer}` };
+                     }else{
+                       response = { message: 'wrong! try again.' };
+                     }
+                     return response.message;
                   }
         }
       } catch (error) {
