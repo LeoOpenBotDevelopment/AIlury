@@ -1733,6 +1733,26 @@
                   zahl = uword;
               }
               return `Ich wähle: ${zahl}`;
+          } else if (userQuestion.includes("choose a number") && userQuestion.includes("from") && userQuestion.includes("to")) {
+              // Zerlegen der Benutzereingabe, um den Bereich zu extrahieren
+              let trash1 = userQuestion.split("from")[1];
+              let word1 = trash1.split("to")[0];
+              let word2 = trash1.split("to")[1];
+              // Extrahieren der Zahlen aus den Textteilen
+              let uword = word1.match(/\b\d+\b/);
+              let uword2 = word2.match(/\b\d+\b/);
+              uword = parseInt(uword[0]);
+              uword2 = parseInt(uword2[0]);
+              // Generieren einer Zufallszahl innerhalb des Bereichs
+              let zahl;
+              if (uword > uword2) {
+                  zahl = Math.floor(Math.random() * (uword - uword2 + 1)) + uword2;
+              } else if (uword < uword2) {
+                  zahl = Math.floor(Math.random() * (uword2 - uword + 1)) + uword;
+              } else {
+                  zahl = uword;
+              }
+              return `i choose: ${zahl}`;
           }else if (userQuestion.includes("du") && userQuestion.includes("schön") && !userQuestion.includes("nicht")){
             nicetheme();
             return "Danke, dass du mich schön findest!";
