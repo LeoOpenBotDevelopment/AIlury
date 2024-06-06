@@ -979,6 +979,8 @@
   <h6 style="color: transparent;" id="bot-response"></h6>
   <h6 style="color: transparent;" id="idk">I dont know the answer. Please enter my answer to that question</h6>
   <script>
+    let aotink = "0";
+    let asktg = "no";
     let leicht1 = "";
     let leicht2 = "";
     let theoldanswer = "";
@@ -991,9 +993,17 @@
     let chalange = "nothing";
     let thequestion = "nothing";
     let theanswer = "nothing";
+    let operator = "";
+    let num1 = "";
+    let num2 = "";
     function clean() {
+        aotink = "0";
+        asktg = "no";
         leicht1 = "";
         leicht2 = "";
+        operator = "";
+        num1 = "";
+        num2 = "";
         theoldanswer = "";
         theoldanswer2 = "";
         thequestion2 = "nothing";
@@ -1267,7 +1277,7 @@
         // similarity() muss implementiert werden
         // take "!?.," out of the user question
         let filterdUserQ = userQuestion.replace(/[.,!?]/g, "");
-        
+
         if (question.includes(filterdUserQ)){
           bestMatch = question;
         }
@@ -2024,6 +2034,17 @@
                             chalange = "math";
                             clean();
                             return "okay, you are going to practice math now";
+                    }else if (userQuestion.includes("ja") && asktg == "yes"){
+                      aotink = "0";
+                      asktg = "no";
+                      chalange = "nothing";
+                      clean();
+                      return "okay, du bist zurück im normalen gespräch";
+                    }else if (userQuestion.includes("nein") && asktg == "yes"){
+                      aotink = "0";
+                      asktg = "no";
+                      chalange = "englisch";
+                      return "okay, du bist nicht zurück im normalen gespräch";
                     }else if (bestMatch2) {
                         const answer = getAnswerForQuestion(bestMatch2, knowledgeBase);
                         if (answer == "Sorry but i dont know your Name") {
@@ -2048,7 +2069,14 @@
                         }else {
                           response = { message: `${answer}` };
                         }
-                        return response.message;
+                        
+                        if (parseInt(aotink) + 1 == 7){
+                          asktg = "yes";
+                          return "möchtest du die aufgaben ignorieren und in das normale gespräch zurück?";
+                        }else {
+                          aotink = parseInt(aotink) + 1;
+                          return response.message;
+                        }
                     }else {
                        let userQuestion3 = userQuestion.replace(" ?", "?");
                        const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
@@ -2061,6 +2089,7 @@
                          response = { message: 'Falsch! Versuchen Sie es erneut.' };
                        }
                        return response.message;
+                       
                     }
               }
 
@@ -2129,6 +2158,17 @@
                             chalange = "math";
                             clean();
                             return "okay, you are going to practice math now";
+                    }else if (userQuestion.includes("yes") && asktg == "yes"){
+                      aotink = "0";
+                      asktg = "no";
+                      chalange = "nothing";
+                      clean();
+                      return "okay, you are back in the normal chat";
+                    }else if (userQuestion.includes("no") && asktg == "yes"){
+                      aotink = "0";
+                      asktg = "no";
+                      chalange = "german";
+                      return "okay, you are not back in the normal chat";
                     }else if (bestMatch2) {
                           const answer = getAnswerForQuestion(bestMatch2, knowledgeBase);
                           if (answer == "Sorry but i dont know your Name") {
@@ -2153,7 +2193,13 @@
                           }else {
                             response = { message: `${answer}` };
                           }
-                          return response.message;
+                          if (parseInt(aotink) + 1 == 7){
+                             asktg = "yes";
+                             return "do you want to ignore the tasks and go back to the normal chat?";
+                          }else {
+                             aotink = parseInt(aotink) + 1;
+                             return response.message;
+                          }
                     }else {
                          let userQuestion3 = userQuestion.replace(" ?", "?");
                          const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
@@ -2165,6 +2211,7 @@
                          }else{
                            response = { message: 'wrong! try again.' };
                          }
+                         /*return response.message;*/
                          return response.message;
                     }
                }
@@ -2176,9 +2223,9 @@
               const bestMatch2 = findBestMatch(userQuestion, questions);
               if (themathquestion == "" && userQuestion.includes("leicht")) {
                   // create random math question
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-'][Math.floor(Math.random() * 2)];
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   leicht1 = "leicht";
@@ -2187,9 +2234,9 @@
 
               }else if (themathquestion == "" && !userQuestion.includes("leicht")) {
                   // create random math question
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return themathquestion;
@@ -2197,36 +2244,61 @@
 
               }else if (userQuestion == themathanswer && leicht1 != "leicht") {
                   // create random math question
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return 'Richtig! hier hast du die nächste aufgabe ' + themathquestion;
               }else if (userQuestion == themathanswer && leicht1 == "leicht") {
                   // create random math question
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-'][Math.floor(Math.random() * 2)];
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
                   return 'Richtig! hier hast du die nächste aufgabe ' + themathquestion;
               }else if (themathquestion != "" && userQuestion.includes("idk") && leicht1 != "leicht"){
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                  let oldnum1 = num1;
+                  let oldnum2 = num2;
+                  let oldoperator = operator;
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                   theoldmathanswer = themathanswer;
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
-                  return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  //the oldmathanswer to string
+                  let theoldmathanswer2 = theoldmathanswer.toString();
+                  if (oldoperator == "*"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + "wenn du " + oldnum1 + " finger hast und jeder finger den wert von " + oldnum2 + " hat, Addierst du jeden finger mit einander bis keine finger mehr übrig sind und dann hast du das ergebniss" + ". die neue frage ist: " + themathquestion;
+                  }else if (oldoperator == "/"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " wenn du " + oldnum1 + " finger hast musst du einfach gucken wie oft " + oldnum2 + " finger hast" + ". die neue aufgabe ist: " + themathquestion;
+                  }else if (theoldmathanswer2.includes("-")){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " weil " + oldnum2 + " größer als " + oldnum1 + " ist, müssen wir die zahlen einfach umdrehen. also " + oldnum2 + " - " + oldnum1 + " und dann müssen wir einfach das Subtraktions zeichen am anfang der zahl hinzufügen. die neue aufgabe ist: " + themathquestion;
+                  }else {
+                    return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  }
               }else if (themathquestion != "" && userQuestion.includes("idk") && leicht1 == "leicht"){
-                  const num1 = Math.floor(Math.random() * 10) + 1;
-                  const num2 = Math.floor(Math.random() * 10) + 1;
-                  const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                  let oldnum1 = num1;
+                  let oldnum2 = num2;
+                  let oldoperator = operator;
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-'][Math.floor(Math.random() * 2)];
                   theoldmathanswer = themathanswer;
                   themathquestion = `${num1} ${operator} ${num2}`;
                   themathanswer = eval(`${num1} ${operator} ${num2}`);
-                  return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  let theoldmathanswer2 = theoldmathanswer.toString();
+                  if (oldoperator == "*"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + "wenn du " + oldnum1 + " finger hast und jeder finger den wert von " + oldnum2 + " hat, Addierst du jeden finger mit einander bis keine finger mehr übrig sind und dann hast du das ergebniss" + ". die neue frage ist: " + themathquestion;
+                  }else if (oldoperator == "/"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " wenn du " + oldnum1 + " finger hast musst du einfach gucken wie oft " + oldnum2 + " finger hast" + ". die neue aufgabe ist: " + themathquestion;
+                  }else if (theoldmathanswer2.includes("-")){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " weil " + oldnum2 + " größer als " + oldnum1 + " ist, müssen wir die zahlen einfach umdrehen. also " + oldnum2 + " - " + oldnum1 + " und dann müssen wir einfach das Subtraktions zeichen am anfang der zahl hinzufügen. die neue aufgabe ist: " + themathquestion;
+                  }else {
+                    return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  }
               }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                     chalange = "englisch";
                     clean();
@@ -2259,6 +2331,17 @@
                       chalange = "math";
                       clean();
                       return "okay, you are going to practice math now";
+              } else if (userQuestion.includes("ja") && asktg == "yes"){
+                aotink = "0";
+                asktg = "no";
+                chalange = "nothing";
+                clean();
+                return "okay, du bist zurück im normalen gespräch";
+              }else if (userQuestion.includes("nein") && asktg == "yes"){
+                aotink = "0";
+                asktg = "no";
+                chalange = "mathe";
+                return "okay, du bist nicht zurück im normalen gespräch";
               }else if (bestMatch2) {
                   const answer = getAnswerForQuestion(bestMatch2, knowledgeBase);
                   if (answer == "Sorry but i dont know your Name") {
@@ -2283,7 +2366,14 @@
                   }else {
                     response = { message: `${answer}` };
                   }
-                  return response.message;
+                  /*return response.message;*/
+                  if (parseInt(aotink) + 1 == 7){
+                    asktg = "yes";
+                    return "möchtest du die aufgaben ignorieren und wieder ins normale gespräch?";
+                  }else {
+                    aotink = parseInt(aotink) + 1;
+                    return response.message;
+                  }
               }else {
                   let userQuestion3 = userQuestion.replace(" ?", "?");
                    const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
@@ -2304,9 +2394,9 @@
                   const bestMatch2 = findBestMatch(userQuestion, questions);
                   if (themathquestion == "" && !userQuestion.includes("easy")) {
                       // create random math question
-                      const num1 = Math.floor(Math.random() * 10) + 1;
-                      const num2 = Math.floor(Math.random() * 10) + 1;
-                      const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                      num1 = Math.floor(Math.random() * 10) + 1;
+                      num2 = Math.floor(Math.random() * 10) + 1;
+                      operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                       themathquestion = `${num1} ${operator} ${num2}`;
                       themathanswer = eval(`${num1} ${operator} ${num2}`);
                       return themathquestion;
@@ -2314,9 +2404,9 @@
 
                   }else if (themathquestion == "" && userQuestion.includes("easy")) {
                       // create random math question
-                      const num1 = Math.floor(Math.random() * 10) + 1;
-                      const num2 = Math.floor(Math.random() * 10) + 1;
-                      const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                      num1 = Math.floor(Math.random() * 10) + 1;
+                      num2 = Math.floor(Math.random() * 10) + 1;
+                      operator = ['+', '-'][Math.floor(Math.random() * 2)];
                       themathquestion = `${num1} ${operator} ${num2}`;
                       themathanswer = eval(`${num1} ${operator} ${num2}`);
                       leicht2 = "easy";
@@ -2325,36 +2415,61 @@
 
                   }else if (userQuestion == themathanswer && leicht2 != "easy") {
                       // create random math question
-                      const num1 = Math.floor(Math.random() * 10) + 1;
-                      const num2 = Math.floor(Math.random() * 10) + 1;
-                      const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                      num1 = Math.floor(Math.random() * 10) + 1;
+                      num2 = Math.floor(Math.random() * 10) + 1;
+                      operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                       themathquestion = `${num1} ${operator} ${num2}`;
                       themathanswer = eval(`${num1} ${operator} ${num2}`);
                       return 'correct! there you have the next question: ' + themathquestion;
                   }else if (userQuestion == themathanswer && leicht2 == "easy") {
                       // create random math question
-                      const num1 = Math.floor(Math.random() * 10) + 1;
-                      const num2 = Math.floor(Math.random() * 10) + 1;
-                      const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                      num1 = Math.floor(Math.random() * 10) + 1;
+                      num2 = Math.floor(Math.random() * 10) + 1;
+                      operator = ['+', '-'][Math.floor(Math.random() * 2)];
                       themathquestion = `${num1} ${operator} ${num2}`;
                       themathanswer = eval(`${num1} ${operator} ${num2}`);
                       return 'correct! there you have the next question: ' + themathquestion;
                   }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 != "easy"){
-                        const num1 = Math.floor(Math.random() * 10) + 1;
-                        const num2 = Math.floor(Math.random() * 10) + 1;
-                        const operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                        let oldnum1 = num1;
+                        let oldnum2 = num2;
+                        let oldoperator = operator;
+                        num1 = Math.floor(Math.random() * 10) + 1;
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
                         theoldmathanswer = themathanswer;
                         themathquestion = `${num1} ${operator} ${num2}`;
                         themathanswer = eval(`${num1} ${operator} ${num2}`);
-                        return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        let theoldmathanswer2 = theoldmathanswer.toString();
+                        if (oldoperator == "*"){
+                          return "the right answer is: " + theoldmathanswer + ". " + "if you have " + oldnum1 + " fingers and every finger has the value of " + oldnum2 + " just Add each finger together until there are no more fingers left and you have the result. " + ". the new question is: " + themathquestion;
+                        }else if (oldoperator == "/"){
+                          return "the right answer is: " + theoldmathanswer + ". " + " if you have " + oldnum1 + " fingers you just have to see how often you have " + oldnum2 + " fingers" + ". the new question is: " + themathquestion;
+                        }else if (theoldmathanswer2.includes("-")){
+                          return "the right answer is: " + theoldmathanswer + ". " + " because " + oldnum2 + " is larger than " + oldnum1 + " we just turn the numbers around and Subtract " + oldnum1 + " from " + oldnum2 + " and add the Subtraction sign on the beginning of the number" + ". the new question is: " + themathquestion;
+                        }else {
+                          return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        }
                   }else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 == "easy"){
-                        const num1 = Math.floor(Math.random() * 10) + 1;
-                        const num2 = Math.floor(Math.random() * 10) + 1;
-                        const operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                        let oldnum1 = num1;
+                        let oldnum2 = num2;
+                        let oldoperator = operator;
+                        num1 = Math.floor(Math.random() * 10) + 1;
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        operator = ['+', '-'][Math.floor(Math.random() * 2)];
                         theoldmathanswer = themathanswer;
                         themathquestion = `${num1} ${operator} ${num2}`;
                         themathanswer = eval(`${num1} ${operator} ${num2}`);
-                        return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        let theoldmathanswer2 = theoldmathanswer.toString();
+                        if (oldoperator == "*"){
+                          return "the right answer is: " + theoldmathanswer + ". " + "if you have " + oldnum1 + " fingers and every finger has the value of " + oldnum2 + " just Add each finger together until there are no more fingers left and you have the result. " + ". the new question is: " + themathquestion;
+                        }else if (oldoperator == "/"){
+                          return "the right answer is: " + theoldmathanswer + ". " + " if you have " + oldnum1 + " fingers you just have to see how often you have " + oldnum2 + " fingers" + ". the new question is: " + themathquestion;
+                        }else if (theoldmathanswer2.includes("-")){
+                          return "the right answer is: " + theoldmathanswer + ". " + " because " + oldnum2 + " is larger than " + oldnum1 + " we just turn the numbers around and Subtract " + oldnum1 + " from " + oldnum2 + " and add the Subtraction sign on the beginning of the number" + ". the new question is: " + themathquestion;
+                        }else {
+                          return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        }
+                        
                   }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                         chalange = "englisch";
                         clean();
@@ -2387,6 +2502,17 @@
                           chalange = "nothing";
                           clean();
                           return "okay, you're in the normal chat now";
+                  }else if (userQuestion.includes("ja") && asktg == "yes"){
+                    aotink = "0";
+                    asktg = "no";
+                    chalange = "nothing";
+                    clean();
+                    return "okay, you're back in the normal chat now";
+                  }else if (userQuestion.includes("no") && asktg == "yes"){
+                    aotink = "0";
+                    asktg = "no";
+                    chalange = "math";
+                    return "okay, you are not back in the normal chat";
                   }else if (bestMatch2) {
                         const answer = getAnswerForQuestion(bestMatch2, knowledgeBase);
                         if (answer == "Sorry but i dont know your Name") {
@@ -2411,7 +2537,13 @@
                         }else {
                           response = { message: `${answer}` };
                         }
-                        return response.message;
+                        if (parseInt(aotink) + 1 == 7){
+                          asktg = "yes";
+                          return "do you want to ignore the tasks and go back to the normal chat?";
+                        }else {
+                          aotink = parseInt(aotink) + 1;
+                          return response.message;
+                        }
                   }else {
                      let userQuestion3 = userQuestion.replace(" ?", "?");
                      const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
