@@ -997,6 +997,7 @@
     let operator = "";
     let num1 = "";
     let num2 = "";
+    let idnum = "0";
     function clean() {
         aotink = "0";
         asktg = "no";
@@ -1067,6 +1068,7 @@
                 // Replace the text content with an input field for editing
                 clickedElement.textContent = '';
                 clickedElement.appendChild(inputElement);
+                let theId = clickedElement.id;
 
                 inputElement.focus();
 
@@ -1081,9 +1083,17 @@
                 //for each clickedElement border = 'none' 
                 for (const element of document.querySelectorAll('.sent')) {
                   element.style.border = 'none';
+                  if (parseInt(element.id) > parseInt(theId)){
+                    //remove element dataset id
+                    element.remove();
+                  }
                 }
                 for (const element2 of document.querySelectorAll('.received')) {
                   element2.style.border = 'none';
+                  if (parseInt(element2.id) > parseInt(theId)){
+                    //remove element dataset id
+                    element2.remove();
+                  }
                 }
               }
             });
@@ -1146,6 +1156,20 @@
         const editedMessage = inputElement.value;
 
         messageElement.textContent = editedMessage;
+        if (editedMessage !== '') {
+            // Simulierte Antwort vom Bot
+            getBotResponse(editedMessage)
+                .then(response => {
+
+                    setTimeout(addMessage, 500, response, 'received')
+                    document.getElementById('bot-response').textContent = response;
+                    // Hier wird der Wert des <h1>-Elements aktualisiert
+                    // Scrollen zum Ende der Chat-Nachrichten
+                    var chatMessages = document.getElementById('chat-messages');
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                })
+                .catch(error => console.error('Bot response error:', error));
+        }
     }
     document.addEventListener('click', function(event) {
         const clickedElement = event.target;
@@ -2094,7 +2118,7 @@
                         }else {
                           response = { message: `${answer}` };
                         }
-                        
+
                         if (parseInt(aotink) + 1 == 7){
                           asktg = "yes";
                           return "möchtest du die aufgaben ignorieren und in das normale gespräch zurück?";
@@ -2114,7 +2138,7 @@
                          response = { message: 'Falsch! Versuchen Sie es erneut.' };
                        }
                        return response.message;
-                       
+
                     }
               }
 
@@ -2494,7 +2518,7 @@
                         }else {
                           return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
                         }
-                        
+
                   }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                         chalange = "englisch";
                         clean();
@@ -2656,7 +2680,8 @@
         var chatMessages = document.getElementById('chat-messages');
         var messageElement = document.createElement(font2);
         messageElement.classList.add('message', type);
-        messageElement.id = 'messageE';
+        messageElement.id = parseInt(idnum) + 1;
+        idnum = parseInt(idnum) + 1;
         messageElement.textContent = text;
         chatMessages.appendChild(messageElement);
         say2(messageElement.textContent);
