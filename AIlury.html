@@ -493,6 +493,19 @@
             .smallscreenbtns{
               display: block;
             }
+            .smallscreenbtns a{
+               display: flex;
+               background: var(--newc-color);/*#82be5d;*/
+               color: var(--2323232-color);
+               border: none;
+               padding: 5px 10px;
+               cursor: pointer;
+               border-radius: 5px;
+               font-size: 25px;
+               font-weight: bold;
+               margin-left: 5px;
+               transition: 1s;
+            }
             #button1 img{
               height: 35px;
             }
@@ -823,6 +836,20 @@
               margin-left: 5px;
               transition: 1s;
             }
+            .RandomQuestion {
+              display: flex;
+              /*margin-top: 20px;*/
+              background: var(--newc-color);/*#82be5d;*/
+              color: var(--2323232-color);
+              border: none;
+              padding: 5px 10px;
+              cursor: pointer;
+              border-radius: 5px;
+              font-size: 25px;
+              font-weight: bold;
+              margin-left: 5px;
+              transition: 1s;
+            }
       }
       /* only if true the values are the next*/
   </style>
@@ -869,6 +896,8 @@
                     <div class="smallscreenbtns">
                       <a id="logout" href="index.html">log out</a>
                       <button class="speakon" id="speakon">speak: off</button>
+                      <a class="changetheme" id="changetheme" onclick="change_mood()">Dark theme</a>
+                      <a class="RandomQuestion" onclick="setinputvalue()">Random</a>
                     </div>
                     <div class="bigscreenbtns">
                       <br>
