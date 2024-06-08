@@ -491,7 +491,8 @@
               display: none;
             }
             .smallscreenbtns{
-              display: block;
+              display: flex;
+              justify-content: space-between;
             }
             .smallscreenbtns button{
                display: flex;
@@ -815,13 +816,15 @@
               transition: 1s;
             }
             #speakon {
-              background: var(--newc-color);/*#367af6*//*#ff5722;*/
-              color: #fff;
+              display: flex;
+              background: var(--newc-color);/*#82be5d;*/
+              color: var(--2323232-color);
               border: none;
               padding: 5px 10px;
               cursor: pointer;
               border-radius: 5px;
-              font-size: 15px;
+              font-size: 25px;
+              font-weight: bold;
               margin-left: 5px;
               transition: 1s;
             }
