@@ -766,12 +766,16 @@
                 object-fit: cover;
             }
             #logout{
-              background: var(--newc-color);/*#367af6*/
-              color: #fff;
+              display: flex;
+              background: var(--newc-color);/*#82be5d;*/
+              color: var(--2323232-color);
               border: none;
               padding: 5px 10px;
               cursor: pointer;
               border-radius: 5px;
+              font-size: 25px;
+              font-weight: bold;
+              margin-left: 5px;
               transition: 1s;
             }
             #username-display{
@@ -897,7 +901,7 @@
                     <br>
                     <span id="username-display">Guest</span>
                     <div class="smallscreenbtns">
-                      <button id="logout" href="index.html">log out</button>
+                      <a id="logout" href="index.html">log out</a>
                       <button class="speakon" id="speakon">speak: off</button>
                       <button class="changetheme" id="changetheme" onclick="change_mood()">Dark theme</button>
                       <button class="RandomQuestion" onclick="setinputvalue()">Random</button>
