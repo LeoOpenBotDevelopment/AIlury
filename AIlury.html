@@ -1619,10 +1619,10 @@
           }else if (userQuestion.includes('ich bin ')) {
               try {
                   // Alter extrahieren und in eine Ganzzahl konvertieren
-                  let userQuestion = userQuestion.replace('jahre alt', '');
-                  let age = parseInt(userQuestion.split("ich bin ")[1]);
-                  let max_human_age = 122; // Maximales dokumentiertes Alter eines Menschen
-                  if (age > max_human_age) {
+                  let userQuestionzwei = userQuestion.replace('jahre alt', '');
+                  let age1 = userQuestionzwei.split("ich bin ")[1];
+                  let max_human_age = "120"; // Maximales dokumentiertes Alter eines Menschen
+                  if (parseInt(age1) > parseInt(max_human_age)) {
                       // Wenn das Alter das maximale Menschenausmaß übersteigt
                       return 'So alt kann ein Mensch nicht werden.';
                   } else {
@@ -1633,7 +1633,24 @@
                   // Wenn ein Fehler beim Extrahieren oder Konvertieren des Alters auftritt
                   return 'okay';
               }
-          } else if (userQuestion.includes('give me') && userQuestion.includes('password')) {
+          } else if (userQuestion.includes('i am ')) {
+              try {
+                  // Alter extrahieren und in eine Ganzzahl konvertieren
+                  let userQuestiontwo = userQuestion.replace('years old', '');
+                  let age1 = userQuestiontwo.split("i am ")[1];
+                  let max_human_age = "120"; // Maximales dokumentiertes Alter eines Menschen
+                  if (parseInt(age1) > parseInt(max_human_age)) {
+                      // Wenn das Alter das maximale Menschenausmaß übersteigt
+                      return 'So alt kann ein Mensch nicht werden.';
+                  } else {
+                      // Wenn das Alter innerhalb des menschlichen Bereichs liegt
+                      return 'Cool!';
+                  }
+              } catch (error) {
+                  // Wenn ein Fehler beim Extrahieren oder Konvertieren des Alters auftritt
+                  return 'okay';
+              }
+          }else if (userQuestion.includes('give me') && userQuestion.includes('password')) {
               // Zufällige Zahlen und Buchstaben generieren
               let random_number = Math.floor(Math.random() * 900000) + 100000;
               let random_index = Math.floor(Math.random() * 6);
