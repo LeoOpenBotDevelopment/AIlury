@@ -1418,6 +1418,12 @@
             localStorage.setItem("username", name);
             document.getElementById("username-display").textContent = name;
             return name + " ist ein schöner Name";
+          }else if (userQuestion.includes("ich heiße")){
+            let name1 = userQuestion.split("ich heiße")[1];
+            let name = name1.replace("?", "");
+            localStorage.setItem("username", name);
+            document.getElementById("username-display").textContent = name;
+            return name + " ist ein schöner Name";
           }else if (userQuestion.includes("my name is ")){
             let name1 = userQuestion.split("my name is ")[1];
             let name = name1.replace("?", "");
@@ -1426,6 +1432,12 @@
             return name + " is a nice name";
           }else if (userQuestion.includes("i am called ")){
             let name1 = userQuestion.split("i am called ")[1];
+            let name = name1.replace("?", "");
+            localStorage.setItem("username", name);
+            document.getElementById("username-display").textContent = name;
+            return name + " is a nice name";
+          }else if (userQuestion.includes("im called ")){
+            let name1 = userQuestion.split("im called ")[1];
             let name = name1.replace("?", "");
             localStorage.setItem("username", name);
             document.getElementById("username-display").textContent = name;
