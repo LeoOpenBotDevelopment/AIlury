@@ -626,18 +626,19 @@
               transition: 1s;*/
             }
             .nav-links ul li::after{
-              content: '';
+              display: none;
+              /*content: '';
               width: 0%;
               height: 2px;
               background: var(--cyan-color);
               display: block;
               margin: auto;
-              transition: 0.5s;
+              transition: 0.5s;*/
             }
             .bcft{
-              background: var(--newc-color);
+              /*background: var(--newc-color);
               border-radius: 10px;
-              padding: 10px;
+              padding: 10px;*/
 
             }
             #einstellungen{
@@ -903,7 +904,7 @@
                     <div class="smallscreenbtns">
                       <a id="logout" href="index.html">log out</a>
                       <button class="speakon" id="speakon">speak: off</button>
-                      <button class="changetheme" id="changetheme" onclick="change_mood()">Dark theme</button>
+                      <button class="bcft" id="changetheme" onclick="change_mood()">Dark theme</button>
                       <button class="RandomQuestion" onclick="setinputvalue()">Random</button>
                     </div>
                     <div class="bigscreenbtns">
@@ -927,16 +928,16 @@
           <h1 id="einstellungen" onclick="showmenu()">#</h1>
           <div class="nav-links" id="navlinks">
             <ul>
-              <li><a class="bcft" style="color: var(--primary-color);" onclick="change_mood()">Dark theme</a></li>
+              <li><a class="bcft2" style="color: var(--primary-color);" onclick="change_mood()">Dark theme</a></li>
               <br>
               <br>
-              <li><a class="bcft" style="color: var(--primary-color);" onclick="setinputvalue()">Random</a></li>
+              <li><a class="bcft2" style="color: var(--primary-color);" onclick="setinputvalue()">Random</a></li>
               <br>
               <br>
-              <li><a class="bcft" id="btn3" style="color: var(--primary-color);" onclick="helpbtn()">Help</a></li>
+              <li><a class="bcft2" id="btn3" style="color: var(--primary-color);" onclick="helpbtn()">Help</a></li>
               <br>
               <br>
-              <li><a class="bcft" id="fontS" style="color: var(--primary-color);" onclick="showfonts()">Font size ></a></li>
+              <li><a class="bcft2" id="fontS" style="color: var(--primary-color);" onclick="showfonts()">Font size ></a></li>
               <br>
               <br>
               <li><a class="bcft1" id="btnone" style="color: var(--primary-color);display: none;" onclick="font1()">big</a></li>
