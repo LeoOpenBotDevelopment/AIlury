@@ -1976,21 +1976,9 @@
             if (answer == "Sorry but i dont know your Name") {
               let name = document.getElementById("username-display");
               response = { message: `${name.textContent}` };
-            } else if (answer == "Yes (Username)") {
+            }else if (answer.includes("(Username)")) {
               let name = document.getElementById("username-display");
-              let text = "yes " + name.textContent;
-              response = { message: `${text}` };
-            }else if (answer == "hello (Username)") {
-              let name = document.getElementById("username-display");
-              let text = "hello " + name.textContent;
-              response = { message: `${text}` };
-            }else if (answer == "(Username)") {
-              let name = document.getElementById("username-display");
-              let text = name.textContent;
-              response = { message: `${text}` };
-            }else if (answer == "hallo (Username)") {
-              let name = document.getElementById("username-display");
-              let text = "hallo " + name.textContent;
+              let text = answer.replace("(Username)", name.textContent);
               response = { message: `${text}` };
             }else {
               response = { message: `${answer}` };
@@ -2004,7 +1992,16 @@
               const bestMatch2 = findBestMatch(userQuestion2, questions2);
               if (bestMatch2){
                 const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
-                response = { message: `${newanswer}` };
+                if (newanswer == "Sorry but i dont know your Name") {
+                  let name = document.getElementById("username-display");
+                  response = { message: `${name.textContent}` };
+                }else if (newanswer.includes("(Username)")) {
+                  let name = document.getElementById("username-display");
+                  let text = newanswer.replace("(Username)", name.textContent);
+                  response = { message: `${text}` };
+                }else {
+                  response = { message: `${newanswer}` };
+                }
               }else {
                 if (userQuestion.includes("was") && userQuestion.includes("ist")) {
                   let word2 = userQuestion.split("ist")[1];
@@ -2025,7 +2022,16 @@
                   const bestMatch3 = findBestMatch2(userQuestion3, questions3);
                   if (bestMatch3){
                     const newanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
-                    response = { message: `${newanswer}` };
+                    if (newanswer == "Sorry but i dont know your Name") {
+                      let name = document.getElementById("username-display");
+                      response = { message: `${name.textContent}` };
+                    }else if (newanswer.includes("(Username)")) {
+                      let name = document.getElementById("username-display");
+                      let text = newanswer.replace("(Username)", name.textContent);
+                      response = { message: `${text}` };
+                    }else {
+                      response = { message: `${newanswer}` };
+                    }
                   }else{
                     response = { message: 'sorry but i do not know how to answer to that question' };
                   }
@@ -2038,7 +2044,16 @@
               const bestMatch2 = findBestMatch(userQuestion2, questions2);
               if (bestMatch2){
                 const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
-                response = { message: `${newanswer}` };
+                if (newanswer == "Sorry but i dont know your Name") {
+                  let name = document.getElementById("username-display");
+                  response = { message: `${name.textContent}` };
+                }else if (newanswer.includes("(Username)")) {
+                  let name = document.getElementById("username-display");
+                  let text = newanswer.replace("(Username)", name.textContent);
+                  response = { message: `${text}` };
+                }else {
+                  response = { message: `${newanswer}` };
+                }
               }else {
                 if (userQuestion.includes("was") && userQuestion.includes("ist")) {
                   let word2 = userQuestion.split("ist")[1];
@@ -2054,12 +2069,21 @@
                   response = { message: `i dont know what ${word2} is` };
                 }else{
                   let userQuestion3 = userQuestion.replace(" ?", "?");
-                  const knowledgeBase3= await loadKnowledgeBase('knowledge_base.json');
+                  const knowledgeBase3 = await loadKnowledgeBase('knowledge_base.json');
                   const questions3 = knowledgeBase.questions.map(q => q.question);
                   const bestMatch3 = findBestMatch2(userQuestion3, questions3);
                   if (bestMatch3){
                     const newanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
-                    response = { message: `${newanswer}` };
+                    if (newanswer == "Sorry but i dont know your Name") {
+                      let name = document.getElementById("username-display");
+                      response = { message: `${name.textContent}` };
+                    }else if (newanswer.includes("(Username)")) {
+                      let name = document.getElementById("username-display");
+                      let text = newanswer.replace("(Username)", name.textContent);
+                      response = { message: `${text}` };
+                    }else {
+                      response = { message: `${newanswer}` };
+                    }
                   }else{
                     response = { message: 'sorry but i do not know how to answer to that question' };
                   }
@@ -2085,7 +2109,16 @@
                 const bestMatch2 = findBestMatch2(userQuestion2, questions2);
                 if (bestMatch2){
                   const newanswer = getAnswerForQuestion(bestMatch2, knowledgeBase2);
-                  response = { message: `${newanswer}` };
+                  if (newanswer == "Sorry but i dont know your Name") {
+                    let name = document.getElementById("username-display");
+                    response = { message: `${name.textContent}` };
+                  }else if (newanswer.includes("(Username)")) {
+                    let name = document.getElementById("username-display");
+                    let text = newanswer.replace("(Username)", name.textContent);
+                    response = { message: `${text}` };
+                  }else {
+                    response = { message: `${newanswer}` };
+                  }
                 }else{
                   response = { message: 'sorry but i do not know how to answer to that question' };
                 }
@@ -2119,6 +2152,15 @@
                          theanswer = randomTask.Antwort;
                          return 'Richtig! hier ist die neue aufgabe. ' + thequestion;
                     } else if (userQuestion.includes("idk")) {
+                         if (tasks.length === 0) {
+                              return 'No tasks available';
+                          }
+                          const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
+                          thequestion = randomTask.Frage;
+                          theoldanswer = theanswer;
+                          theanswer = randomTask.Antwort;
+                          return 'die richtige antwort ist: ' + theoldanswer + ' hier ist die neue aufgabe ' + thequestion;
+                    }else if (userQuestion.includes("nächste aufgabe")) {
                          if (tasks.length === 0) {
                               return 'No tasks available';
                           }
@@ -2175,21 +2217,9 @@
                         if (answer == "Sorry but i dont know your Name") {
                           let name = document.getElementById("username-display");
                           response = { message: `${name.textContent}` };
-                        } else if (answer == "Yes (Username)") {
+                        }else if (answer.includes("(Username)")) {
                           let name = document.getElementById("username-display");
-                          let text = "yes " + name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "hello (Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = "hello " + name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "(Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "hallo (Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = "hallo " + name.textContent;
+                          let text = answer.replace("(Username)", name.textContent);
                           response = { message: `${text}` };
                         }else {
                           response = { message: `${answer}` };
@@ -2251,6 +2281,15 @@
                           theoldanswer2 = theanswer2;
                           theanswer2 = randomTask2.Antwort;
                           return 'the correct answer is: ' + theoldanswer2 + ' here you have a new question ' + thequestion2;
+                    }else if (userQuestion.includes("next question")) {
+                         if (tasks2.length === 0) {
+                              return 'No tasks available';
+                          }
+                          const randomTask2 = tasks2[Math.floor(Math.random() * tasks2.length)];
+                          thequestion2 = randomTask2.Frage;
+                          theoldanswer2 = theanswer2;
+                          theanswer2 = randomTask2.Antwort;
+                          return 'the correct answer is: ' + theoldanswer2 + ' here you have a new question ' + thequestion2;
                     }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                           chalange = "englisch";
                           clean();
@@ -2299,21 +2338,9 @@
                           if (answer == "Sorry but i dont know your Name") {
                             let name = document.getElementById("username-display");
                             response = { message: `${name.textContent}` };
-                          } else if (answer == "Yes (Username)") {
+                          }else if (answer.includes("(Username)")) {
                             let name = document.getElementById("username-display");
-                            let text = "yes " + name.textContent;
-                            response = { message: `${text}` };
-                          }else if (answer == "hello (Username)") {
-                            let name = document.getElementById("username-display");
-                            let text = "hello " + name.textContent;
-                            response = { message: `${text}` };
-                          }else if (answer == "(Username)") {
-                            let name = document.getElementById("username-display");
-                            let text = name.textContent;
-                            response = { message: `${text}` };
-                          }else if (answer == "hallo (Username)") {
-                            let name = document.getElementById("username-display");
-                            let text = "hallo " + name.textContent;
+                            let text = answer.replace("(Username)", name.textContent);
                             response = { message: `${text}` };
                           }else {
                             response = { message: `${answer}` };
@@ -2424,6 +2451,47 @@
                   }else {
                     return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
                   }
+              }else if (themathquestion != "" && userQuestion.includes("nächste aufgabe") && leicht1 != "leicht"){
+                  let oldnum1 = num1;
+                  let oldnum2 = num2;
+                  let oldoperator = operator;
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                  theoldmathanswer = themathanswer;
+                  themathquestion = `${num1} ${operator} ${num2}`;
+                  themathanswer = eval(`${num1} ${operator} ${num2}`);
+                  //the oldmathanswer to string
+                  let theoldmathanswer2 = theoldmathanswer.toString();
+                  if (oldoperator == "*"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + "wenn du " + oldnum1 + " finger hast und jeder finger den wert von " + oldnum2 + " hat, Addierst du jeden finger mit einander bis keine finger mehr übrig sind und dann hast du das ergebniss" + ". die neue frage ist: " + themathquestion;
+                  }else if (oldoperator == "/"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " du musst einfach gucken wie oft die zahl " + oldnum2 + " in die zahl " + oldnum1 + " passt" + ". die neue aufgabe ist: " + themathquestion;
+                  }else if (theoldmathanswer2.includes("-")){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " weil " + oldnum2 + " größer als " + oldnum1 + " ist, müssen wir die zahlen einfach umdrehen. also " + oldnum2 + " - " + oldnum1 + " und dann müssen wir einfach das Subtraktions zeichen am anfang der zahl hinzufügen. die neue aufgabe ist: " + themathquestion;
+                  }else {
+                    return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  }
+              }else if (themathquestion != "" && userQuestion.includes("nächste aufgabe") && leicht1 == "leicht"){
+                  let oldnum1 = num1;
+                  let oldnum2 = num2;
+                  let oldoperator = operator;
+                  num1 = Math.floor(Math.random() * 10) + 1;
+                  num2 = Math.floor(Math.random() * 10) + 1;
+                  operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                  theoldmathanswer = themathanswer;
+                  themathquestion = `${num1} ${operator} ${num2}`;
+                  themathanswer = eval(`${num1} ${operator} ${num2}`);
+                  let theoldmathanswer2 = theoldmathanswer.toString();
+                  if (oldoperator == "*"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + "wenn du " + oldnum1 + " finger hast und jeder finger den wert von " + oldnum2 + " hat, Addierst du jeden finger mit einander bis keine finger mehr übrig sind und dann hast du das ergebniss" + ". die neue frage ist: " + themathquestion;
+                  }else if (oldoperator == "/"){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " du musst einfach gucken wie oft die zahl " + oldnum2 + " in die zahl " + oldnum1 + " passt" + ". die neue aufgabe ist: " + themathquestion;
+                  }else if (theoldmathanswer2.includes("-")){
+                    return "die richtige antwort ist: " + theoldmathanswer + ". " + " weil " + oldnum2 + " größer als " + oldnum1 + " ist, müssen wir die zahlen einfach umdrehen. also " + oldnum2 + " - " + oldnum1 + " und dann müssen wir einfach das Subtraktions zeichen am anfang der zahl hinzufügen. die neue aufgabe ist: " + themathquestion;
+                  }else {
+                    return "die richtige antwort ist: " + theoldmathanswer + ". die neue aufgabe ist: " + themathquestion;
+                  }
               }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                     chalange = "englisch";
                     clean();
@@ -2472,21 +2540,9 @@
                   if (answer == "Sorry but i dont know your Name") {
                     let name = document.getElementById("username-display");
                     response = { message: `${name.textContent}` };
-                  } else if (answer == "Yes (Username)") {
+                  }else if (answer.includes("(Username)")) {
                     let name = document.getElementById("username-display");
-                    let text = "yes " + name.textContent;
-                    response = { message: `${text}` };
-                  }else if (answer == "hello (Username)") {
-                    let name = document.getElementById("username-display");
-                    let text = "hello " + name.textContent;
-                    response = { message: `${text}` };
-                  }else if (answer == "(Username)") {
-                    let name = document.getElementById("username-display");
-                    let text = name.textContent;
-                    response = { message: `${text}` };
-                  }else if (answer == "hallo (Username)") {
-                    let name = document.getElementById("username-display");
-                    let text = "hallo " + name.textContent;
+                    let text = answer.replace("(Username)", name.textContent);
                     response = { message: `${text}` };
                   }else {
                     response = { message: `${answer}` };
@@ -2595,6 +2651,47 @@
                           return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
                         }
 
+                  }else if (themathquestion != "" && userQuestion.includes("next question") && leicht2 != "easy"){
+                        let oldnum1 = num1;
+                        let oldnum2 = num2;
+                        let oldoperator = operator;
+                        num1 = Math.floor(Math.random() * 10) + 1;
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+                        theoldmathanswer = themathanswer;
+                        themathquestion = `${num1} ${operator} ${num2}`;
+                        themathanswer = eval(`${num1} ${operator} ${num2}`);
+                        let theoldmathanswer2 = theoldmathanswer.toString();
+                        if (oldoperator == "*"){
+                          return "the right answer is: " + theoldmathanswer + ". " + "if you have " + oldnum1 + " fingers and every finger has the value of " + oldnum2 + " just Add each finger together until there are no more fingers left and you have the result. " + ". the new question is: " + themathquestion;
+                        }else if (oldoperator == "/"){
+                          return "the right answer is: " + theoldmathanswer + ". " + " you just have to see how often " + oldnum2 + " fits in " + oldnum1 + ". the new question is: " + themathquestion;
+                        }else if (theoldmathanswer2.includes("-")){
+                          return "the right answer is: " + theoldmathanswer + ". " + " because " + oldnum2 + " is larger than " + oldnum1 + " we just turn the numbers around and Subtract " + oldnum1 + " from " + oldnum2 + " and add the Subtraction sign on the beginning of the number" + ". the new question is: " + themathquestion;
+                        }else {
+                          return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        }
+                  }else if (themathquestion != "" && userQuestion.includes("question") && leicht2 == "easy"){
+                        let oldnum1 = num1;
+                        let oldnum2 = num2;
+                        let oldoperator = operator;
+                        num1 = Math.floor(Math.random() * 10) + 1;
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        operator = ['+', '-'][Math.floor(Math.random() * 2)];
+                        theoldmathanswer = themathanswer;
+                        themathquestion = `${num1} ${operator} ${num2}`;
+                        themathanswer = eval(`${num1} ${operator} ${num2}`);
+                        let theoldmathanswer2 = theoldmathanswer.toString();
+                        if (oldoperator == "*"){
+                          return "the right answer is: " + theoldmathanswer + ". " + "if you have " + oldnum1 + " fingers and every finger has the value of " + oldnum2 + " just Add each finger together until there are no more fingers left and you have the result. " + ". the new question is: " + themathquestion;
+                        }else if (oldoperator == "/"){
+                          return "the right answer is: " + theoldmathanswer + ". " + " you just have to see how often " + oldnum2 + " fits in " + oldnum1 + ". the new question is: " + themathquestion;
+                        }else if (theoldmathanswer2.includes("-")){
+                          return "the right answer is: " + theoldmathanswer + ". " + " because " + oldnum2 + " is larger than " + oldnum1 + " we just turn the numbers around and Subtract " + oldnum1 + " from " + oldnum2 + " and add the Subtraction sign on the beginning of the number" + ". the new question is: " + themathquestion;
+                        }else {
+                          return "the right answer is: " + theoldmathanswer + ". the new question is: " + themathquestion;
+                        }
+
                   }else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
                         chalange = "englisch";
                         clean();
@@ -2643,21 +2740,9 @@
                         if (answer == "Sorry but i dont know your Name") {
                           let name = document.getElementById("username-display");
                           response = { message: `${name.textContent}` };
-                        } else if (answer == "Yes (Username)") {
+                        }else if (answer.includes("(Username)")) {
                           let name = document.getElementById("username-display");
-                          let text = "yes " + name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "hello (Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = "hello " + name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "(Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = name.textContent;
-                          response = { message: `${text}` };
-                        }else if (answer == "hallo (Username)") {
-                          let name = document.getElementById("username-display");
-                          let text = "hallo " + name.textContent;
+                          let text = answer.replace("(Username)", name.textContent);
                           response = { message: `${text}` };
                         }else {
                           response = { message: `${answer}` };
