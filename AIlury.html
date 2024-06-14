@@ -1473,6 +1473,16 @@
                 return 'Falsch! Versuchen Sie es erneut.';
             }
     }
+    function kuerzeBenutzernamen(langerBenutzername) {
+        var gekuerzterName;
+        if (langerBenutzername.length > 6) {
+            gekuerzterName = langerBenutzername.substring(0, 6) + "…";
+        } else {
+            gekuerzterName = langerBenutzername;
+        }
+        localStorage.setItem("username", gekuerzterName);
+        document.getElementById("username-display").textContent = gekuerzterName;
+    }
     async function getBotResponse(userMessage) {
       try {
         if (chalange == "nothing") {
@@ -1494,38 +1504,32 @@
           }else if (userQuestion.includes("ich heisse")){
             let name1 = userQuestion.split("ich heisse")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " ist ein schöner Name";
           }else if (userQuestion.includes("ich heiße")){
             let name1 = userQuestion.split("ich heiße")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " ist ein schöner Name";
           }else if (userQuestion.includes("my name is ")){
             let name1 = userQuestion.split("my name is ")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " is a nice name";
           }else if (userQuestion.includes("i am called ")){
             let name1 = userQuestion.split("i am called ")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " is a nice name";
           }else if (userQuestion.includes("im called ")){
             let name1 = userQuestion.split("im called ")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " is a nice name";
           }else if (userQuestion.includes("mein name ist ")){
             let name1 = userQuestion.split("mein name ist ")[1];
             let name = name1.replace("?", "");
-            localStorage.setItem("username", name);
-            document.getElementById("username-display").textContent = name;
+            kuerzeBenutzernamen(name);
             return name + " ist ein schöner Name";
           }else if (userQuestion.includes('=')) {
               let zahlen = userQuestion.match(/\b\d+\b/g);
