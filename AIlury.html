@@ -898,6 +898,32 @@
               transition: 1s;
             }
       }
+      #info-box {
+          display: none;
+          position: absolute; /* Ermöglicht das freie Platzieren des Elements */
+          width: 130px;
+          padding: 20px;
+          background-color: #555;
+          color: white;
+          border-radius: 10px;
+          text-align: center;
+          font-size: 14px;
+          margin-left: 3%;
+          margin-top: 53px;
+          transition: 1s;
+      }
+      #info-box::after {
+          content: "";
+          position: absolute;
+          bottom: -20px; /* Position des Pfeils anpassen */
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 20px solid transparent;
+          border-right: 20px solid transparent;
+          border-top: 20px solid #555;
+      }
       /* only if true the values are the next*/
   </style>
 </head>
@@ -932,6 +958,9 @@
       })
     })
   </script>
+  <div class="info-box" id="info-box">
+      Information steht hier 
+  </div>
   <div class="chat">
         <div class="container">
             <div class="user-profile" id="user-profile">
@@ -1059,6 +1088,9 @@
   <h6 style="color: transparent;" id="bot-response"></h6>
   <h6 style="color: transparent;" id="idk">I dont know the answer. Please enter my answer to that question</h6>
   <script>
+    let t1 = "do";
+    let t2 = "do";
+    let t3 = "do";
     let aotink = "0";
     let asktg = "no";
     let leicht1 = "";
@@ -1252,11 +1284,80 @@
     }
     document.addEventListener('click', function(event) {
         const clickedElement = event.target;
+        const instructionbox = document.getElementById('info-box');
+        const ccontainer = document.querySelector('chat-container');
 
         if (clickedElement.classList.contains('message')) {
             console.log('Nachricht angeklickt!');
             handleEditMessage(event);
             // Hier können Sie weitere Aktionen ausführen, die beim Klicken einer Nachricht durchgeführt werden sollen
+        }
+        // check if the style of the page is on max-width 750px or on min-width 750px
+        if (clickedElement.classList.contains('speakon') && t1 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
+            t1 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '280px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('changetheme') && t2 == "do") {
+            t2 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '380px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'you can change the theme with this button';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('RandomQuestion') && t3 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
+            t3 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '430px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('info-box')) {
+            instructionbox.style.display = 'none';
+            instructionbox.style.marginTop = '0px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'there was an error loading the content of this message';
+        }
+        if (clickedElement.classList.contains('speakon') && t1 == "do" && !window.matchMedia('(min-width: 750px)').matches) {
+            t1 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '30px';
+            instructionbox.style.marginLeft = '17%';
+            instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('bcft') && t2 == "do") {
+            t2 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '40px';
+            instructionbox.style.marginLeft = '40%';
+            instructionbox.textContent = 'you can change the theme with this button';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('RandomQuestion') && t3 == "do" && !window.matchMedia('(min-width: 750px)').matches) {
+            t3 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '32px';
+            instructionbox.style.marginLeft = '65%';
+            instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+            setTimeout(function() {
+                instructionbox.style.display = 'none';
+            }, 5000);
         }
     });
     const messageElements = document.querySelectorAll('.message');
