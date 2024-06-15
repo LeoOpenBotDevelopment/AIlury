@@ -21,6 +21,7 @@
         --newc-color: #367af6;
         --2323232-color: #BCBCBC;
         --2323233-color: #BCBCBC;
+        --bubble-color: #ccc;
       }
       /* #5c3884 */
       /*.notdark-theme{
@@ -54,6 +55,7 @@
         --newc-color: #367af6;
         --2323232-color: #fff;
         --2323233-color: #232323;
+        --bubble-color: #555;
       }
       .nice-theme{
         --primary-color: white;
@@ -70,6 +72,7 @@
         --newc-color: #ff2963;
         --2323232-color: #BCBCBC;
         --2323233-color: #403d80;
+        --bubble-color: #010758;
       }
       /*.notnice-theme{
         --primary-color: white;
@@ -383,7 +386,6 @@
             .user-profile {
                 /* make all items be under each other*/
                 /* make every item have a space on top and bottom */
-
                 border-radius: 10px;
                 background: var(--2323233-color);
                 color: var(--676767-color);
@@ -903,14 +905,15 @@
           position: absolute; /* Ermöglicht das freie Platzieren des Elements */
           width: 130px;
           padding: 20px;
-          background-color: #555;
-          color: white;
+          background: var(--bubble-color);/*#555;*/
+          color: var(--primary-color);
           border-radius: 10px;
           text-align: center;
           font-size: 14px;
           margin-left: 3%;
           margin-top: 53px;
           transition: 1s;
+          animation: fadeIn 0.2s ease-in;
       }
       #info-box::after {
           content: "";
@@ -922,9 +925,24 @@
           height: 0;
           border-left: 20px solid transparent;
           border-right: 20px solid transparent;
-          border-top: 20px solid #555;
+          border-top: 20px solid var(--bubble-color);
       }
-      /* only if true the values are the next*/
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
   </style>
 </head>
 
@@ -965,10 +983,10 @@
         <div class="container">
             <div class="user-profile" id="user-profile">
                 <div>
-                    <img src="default_avatar.png" alt="User Avatar" id="user-avatar">
+                    <img src="default_avatar.png" alt="User Avatar" id="user-avatar" class="user-avatar">
                     <br>
                     <br>
-                    <span id="username-display">Guest</span>
+                    <span id="username-display" class="username-display">Guest</span>
                     <div class="smallscreenbtns">
                       <a id="logout" href="index.html">log out</a>
                       <button class="speakon" id="speakon">speak: off</button>
@@ -1023,7 +1041,7 @@
           <button id="Löschbtn">Trash</button>
           <button id="Editbtn">Edit</button>
           <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type your message...">
+            <input type="text" class="user-input" id="user-input" placeholder="Type your message...">
             <button id="button1" onclick="sendMassaga()"><img src="SendSign.heic"></button>
             <button id="button2" onclick="newknowledge()">Teach</button>
             <button id="button3" onclick="learnnonewthing()">Skip</button>
@@ -1091,6 +1109,8 @@
     let t1 = "do";
     let t2 = "do";
     let t3 = "do";
+    let t4 = "do";
+    let t5 = "do";
     let aotink = "0";
     let asktg = "no";
     let leicht1 = "";
@@ -1296,11 +1316,20 @@
         if (clickedElement.classList.contains('speakon') && t1 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
             t1 = "dont";
             instructionbox.style.display = 'block';
+            instructionbox.style.opactiy = '0';
             instructionbox.style.marginTop = '280px';
             instructionbox.style.marginLeft = '3%';
             instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-in";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
         if (clickedElement.classList.contains('changetheme') && t2 == "do") {
@@ -1309,8 +1338,16 @@
             instructionbox.style.marginTop = '380px';
             instructionbox.style.marginLeft = '3%';
             instructionbox.textContent = 'you can change the theme with this button';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
         if (clickedElement.classList.contains('RandomQuestion') && t3 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
@@ -1319,15 +1356,26 @@
             instructionbox.style.marginTop = '430px';
             instructionbox.style.marginLeft = '3%';
             instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
         if (clickedElement.classList.contains('info-box')) {
-            instructionbox.style.display = 'none';
-            instructionbox.style.marginTop = '0px';
-            instructionbox.style.marginLeft = '3%';
-            instructionbox.textContent = 'there was an error loading the content of this message';
+            instructionbox.style.display = "block";
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeOut 0.2s ease-out";
+            setTimeout(function() {
+                instructionbox.style.display = "none";
+            }, 200);
         }
         if (clickedElement.classList.contains('speakon') && t1 == "do" && !window.matchMedia('(min-width: 750px)').matches) {
             t1 = "dont";
@@ -1335,8 +1383,16 @@
             instructionbox.style.marginTop = '30px';
             instructionbox.style.marginLeft = '17%';
             instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
         if (clickedElement.classList.contains('bcft') && t2 == "do") {
@@ -1345,8 +1401,16 @@
             instructionbox.style.marginTop = '40px';
             instructionbox.style.marginLeft = '40%';
             instructionbox.textContent = 'you can change the theme with this button';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
         if (clickedElement.classList.contains('RandomQuestion') && t3 == "do" && !window.matchMedia('(min-width: 750px)').matches) {
@@ -1355,8 +1419,70 @@
             instructionbox.style.marginTop = '32px';
             instructionbox.style.marginLeft = '65%';
             instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
             setTimeout(function() {
-                instructionbox.style.display = 'none';
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('user-avatar') && t4 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
+            t4 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '2px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'your profile picture is here, if you uploaded one!';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
+            setTimeout(function() {
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('username-display') && t5 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
+            t5 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '130px';
+            instructionbox.style.marginLeft = '3%';
+            instructionbox.textContent = 'your user-name is here, if you uploaded one!';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
+            setTimeout(function() {
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
+            }, 5000);
+        }
+        if (clickedElement.classList.contains('username-display') && t5 == "do" && !window.matchMedia('(min-width: 750px)').matches) {
+            t5 = "dont";
+            instructionbox.style.display = 'block';
+            instructionbox.style.marginTop = '4px';
+            instructionbox.style.marginLeft = '1%';
+            instructionbox.textContent = 'your user-name is here, if you uploaded one!';
+            instructionbox.style.animation = "none";
+            void instructionbox.offsetWidth;
+            instructionbox.style.animation = "fadeIn 0.2s ease-out";
+            setTimeout(function() {
+                instructionbox.style.animation = "none";
+                void instructionbox.offsetWidth;
+                instructionbox.style.animation = "fadeOut 0.2s ease-out";
+                setTimeout(function() {
+                  instructionbox.style.display = "none";
+                }, 200);
             }, 5000);
         }
     });
