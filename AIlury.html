@@ -116,6 +116,15 @@
                 top: 10px;
                 transition: 1s;
             }
+            .hilfe-knopf{
+              font-size: 40px;
+              font-weight: bold;
+              position: absolute;
+              color: var(--primary-color);
+              right: 20px;
+              top: 10px;
+              transition: 1s;
+            }
             #navlinks{
               display: none;
             }
@@ -529,6 +538,15 @@
                 right: 10px;
                 top: 53px;
                 transition: 1s;
+            }
+            .hilfe-knopf{
+              font-size: 40px;
+              font-weight: bold;
+              position: absolute;
+              color: var(--primary-color);
+              right: 22px;
+              top: 300px;
+              transition: 1s;
             }
             input[type=text] {
               background: transparent;/*linear-gradient(45deg, #010758, #490d61);*/
@@ -967,7 +985,7 @@
           left: 50%;
           width: 10px;
           height: 10px;
-          background-color: var(--primary-color);
+          background: var(--primary-color);
           border-radius: 25px 25px 0 0;
           transform: translateX(-50%);
           margin-top: 5px;
@@ -990,7 +1008,7 @@
           left: 50%;
           width: 35px;
           height: 35px;
-          background-color: var(--primary-color);
+          background: var(--primary-color);
           border-radius: 35px 35px 0 0;
           transform: translateX(-50%);
           transition: 1s;
@@ -1003,7 +1021,7 @@
           left: 50%;
           width: 40px;
           height: 10px;
-          background-color: var(--primary-color);
+          background: var(--primary-color);
           border-radius: 5px;
           /* invert the border radius for the top part so the border radius goes in and not out*/
           transform: translateX(-50%);
@@ -1016,7 +1034,7 @@
           left: 50%;
           width: 10px;
           height: 5px;
-          background-color: var(--primary-color);
+          background: var(--primary-color);
           border-radius: 0 0 10px 10px;
           transform: translateX(-50%);
           transition: 1s;
@@ -1026,7 +1044,7 @@
         position: absolute;
         margin: 10%;
         width: 80%;
-        background-color: var(--bubble-color);
+        background: var(--232323-color);
         border-radius: 10px;
         color: var(--primary-color);
         font-size: 15px;
@@ -1034,13 +1052,14 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         transition: 1s;
         /* make the height scrollable */
+        max-height: 80%;
         overflow-y: auto;
         /* add a scrollbar */
         scrollbar-width: thin;
         scrollbar-color: var(--primary-color) var(--bubble-color);
       }
       .up-container h2{
-        margin-top: 50px;
+        margin-top: 55px;
       }
       /* make a cross out of the up cross */
       .up-cross{
@@ -1050,7 +1069,7 @@
         height: 50px;
         right: 23px;
         top: 5px;
-        background-color: var(--primary-color);
+        background: var(--primary-color);
         border-radius: 2px;
         transition: 1s;
         /* rotate 90 deg*/
@@ -1061,11 +1080,108 @@
         position: absolute;
         width: 10px;
         height: 50px;
+        background: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(90deg);
+      }
+      .i-container{
+        display: none;
+        position: absolute;
+        margin: 10%;
+        width: 80%;
+        background: var(--232323-color);
+        border-radius: 10px;
+        color: var(--primary-color);
+        font-size: 15px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: 1s;
+        /* make the container have a max height with overflow hidden for the user to be able to scroll down*/
+        max-height: 80%;
+        overflow-y: auto;
+        /* add a scrollbar */
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-color) var(--bubble-color);
+        
+      }
+      .i-container h2{
+        margin-top: 55px;
+      }
+      /* make a cross out of the up cross */
+      .i-cross{
+        display: block;
+        position: absolute;
+        width: 10px;
+        height: 50px;
+        right: 23px;
+        top: 5px;
+        background: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(45deg);
+      }
+      .i-cross::after{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 50px;
+        background: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(90deg);
+      }
+      .hilfe{
+        display: none;
+        width: 40%;
+        position: absolute;
+        left: 30%;
+        top: 10%;
+        border-radius: 10px;
+        background: var(--232323-color);
+        color: var(--primary-color);
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        font-size: 20px;
+        transition: 1s;
+      }
+      .hilfe-cross{
+        display: block;
+        position: absolute;
+        width: 5px;
+        height: 30px;
+        right: 23px;
+        top: 5px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(45deg);
+      }
+      .hilfe-cross::after{
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 30px;
         background-color: var(--primary-color);
         border-radius: 2px;
         transition: 1s;
         /* rotate 90 deg*/
         transform: rotate(90deg);
+      }
+      .hilfe-option{
+        display: flex;
+        background: var(--newc-color);
+        border-radius: 10px;
+        margin-top: 10px;
+        padding: 3px;
+        transition: 1s;
+      }
+      #hilfe-option1{
+        margin-top: 40px;
       }
   </style>
 </head>
@@ -1106,12 +1222,38 @@
       <div class="bell-clapper"></div>
       <div class="redball"></div>
   </div>
+  <div class="hilfe-knopf">?</div>
+  <div class="hilfe">
+    <div class="hilfe-cross"></div>
+    <div class="hilfe-option" id="hilfe-option1">op1</div>
+    <div class="hilfe-option" id="hilfe-option2">op2</div>
+    <div class="hilfe-option" id="hilfe-option3">op3</div>
+    <div class="hilfe-option" id="hilfe-option4">op4</div>
+    <h2 id="helptext">whats your problem?</h2>
+  </div>
   <div class="info-box" id="info-box">
       Information steht hier 
   </div>
   <div class="up-container">
     <div class="up-cross"></div>
-    <h2>Our new update offers notifications, a new game and navigation help.<br><br>Notifications: a new bell has been added which you have probably already clicked to read this!<br><br>Game: you can for example ask AIlury: "I want to play the emoji game" and then you can play the emoji game! To play it you have to count the emojis from left to right until you get to the different one and then tell AIlury the position, if this is the right position AIlury will give you the next list of emojis! If you want to leave the game you can say for example: "I want to go back to the conversation". If you don't know the answer, just type: "idk", like in the other games!<br><br>Navigation help: when you click on certain elements on the sidebar you will be told what that element is or does. If this element is in the way, you can simply click on it to make it disappear.</h2>
+    <h2 class="h21">Our new update offers notifications, a new game, navigation help and a new help function.<br><br>Notifications: a new bell has been added which you have probably already clicked to read this!<br><br>Game: you can for example ask AIlury: "I want to play the emoji game" and then you can play the emoji game! To play it you have to count the emojis from left to right until you get to the different one and then tell AIlury the position or you tell AIlury which one it is by sending the different emoji, if this is the right position or you sent the right emoji, AIlury will give you the next list of emojis! If you want to leave the game you can say for example: "I want to go back to the conversation". If you don't know the answer, just type: "idk", like in the other games!<br><br>Navigation help: when you click on certain elements on the sidebar you will be told what that element is or does. If this element is in the way, you can simply click on it to make it disappear.<br><br>Help: when you click on the help button, a small window opens on the screen with buttons, and depending on the problem you are having, you can click on the corresponding button.</h2>
+  </div>
+  <div class="i-container">
+    <div class="i-cross"></div>
+    <h2 class="h22">
+      Instructions:<br><br>
+      Buttons:<br>
+      Notifications: when you click on the notification button, you will be shown information about the latest update.<br><br>
+      Help: if you click on the help button, a small window will open on the screen with up to 4 buttons! If you have a problem, just click on the button that corresponds to your question, then the text under the buttons will change and tell you what you need to do to solve your problem on the website or will tell you what has been done to solve your problem.<br><br>
+      log out: when you click the log out button you will be taken to your profile where you can upload a profile picture or change your name. To get back to the chat you have to click on the "Start" button, but by doing so you agree to the user guidelines and Privacy Policy!<br><br>
+      speak: when you click the speak button, the chat will be read from that moment on. If you no longer want this, you can click it a second time.<br><br>
+      theme: if you click on the light/dark theme button, the website will be either light or dark, depending on whether it is dark or light at the time of the click.<br><br>
+      messages: if you click on any message you will be able to delete it or edit it, if its a message you wrote!<br><br>
+      random: if you click on the random button, a random question or sentence will appear in the input field.<br><br><br>
+      Functions: if you want to play an emoji game by guessing where or which emoji is different you can for example type: "I want to play the emoji game". Then AIlury will give you a list of emojis and you either have to count the emojis from left to right until you get to the different one and then send AIlury the number or you can send AIlury the different emoji! If you want to practice German, you can write for example: "I want to practice German" and then AIlury will give you words to translate! If you want to practice math you can write for example: "I want to practice math" and then AIlury will give you math exercises. If at any time you don't know the answer to a function, you can simply say: "idk".<br><br>
+      Text filters and keywords: AIlury offers a lot of functions. You can use AIlury to replace text with text in a large or small text, for example: "replace I with you in I eat". Or you can ask if a text is in another text by saying for example: "is hello in hello how are you?". You can also remove one text from another by saying, for example: "take hello out of hello how are you?". You can also tell her to say something, for example by saying: "say: hello". You can also give Allury basic math problems to solve or ask if one number is greater than another by writing, for example: "is 20 > 21?" or see if one number is equal to another by saying, for example: "is 20 = 20?". AIlury can also give you a Random name for either a specific person or in general, for example if you say: "what would be a good name for my dog?" Or "give me a female name". You can also ask AIlury to choose a number between two numbers you specify by saying, for example, "choose a number from 10 to 20". You can also ask AIlury to count to a desired number by saying, for example: "count till 100". These are not all the functions AIlury has to offer but a lot of them. These functions are not yet fully developed, they are still being improved.<br><br><br>
+      i hope i was able to give you a good overview of what AIlury can do!
+    </h2>
   </div>
   <div class="chat">
         <div class="container">
@@ -1168,7 +1310,7 @@
           </div>
 
           <div class="chat-messages" id="chat-messages">
-            <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a href="instructions.html" id="inscructionlink">instructions</a></h2>
+            <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a id="inscructionlink">instructions</a></h2>
             <!-- nmy Hier werden die Chat-Nachrichten eingefügt -->
           </div>
           <button id="Breakbtn">Break</button>
@@ -1191,6 +1333,7 @@
 
               // Load user profile from localStorage
               loadUserProfile();
+              checkvalueoc();
 
               function loadUserProfile() {
                   const savedUsername = localStorage.getItem("username");
@@ -1267,6 +1410,152 @@
     let up_container = document.querySelector('.up-container');
     let bell = document.querySelector('.bell');
     let bell_ball = document.querySelector('.redball');
+    let hilfe_knopf = document.querySelector('.hilfe-knopf');
+    let hilfe = document.querySelector('.hilfe');
+    let hilfe_cross = document.querySelector('.hilfe-cross');
+    let hilfeop1 = document.getElementById('hilfe-option1');
+    let hilfeop2 = document.getElementById('hilfe-option2');
+    let hilfeop3 = document.getElementById('hilfe-option3');
+    let hilfeop4 = document.getElementById('hilfe-option4');
+    let inputvaluefc = document.getElementById('user-input');
+    let helptext = document.getElementById('helptext');
+    let defaultchalange = "nothing";
+    let isguessing = "no";
+    let inscructionlink = document.getElementById('inscructionlink');
+    let i_container = document.querySelector('.i-container');
+    let i_cross = document.querySelector('.i-cross');
+    function checkvalueoc() {
+      defaultchalange = chalange;
+      if (chalange == "nothing" && isguessing == "no"){
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "flex";
+        hilfeop4.style.display = "flex";
+        hilfeop1.textContent = "i want to play the emoji game!";
+        hilfeop2.textContent = "i want to practice german!";
+        hilfeop3.textContent = "i dont know how to start a conversation!";
+        hilfeop4.textContent = "i want to practice math!";
+      }if (chalange == "nothing" && isguessing == "nein"){
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "flex";
+        hilfeop4.style.display = "flex";
+        hilfeop1.textContent = "i want to play the emoji game!";
+        hilfeop2.textContent = "i want to practice german!";
+        hilfeop3.textContent = "i dont know how to start a conversation!";
+        hilfeop4.textContent = "i want to practice math!";
+      }else if (chalange == "german"){
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop1.textContent = "i dont know the answer!";
+        hilfeop2.textContent = "i want to go back to the normal conversation!";
+        hilfeop3.style.display = "none";
+        hilfeop4.style.display = "none";
+      }else if (chalange == "englisch") {
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "none";
+        hilfeop4.style.display = "none";
+        hilfeop1.textContent = "ich möchte zurück in die normale konversation!";
+        hilfeop2.textContent = "ich weiss die antwort nicht!";
+      }else if (chalange == "math") {
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "flex";
+        hilfeop4.style.display = "flex";
+        hilfeop1.textContent = "i dont know the answer!";
+        hilfeop2.textContent = "its to hard!";
+        hilfeop3.textContent = "i want to go back to the normal conversation!";
+        hilfeop4.textContent = "its to easy!";
+      }else if (chalange == "mathe") {
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "flex";
+        hilfeop4.style.display = "flex";
+        hilfeop1.textContent = "ich weiss die antwort nicht!";
+        hilfeop2.textContent = "es ist zu schwer!";
+        hilfeop3.textContent = "ich möchte zurück in die normale conversation!";
+        hilfeop4.textContent = "es ist zu leicht!";
+      }else if (chalange == "nothing" && isguessing == "yes"){
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop1.textContent = "i dont know the answer!";
+        hilfeop2.textContent = "i want to go back to the normal conversation!";
+        hilfeop3.style.display = "none";
+        hilfeop4.style.display = "none";
+      }else if (chalange == "nothing" && isguessing == "ja"){
+        hilfeop1.style.display = "flex";
+        hilfeop2.style.display = "flex";
+        hilfeop3.style.display = "none";
+        hilfeop4.style.display = "none";
+        hilfeop1.textContent = "ich möchte zurück in die normale konversation!";
+        hilfeop2.textContent = "ich weiss die antwort nicht!";
+      }
+    }
+    hilfeop1.addEventListener("click", () => {
+      if (hilfeop1.textContent == "i want to play the emoji game!"){
+        inputvaluefc.value = "i want to play the emoji game";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop1.textContent == "i dont know the answer!"){
+        inputvaluefc.value = "idk";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop1.textContent == "ich weiss die antwort nicht!"){
+        inputvaluefc.value = "idk";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
+      }else if (hilfeop1.textContent == "ich möchte zurück in die normale conversation!"){
+        inputvaluefc.value = "ich möchte zurück in den normalen chat";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
+      }else {
+        helptext.textContent = "im sorry but i can not help you with that";
+      }
+    });
+    hilfeop2.addEventListener("click", () => {
+      if (hilfeop2.textContent == "i want to practice german!"){
+        inputvaluefc.value = "i want to practice german";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop2.textContent == "i want to go back to the normal conversation!"){
+        inputvaluefc.value = "i want to go back to the normal chat";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop2.textContent == "ich weiss die antwort nicht!"){
+        inputvaluefc.value = "idk";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
+      }else if (hilfeop2.textContent == "es ist zu schwer!"){
+        leicht1 = "leicht";
+        helptext.textContent = "du bist jetzt auf einfachen modus";
+      }else if (hilfeop2.textContent == "its to hard!"){
+        leicht2 = "easy";
+        helptext.textContent = "its easy now!";
+      }else {
+        helptext.textContent = "im sorry but i can not help you with that";
+      }
+    });
+    hilfeop3.addEventListener("click", () => {
+      if (hilfeop3.textContent == "i dont know how to start a conversation!"){
+        helptext.textContent = "just click the 'random' button";
+      }else if (hilfeop3.textContent == "i want to go back to the normal conversation!"){
+        inputvaluefc.value = "i want to go back to the normal chat";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop3.textContent == "ich möchte zurück in die normale conversation!"){
+        inputvaluefc.value = "ich möchte zurück in den normalen chat";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
+      }else {
+        helptext.textContent = "im sorry but i can not help you with that";
+      }
+    });
+    hilfeop4.addEventListener("click", () => {
+      if (hilfeop4.textContent == "i want to practice math!"){
+        inputvaluefc.value = "i want to practice math";
+        helptext.textContent = "just send what i entered in the input field";
+      }else if (hilfeop4.textContent == "its to easy!"){
+        leicht2 = "";
+        helptext.textContent = "now its not in easy mode!";
+      }else if (hilfeop4.textContent == "es ist zu leicht!"){
+        leicht1 = "";
+        helptext.textContent = "ich habe den einfachen modus deaktiviert!";
+      }else {
+        helptext.textContent = "im sorry but i can not help you with that";
+      }
+    });
     function clean() {
         aotink = "0";
         asktg = "no";
@@ -1284,6 +1573,7 @@
         themathquestion = "";
         thequestion = "nothing";
         theanswer = "nothing";
+        checkvalueoc();
     }
     up_cross.addEventListener("click", () => {
       up_container.style.animation = "none";
@@ -1293,8 +1583,31 @@
         up_container.style.display = "none";
       }, 200);
     });
+    i_cross.addEventListener("click", () => {
+      i_container.style.animation = "none";
+      void i_container.offsetWidth;
+      i_container.style.animation = "fadeOut 0.2s ease-out";
+      setTimeout(function() {
+        i_container.style.display = "none";
+      }, 200);
+    });
+    inscructionlink.addEventListener("click", () => {
+      i_container.style.display = "flex";
+      i_container.style.animation = "none";
+      void i_container.offsetWidth;
+      i_container.style.animation = "fadeIn 0.2s ease-out";
+    });
+    hilfe_cross.addEventListener("click", () => {
+      helptext.textContent = "whats your problem?";
+      hilfe.style.animation = "none";
+      void hilfe.offsetWidth;
+      hilfe.style.animation = "fadeOut 0.2s ease-out";
+      setTimeout(function() {
+        hilfe.style.display = "none";
+      }, 200);
+    });
     bell.addEventListener("click", () => {
-      up_container.style.display = "block";
+      up_container.style.display = "flex";
       up_container.style.animation = "none";
       void up_container.offsetWidth;
       up_container.style.animation = "fadeIn 0.2s ease-out";
@@ -1304,6 +1617,12 @@
       setTimeout(function() {
         bell_ball.style.display = "none";
       }, 200);
+    });
+    hilfe_knopf.addEventListener("click", () => {
+      hilfe.style.display = "block";
+      hilfe.style.animation = "none";
+      void hilfe.offsetWidth;
+      hilfe.style.animation = "fadeIn 0.2s ease-out";
     });
     // Function to handle message element click
     const allEmojis1 = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙", "😚", "☺️", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "😴", "😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹️", "🙁", "😖", "😞", "😟", "😤", "😢", "😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "😡", "😠", "🤬", "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "👹", "👺", "💀", "☠️", "👻", "👽", "👾", "🤖", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
@@ -1318,12 +1637,14 @@
 
     let differentEmoji;
     let differentEmojiPosition;
-    let isguessing = "no";
     let theG;
+    let otherEmojis;
     function getRandomEmoji() {
+        checkvalueoc();
         let emojiG = allEmojis[Math.floor(Math.random() * allEmojis.length)];
         theG = emojiG;
-        return emojiG[Math.floor(Math.random() * emojiG.length)];
+        otherEmojis = emojiG[Math.floor(Math.random() * emojiG.length)];
+        return otherEmojis;
     }
     function getRandomEmoji2() {
         return theG[Math.floor(Math.random() * theG.length)];
@@ -1336,8 +1657,8 @@
             differentEmoji = getRandomEmoji2();
         } while (differentEmoji === baseEmoji);
 
-        differentEmojiPosition = Math.floor(Math.random() * 20);
-        for (let i = 0; i < 20; i++) {
+        differentEmojiPosition = Math.floor(Math.random() * 40);
+        for (let i = 0; i < 40; i++) {
             returnobjekt.push(i === differentEmojiPosition ? differentEmoji : baseEmoji);
         }
         return returnobjekt;
@@ -1968,39 +2289,49 @@
             return name + " ist ein schöner Name";
           }else if (isguessing == "ja" && userQuestion.includes("emoji") && userQuestion.includes("spiel") && userQuestion.includes("spielen") && userQuestion.includes("nicht")){
             isguessing = "nein";
+            checkvalueoc();
             return "okay, du spiels nun kein emoji spiel mehr!";
           }else if (isguessing == "yes" && userQuestion.includes("emoji") && userQuestion.includes("play") && userQuestion.includes("game") && userQuestion.includes("not")){
             isguessing = "no";
+            checkvalueoc();
             return "you are not playing an emoji game anymore!";
           }else if (isguessing == "ja" && userQuestion.includes("nicht") && userQuestion.includes("emoji") && userQuestion.includes("spielen")){
             isguessing = "nein";
+            checkvalueoc();
             return "okay, du spiels nun kein emoji spiel mehr!";
           }else if (isguessing == "yes" && userQuestion.includes("emoji") && userQuestion.includes("not") && userQuestion.includes("play")){
             isguessing = "no";
+            checkvalueoc();
             return "you are not playing an emoji game anymore!";
           }else if (isguessing == "ja" && userQuestion.includes("zurück")){
             isguessing = "nein";
+            checkvalueoc();
             return "okay, du spiels nun kein emoji spiel mehr!";
           }else if (isguessing == "yes" && userQuestion.includes("emoji") && userQuestion.includes("play") && userQuestion.includes("don") && userQuestion.includes("t")){
             isguessing = "no";
+            checkvalueoc();
             return "you are not playing an emoji game anymore!";
           }else if (isguessing == "yes" && userQuestion.includes("back")){
             isguessing = "no";
+            checkvalueoc();
             return "you are not playing an emoji game anymore!";
           }else if (userQuestion.includes("emoji") && userQuestion.includes("spiel") && userQuestion.includes("spielen") && !userQuestion.includes("nicht")){
             isguessing = "ja";
             let returnthegame = generateEmojis();
-            return "sag mir an welcher stelle ein anderer emoji ist " + returnthegame;
+            return "sag mir an welcher stelle ein anderer emoji ist oder sende mir den unterschiedlichen emoji " + returnthegame;
           }else if (userQuestion.includes("emoji") && userQuestion.includes("play") && userQuestion.includes("game") && !userQuestion.includes("not")){
             isguessing = "yes";
             let returnthegame = generateEmojis();
-            return "tell me in which position you see the other emoji " + returnthegame;
+            return "tell me in which position you see the other emoji or send me the different emoji " + returnthegame;
           }else if (isguessing == "ja" && !userQuestion.includes("idk")){
             let userQuestionForCheckGuess = userQuestion.match(/\d+/g);
             let checkanswer = checkGuess(userQuestionForCheckGuess);
             if (checkanswer == "right"){
               let returnthegame = generateEmojis();
-              return "super! sag mir an welcher stelle ein anderer emoji ist " + returnthegame;
+              return "super! sag mir an welcher stelle ein anderer emoji ist oder sende mir den unterschiedlichen emoji " + returnthegame;
+            }else if (userQuestion.includes(differentEmoji) && !userQuestion.includes(otherEmojis)){
+              let returnthegame = generateEmojis();
+              return "super! sag mir an welcher stelle ein anderer emoji ist oder sende mir den unterschiedlichen emoji " + returnthegame;
             }else {
               return "falsch versuche es nochmal";
             }
@@ -2009,18 +2340,21 @@
             let checkanswer = checkGuess(userQuestionForCheckGuess);
             if (checkanswer == "right"){
               let returnthegame = generateEmojis();
-              return "great! tell me in which position you see the other emoji " + returnthegame;
+              return "great! tell me in which position you see the other emoji or send me the different emoji " + returnthegame;
+            }else if (userQuestion.includes(differentEmoji) && !userQuestion.includes(otherEmojis)){
+              let returnthegame = generateEmojis();
+              return "great! tell me in which position you see the other emoji or send me the different emoji " + returnthegame;
             }else {
               return "wrong, try again";
             }
           }else if (isguessing == "yes" && userQuestion.includes("idk")){
             let rightanswerforgame1 = parseInt(differentEmojiPosition) + 1;
             let returnthegame = generateEmojis();
-            return "the right answer is " + rightanswerforgame1 + "! tell me in which position you see the other emoji " + returnthegame;
+            return "the right answer is " + rightanswerforgame1 + "! tell me in which position you see the other emoji or send me the different emoji " + returnthegame;
           }else if (isguessing == "ja" && userQuestion.includes("idk")){
             let rightanswerforgame1 = parseInt(differentEmojiPosition) + 1;
             let returnthegame = generateEmojis();
-            return "die richtige antwort ist " + rightanswerforgame1 + "! sag mir an welcher stelle ein anderer emoji ist " + returnthegame;
+            return "die richtige antwort ist " + rightanswerforgame1 + "! sag mir an welcher stelle ein anderer emoji ist oder sende mir den unterschiedlichen emoji " + returnthegame;
           }else if (userQuestion.includes('=')) {
               let zahlen = userQuestion.match(/\b\d+\b/g);
               if (zahlen.length !== 2) {
