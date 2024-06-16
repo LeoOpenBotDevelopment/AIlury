@@ -108,6 +108,14 @@
               margin: 0;
               transition: 1s;
             }
+            .bell {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                left: 165px;
+                top: 10px;
+                transition: 1s;
+            }
             #navlinks{
               display: none;
             }
@@ -513,6 +521,14 @@
               background: var(--ngrey-color);
               margin: 0;
               transition: 1s;
+            }
+            .bell {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                right: 10px;
+                top: 53px;
+                transition: 1s;
             }
             input[type=text] {
               background: transparent;/*linear-gradient(45deg, #010758, #490d61);*/
@@ -944,6 +960,113 @@
           opacity: 0;
         }
       }
+
+      .bell-top {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          background-color: var(--primary-color);
+          border-radius: 25px 25px 0 0;
+          transform: translateX(-50%);
+          margin-top: 5px;
+          transition: 1s;
+      }
+      .redball{
+        display: block;
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        border-radius: 50%;
+        top: 10px;
+        right: 2px;
+      }
+
+      .bell-body {
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          width: 35px;
+          height: 35px;
+          background-color: var(--primary-color);
+          border-radius: 35px 35px 0 0;
+          transform: translateX(-50%);
+          transition: 1s;
+      }
+
+      .bell-body::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          width: 40px;
+          height: 10px;
+          background-color: var(--primary-color);
+          border-radius: 5px;
+          /* invert the border radius for the top part so the border radius goes in and not out*/
+          transform: translateX(-50%);
+          transition: 1s;
+      }
+
+      .bell-clapper {
+          position: absolute;
+          bottom: -7.5px;
+          left: 50%;
+          width: 10px;
+          height: 5px;
+          background-color: var(--primary-color);
+          border-radius: 0 0 10px 10px;
+          transform: translateX(-50%);
+          transition: 1s;
+      }
+      .up-container{
+        display: none;
+        position: absolute;
+        margin: 10%;
+        width: 80%;
+        background-color: var(--bubble-color);
+        border-radius: 10px;
+        color: var(--primary-color);
+        font-size: 15px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: 1s;
+        /* make the height scrollable */
+        overflow-y: auto;
+        /* add a scrollbar */
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-color) var(--bubble-color);
+      }
+      .up-container h2{
+        margin-top: 50px;
+      }
+      /* make a cross out of the up cross */
+      .up-cross{
+        display: block;
+        position: absolute;
+        width: 10px;
+        height: 50px;
+        right: 23px;
+        top: 5px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(45deg);
+      }
+      .up-cross::after{
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 50px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        transition: 1s;
+        /* rotate 90 deg*/
+        transform: rotate(90deg);
+      }
   </style>
 </head>
 
@@ -977,8 +1100,18 @@
       })
     })
   </script>
+  <div class="bell">
+      <div class="bell-top"></div>
+      <div class="bell-body"></div>
+      <div class="bell-clapper"></div>
+      <div class="redball"></div>
+  </div>
   <div class="info-box" id="info-box">
       Information steht hier 
+  </div>
+  <div class="up-container">
+    <div class="up-cross"></div>
+    <h2>Our new update offers notifications, a new game and navigation help.<br><br>Notifications: a new bell has been added which you have probably already clicked to read this!<br><br>Game: you can for example ask AIlury: "I want to play the emoji game" and then you can play the emoji game! To play it you have to count the emojis from left to right until you get to the different one and then tell AIlury the position, if this is the right position AIlury will give you the next list of emojis! If you want to leave the game you can say for example: "I want to go back to the conversation". If you don't know the answer, just type: "idk", like in the other games!<br><br>Navigation help: when you click on certain elements on the sidebar you will be told what that element is or does. If this element is in the way, you can simply click on it to make it disappear.</h2>
   </div>
   <div class="chat">
         <div class="container">
@@ -1130,6 +1263,10 @@
     let num1 = "";
     let num2 = "";
     let idnum = "0";
+    let up_cross = document.querySelector('.up-cross');
+    let up_container = document.querySelector('.up-container');
+    let bell = document.querySelector('.bell');
+    let bell_ball = document.querySelector('.redball');
     function clean() {
         aotink = "0";
         asktg = "no";
@@ -1148,6 +1285,26 @@
         thequestion = "nothing";
         theanswer = "nothing";
     }
+    up_cross.addEventListener("click", () => {
+      up_container.style.animation = "none";
+      void up_container.offsetWidth;
+      up_container.style.animation = "fadeOut 0.2s ease-out";
+      setTimeout(function() {
+        up_container.style.display = "none";
+      }, 200);
+    });
+    bell.addEventListener("click", () => {
+      up_container.style.display = "block";
+      up_container.style.animation = "none";
+      void up_container.offsetWidth;
+      up_container.style.animation = "fadeIn 0.2s ease-out";
+      bell_ball.style.animation = "none";
+      void bell_ball.offsetWidth;
+      bell_ball.style.animation = "fadeOut 0.2s ease-out";
+      setTimeout(function() {
+        bell_ball.style.display = "none";
+      }, 200);
+    });
     // Function to handle message element click
     const allEmojis1 = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "😗", "😙", "😚", "☺️", "🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "😴", "😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹️", "🙁", "😖", "😞", "😟", "😤", "😢", "😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "😡", "😠", "🤬", "😷", "🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "👹", "👺", "💀", "☠️", "👻", "👽", "👾", "🤖", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
     const allEmojis2 = ["😀", "😁", "😃", "😄", "😆"];
@@ -1158,7 +1315,7 @@
     const allEmojis7 = ["🤑", "🤢", "🤮"];
     const allEmojis8 = ["😊", "😗", "😙", "😚", "☺️", "🙂", "🤗", "😳"];
     const allEmojis = [allEmojis2, allEmojis3, allEmojis4, allEmojis5, allEmojis6, allEmojis7, allEmojis8]
-    
+
     let differentEmoji;
     let differentEmojiPosition;
     let isguessing = "no";
