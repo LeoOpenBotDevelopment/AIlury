@@ -132,15 +132,91 @@
       }
 
       .hilfe-knopf {
-        font-size: 40px;
-        font-weight: bold;
         position: absolute;
-        color: var(--primary-color);
+        width: 50px;
+        height: 50px;
         right: 20px;
         top: 10px;
         transition: 1s;
       }
 
+      .hilfe-body {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        width: 30px;
+        height: 30px;
+        background: var(--darkgrey-color);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        border: 2.5px solid var(--primary-color);
+        border-bottom: none;
+        transition: 1s;
+      }
+
+      .hilfe-body::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        width: 13px;
+        height: 10px;
+        background: var(--darkgrey-color);
+        border-radius: 2px 2px 5px 5px;
+        border: 1.5px solid var(--primary-color);
+        border-top: none;
+        /* invert the border radius for the top part so the border radius goes in and not out*/
+        transform: translateX(-50%);
+        transition: 1s;
+      }
+
+      .hilfe-clapper {
+        position: absolute;
+        bottom: -7px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
+      .hilfe-clapper:before {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
+      .hilfe-clapper:after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
       #navlinks {
         display: none;
       }
@@ -608,15 +684,91 @@
       }
 
       .hilfe-knopf {
-        font-size: 40px;
-        font-weight: bold;
         position: absolute;
-        color: var(--primary-color);
-        right: 22px;
-        top: 300px;
+        width: 50px;
+        height: 50px;
+        right: 20px;
+        top: 265px;
         transition: 1s;
       }
 
+      .hilfe-body {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        width: 30px;
+        height: 30px;
+        background: var(--darkgrey-color);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        border: 2.5px solid var(--primary-color);
+        border-bottom: none;
+        transition: 1s;
+      }
+
+      .hilfe-body::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        width: 13px;
+        height: 10px;
+        background: var(--darkgrey-color);
+        border-radius: 2px 2px 5px 5px;
+        border: 1.5px solid var(--primary-color);
+        border-top: none;
+        /* invert the border radius for the top part so the border radius goes in and not out*/
+        transform: translateX(-50%);
+        transition: 1s;
+      }
+
+      .hilfe-clapper {
+        position: absolute;
+        bottom: -7px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
+      .hilfe-clapper:before {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
+      .hilfe-clapper:after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        width: 13px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 10px;
+        transform: translateX(-50%);
+        /*border-left: 2px solid var(--primary-color);
+        border-right: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        border-top: 2px solid var(--2323233-color);*/
+        transition: 1s;
+      }
       input[type=text] {
         background: transparent;
         /*linear-gradient(45deg, #010758, #490d61);*/
@@ -1367,12 +1519,15 @@
     })
   </script>
   <div class="bell">
-    <div class="bell-top"></div>
     <div class="bell-body"></div>
     <div class="bell-clapper"></div>
     <div class="redball"></div>
   </div>
-  <div class="hilfe-knopf">?</div>
+  <div class="hilfe-knopf">
+    <div class="hilfe-top"></div>
+    <div class="hilfe-body"></div>
+    <div class="hilfe-clapper"></div>
+  </div>
   <div class="hilfe">
     <div class="hilfe-cross"></div>
     <div class="hilfe-option" id="hilfe-option1">op1</div>
