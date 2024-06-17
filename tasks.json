@@ -173,5 +173,225 @@
         "Level": "leicht",
         "Frage": "übersetze: hund",
         "Antwort": "dog"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: kanal",
+        "Antwort": "channel"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: laden",
+        "Antwort": "shop"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: o mein gott",
+        "Antwort": "o my god"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: stein",
+        "Antwort": "rock"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: tisch",
+        "Antwort": "table"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: gelb",
+        "Antwort": "yellow"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: blau",
+        "Antwort": "blue"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: grün",
+        "Antwort": "green"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: grau",
+        "Antwort": "grey"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: schwarz",
+        "Antwort": "black"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: webseite",
+        "Antwort": "website"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: nachricht",
+        "Antwort": "message"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: witzig",
+        "Antwort": "funny"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: wand",
+        "Antwort": "wall"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: hintergrund",
+        "Antwort": "background"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: dach",
+        "Antwort": "roof"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: bild",
+        "Antwort": "picture"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: stift",
+        "Antwort": "pencil"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: leicht",
+        "Antwort": "easy"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: wasser",
+        "Antwort": "water"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: wasserfall",
+        "Antwort": "waterfall"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: pflanze",
+        "Antwort": "plant"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: haus",
+        "Antwort": "house"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: tomate",
+        "Antwort": "tomato"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: tür",
+        "Antwort": "door"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: personen",
+        "Antwort": "people"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: jetzt",
+        "Antwort": "now"
+    },
+    {
+        "Level": "mittel",
+        "Frage": "übersetze: wer bist du",
+        "Antwort": "who are you"
+    },
+    {
+        "Level": "mittel",
+        "Frage": "übersetze: die tür ist auf",
+        "Antwort": "the door is open"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: boden",
+        "Antwort": "floor"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: stadt",
+        "Antwort": "city"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: offen",
+        "Antwort": "open"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: fenster",
+        "Antwort": "window"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: zimmer",
+        "Antwort": "room"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: er ist toll",
+        "Antwort": "he is great"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: anleitung",
+        "Antwort": "instruction"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: nett",
+        "Antwort": "nice"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: brücke",
+        "Antwort": "bridge"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: rot",
+        "Antwort": "red"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: lila",
+        "Antwort": "purple"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: wände",
+        "Antwort": "walls"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: komm",
+        "Antwort": "come"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: auto",
+        "Antwort": "car"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: fahrrad",
+        "Antwort": "bike"
     }
 ]
