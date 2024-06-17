@@ -3182,8 +3182,10 @@
           } else if (userQuestion.includes("du") && userQuestion.includes("schön") && !userQuestion.includes("nicht") && !userQuestion.includes("wunder")){
             if (document.body.classList.contains("beautiful-theme")) {
               beautifultheme();
+              nicetheme();
+            }else {
+              nicetheme();
             }
-            nicetheme();
             return "Danke, dass du mich schön findest!";
           } else if (userQuestion.includes("you") && userQuestion.includes("nice") && !userQuestion.includes("not")){
             if (document.body.classList.contains("beautiful-theme")) {
