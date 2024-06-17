@@ -130,6 +130,33 @@
         top: 10px;
         transition: 1s;
       }
+      .plane {
+          position: relative;
+          width: 57px;
+          height: 57px;
+          margin-top: 9px;
+          margin-right: 25px;
+          margin-left: -30px;
+          background-color: transparent;
+      }
+      @keyframes sendAnimation {
+        0% {
+          margin-top: 9px;
+          margin-right: 25px;
+          transform: rotate(0deg);
+
+        }
+        50% {
+          margin-right: -50px;
+          margin-top: -40px;
+          transform: rotate(-60deg);
+        }
+        100%{
+          margin-top: 9px;
+          margin-right: 25px;
+          transform: rotate(0deg);
+        }
+      }
 
       .hilfe-knopf {
         position: absolute;
@@ -681,6 +708,33 @@
         right: 10px;
         top: 53px;
         transition: 1s;
+      }
+      .plane {
+          position: relative;
+          width: 57px;
+          height: 37px;
+          margin-top: 3px;
+          margin-right: 25px;
+          margin-left: -30px;
+          background-color: transparent;
+      }
+      @keyframes sendAnimation {
+        0% {
+          margin-top: 3px;
+          margin-right: 25px;
+          transform: rotate(0deg);
+
+        }
+        50% {
+          margin-right: -50px;
+          margin-top: -40px;
+          transform: rotate(-60deg);
+        }
+        100%{
+          margin-top: 3px;
+          margin-right: 25px;
+          transform: rotate(0deg);
+        }
       }
 
       .hilfe-knopf {
@@ -1480,27 +1534,27 @@
       padding: 3px;
       transition: 1s;
     }
-    @keyframes sendAnimation {
-      0% {
-        margin-right: 0px;
-        margin-top: 0px;
-        transform: rotate(0deg);
-        
-      }
-      50% {
-        margin-right: -50px;
-        margin-top: -40px;
-        transform: rotate(-60deg);
-      }
-      100%{
-        margin-right: 0px;
-        margin-top: 0px;
-        transform: rotate(0deg);
-      }
-    }
 
     #hilfe-option1 {
       margin-top: 40px;
+    }
+
+    .plane::before,
+    .plane::after {
+        content: '';
+        position: absolute;
+        background-color: #757575;
+        width: 57px;
+        height: 20px;
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+    }
+
+    .plane::after {
+        top: 13.5px;
+        transform: rotate(-13deg);
+    }
+    .plane::before{
+        transform: rotate(13deg);
     }
   </style>
 </head>
@@ -1683,7 +1737,7 @@
       <button id="Editbtn">Edit</button>
       <div class="chat-input">
         <input type="text" class="user-input" id="user-input" placeholder="Type your message...">
-        <button id="button1" onclick="sendMassaga()"><img class="plane" src="SendSign.heic"></button>
+        <button id="button1" onclick="sendMassaga()"><div class="plane"></div></button>
         <button id="button2" onclick="newknowledge()">Teach</button>
         <button id="button3" onclick="learnnonewthing()">Skip</button>
       </div>
@@ -1869,6 +1923,9 @@
         inputvaluefc.value = "idk";
         helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else if (hilfeop1.textContent == "ich möchte zurück in die normale conversation!") {
+        inputvaluefc.value = "ich möchte zurück in den normalen chat";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
+      } else if (hilfeop1.textContent == "ich möchte zurück in die normale konversation!") {
         inputvaluefc.value = "ich möchte zurück in den normalen chat";
         helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else {
