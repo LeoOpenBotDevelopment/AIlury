@@ -1851,6 +1851,13 @@
     function checkvalueoc() {
       defaultchalange = chalange;
       helptext.textContent = "whats your problem?";
+      helptext.textContent = "whats your problem?";
+      hilfe.style.animation = "none";
+      void hilfe.offsetWidth;
+      hilfe.style.animation = "fadeOut 0.2s ease-out";
+      setTimeout(function () {
+        hilfe.style.display = "none";
+      }, 200);
       if (chalange == "nothing" && isguessing == "no") {
         hilfeop1.style.display = "flex";
         hilfeop2.style.display = "flex";
@@ -3250,35 +3257,35 @@
           } else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
             chalange = "englisch";
             clean();
-            return "okay, du lernst jetzt englisch";
+            return "okay, du lernst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('englisch') && userQuestion.includes('üben')) {
             chalange = "englisch";
             clean();
-            return "okay, du übst jetzt englisch";
+            return "okay, du übst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('mathe') && userQuestion.includes('lernen')) {
             chalange = "mathe";
             clean();
-            return "okay, du lernst jetzt mathe";
+            return "okay, du lernst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben";
           } else if (userQuestion.includes('mathe') && userQuestion.includes('üben')) {
             chalange = "mathe";
             clean();
-            return "okay, du übst jetzt mathe";
+            return "okay, du übst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben";
           } else if (userQuestion.includes('learn') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you're going to learn german now";
+            return "okay, you're going to learn german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('practice') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you are going to practice german now";
+            return "okay, you are going to practice german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('learn') && userQuestion.includes('math')) {
             chalange = "math";
             clean();
-            return "okay, you are going to learn math now";
+            return "okay, you are going to learn math now. if you don't know the answer, just say 'idk' and i'll give you the next question";
           } else if (userQuestion.includes('practice') && userQuestion.includes('math')) {
             chalange = "math";
             clean();
-            return "okay, you are going to practice math now";
+            return "okay, you are going to practice math now. if you don't know the answer, just say 'idk' and i'll give you the next question";
           } else if (bestMatch) {
             const answer = getAnswerForQuestion(bestMatch, knowledgeBase);
             if (answer == "Sorry but i dont know your Name") {
@@ -3496,19 +3503,19 @@
             } else if (userQuestion.includes('learn') && userQuestion.includes('german')) {
               chalange = "german";
               clean();
-              return "okay, you're going to learn german now";
+              return "okay, you're going to learn german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
             } else if (userQuestion.includes('practice') && userQuestion.includes('german')) {
               chalange = "german";
               clean();
-              return "okay, you are going to practice german now";
+              return "okay, you are going to practice german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
             } else if (userQuestion.includes('learn') && userQuestion.includes('math')) {
               chalange = "math";
               clean();
-              return "okay, you are going to learn math now";
+              return "okay, you are going to learn math now. if you don't know the answer, just say 'idk' and i'll give you the next question.";
             } else if (userQuestion.includes('practice') && userQuestion.includes('math')) {
               chalange = "math";
               clean();
-              return "okay, you are going to practice math now";
+              return "okay, you are going to practice math now. if you don't know the answer, just say 'idk' and i'll give you the next question.";
             } else if (userQuestion.includes("ja") && asktg == "yes") {
               aotink = "0";
               asktg = "no";
@@ -3601,19 +3608,19 @@
             } else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
               chalange = "englisch";
               clean();
-              return "okay, du lernst jetzt englisch";
+              return "okay, du lernst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
             } else if (userQuestion.includes('englisch') && userQuestion.includes('üben')) {
               chalange = "englisch";
               clean();
-              return "okay, du übst jetzt englisch";
+              return "okay, du übst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
             } else if (userQuestion.includes('mathe') && userQuestion.includes('lernen')) {
               chalange = "mathe";
               clean();
-              return "okay, du lernst jetzt mathe";
+              return "okay, du lernst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächte aufgabe geben";
             } else if (userQuestion.includes('mathe') && userQuestion.includes('üben')) {
               chalange = "mathe";
               clean();
-              return "okay, du übst jetzt mathe";
+              return "okay, du übst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächte aufgabe geben";
             } else if (userQuestion.includes('back') && userQuestion.includes('chat')) {
               chalange = "nothing";
               clean();
@@ -3625,11 +3632,11 @@
             } else if (userQuestion.includes('learn') && userQuestion.includes('math')) {
               chalange = "math";
               clean();
-              return "okay, you are going to learn math now";
+              return "okay, you are going to learn math now. if you don't know the answer, just say 'idk' and i'll give you the next question.";
             } else if (userQuestion.includes('practice') && userQuestion.includes('math')) {
               chalange = "math";
               clean();
-              return "okay, you are going to practice math now";
+              return "okay, you are going to practice math now. if you don't know the answer, just say 'idk' and i'll give you the next question.";
             } else if (userQuestion.includes("yes") && asktg == "yes") {
               aotink = "0";
               asktg = "no";
@@ -3803,11 +3810,11 @@
           } else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
             chalange = "englisch";
             clean();
-            return "okay, du lernst jetzt englisch";
+            return "okay, du lernst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('englisch') && userQuestion.includes('üben')) {
             chalange = "englisch";
             clean();
-            return "okay, du übst jetzt englisch";
+            return "okay, du übst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('zu') && userQuestion.includes('gespräch')) {
             chalange = "nothing";
             clean();
@@ -3819,19 +3826,19 @@
           } else if (userQuestion.includes('learn') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you're going to learn german now";
+            return "okay, you're going to learn german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('practice') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you are going to practice german now";
+            return "okay, you are going to practice german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('learn') && userQuestion.includes('math')) {
             chalange = "math";
             clean();
-            return "okay, you are going to learn math now";
+            return "okay, you are going to learn math now. if you don't know the answer, just say 'idk' and i'll give you the next question.";
           } else if (userQuestion.includes('practice') && userQuestion.includes('math')) {
             chalange = "math";
             clean();
-            return "okay, you are going to practice math now";
+            return "okay, you are going to practice math now. if you don't know the answer, just say 'idk' and i'll give you the next question";
           } else if (userQuestion.includes("ja") && asktg == "yes") {
             aotink = "0";
             asktg = "no";
@@ -4003,27 +4010,27 @@
           } else if (userQuestion.includes('englisch') && userQuestion.includes('lernen')) {
             chalange = "englisch";
             clean();
-            return "okay, du lernst jetzt englisch";
+            return "okay, du lernst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('englisch') && userQuestion.includes('üben')) {
             chalange = "englisch";
             clean();
-            return "okay, du übst jetzt englisch";
+            return "okay, du übst jetzt englisch. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächste aufgabe geben. versuche bei der übersetzung der wörter keine leerzeichen zu anfang und ende der wörter zu haben und versuche keine zeichen wie: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, ', zu benutzen";
           } else if (userQuestion.includes('mathe') && userQuestion.includes('lernen')) {
             chalange = "mathe";
             clean();
-            return "okay, du lernst jetzt mathe";
+            return "okay, du lernst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächte aufgabe geben";
           } else if (userQuestion.includes('mathe') && userQuestion.includes('üben')) {
             chalange = "mathe";
             clean();
-            return "okay, du übst jetzt mathe";
+            return "okay, du übst jetzt mathe. wenn du die antwort zur frage nicht weißt, schreibe 'idk' und ich werde dir die nächte aufgabe geben";
           } else if (userQuestion.includes('learn') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you're going to learn german now";
+            return "okay, you're going to learn german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('practice') && userQuestion.includes('german')) {
             chalange = "german";
             clean();
-            return "okay, you are going to practice german now";
+            return "okay, you are going to practice german now. if you don't know the answer, just say 'idk' and i'll give you the next question. when answering please try avoiding any spaces at the beginning and end of the word and try not to use any symbols like: !, ?, $, %, &, (, ), [, ], {, }, ;, :, <, >, /, ,, ., -, +, =, *, ^, #, @, °, °, °, �, '";
           } else if (userQuestion.includes('back') && userQuestion.includes('chat')) {
             chalange = "nothing";
             clean();
@@ -4032,7 +4039,7 @@
             chalange = "nothing";
             clean();
             return "okay, you're in the normal chat now";
-          } else if (userQuestion.includes("ja") && asktg == "yes") {
+          } else if (userQuestion.includes("yes") && asktg == "yes") {
             aotink = "0";
             asktg = "no";
             chalange = "nothing";
