@@ -1916,7 +1916,28 @@
             bell.style.right = "10px";
             bell.style.left = "auto";
             sideclick = 1;
+        }else if (window.matchMedia("(max-width: 750px)").matches && sideclick == 1) {
+            user_profile.style.marginLeft = "0";
+            chat_container.style.width = "600px";
+            side_before.style.background = "var(--primary-color)";
+            bell.style.top = "53px";
+            bell.style.right = "10px";
+            bell.style.left = "auto";
+            sideclick = 1;
         }else if (window.matchMedia("(min-width: 750px)").matches && sideclick == 1){
+            user_profile.style.marginLeft = "0";
+            chat_container.style.width = "1000px";
+            side_before.style.background = "var(--primary-color)";
+            bell.style.left = "165px";
+            bell.style.top = "10px";
+            sideclick = 1;
+            /*user_profile.style.marginLeft = "-400px";
+            chat_container.style.width = "100%";
+            side_before.style.background = "transparent";
+            bell.style.left = "-200px";
+            bell.style.top = "10px";
+            sideclick = 2;*/
+        }else if (window.matchMedia("(min-width: 750px)").matches && sideclick == 2){
             user_profile.style.marginLeft = "0";
             chat_container.style.width = "1000px";
             side_before.style.background = "var(--primary-color)";
