@@ -393,5 +393,15 @@
         "Level": "leicht",
         "Frage": "übersetze: fahrrad",
         "Antwort": "bike"
+    },
+    {
+        "Level": "mittel",
+        "Frage": "übersetze: du bist toll",
+        "Antwort": "you are great"
+    },
+    {
+        "Level": "leicht",
+        "Frage": "übersetze: baum",
+        "Antwort": "tree"
     }
 ]
