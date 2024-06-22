@@ -2803,6 +2803,71 @@
               let ergebnis = Math.sqrt(number);
               return `√${number} = ${ergebnis}.`;
             }
+          } else if (userQuestion.includes("von deutsch zu hyraphisch") && userQuestion.includes("übersetze")) {
+              let userQuestion5 = userQuestion.split("von deutsch zu hyraphisch")[0];
+              userQuestion5 = userQuestion5.split("übersetze")[1];
+              
+              let ersetzung_dict = {
+                  'A': '=', 'a': '=', 'B': '&', 'b': '&', 'C': '%', 'c': '%', 'D': '_', 'd': '_', 'E': '€', 'e': '€',
+                  'F': '|', 'f': '|', 'G': '(', 'g': '(', 'H': ')', 'h': ')', 'I': '!', 'i': '!', 'J': "'", 'j': "'",
+                  'K': '^', 'k': '^', 'L': '#', 'l': '#', 'M': '„', 'm': '„', 'N': '•', 'n': '•', 'O': '0', 'o': '0',
+                  'P': '~', 'p': '~', 'Q': '@', 'q': '@', 'R': '<', 'r': '<', 'S': '>', 's': '>', 'T': '+', 't': '+',
+                  'U': '3', 'u': '3', 'V': '7', 'v': '7', 'W': '5', 'w': '5', 'X': '*', 'x': '*', 'Y': '¥', 'y': '¥',
+                  'Z': '/', 'z': '/', 'Ä': '1', 'ä': '1', 'Ö': ';', 'ö': ';', 'Ü': '$', 'ü': '$', ' ': ' '
+              };
+
+              let ersetzer = new Map(Object.entries(ersetzung_dict));
+              let neuer_text = userQuestion5.split('').map(char => ersetzer.get(char) || char).join('');
+              neuer_text = neuer_text.toLowerCase();
+
+              return `Der übersetzte Text: ${neuer_text}`;
+          } else if (userQuestion.includes("von hyraphisch zu deutsch") && userQuestion.includes("übersetze")) {
+              let userQuestion5 = userQuestion.split("von hyraphisch zu deutsch")[0];
+              userQuestion5 = userQuestion5.split("übersetze")[1];
+              let ersetzung_dict = {
+                  '=': 'A', '&': 'B', '%': 'C', '_': 'D', '€': 'E', '|': 'F', '(': 'G', ')': 'H',
+                  '!': 'I', "'": 'J', '^': 'K', '#': 'L', '„': 'M', '•': 'N', '0': 'O', '~': 'P',
+                  '@': 'Q', '<': 'R', '>': 'S', '+': 'T', '3': 'U', '7': 'V', '5': 'W', '*': 'X',
+                  '¥': 'Y', '/': 'Z', '1': 'Ä', ';': 'Ö', '$': 'Ü', ' ': ' '
+              };
+
+              let ersetzer = new Map(Object.entries(ersetzung_dict));
+              let neuer_text = userQuestion5.split('').map(char => ersetzer.get(char) || char).join('');
+              // meke the trxt lowercase
+              neuer_text = neuer_text.toLowerCase();
+              return `Der übersetzte Text: ${neuer_text}`;
+          } else if (userQuestion.includes("von de zu hy") && userQuestion.includes("übersetze")) {
+              let userQuestion5 = userQuestion.split("von deutsch zu hy")[0];
+              userQuestion5 = userQuestion5.split("übersetze")[1];
+              let ersetzung_dict = {
+                  'A': '=', 'a': '=', 'B': '&', 'b': '&', 'C': '%', 'c': '%', 'D': '_', 'd': '_', 'E': '€', 'e': '€',
+                  'F': '|', 'f': '|', 'G': '(', 'g': '(', 'H': ')', 'h': ')', 'I': '!', 'i': '!', 'J': "'", 'j': "'",
+                  'K': '^', 'k': '^', 'L': '#', 'l': '#', 'M': '„', 'm': '„', 'N': '•', 'n': '•', 'O': '0', 'o': '0',
+                  'P': '~', 'p': '~', 'Q': '@', 'q': '@', 'R': '<', 'r': '<', 'S': '>', 's': '>', 'T': '+', 't': '+',
+                  'U': '3', 'u': '3', 'V': '7', 'v': '7', 'W': '5', 'w': '5', 'X': '*', 'x': '*', 'Y': '¥', 'y': '¥',
+                  'Z': '/', 'z': '/', 'Ä': '1', 'ä': '1', 'Ö': ';', 'ö': ';', 'Ü': '$', 'ü': '$', ' ': ' '
+              };
+
+              let ersetzer = new Map(Object.entries(ersetzung_dict));
+              let neuer_text = userQuestion5.split('').map(char => ersetzer.get(char) || char).join('');
+              neuer_text = neuer_text.toLowerCase();
+
+              return `Der übersetzte Text: ${neuer_text}`;
+          } else if (userQuestion.includes("von hy zu de") && userQuestion.includes("übersetze")) {
+              let userQuestion5 = userQuestion.split("von hy zu de")[0];
+              userQuestion5 = userQuestion5.split("übersetze")[1];
+              let ersetzung_dict = {
+                  '=': 'A', '&': 'B', '%': 'C', '_': 'D', '€': 'E', '|': 'F', '(': 'G', ')': 'H',
+                  '!': 'I', "'": 'J', '^': 'K', '#': 'L', '„': 'M', '•': 'N', '0': 'O', '~': 'P',
+                  '@': 'Q', '<': 'R', '>': 'S', '+': 'T', '3': 'U', '7': 'V', '5': 'W', '*': 'X',
+                  '¥': 'Y', '/': 'Z', '1': 'Ä', ';': 'Ö', '$': 'Ü', ' ': ' '
+              };
+
+              let ersetzer = new Map(Object.entries(ersetzung_dict));
+              let neuer_text = userQuestion5.split('').map(char => ersetzer.get(char) || char).join('');
+              // meke the trxt lowercase
+              neuer_text = neuer_text.toLowerCase();
+              return `Der übersetzte Text: ${neuer_text}`;
           } else if (userQuestion.includes("ich heisse")) {
             let name1 = userQuestion.split("ich heisse")[1];
             let name = name1.replace("?", "");
