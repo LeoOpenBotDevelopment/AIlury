@@ -1599,7 +1599,7 @@
   <div class="intro">
     <h1 class="logo-header">
       <span class="logo">A</span><span class="logo">I</span><span class="logo">l</span><span class="logo">u</span><span
-        class="logo">r</span><span class="logo">y</span>
+        class="logo">r</span><span class="logo">y</span><span class="logo">-</span><span class="logo">2</span><span class="logo">.</span><span class="logo">0</span><span class="logo">.</span><span class="logo">1</span>
     </h1>
   </div>
   <script>
@@ -1619,10 +1619,10 @@
               span.classList.remove('active');
             }, (idx + 1) * 50)
           })
-        }, 2000)
+        }, 3000)
         setTimeout(() => {
           intro.style.top = '-100vh';
-        }, 3000)
+        }, 4500)
       })
     })
   </script>
@@ -1650,7 +1650,24 @@
   </div>
   <div class="up-container">
     <div class="up-cross"></div>
-    <h2 class="h21">Our new update offers notifications, a new game, navigation help and a new help
+    <h2 class="h21">
+      <strong>Update 2.0.1: Introducing the Heli Update Series</strong><br><br>
+      We are excited to announce the release of Update 2.0.1, the first installment of the Heli Update Series. This series will bring a range of enhancements to improve language, behavior, and knowledge.<br><br>
+
+      <strong>Key Features:</strong><br><br>
+
+      1. <strong>New Speak Button</strong>:<br>
+      - <em>Effortless Language Switching</em>: Translate the website with a single click, switching seamlessly between English and German based on the current language setting.<br><br>
+
+      2. <strong>Enhanced Responses</strong>:<br>
+      - <em>Improved Interactivity</em>: Enjoy more engaging and friendly responses during play, learning sessions, or casual conversations.<br><br>
+
+      3. <strong>Side Bar Toggle</strong>:<br>
+      - <em>Easy Navigation</em>: A new button allows you to open or close the sidebar effortlessly, providing a smoother user experience.<br><br>
+
+      Stay tuned for more exciting updates in the Heli Update Series!
+      <!--<br><br>update 1.8<br><br>
+      Our update 1.8 offers notifications, a new game, navigation help and a new help
       function.<br><br>Notifications: a new bell has been added which you have probably already clicked to read
       this!<br><br>Game: you can for example ask AIlury: "I want to play the emoji game" and then you can play the emoji
       game! To play it you have to count the emojis from left to right until you get to the different one and then tell
@@ -1660,7 +1677,7 @@
       like in the other games!<br><br>Navigation help: when you click on certain elements on the sidebar you will be
       told what that element is or does. If this element is in the way, you can simply click on it to make it
       disappear.<br><br>Help: when you click on the help button, a small window opens on the screen with buttons, and
-      depending on the problem you are having, you can click on the corresponding button.</h2>
+      depending on the problem you are having, you can click on the corresponding button.</h2>-->
   </div>
   <div class="i-container">
     <div class="i-cross"></div>
@@ -1715,7 +1732,7 @@
           <br>
           <span id="username-display" class="username-display">Guest</span>
           <div class="smallscreenbtns">
-            <a id="logout" href="index.html">log out</a>
+            <a id="logout" class="logout1" href="index.html">log out</a>
             <button class="speakon" id="speakon">speak: off</button>
             <button class="bcft" onclick="change_mood()">Dark theme</button>
             <button class="RandomQuestion" onclick="setinputvalue()">Random</button>
@@ -1723,7 +1740,7 @@
           <div class="bigscreenbtns">
             <br>
             <br>
-            <a id="logout" href="index.html">log out</a>
+            <a id="logout" class="logout2" href="index.html">log out</a>
             <br>
             <br>
             <a class="speakon" id="speakon">speak: off</a>
@@ -1733,6 +1750,9 @@
             <br>
             <br>
             <a class="RandomQuestion" onclick="setinputvalue()">Random</a>
+            <br>
+            <br>
+            <a class="ChangeLanguage" onclick="change_language()">language</a>
           </div>
         </div>
       </div>
@@ -1847,6 +1867,7 @@
     let t3 = "do";
     let t4 = "do";
     let t5 = "do";
+    let t6 = "do";
     let aotink = "0";
     let asktg = "no";
     let leicht1 = "";
@@ -1865,6 +1886,10 @@
     let num1 = "";
     let num2 = "";
     let idnum = "0";
+    let light = "Light theme";
+    let dark = "Dark theme";
+    let dark2 = "Dark";
+    let light2 = "Light";
     let up_cross = document.querySelector('.up-cross');
     let up_container = document.querySelector('.up-container');
     let bell = document.querySelector('.bell');
@@ -1952,7 +1977,6 @@
             sideclick = 2;*/
         }
     }
-
     // Füge den Event-Listener für das resize-Event hinzu
     window.addEventListener("resize", handleResize);
     function checkvalueoc() {
@@ -2031,6 +2055,7 @@
         hilfeop2.textContent = "ich weiss die antwort nicht!";
       }
     }
+    
     hilfeop1.addEventListener("click", () => {
       if (hilfeop1.textContent == "i want to play the emoji game!") {
         inputvaluefc.value = "i want to play the emoji game";
@@ -2378,6 +2403,16 @@
           .catch(error => console.error('Bot response error:', error));
       }
     }
+    let tc1fe = 'if you click the speak button you can make the bot read the chat or not';
+    let tc2fe = 'you can change the theme with this button';
+    let tc3fe = 'click this button if you do not know how to start a conversation';
+    let tc4fe = 'if you click the speak button you can make the bot read the chat or not';
+    let tc5fe = 'you can change the theme with this button';
+    let tc6fe = 'click this button if you do not know how to start a conversation';
+    let tc7fe = 'your profile picture is here, if you uploaded one!';
+    let tc8fe = 'your user-name is here, if you have one!';
+    let tc9fe = 'by clicking this button the language changes to german';
+    let idkanswer = 'sorry but i have no idea what to answer 😅';
     document.addEventListener('click', function (event) {
       const clickedElement = event.target;
       const instructionbox = document.getElementById('info-box');
@@ -2395,7 +2430,7 @@
         instructionbox.style.opactiy = '0';
         instructionbox.style.marginTop = '280px';
         instructionbox.style.marginLeft = '3%';
-        instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+        instructionbox.textContent = tc1fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-in";
@@ -2413,7 +2448,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '380px';
         instructionbox.style.marginLeft = '3%';
-        instructionbox.textContent = 'you can change the theme with this button';
+        instructionbox.textContent = tc2fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2431,7 +2466,25 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '430px';
         instructionbox.style.marginLeft = '3%';
-        instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+        instructionbox.textContent = tc3fe;
+        instructionbox.style.animation = "none";
+        void instructionbox.offsetWidth;
+        instructionbox.style.animation = "fadeIn 0.2s ease-out";
+        setTimeout(function () {
+          instructionbox.style.animation = "none";
+          void instructionbox.offsetWidth;
+          instructionbox.style.animation = "fadeOut 0.2s ease-out";
+          setTimeout(function () {
+            instructionbox.style.display = "none";
+          }, 200);
+        }, 5000);
+      }
+      if (clickedElement.classList.contains('ChangeLanguage') && t6 == "do" && !window.matchMedia('(max-width: 750px)').matches) {
+        t6 = "dont";
+        instructionbox.style.display = 'block';
+        instructionbox.style.marginTop = '530px';
+        instructionbox.style.marginLeft = '3%';
+        instructionbox.textContent = tc9fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2458,7 +2511,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '30px';
         instructionbox.style.marginLeft = '17%';
-        instructionbox.textContent = 'if you click the speak button you can make the bot read the chat or not';
+        instructionbox.textContent = tc4fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2476,7 +2529,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '40px';
         instructionbox.style.marginLeft = '40%';
-        instructionbox.textContent = 'you can change the theme with this button';
+        instructionbox.textContent = tc5fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2494,7 +2547,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '32px';
         instructionbox.style.marginLeft = '65%';
-        instructionbox.textContent = 'click this button if you do not know how to start a conversation';
+        instructionbox.textContent = tc6fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2512,7 +2565,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '2px';
         instructionbox.style.marginLeft = '3%';
-        instructionbox.textContent = 'your profile picture is here, if you uploaded one!';
+        instructionbox.textContent = tc7fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2530,7 +2583,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '130px';
         instructionbox.style.marginLeft = '3%';
-        instructionbox.textContent = 'your user-name is here, if you have one!';
+        instructionbox.textContent = tc8fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2548,7 +2601,7 @@
         instructionbox.style.display = 'block';
         instructionbox.style.marginTop = '4px';
         instructionbox.style.marginLeft = '1%';
-        instructionbox.textContent = 'your user-name is here, if you have one!';
+        instructionbox.textContent = tc8fe;
         instructionbox.style.animation = "none";
         void instructionbox.offsetWidth;
         instructionbox.style.animation = "fadeIn 0.2s ease-out";
@@ -2816,7 +2869,7 @@
           } else if (userQuestion.includes("von deutsch zu hyraphisch") && userQuestion.includes("übersetze")) {
               let userQuestion5 = userQuestion.split("von deutsch zu hyraphisch")[0];
               userQuestion5 = userQuestion5.split("übersetze")[1];
-              
+
               let ersetzung_dict = {
                   'A': '=', 'a': '=', 'B': '&', 'b': '&', 'C': '%', 'c': '%', 'D': '_', 'd': '_', 'E': '€', 'e': '€',
                   'F': '|', 'f': '|', 'G': '(', 'g': '(', 'H': ')', 'h': ')', 'I': '!', 'i': '!', 'J': "'", 'j': "'",
@@ -3530,7 +3583,7 @@
                       response = {message: `${newanswer}`};
                     }
                   } else {
-                    response = {message: 'sorry but i do not know how to answer to that question'};
+                    response = {message: `${idkanswer}`};
                   }
                 }
               }
@@ -3582,7 +3635,7 @@
                       response = {message: `${newanswer}`};
                     }
                   } else {
-                    response = {message: 'sorry but i do not know how to answer to that question'};
+                    response = {message: `${idkanswer}`};
                   }
                 }
               }
@@ -3617,7 +3670,7 @@
                     response = {message: `${newanswer}`};
                   }
                 } else {
-                  response = {message: 'sorry but i do not know how to answer to that question'};
+                  response = {message: `${idkanswer}`};
                 }
               }
             }
@@ -3738,7 +3791,7 @@
                 const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
                 response = {message: `${rnewanswer}`};
               } else {
-                response = {message: 'Falsch! Versuchen Sie es erneut.'};
+                response = {message: 'Noch nicht richtig! Versuche es erneut.'};
               }
               return response.message;
 
@@ -3858,7 +3911,7 @@
                 const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
                 response = {message: `${rnewanswer}`};
               } else {
-                response = {message: 'wrong! try again.'};
+                response = {message: 'Not right yet! try again.'};
               }
               /*return response.message;*/
               return response.message;
@@ -4061,7 +4114,7 @@
               const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
               response = {message: `${rnewanswer}`};
             } else {
-              response = {message: 'Falsch! Versuchen Sie es erneut.'};
+              response = {message: 'Noch nicht richtig! Versuchen es erneut.'};
             }
             return response.message;
           }
@@ -4260,7 +4313,7 @@
               const rnewanswer = getAnswerForQuestion(bestMatch3, knowledgeBase3);
               response = {message: `${rnewanswer}`};
             } else {
-              response = {message: 'wrong! try again.'};
+              response = {message: 'Not right yet! try again.'};
             }
             return response.message;
           }
@@ -4356,19 +4409,19 @@
     function change_mood() {
       document.body.classList.toggle("dark-theme");
       if (document.body.classList.contains("dark-theme")) {
-        document.getElementById("changetheme").textContent = "Light";
-        document.querySelector(".bcft").textContent = "Light theme";
+        document.getElementById("changetheme").textContent = light2;
+        document.querySelector(".bcft").textContent = light;
       } else if (document.body.classList.contains("nice-theme")) {
         document.body.classList.toggle("nice-theme");
-        document.getElementById("changetheme").textContent = "Dark";
-        document.querySelector(".bcft").textContent = "Dark theme";
+        document.getElementById("changetheme").textContent = dark2;
+        document.querySelector(".bcft").textContent = dark;
       } else if (document.body.classList.contains("beautiful-theme")) {
         document.body.classList.toggle("beautiful-theme");
-        document.getElementById("changetheme").textContent = "Dark";
-        document.querySelector(".bcft").textContent = "Dark theme";
+        document.getElementById("changetheme").textContent = dark2;
+        document.querySelector(".bcft").textContent = dark;
       } else {
-        document.getElementById("changetheme").textContent = "Dark";
-        document.querySelector(".bcft").textContent = "Dark theme";
+        document.getElementById("changetheme").textContent = dark2;
+        document.querySelector(".bcft").textContent = dark;
       }
     }
     var navlinks = document.getElementById("navlinks");
@@ -4424,12 +4477,12 @@
       var modeInfo2 = document.getElementById("changetheme");
       var modeInfo = document.querySelector('.bcft');
       if (isDarkMode()) {
-        modeInfo.textContent = "Light theme";
-        modeInfo2.textContent = "Light";
+        modeInfo.textContent = light;
+        modeInfo2.textContent = light2;
         change_mood()
       } else {
-        modeInfo.textContent = "Dark theme";
-        modeInfo2.textContent = "Dark";
+        modeInfo.textContent = dark;
+        modeInfo2.textContent = dark2;
         change_mood()
       }
     }
@@ -4452,7 +4505,7 @@
     }
     function say2(textfs) {
       document.querySelectorAll('.speakon').forEach(function (element) {
-        if (element.textContent == "speak: on") {
+        if (element.textContent == "speak: on" || element.textContent == "spre...: an") {
           speech.text = textfs;
           window.speechSynthesis.speak(speech);
         }
@@ -4465,7 +4518,11 @@
       element.addEventListener('click', function () {
         if (element.textContent == "speak: on") {
           element.textContent = "speak: off";
-        } else {
+        } else if (element.textContent == "spre...: an") {
+          element.textContent = "spre...: ab";
+        } else if (element.textContent == "spre...: ab") {
+          element.textContent = "spre...: an";
+        }else {
           element.textContent = "speak: on";
         }
         // Ändert den Textinhalt des geklickten Elements
@@ -4498,6 +4555,286 @@
       speech.text = document.getElementById("remember").textContent;
       window.speechSynthesis.speak(speech);
     }*/
+    const translations = {
+        en: {
+            instructions: `Instructions:<br><br>
+                Buttons:<br>
+                Notifications: when you click on the notification button, you will be shown information about the latest
+                update.<br><br>
+                Help: if you click on the help button, a small window will open on the screen with up to 4 buttons! If you have a
+                problem, just click on the button that corresponds to your question, then the text under the buttons will change
+                and tell you what you need to do to solve your problem on the website or will tell you what has been done to solve
+                your problem.<br><br>
+                log out: when you click the log out button you will be taken to your profile where you can upload a profile
+                picture or change your name. To get back to the chat you have to click on the "Start" button, but by doing so you
+                agree to the user guidelines and Privacy Policy!<br><br>
+                speak: when you click the speak button, the chat will be read from that moment on. If you no longer want this, you
+                can click it a second time.<br><br>
+                theme: if you click on the light/dark theme button, the website will be either light or dark, depending on whether
+                it is dark or light at the time of the click.<br><br>
+                messages: if you click on any message you will be able to delete it or edit it, if its a message you
+                wrote!<br><br>
+                random: if you click on the random button, a random question or sentence will appear in the input
+                field.<br><br>
+                language: if you click on the language button, you will be able to change the language of the website, from english to german or the other way around.
+                <br><br><br>
+                Functions: if you want to play an emoji game by guessing where or which emoji is different you can for example
+                type: "I want to play the emoji game". Then AIlury will give you a list of emojis and you either have to count the
+                emojis from left to right until you get to the different one and then send AIlury the number or you can send
+                AIlury the different emoji! If you want to practice German, you can write for example: "I want to practice German"
+                and then AIlury will give you words to translate! If you want to practice math you can write for example: "I want
+                to practice math" and then AIlury will give you math exercises. If at any time you don't know the answer to a
+                function, you can simply say: "idk".<br><br>
+                Text filters and keywords: AIlury offers a lot of functions. You can use AIlury to replace text with text in a
+                large or small text, for example: "replace I with you in I eat". Or you can ask if a text is in another text by
+                saying for example: "is hello in hello how are you?". You can also remove one text from another by saying, for
+                example: "take hello out of hello how are you?". You can also tell her to say something, for example by saying:
+                "say: hello". You can also give Allury basic math problems to solve or ask if one number is greater than another
+                by writing, for example: "is 20 > 21?" or see if one number is equal to another by saying, for example: "is 20 =
+                20?". AIlury can also give you a Random name for either a specific person or in general, for example if you say:
+                "what would be a good name for my dog?" Or "give me a female name". You can also ask AIlury to choose a number
+                between two numbers you specify by saying, for example, "choose a number from 10 to 20". You can also ask AIlury
+                to count to a desired number by saying, for example: "count till 100". These are not all the functions AIlury has
+                to offer but a lot of them. These functions are not yet fully developed, they are still being
+                improved.<br><br><br>
+                i hope i was able to give you a good overview of what AIlury can do!`,
+          logout: `log out`,
+          speak: `speak: off`,
+          random: `random`,
+          language: `language`,
+          placeholder: `Type your message...`,
+          username: `Guest`,
+          tc1fev: 'if you click the speak button you can make the bot read the chat or not',
+          tc2fev: 'you can change the theme with this button',
+          tc3fev: 'click this button if you do not know how to start a conversation',
+          tc4fev: 'if you click the speak button you can make the bot read the chat or not',
+          tc5fev: 'you can change the theme with this button',
+          tc6fev: 'click this button if you do not know how to start a conversation',
+          tc7fev: 'your profile picture is here, if you uploaded one!',
+          tc8fev: 'your user-name is here, if you have one!',
+          tc9fev: 'Durch Klicken auf diese Taste wird die Sprache auf Deutsch geändert',
+          idkanswerv: `sorry but i have no idea what to answer 😅`,
+          notificationstext: `<strong>Update 2.0.1: Introducing the Heli Update Series</strong><br><br>
+      We are excited to announce the release of Update 2.0.1, the first installment of the Heli Update Series. This series will bring a range of enhancements to improve language, behavior, and knowledge.<br><br>
+
+      <strong>Key Features:</strong><br><br>
+
+      1. <strong>New Speak Button</strong>:<br>
+      - <em>Effortless Language Switching</em>: Translate the website with a single click, switching seamlessly between English and German based on the current language setting.<br><br>
+
+      2. <strong>Enhanced Responses</strong>:<br>
+      - <em>Improved Interactivity</em>: Enjoy more engaging and friendly responses during play, learning sessions, or casual conversations.<br><br>
+
+      3. <strong>Side Bar Toggle</strong>:<br>
+      - <em>Easy Navigation</em>: A new button allows you to open or close the sidebar effortlessly, providing a smoother user experience.<br><br>
+
+      Stay tuned for more exciting updates in the Heli Update Series!`,
+        },
+        de: {
+            instructions: `Anleitung:<br><br>
+                Buttons:<br>
+                Benachrichtigungen: Wenn Sie auf den Benachrichtigungsknopf klicken, werden Ihnen Informationen über das neueste
+                Update angezeigt.<br><br>
+                Hilfe: Wenn Sie auf den Hilfe-Knopf klicken, öffnet sich ein kleines Fenster auf dem Bildschirm mit bis zu 4
+                Knöpfen! Wenn Sie ein Problem haben, klicken Sie einfach auf den Knopf, der Ihrer Frage entspricht, dann ändert
+                sich der Text unter den Knöpfen und erklärt Ihnen, was Sie tun müssen, um Ihr Problem auf der Webseite zu lösen,
+                oder was getan wurde, um Ihr Problem zu lösen.<br><br>
+                Abmelden: Wenn Sie auf den Abmelden-Knopf klicken, werden Sie zu Ihrem Profil weitergeleitet, wo Sie ein
+                Profilbild hochladen oder Ihren Namen ändern können. Um zum Chat zurückzukehren, müssen Sie auf den
+                "Start"-Knopf klicken, aber damit stimmen Sie den Nutzungsbedingungen und der Datenschutzrichtlinie zu!<br><br>
+                Sprechen: Wenn Sie auf den Sprechen-Knopf klicken, wird der Chat ab diesem Moment vorgelesen. Wenn Sie dies nicht
+                mehr wünschen, können Sie erneut darauf klicken.<br><br>
+                Thema: Wenn Sie auf den Hell/Dunkel-Thema-Knopf klicken, wird die Webseite entweder hell oder dunkel, je nachdem,
+                ob es zum Zeitpunkt des Klicks dunkel oder hell ist.<br><br>
+                Nachrichten: Wenn Sie auf eine Nachricht klicken, können Sie sie löschen oder bearbeiten, falls es eine
+                Nachricht ist, die Sie geschrieben haben!<br><br>
+                Zufällig: Wenn Sie auf den Zufällig-Knopf klicken, erscheint eine zufällige Frage oder ein zufälliger Satz im
+                Eingabefeld.<br><br>
+                sprache: wenn sie auf den sprache knopf klicken können sie die sprache der webseite entweder zu englisch oder deutsch ändern.
+                <br><br><br>
+                Funktionen: Wenn Sie ein Emoji-Spiel spielen möchten, bei dem Sie erraten müssen, welches Emoji anders ist,
+                können Sie zum Beispiel schreiben: "Ich möchte das Emoji-Spiel spielen". Dann wird Ihnen AIlury eine Liste von
+                Emojis geben und Sie müssen die Emojis von links nach rechts zählen, bis Sie das andere Emoji gefunden haben,
+                und dann AIlury die Nummer senden, oder Sie können AIlury das andere Emoji senden! Wenn Sie Deutsch üben möchten,
+                können Sie zum Beispiel schreiben: "Ich möchte Deutsch üben" und dann wird Ihnen AIlury Wörter zum Übersetzen
+                geben! Wenn Sie Mathematik üben möchten, können Sie zum Beispiel schreiben: "Ich möchte Mathematik üben" und dann
+                wird Ihnen AIlury Mathematikaufgaben geben. Wenn Sie zu irgendeinem Zeitpunkt die Antwort auf eine Funktion nicht
+                wissen, können Sie einfach sagen: "ich weiß nicht".<br><br>
+                Textfilter und Schlüsselwörter: AIlury bietet viele Funktionen. Sie können AIlury verwenden, um Text durch großen
+                oder kleinen Text zu ersetzen, zum Beispiel: "ersetze ich durch du in ich esse". Oder Sie können fragen, ob ein
+                Text in einem anderen Text enthalten ist, indem Sie zum Beispiel sagen: "ist hallo in hallo wie geht's?". Sie
+                können auch einen Text aus einem anderen entfernen, indem Sie zum Beispiel sagen: "nimm hallo aus hallo wie
+                geht's?". Sie können ihr auch sagen, etwas zu sagen, zum Beispiel: "sag: hallo". Sie können AIlury auch einfache
+                mathematische Probleme lösen lassen oder fragen, ob eine Zahl größer ist als eine andere, indem Sie zum Beispiel
+                schreiben: "ist 20 > 21?" oder sehen, ob eine Zahl gleich einer anderen ist, indem Sie zum Beispiel sagen: "ist
+                20 = 20?". AIlury kann Ihnen auch einen zufälligen Namen für eine bestimmte Person oder allgemein geben, zum
+                Beispiel wenn Sie sagen: "Was wäre ein guter Name für meinen Hund?" Oder "gib mir einen weiblichen Namen". Sie
+                können AIlury auch bitten, eine Zahl zwischen zwei von Ihnen angegebenen Zahlen auszuwählen, indem Sie zum
+                Beispiel sagen: "wähle eine Zahl von 10 bis 20". Sie können AIlury auch bitten, bis zu einer gewünschten Zahl zu
+                zählen, indem Sie zum Beispiel sagen: "zähle bis 100". Dies sind nicht alle Funktionen, die AIlury zu bieten hat,
+                aber viele davon. Diese Funktionen sind noch nicht vollständig entwickelt, sie werden noch
+                verbessert.<br><br><br>
+                Ich hoffe, ich konnte Ihnen einen guten Überblick darüber geben, was AIlury tun kann!`,
+          logout: `Abmelden`,
+          speak: `spre...: ab`,
+          random: `zufällig`,
+          language: `sprache`,
+          placeholder: `Schreibe deine Nachricht...`,
+          username: `Gast`,
+          tc1fev: 'Wenn du auf die Sprechen-Taste klickst, kannst du den Bot den Chat lesen lassen oder nicht',
+          tc2fev: 'Mit dieser Taste kannst du das Thema ändern',
+          tc3fev: 'Klicke auf diese Taste, wenn du nicht weißt, wie du ein Gespräch beginnen sollst',
+          tc4fev: 'Wenn du auf die Sprechen-Taste klickst, kannst du den Bot den Chat lesen lassen oder nicht',
+          tc5fev: 'Mit dieser Taste kannst du das Thema ändern',
+          tc6fev: 'Klicke auf diese Taste, wenn du nicht weißt, wie du ein Gespräch beginnen sollst',
+          tc7fev: 'Dein Profilbild ist hier, wenn du eines hochgeladen hast!',
+          tc8fev: 'Dein Benutzername ist hier, wenn du einen hast!',
+          tc9fev: 'by clicking this button the language changes to german',
+          idkanswerv: `sorry aber ich habe keine ahnung was ich sagen soll 😅`,
+          notificationstext: `<strong>Update 2.0.1: Einführung der Heli-Update-Serie</strong><br><br>
+Wir freuen uns, die Veröffentlichung von Update 2.0.1 bekannt zu geben, dem ersten Teil der Heli-Update-Serie. Diese Serie bringt eine Reihe von Verbesserungen zur Optimierung von Sprache, Verhalten und Wissen.<br><br>
+
+<strong>Hauptmerkmale:</strong><br><br>
+
+1. <strong>Neuer Sprechknopf</strong>:<br>
+- <em>Müheloses Umschalten der Sprache</em>: Übersetzen Sie die Webseite mit einem Klick, indem Sie nahtlos zwischen Englisch und Deutsch wechseln, basierend auf der aktuellen Spracheinstellung.<br><br>
+
+2. <strong>Verbesserte Antworten</strong>:<br>
+- <em>Verbesserte Interaktivität</em>: Genießen Sie ansprechendere und freundlichere Antworten während Spiel- und Lernsitzungen oder im normalen Gespräch.<br><br>
+
+3. <strong>Seitenleisten-Umschalter</strong>:<br>
+- <em>Einfache Navigation</em>: Ein neuer Knopf ermöglicht es Ihnen, die Seitenleiste mühelos zu öffnen oder zu schließen, was eine reibungslosere Benutzererfahrung bietet.<br><br>
+
+Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
+        }
+    };
+    tc1fe = translations['en'].tc1fev;
+    tc2fe = translations['en'].tc2fev;
+    tc3fe = translations['en'].tc3fev;
+    tc4fe = translations['en'].tc4fev;
+    tc5fe = translations['en'].tc5fev;
+    tc6fe = translations['en'].tc6fev;
+    tc7fe = translations['en'].tc7fev;
+    tc8fe = translations['en'].tc8fev;
+    tc9fe = translations['en'].tc9fev;
+    idkanswer = translations['en'].idkanswerv;
+    // Setzen Sie die Anfangssprache auf Englisch
+    document.documentElement.lang = 'en';
+    document.querySelector('.h22').innerHTML = translations['en'].instructions;
+    document.querySelector('.logout1').textContent = translations['en'].logout;
+    document.querySelector('.logout2').textContent = translations['en'].logout;
+    document.querySelectorAll('.speakon').forEach(button => {
+        button.textContent = translations['en'].speak;
+    });
+    document.querySelectorAll('.RandomQuestion').forEach(button => {
+        button.textContent = translations['en'].random;
+    });
+    document.querySelector('.user-input').placeholder = translations['en'].placeholder;
+    // local storage user name
+    if (document.querySelector('.username-display').textContent == "Guest" || document.querySelector('.username-display').textContent == "Gast"){
+      document.querySelector('.username-display').textContent = translations['en'].username;
+    }
+    let themeDS = document.querySelector('.changetheme');
+    themeDS.textContent = light2;
+    let themeLS = document.querySelector('.bcft');
+    themeLS.textContent = light;
+    document.querySelector('.h21').innerHTML = translations['en'].notificationstext;
+    function change_language() {
+      const currentLang = document.documentElement.lang;
+      const newLang = currentLang === 'en' ? 'de' : 'en';
+      document.documentElement.lang = newLang;
+
+      // Holen Sie sich das h2-Element und aktualisieren Sie dessen Inhalt
+      const instructionsElement = document.querySelector('.h22');
+      instructionsElement.innerHTML = translations[newLang].instructions;
+      const NotificationElement = document.querySelector('.h21');
+      NotificationElement.innerHTML = translations[newLang].notificationstext;
+      document.querySelector('.logout1').textContent = translations[newLang].logout;
+      document.querySelector('.logout2').textContent = translations[newLang].logout;
+      document.querySelectorAll('.speakon').forEach(button => {
+          button.textContent = translations[newLang].speak;
+      });
+      document.querySelectorAll('.RandomQuestion').forEach(button => {
+          button.textContent = translations[newLang].random;
+      });
+      document.querySelector('.ChangeLanguage').textContent = translations[newLang].language;
+      document.querySelector('.user-input').placeholder = translations[newLang].placeholder;
+      if (document.querySelector('.username-display').textContent == "Guest" || document.querySelector('.username-display').textContent == "Gast"){
+        document.querySelector('.username-display').textContent = translations[newLang].username;
+      }
+      idkanswer = translations[newLang].idkanswerv;
+      tc1fe = translations[newLang].tc1fev;
+      tc2fe = translations[newLang].tc2fev;
+      tc3fe = translations[newLang].tc3fev;
+      tc4fe = translations[newLang].tc4fev;
+      tc5fe = translations[newLang].tc5fev;
+      tc6fe = translations[newLang].tc6fev;
+      tc7fe = translations[newLang].tc7fev;
+      tc8fe = translations[newLang].tc8fev;
+      tc9fe = translations[newLang].tc9fev;
+      if (themeDS.textContent == "Dark"){
+        themeDS.textContent = "Dunkel";
+        dark = "Dunkel";
+        light = "Hell";
+        dark2 = "Dunkel";
+        light2 = "Hell";
+      }else if (themeDS.textContent == "Dunkel"){
+        themeDS.textContent = "Dark";
+        dark = "Dark theme";
+        dark2 = "Dark";
+        light = "Light theme";
+        light2 = "Light";
+      }else if (themeDS.textContent == "Light"){
+        themeDS.textContent = "Hell";
+        dark = "Dunkel";
+        light = "Hell";
+        dark2 = "Dunkel";
+        light2 = "Hell";
+      }else if (themeDS.textContent == "Hell"){
+        themeDS.textContent = "Light";
+        dark = "Dark theme";
+        dark2 = "Dark";
+        light = "Light theme";
+        light2 = "Light";
+      }
+      if (themeLS.textContent == "Dark theme"){
+        themeLS.textContent = "Dunkel";
+        dark = "Dunkel";
+        light = "Hell";
+        dark2 = "Dunkel";
+        light2 = "Hell";
+      }else if (themeLS.textContent == "Dunkel"){
+        themeLS.textContent = "Dark theme";
+        dark = "Dark theme";
+        dark2 = "Dark";
+        light = "Light theme";
+        light2 = "Light";
+      }else if (themeLS.textContent == "Light theme"){
+        themeLS.textContent = "Hell";
+        dark = "Dunkel";
+        light = "Hell";
+        dark2 = "Dunkel";
+        light2 = "Hell";
+      }else if (themeLS.textContent == "Hell"){
+        themeLS.textContent = "Light theme";
+        dark = "Dark theme";
+        dark2 = "Dark";
+        light = "Light theme";
+        light2 = "Light";
+
+      }
+      if (isguessing == "no"){
+        isguessing = "nein";
+      }else if (isguessing == "yes"){
+        isguessing = "ja";
+      }else if (isguessing == "nein"){
+        isguessing = "no";
+      }else if (isguessing == "ja"){
+        isguessing = "yes";
+      }
+      
+      
+    }
   </script>
 </body>
 
