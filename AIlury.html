@@ -2766,7 +2766,15 @@
     function getAnswerForQuestion(question, knowledgeBase) {
       for (let q of knowledgeBase.questions) {
         if (q.question === question) {
-          return q.answer;
+          if (q.answer && q.answer2 && !q.answer3){
+            answers = [q.answer, q.answer2];
+            return answers[Math.floor(Math.random() * answers.length)];
+          }else if (q.answer && q.answer2 && q.answer3){
+            answers = [q.answer, q.answer2, q.answer3];
+            return answers[Math.floor(Math.random() * answers.length)];
+          }else if (q.answer && !q.answer2 && !q.answer3){
+            return q.answer;
+          }
         }
       }
       return null;
