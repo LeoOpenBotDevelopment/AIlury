@@ -2,35 +2,48 @@
   "questions": [
     {
       "question": "hi",
-      "answer": "hello"
+      "answer": "hello",
+      "answer2": "hello, how can i help you?",
+      "answer3": "hi, how can i help you?"
     },
     {
       "question": "how are you doing?",
-      "answer": "good and you?"
+      "answer": "good and you?",
+      "answer2": "i am doing well! thank you for asking",
+      "answer3": "i am doing well! thank you for asking. how are you?"
     },
     {
       "question": "hello there",
-      "answer": "Hello"
+      "answer": "Hello",
+      "answer2": "hello, how are you?",
+      "answer3": "hello, how can i help you?"
     },
     {
       "question": "whats up?",
-      "answer": "nothing"
+      "answer": "nothing",
+      "answer2": "nothing!"
     },
     {
       "question": "im good two",
-      "answer": "thats good!"
+      "answer": "thats good!",
+      "answer2": "good!",
+      "answer3": "great!"
     },
     {
       "question": "omg",
-      "answer": "what?"
+      "answer": "what?",
+      "answer2": "what happened?",
+      "answer3": "\"omg\" what?"
     },
     {
       "question": "what the hack!",
-      "answer": "what?"
+      "answer": "what?",
+      "answer2": "what happened?"
     },
     {
       "question": "was ist los?",
-      "answer": "wei\u00df ich nicht!"
+      "answer": "wei\u00df ich nicht!",
+      "answer2": "keine ahnung!"
     },
     {
       "question": "where are you?",
@@ -38,11 +51,15 @@
     },
     {
       "question": "halli hallo hall\u00f6chen",
-      "answer": "Hallo!"
+      "answer": "Hallo!",
+      "answer2": "hallo, wie kann ich helfen?",
+      "answer3": "halli hallo"
     },
     {
       "question": "hi!!!!!",
-      "answer": "hi"
+      "answer": "hi",
+      "answer2": "hello",
+      "answer3": "hi, how can i help you?"
     },
     {
       "question": "hola",
@@ -58,7 +75,9 @@
     },
     {
       "question": "i love you",
-      "answer": "im sorry but i think we do not feal the same way"
+      "answer": "im sorry but i think we do not feal the same way",
+      "answer2": "thats too much to handle for me!",
+      "answer3": "im sorry, but its too much to handle for me!"
     },
     {
       "question": "te amo",
@@ -74,35 +93,46 @@
     },
     {
       "question": "what is your name?",
-      "answer": "my name is ailury"
+      "answer": "my name is AIlury",
+      "answer2": "my name is AIlury!",
+      "answer3": "i am called AIlury"
     },
     {
       "question": ":(",
-      "answer": "im sorry your sad"
+      "answer": "im sorry your sad",
+      "answer2": "im sorry that you're sad!"
     },
     {
       "question": "im rich",
-      "answer": "cool"
+      "answer": "cool",
+      "answer2": "thats cool!"
     },
     {
       "question": "i am a youtuber",
-      "answer": "cool!"
+      "answer": "cool!",
+      "answer2": "thats cool"
     },
     {
       "question": "ist html eine computer sprache?",
-      "answer": "ja"
+      "answer": "ja, html ist eine computer sprache",
+      "answer2": "ja, html ist eine computer sprache!",
+      "answer3": "html ist eine computer sprache, ja!"
     },
     {
       "question": "was ist dein name?",
-      "answer": "AIlury"
+      "answer": "AIlury",
+      "answer2": "mein name ist AIlury",
+      "answer3": "ich heisse AIlury"
     },
     {
       "question": "\u00fcberhaupt nicht",
-      "answer": "okay"
+      "answer": "okay",
+      "answer2": "ok"
     },
     {
       "question": "ich bin 10",
-      "answer": "cool!"
+      "answer": "cool!",
+      "answer2": "cool"
     },
     {
       "question": "was ist architektur",
@@ -354,11 +384,13 @@
     },
     {
       "question": "was ist dein name",
-      "answer": "mein name ist ailury"
+      "answer": "mein name ist AIlury",
+      "answer2": "ich heisse AIlury"
     },
     {
       "question": "wie ist dein name",
-      "answer": "mein name ist ailury."
+      "answer": "mein name ist AIlury.",
+      "answer2": "ich heisse AIlury"
     },
     {
       "question": "what is the capital of australia",
