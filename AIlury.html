@@ -2007,7 +2007,7 @@
         hilfeop4.style.display = "flex";
         hilfeop1.textContent = "i want to play the emoji game!";
         hilfeop2.textContent = "i want to practice german!";
-        hilfeop3.textContent = "i dont know how to start a conversation!";
+        hilfeop3.textContent = "i want to play the quiz!";
         hilfeop4.textContent = "i want to practice math!";
       } if (chalange == "nothing" && isguessing == "nein") {
         hilfeop1.style.display = "flex";
@@ -2016,7 +2016,7 @@
         hilfeop4.style.display = "flex";
         hilfeop1.textContent = "i want to play the emoji game!";
         hilfeop2.textContent = "i want to practice german!";
-        hilfeop3.textContent = "i dont know how to start a conversation!";
+        hilfeop3.textContent = "i want to play the quiz!";
         hilfeop4.textContent = "i want to practice math!";
       } else if (chalange == "german") {
         hilfeop1.style.display = "flex";
@@ -2122,8 +2122,9 @@
       }
     });
     hilfeop3.addEventListener("click", () => {
-      if (hilfeop3.textContent == "i dont know how to start a conversation!") {
-        helptext.textContent = "just click the 'random' button";
+      if (hilfeop3.textContent == "i want to play the quiz!") {
+        inputvaluefc.value = "i want to play the quiz!";
+        helptext.textContent = "just send what i entered in the input field";
       } else if (hilfeop3.textContent == "i want to go back to the normal conversation!") {
         inputvaluefc.value = "i want to go back to the normal chat";
         helptext.textContent = "just send what i entered in the input field";
