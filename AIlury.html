@@ -1619,10 +1619,11 @@
     #alertElement{
       display: flex;
       justify-content: space-between;
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      z-index: 999;
     }
   </style>
 </head>
@@ -1962,30 +1963,41 @@
     let currentAnswer = '';
     let afteropening = "no";
     function showalert(AlertText){
-      let alertbtn = document.getElementById('alertmessagebtn');
-      let alertmessage = document.getElementById('alertmessage');
-      let alertelement = document.getElementById('alertElement');
-      alertmessage.style.display = "block";
-      alertbtn.style.display = "block";
-      alertbtn.style.animation = "none";
-      void alertbtn.offsetWidth;
-      alertbtn.style.animation = "fadeIn 1s ease-in";
-      alertmessage.style.animation = "none";
-      void alertmessage.offsetWidth;
-      alertmessage.style.animation = "fadeIn 1s ease-in";
-      alertmessage.textContent = AlertText;
-      alertbtn.addEventListener("click", () => {
+        let alertbtn = document.getElementById('alertmessagebtn');
+        let alertmessage = document.getElementById('alertmessage');
+        let alertelement = document.getElementById('alertElement');
+
+        if (!alertbtn || !alertmessage || !alertelement) {
+            console.error('Alert elements not found');
+            return;
+        }
+
+        alertmessage.textContent = AlertText;
+        alertmessage.style.display = "block";
+        alertbtn.style.display = "block";
         alertbtn.style.animation = "none";
-        void alertbtn.offsetWidth;
-        alertbtn.style.animation = "fadeOut 1s ease-out";
+        void alertbtn.offsetWidth; // Trigger reflow
+        alertbtn.style.animation = "fadeIn 1s ease-in";
         alertmessage.style.animation = "none";
-        void alertmessage.offsetWidth;
-        alertmessage.style.animation = "fadeOut 1s ease-out";
-        setTimeout(() => {
-          alertmessage.style.display = "none";
-          alertbtn.style.display = "none";
-        }, 1000);
-      });
+        void alertmessage.offsetWidth; // Trigger reflow
+        alertmessage.style.animation = "fadeIn 1s ease-in";
+
+        const hideAlert = () => {
+            alertbtn.style.animation = "none";
+            void alertbtn.offsetWidth; // Trigger reflow
+            alertbtn.style.animation = "fadeOut 1s ease-out";
+            alertmessage.style.animation = "none";
+            void alertmessage.offsetWidth; // Trigger reflow
+            alertmessage.style.animation = "fadeOut 1s ease-out";
+
+            setTimeout(() => {
+                alertmessage.style.display = "none";
+                alertbtn.style.display = "none";
+            }, 1000);
+        };
+
+        alertbtn.removeEventListener("click", hideAlert); // Ensure no duplicate listeners
+        alertbtn.addEventListener("click", hideAlert);
     }
     sidebar.addEventListener("click", () => {
       if (sideclick == 1){
