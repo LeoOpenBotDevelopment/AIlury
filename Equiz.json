@@ -1,247 +1,532 @@
 [
     {
         "Level": "hard",
-        "Frage": "What is the capital of Kazakhstan?",
-        "Antwort": "Astana"
+        "Frage": "what is the capital of kazakhstan?",
+        "Antwort": "astana"
     },
     {
         "Level": "hard",
-        "Frage": "Who discovered penicillin?",
-        "Antwort": "Fleming"
+        "Frage": "who discovered penicillin?",
+        "Antwort": "fleming"
     },
     {
         "Level": "hard",
-        "Frage": "What is the atomic number of Technetium?",
+        "Frage": "what is the atomic number of technetium?",
         "Antwort": "43"
     },
     {
         "Level": "hard",
-        "Frage": "Who painted 'The Persistence of Memory'?",
-        "Antwort": "Dali"
+        "Frage": "who painted 'the persistence of memory'?",
+        "Antwort": "dali"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Bhutan?",
-        "Antwort": "Thimphu"
+        "Frage": "what is the capital of bhutan?",
+        "Antwort": "thimphu"
     },
     {
         "Level": "hard",
-        "Frage": "What is the most abundant gas in the Earth's atmosphere?",
-        "Antwort": "Nitrogen"
+        "Frage": "what is the most abundant gas in the earth's atmosphere?",
+        "Antwort": "nitrogen"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'The Divine Comedy'?",
-        "Antwort": "Dante"
+        "Frage": "who wrote 'the divine comedy'?",
+        "Antwort": "dante"
     },
     {
         "Level": "hard",
-        "Frage": "What is the longest river in Asia?",
-        "Antwort": "Yangtze"
+        "Frage": "what is the longest river in asia?",
+        "Antwort": "yangtze"
     },
     {
         "Level": "hard",
-        "Frage": "Who is known as the father of geometry?",
-        "Antwort": "Euclid"
+        "Frage": "who is known as the father of geometry?",
+        "Antwort": "euclid"
     },
     {
         "Level": "hard",
-        "Frage": "What is the smallest prime number?",
+        "Frage": "what is the smallest prime number?",
         "Antwort": "2"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'The Origin of Species'?",
-        "Antwort": "Darwin"
+        "Frage": "who wrote 'the origin of species'?",
+        "Antwort": "darwin"
     },
     {
         "Level": "hard",
-        "Frage": "What is the chemical symbol for Tungsten?",
-        "Antwort": "W"
+        "Frage": "what is the chemical symbol for tungsten?",
+        "Antwort": "w"
     },
     {
         "Level": "hard",
-        "Frage": "What is the currency of South Korea?",
-        "Antwort": "Won"
+        "Frage": "what is the currency of south korea?",
+        "Antwort": "won"
     },
     {
         "Level": "hard",
-        "Frage": "Who is the Greek god of war?",
-        "Antwort": "Ares"
+        "Frage": "who is the greek god of war?",
+        "Antwort": "ares"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Uganda?",
-        "Antwort": "Kampala"
+        "Frage": "what is the capital of uganda?",
+        "Antwort": "kampala"
     },
     {
         "Level": "hard",
-        "Frage": "What is the most spoken language in the world?",
-        "Antwort": "Mandarin"
+        "Frage": "what is the most spoken language in the world?",
+        "Antwort": "mandarin"
     },
     {
         "Level": "hard",
-        "Frage": "Who discovered the law of gravitation?",
-        "Antwort": "Newton"
+        "Frage": "who discovered the law of gravitation?",
+        "Antwort": "newton"
     },
     {
         "Level": "hard",
-        "Frage": "What is the tallest mountain in Africa?",
-        "Antwort": "Kilimanjaro"
+        "Frage": "what is the tallest mountain in africa?",
+        "Antwort": "kilimanjaro"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'War and Peace'?",
-        "Antwort": "Tolstoy"
+        "Frage": "who wrote 'war and peace'?",
+        "Antwort": "tolstoy"
     },
     {
         "Level": "hard",
-        "Frage": "What is the speed of light in vacuum (km/s)?",
+        "Frage": "what is the speed of light in vacuum (km/s)?",
         "Antwort": "299792"
     },
     {
         "Level": "hard",
-        "Frage": "What is the chemical symbol for Potassium?",
-        "Antwort": "K"
+        "Frage": "what is the chemical symbol for potassium?",
+        "Antwort": "k"
     },
     {
         "Level": "hard",
-        "Frage": "Who is the Norse god of thunder?",
-        "Antwort": "Thor"
+        "Frage": "who is the norse god of thunder?",
+        "Antwort": "thor"
     },
     {
         "Level": "hard",
-        "Frage": "What is the largest desert in the world?",
-        "Antwort": "Sahara"
+        "Frage": "what is the largest desert in the world?",
+        "Antwort": "sahara"
     },
     {
         "Level": "hard",
-        "Frage": "What is the smallest country in the world?",
-        "Antwort": "Vatican"
+        "Frage": "what is the smallest country in the world?",
+        "Antwort": "vatican"
     },
     {
         "Level": "hard",
-        "Frage": "Who invented the telephone?",
-        "Antwort": "Bell"
+        "Frage": "who invented the telephone?",
+        "Antwort": "bell"
     },
     {
         "Level": "hard",
-        "Frage": "What is the longest bone in the human body?",
-        "Antwort": "Femur"
+        "Frage": "what is the longest bone in the human body?",
+        "Antwort": "femur"
     },
     {
         "Level": "hard",
-        "Frage": "Who painted the Sistine Chapel ceiling?",
-        "Antwort": "Michelangelo"
+        "Frage": "who painted the sistine chapel ceiling?",
+        "Antwort": "michelangelo"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Mongolia?",
-        "Antwort": "Ulaanbaatar"
+        "Frage": "what is the capital of mongolia?",
+        "Antwort": "ulaanbaatar"
     },
     {
         "Level": "hard",
-        "Frage": "What is the currency of Egypt?",
-        "Antwort": "Pound"
+        "Frage": "what is the currency of egypt?",
+        "Antwort": "pound"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'One Hundred Years of Solitude'?",
-        "Antwort": "Marquez"
+        "Frage": "who wrote 'one hundred years of solitude'?",
+        "Antwort": "marquez"
     },
     {
         "Level": "hard",
-        "Frage": "What is the chemical symbol for Silver?",
-        "Antwort": "Ag"
+        "Frage": "what is the chemical symbol for silver?",
+        "Antwort": "ag"
     },
     {
         "Level": "hard",
-        "Frage": "Who is the Roman god of the sea?",
-        "Antwort": "Neptune"
+        "Frage": "who is the roman god of the sea?",
+        "Antwort": "neptune"
     },
     {
         "Level": "hard",
-        "Frage": "What is the highest waterfall in the world?",
-        "Antwort": "Angel"
+        "Frage": "what is the highest waterfall in the world?",
+        "Antwort": "angel"
     },
     {
         "Level": "hard",
-        "Frage": "Who discovered the theory of relativity?",
-        "Antwort": "Einstein"
+        "Frage": "who discovered the theory of relativity?",
+        "Antwort": "einstein"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Madagascar?",
-        "Antwort": "Antananarivo"
+        "Frage": "what is the capital of madagascar?",
+        "Antwort": "antananarivo"
     },
     {
         "Level": "hard",
-        "Frage": "What is the chemical symbol for Gold?",
-        "Antwort": "Au"
+        "Frage": "what is the chemical symbol for gold?",
+        "Antwort": "au"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'Les Misérables'?",
-        "Antwort": "Hugo"
+        "Frage": "who wrote 'les misérables'?",
+        "Antwort": "hugo"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Honduras?",
-        "Antwort": "Tegucigalpa"
+        "Frage": "what is the capital of honduras?",
+        "Antwort": "tegucigalpa"
     },
     {
         "Level": "hard",
-        "Frage": "Who is the Greek goddess of wisdom?",
-        "Antwort": "Athena"
+        "Frage": "who is the greek goddess of wisdom?",
+        "Antwort": "athena"
     },
     {
         "Level": "hard",
-        "Frage": "What is the largest island in the world?",
-        "Antwort": "Greenland"
+        "Frage": "what is the largest island in the world?",
+        "Antwort": "greenland"
     },
     {
         "Level": "hard",
-        "Frage": "Who painted 'The Starry Night'?",
-        "Antwort": "Van Gogh"
+        "Frage": "who painted 'the starry night'?",
+        "Antwort": "van gogh"
     },
     {
         "Level": "hard",
-        "Frage": "What is the atomic number of Helium?",
+        "Frage": "what is the atomic number of helium?",
         "Antwort": "2"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Brunei?",
-        "Antwort": "Bandar Seri Begawan"
+        "Frage": "what is the capital of brunei?",
+        "Antwort": "bandar seri begawan"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'Pride and Prejudice'?",
-        "Antwort": "Austen"
+        "Frage": "who wrote 'pride and prejudice'?",
+        "Antwort": "austen"
     },
     {
         "Level": "hard",
-        "Frage": "What is the chemical symbol for Iron?",
-        "Antwort": "Fe"
+        "Frage": "what is the chemical symbol for iron?",
+        "Antwort": "fe"
     },
     {
         "Level": "hard",
-        "Frage": "Who is the Norse god of mischief?",
-        "Antwort": "Loki"
+        "Frage": "who is the norse god of mischief?",
+        "Antwort": "loki"
     },
     {
         "Level": "hard",
-        "Frage": "What is the largest ocean in the world?",
-        "Antwort": "Pacific"
+        "Frage": "what is the largest ocean in the world?",
+        "Antwort": "pacific"
     },
     {
         "Level": "hard",
-        "Frage": "Who wrote 'Crime and Punishment'?",
-        "Antwort": "Dostoevsky"
+        "Frage": "who wrote 'crime and punishment'?",
+        "Antwort": "dostoevsky"
     },
     {
         "Level": "hard",
-        "Frage": "What is the capital of Iceland?",
-        "Antwort": "Reykjavik"
+        "Frage": "what is the capital of iceland?",
+        "Antwort": "reykjavik"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of austria?",
+        "Antwort": "vienna"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'the trial'?",
+        "Antwort": "kafka"
+    },
+    {
+        "Level": "middle",
+        "Frage": "which planet is the fifth from the sun?",
+        "Antwort": "jupiter"
+    },
+    {
+        "Level": "middle",
+        "Frage": "how many states does germany have?",
+        "Antwort": "16"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical formula for water?",
+        "Antwort": "h2o"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who painted the mona lisa?",
+        "Antwort": "da vinci"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the largest country in the world?",
+        "Antwort": "russia"
+    },
+    {
+        "Level": "middle",
+        "Frage": "which language is spoken in brazil?",
+        "Antwort": "portuguese"
+    },
+    {
+        "Level": "middle",
+        "Frage": "in which year did world war ii start?",
+        "Antwort": "1939"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the author of 'the divine comedy'?",
+        "Antwort": "dante"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the longest river in asia?",
+        "Antwort": "yangtze"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is considered the father of geometry?",
+        "Antwort": "euclid"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the smallest prime number?",
+        "Antwort": "2"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'on the origin of species'?",
+        "Antwort": "darwin"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical symbol for tungsten?",
+        "Antwort": "w"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the currency of south korea?",
+        "Antwort": "won"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the greek god of war?",
+        "Antwort": "ares"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of uganda?",
+        "Antwort": "kampala"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the most spoken language in the world?",
+        "Antwort": "mandarin"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who discovered the law of gravitation?",
+        "Antwort": "newton"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the tallest mountain in africa?",
+        "Antwort": "kilimanjaro"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'war and peace'?",
+        "Antwort": "tolstoy"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the speed of light in vacuum (km/s)?",
+        "Antwort": "299792"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical symbol for potassium?",
+        "Antwort": "k"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the norse god of thunder?",
+        "Antwort": "thor"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the largest desert in the world?",
+        "Antwort": "sahara"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the smallest country in the world?",
+        "Antwort": "vatican"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who invented the telephone?",
+        "Antwort": "bell"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the longest bone in the human body?",
+        "Antwort": "femur"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who painted the sistine chapel ceiling?",
+        "Antwort": "michelangelo"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of mongolia?",
+        "Antwort": "ulaanbaatar"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the currency of egypt?",
+        "Antwort": "pound"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'one hundred years of solitude'?",
+        "Antwort": "marquez"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical symbol for silver?",
+        "Antwort": "ag"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the roman god of the sea?",
+        "Antwort": "neptune"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the highest waterfall in the world?",
+        "Antwort": "angel"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who discovered the theory of relativity?",
+        "Antwort": "einstein"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of madagascar?",
+        "Antwort": "antananarivo"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical symbol for gold?",
+        "Antwort": "au"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'les misérables'?",
+        "Antwort": "hugo"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of honduras?",
+        "Antwort": "tegucigalpa"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the greek goddess of wisdom?",
+        "Antwort": "athena"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the largest island in the world?",
+        "Antwort": "greenland"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who painted 'the starry night'?",
+        "Antwort": "van gogh"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the atomic number of helium?",
+        "Antwort": "2"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of brunei?",
+        "Antwort": "bandar seri begawan"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'pride and prejudice'?",
+        "Antwort": "austen"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the chemical symbol for iron?",
+        "Antwort": "fe"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who is the norse god of mischief?",
+        "Antwort": "loki"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the largest ocean in the world?",
+        "Antwort": "pacific"
+    },
+    {
+        "Level": "middle",
+        "Frage": "who wrote 'crime and punishment'?",
+        "Antwort": "dostoevsky"
+    },
+    {
+        "Level": "middle",
+        "Frage": "what is the capital of iceland?",
+        "Antwort": "reykjavik"
+    },
+    {
+        "Level": "easy",
+        "Frage": "what is the capital of france?",
+        "Antwort": "paris"
+    },
+    {
+        "Level": "easy",
+        "Frage": "who painted the mona lisa?",
+        "Antwort": "da vinci"
+    },
+    {
+        "Level": "easy",
+        "Frage": "what is the largest planet in our solar system?",
+        "Antwort": "jupiter"
+    },
+    {
+        "Level": "easy",
+        "Frage": "how many continents are there?",
+        "Antwort": "7"
+    },
+    {
+        "Level": "easy",
+        "Frage": "what is the chemical symbol for water?",
+        "Antwort": "h2o"
     }
 ]
