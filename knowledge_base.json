@@ -1606,7 +1606,9 @@
     },
     {
       "question": "how are you called",
-      "answer": "im called ailury"
+      "answer": "im called AIlury",
+      "answer2": "i am called AIlury",
+      "answer3": "im called AIlury"
     },
     {
       "question": "was ist ein elefant",
@@ -4482,7 +4484,9 @@
     },
     {
       "question": "lolllllllllllllll",
-      "answer": "\ud83d\ude05\ud83d\ude05\ud83d\ude05"
+      "answer": "\ud83d\ude05\ud83d\ude05\ud83d\ude05",
+      "answer2": "lol \ud83d\ude05\ud83d\ude05\ud83d\ude05",
+      "answer3": "\ud83d\ude05\ud83d\ude05\ud83d\ude05 lol"
     },
     {
       "question": "what is my name",
@@ -4490,7 +4494,9 @@
     },
     {
       "question": "call me",
-      "answer": "sorry i can not do such thing!"
+      "answer": "sorry i can not do such thing!",
+      "answer2": "your name is (Username)",
+      "answer2": "you are called (Username)",
     },
     {
       "question": "i am a police officer",
@@ -4498,39 +4504,57 @@
     },
     {
       "question": "why?",
-      "answer": "i dont know"
+      "answer": "i dont know",
+      "answer2": "idk",
+      "answer3": "i dont know (Username)"
     },
     {
       "question": "you\u2018re cool!",
-      "answer": "thank you"
+      "answer": "thank you",
+      "answer2": "thank you (Username)",
+      "answer3": "thank you (Username), for thinking im cool"
     },
     {
       "question": "im doing fine",
-      "answer": "good"
+      "answer": "good",
+      "answer2": "great",
+      "answer3": "good."
     },
     {
       "question": "mir geht\u2019s wundervoll",
-      "answer": "gut!"
+      "answer": "gut!",
+      "answer2": "super!",
+      "answer3": "toll!"
     },
     {
       "question": "bist du eine ki?",
-      "answer": "ja"
+      "answer": "ja",
+      "answer2": "ja, ich bin ki, so weit ich weiss.",
+      "answer3": "ja, ich bin eine ki, ich glaube schon."
     },
     {
       "question": "was kannst du nicht?",
-      "answer": "ich kann keine zusammenh\u00e4nge zwischen Nachrichten verstehen"
+      "answer": "ich kann keine zusammenh\u00e4nge zwischen Nachrichten verstehen",
+      "answer2": "ich kann keine zusammenhaenge zwischen Nachrichten verstehen!",
+      "answer3": "ich kann keine zusammenhaenge zwischen Nachrichten verstehen."
     },
     {
       "question": "wer hat dich entwickelt?",
-      "answer": "ich wurde von leoobd entwickelt"
+      "answer": "ich wurde von einer person, mit dem kuenstler-namen Leoobd oder Leo, entwickelt",
+      "answer2": "ich wurde von leoobd entwickelt",
+      "answer3": "ich wurde von einer person entwickelt, mit dem kuenstler-namen Leoobd oder Leo"
     },
     {
       "question": "hallo",
-      "answer": "hallo"
+      "answer": "hallo",
+      "answer2": "hallo, wie kann ich helfen?",
+      "answer3": "hallo, was kann ich für sie tuen?"
     },
     {
       "question": "i\u2018m tired",
-      "answer": "then go to sleep"
+      "answer": "then go to sleep",
+      "answer2": "go to sleep then",
+      "answer3": "go to sleep, if you are tired"
     },
     {
       "question": "yo estoi bien!",
