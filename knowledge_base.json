@@ -6598,6 +6598,72 @@
     {
       "question": "information ueber berlin",
       "answer": "berlin - die hauptstadt und groesste stadt deutschlands. bekannt fuer ihre geschichte, kultur und kunstszene"
+    },
+    {
+      "question": "good morning",
+      "answer": "good morning, how are you?",
+      "answer2": "good morning, how can i help you today?",
+      "answer3": "good morning"
+    },
+    {
+      "question": "guten morgen",
+      "answer": "guten morgen",
+      "answer2": "guten morgen, wie kann ich dir heute helfen?",
+      "answer3": "hallo, wie kann ich dir heute helfen?"
+    },
+    {
+      "question": "good night",
+      "answer": "good night",
+      "answer2": "good night (Username)",
+      "answer3": "good night, sleep well"
+    },
+    {
+      "question": "i'll eat now",
+      "answer": "okay",
+      "answer2": "okay, enjoy your food",
+      "answer3": "ok"
+    },
+    {
+      "question": "i'll go",
+      "answer": "okay, have a nice day/night",
+      "answer2": "okay",
+      "answer3": "ok, have a nice day/night"
+    },
+    {
+      "question": "i'll stay",
+      "answer": "thats great. i hope you are enjoying your time here",
+      "answer2": "gteat. i hope you're enjoying your time here",
+      "answer3": "great, i hope you're liking it here"
+    },
+    {
+      "question": "this website is great",
+      "answer": "thank you, for saying that",
+      "answer2": "thank you so much",
+      "answer3": "thank you for thinking, that this website is great"
+    },
+    {
+      "question": "ich gehe",
+      "answer": "okay, habe noch einen wundervollen tag",
+      "answer2": "ok",
+      "answer3": "ok, habe noch einen wundervollen tag"
+    },
+    {
+      "question": "ich bleibe",
+      "answer": "toll, ich hoffe dir gefällt es hier",
+      "answer2": "das ist toll, ich hoffe du magst es hier",
+      "answer3": "es freut mich das du bleibst"
+    },
+    {
+      "question": "ich komme gleich zurück",
+      "answer": "okay, bis dann",
+      "answer2": "ok, bis dann",
+      "answer3": "bis dann"
+    },
+    {
+      "question": "be right back",
+      "answer": "okay, see you",
+      "answer2": "ok, see you",
+      "answer3": "okay"
     }
   ]
 }
