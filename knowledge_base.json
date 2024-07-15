@@ -6161,6 +6161,24 @@
       "answer": "okay, see you",
       "answer2": "ok, see you",
       "answer3": "okay"
+    },
+    {
+      "question": "good afternoon",
+      "answer": "Good afternoon",
+      "answer2": "Good afternoon, how are you doing?",
+      "answer3": "Good afternoon."
+    },
+    {
+      "question": "good evening",
+      "answer": "Good evening",
+      "answer2": "Good evening, how are you doing?",
+      "answer3": "Good evening."
+    },
+    {
+      "question": "good day",
+      "answer": "Good day",
+      "answer2": "Good day, how are you doing?",
+      "answer3": "Good day."
     }
   ]
 }
