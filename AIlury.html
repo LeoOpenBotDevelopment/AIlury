@@ -167,6 +167,16 @@
         margin: 0;
         transition: 1s;
       }
+      .timer{
+        font-weight: bold;
+        font-size: 15px;
+        color: var(--bubble-color);
+        position: absolute;
+        top: 5px;
+        left: 48%;
+        display: flex;
+        justify-content: space-between;
+      }
       .circleformatcontainer {
         display: none;
         height: 100px;
@@ -798,6 +808,16 @@
         background: var(--ngrey-color);
         margin: 0;
         transition: 1s;
+      }
+      .timer{
+        font-weight: bold;
+        font-size: 15px;
+        color: var(--bubble-color);
+        position: absolute;
+        top: 275px;
+        left: 48%;
+        display: flex;
+        justify-content: space-between;
       }
       .circleformatcontainer {
         display: block;
@@ -2081,16 +2101,6 @@
             height: 65px;
         }
     }
-    .timer{
-      font-weight: bold;
-      font-size: 15px;
-      color: var(--primary-color);
-      position: absolute;
-      top: 5px;
-      left: 48%;
-      display: flex;
-      justify-content: space-between;
-    }
   </style>
 </head>
 
@@ -2777,7 +2787,10 @@
       }
     }
 
-    manegeChallenges("messages", 0, 0, 30, 2);
+    setTimeout(function() {
+      manegeChallenges("messages", 0, 0, 30, 2);
+    }, 5500);
+    
     circle1.addEventListener("click", () => {
       if (unactive_mic.style.display == "block"){
         unactive_mic.style.animation = "none";
