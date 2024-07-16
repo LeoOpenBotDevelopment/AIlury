@@ -566,9 +566,9 @@
         transition: 0.5s;
       }
 
-      #nmy:hover {
+      /*#nmy:hover {
         box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-      }
+      }*/
 
       #messageE {}
 
@@ -1195,9 +1195,9 @@
         transition: 0.5s;
       }
 
-      #nmy:hover {
+      /*#nmy:hover {
         box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-      }
+      }*/
 
       #messageE {}
 
@@ -2361,8 +2361,7 @@
           <div class="side-body"></div>
           <div class="side-body2"></div>
         </div>
-        <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a
-            id="inscructionlink">instructions</a></h2>
+        <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a id="inscructionlink">instructions</a></h2>
         <!-- nmy Hier werden die Chat-Nachrichten eingefügt -->
       </div>
       <button id="Breakbtn">Break</button>
@@ -6207,6 +6206,7 @@
           textpracticegermanv: "practice german",
           textclickrandomv: "click the \"random\" button",
           textclickchagemoodv: "click the \"light/dark\" button",
+          nmyv: "no messages yet",
           notificationstext: `<strong>Update 2.0.1: Introducing the Heli Update Series</strong><br><br>
       We are excited to announce the release of Update 2.0.1, the first installment of the Heli Update Series. This series will bring a range of enhancements to improve language, behavior, and knowledge.<br><br>
 
@@ -6303,6 +6303,7 @@
           textpracticegermanv: "übe englisch",
           textclickrandomv: "klicke den \"random\" knopf",
           textclickchagemoodv: "klicke den \"hell/dunkel\" knopf",
+          nmyv: "noch keine nachrichten",
           notificationstext: `<strong>Update 2.0.1: Einführung der Heli-Update-Serie</strong><br><br>
 Wir freuen uns, die Veröffentlichung von Update 2.0.1 bekannt zu geben, dem ersten Teil der Heli-Update-Serie. Diese Serie bringt eine Reihe von Verbesserungen zur Optimierung von Sprache, Verhalten und Wissen.<br><br>
 
@@ -6323,6 +6324,7 @@ Wir freuen uns, die Veröffentlichung von Update 2.0.1 bekannt zu geben, dem ers
 Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
         }
     };
+    let nmyelement = document.getElementById("nmy");
     tc1fe = translations['en'].tc1fev;
     tc2fe = translations['en'].tc2fev;
     tc3fe = translations['en'].tc3fev;
@@ -6343,6 +6345,8 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
     textclickrandom = translations['en'].textclickrandomv;
     textclickchagemood = translations['en'].textclickchagemoodv;
+
+    nmyelement.textContent = translations['en'].nmyv;
     // Setzen Sie die Anfangssprache auf Englisch
     document.documentElement.lang = 'en';
     document.querySelector('.h22').innerHTML = translations['en'].instructions;
@@ -6409,6 +6413,8 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
       textclickrandom = translations[newLang].textclickrandomv;
       textclickchagemood = translations[newLang].textclickchagemoodv;
+
+      nmyelement.textContent = translations[newLang].nmyv;
       if (themeDS.textContent == "Dark"){
         themeDS.textContent = "Dunkel";
         dark = "Dunkel";
