@@ -2604,11 +2604,11 @@
     function updateNumber(mchallenge, number) {
       clickit = "no";
       if (mchallenge == "messages"){
-        totalmessages = totalmessages / 2;
-        totalmessages = Math.round(totalmessages);
-        totalmessages = totalmessages - oldtotalmessages;
+        let totalmessages2 = totalmessages / 2;
+        totalmessages2 = Math.round(totalmessages2);
+        totalmessages2 = totalmessages2 - oldtotalmessages;
         let alertbtn = document.getElementById('alertmessagebtn');
-        if (totalmessages < number){
+        if (totalmessages2 < number){
           showalert(youfailedChallenge);
         }else {
           showalert(youpassedChallenge);
