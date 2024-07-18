@@ -3036,6 +3036,7 @@
             bigscreenbtns.style.display = "none";
             let maincontainer = document.querySelector('.container');
             maincontainer.style.marginLeft = "0";
+            enableDiv(smallscreenbtns);
         }else if (window.matchMedia("(max-width: 750px)").matches && sideclick == 1) {
             user_profile.style.marginLeft = "0";
             chat_container.style.width = "600px";
@@ -3055,6 +3056,7 @@
             bigscreenbtns.style.display = "none";
             let maincontainer = document.querySelector('.container');
             maincontainer.style.marginLeft = "0";
+            enableDiv(smallscreenbtns);
         }else if (window.matchMedia("(min-width: 750px)").matches && sideclick == 1){
             user_profile.style.marginLeft = "0";
             chat_container.style.width = "1000px";
