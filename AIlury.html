@@ -2604,9 +2604,9 @@
     function updateNumber(mchallenge, number) {
       clickit = "no";
       if (mchallenge == "messages"){
-        let totalmessages2 = totalmessages / 2;
+        let totalmessages2 = totalmessages - oldtotalmessages;
+        totalmessages2 = totalmessages2 / 2;
         totalmessages2 = Math.round(totalmessages2);
-        totalmessages2 = totalmessages2 - oldtotalmessages;
         let alertbtn = document.getElementById('alertmessagebtn');
         if (totalmessages2 < number){
           showalert(youfailedChallenge);
