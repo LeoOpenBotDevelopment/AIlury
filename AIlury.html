@@ -4072,6 +4072,7 @@
       localStorage.setItem("username", gekuerzterName);
       document.getElementById("username-display").textContent = gekuerzterName;
     }
+    let persons = {"leo": "ich"}
     async function getBotResponse(userMessage) {
       try {
         if (chalange == "nothing") {
@@ -4089,6 +4090,65 @@
               let number = parseInt(zahlen[0]);
               let ergebnis = Math.sqrt(number);
               return `√${number} = ${ergebnis}.`;
+            }
+          } else if (userQuestion.includes("mein") && userQuestion.includes("heisst")){
+            let personpart1 = userQuestion.split("mein")[1].trim();
+            let person = personpart1.split("heisst")[0].trim();
+            let name = userQuestion.split("heisst")[1].trim();
+            if (person && name){
+              // add name and person to list
+              persons[name] = person;
+            }
+            return "ok, dein " + person + " heisst " + name;
+          } else if (userQuestion.includes("mein") && userQuestion.includes("heißt")){
+            let personpart1 = userQuestion.split("mein")[1].trim();
+            let person = personpart1.split("heisst")[0].trim();
+            let name = userQuestion.split("heisst")[1].trim();
+            if (person && name){
+              // add name and person to list
+              persons[name] = person;
+            }
+            return "ok, dein " + person + " heißt " + name;
+          } else if (userQuestion.includes("wer ist ")){
+            let name = userQuestion.split("ist")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]){
+              return name + " ist dein " + persons[name];
+            }else {
+              return "weiss ich nicht";
+            }
+          }else if (userQuestion.includes("my") && userQuestion.includes("is called")) {
+            let personpart1 = userQuestion.split("my")[1].trim();
+            let person = personpart1.split("is called")[0].trim();
+            let name = userQuestion.split("is called ")[1].trim();
+            if (person && name) {
+              // add name and person to list
+              persons[name] = person;
+            }
+            return "ok, your " + person + " is called " + name;
+          } else if (userQuestion.includes("my ") && userQuestion.includes(" name is ")) {
+            let personpart1 = userQuestion.split("my")[1].trim();
+            let person = personpart1.split(" name is ")[0].trim();
+            let name = userQuestion.split(" name is ")[1].trim();
+            if (person && name) {
+              // add name and person to list
+              persons[name] = person;
+            }
+            return "ok, your " + person + " name is " + name;
+          } else if (userQuestion.includes("who is ")) {
+            let name = userQuestion.split("who is ")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]) {
+              // check last letter
+              if (persons[name].includes("'s")) {
+                return name + " is your " + persons[name];
+              } else if (persons[name][persons[name].length - 1] == "s") {
+                return name + " is your " + persons[name] + " name";
+              } else {
+                return name + " is your " + persons[name] + "'s name";
+              }
+            } else {
+              return "i dont know";
             }
           } else if (userQuestion.includes("von deutsch zu hyraphisch") && userQuestion.includes("übersetze")) {
               let userQuestion5 = userQuestion.split("von deutsch zu hyraphisch")[0];
