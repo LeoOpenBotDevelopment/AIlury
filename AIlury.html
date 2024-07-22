@@ -4102,8 +4102,8 @@
             return "ok, dein " + person + " heisst " + name;
           } else if (userQuestion.includes("mein") && userQuestion.includes("heißt")){
             let personpart1 = userQuestion.split("mein")[1].trim();
-            let person = personpart1.split("heisst")[0].trim();
-            let name = userQuestion.split("heisst")[1].trim();
+            let person = personpart1.split("heißt")[0].trim();
+            let name = userQuestion.split("heißt")[1].trim();
             if (person && name){
               // add name and person to list
               persons[name] = person;
