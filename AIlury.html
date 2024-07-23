@@ -4073,6 +4073,8 @@
       document.getElementById("username-display").textContent = gekuerzterName;
     }
     let persons = {}
+    let importantpeopleE = {"steve jobs": "steve jobs was the founder of apple", "bill gates": "bill gates was the founder of microsoft","mark zuckerberg": "mark zuckerberg was the founder of facebook", "elon musk": "elon musk was the founder of tesla", "jeff bezos": "jeff bezos was the founder of amazon"}
+    let importantpeopleD = {"steve jobs": "steve jobs war der gründer von apple", "bill gates": "bill gates war der gründer von microsoft", "mark zuckerberg": "mark zuckerberg war der gründer von facebook", "elon musk": "elon musk war der gründer von tesla", "jeff bezos": "jeff bezos war der gründer von amazon"}
     async function getBotResponse(userMessage) {
       try {
         if (chalange == "nothing") {
@@ -4114,7 +4116,9 @@
             name = name.split("?")[0].trim();
             if (persons[name]){
               return name + " ist dein " + persons[name];
-            }else {
+            } else if (importantpeopleD[name]) {
+              return importantpeopleD[name];
+            } else {
               return "weiss ich nicht";
             }
           }else if (userQuestion.includes("my") && userQuestion.includes("is called")) {
@@ -4147,6 +4151,8 @@
               } else {
                 return name + " is your " + persons[name] + "'s name";
               }
+            } else if (importantpeopleE[name]) {
+              return importantpeopleE[name];
             } else {
               return "i dont know";
             }
