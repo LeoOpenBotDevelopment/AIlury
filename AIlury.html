@@ -4093,7 +4093,7 @@
               let ergebnis = Math.sqrt(number);
               return `√${number} = ${ergebnis}.`;
             }
-          } else if (userQuestion.includes("mein") && userQuestion.includes("heisst")){
+          } else if (userQuestion.includes("mein") && userQuestion.includes("heisst") && !userQuestion.includes("?") && !userQuestion.includes("wie")){
             let personpart1 = userQuestion.split("mein")[1].trim();
             let person = personpart1.split("heisst")[0].trim();
             let name = userQuestion.split("heisst")[1].trim();
@@ -4102,7 +4102,7 @@
               persons[name] = person;
             }
             return "ok, dein " + person + " heisst " + name;
-          } else if (userQuestion.includes("mein") && userQuestion.includes("heißt")){
+          } else if (userQuestion.includes("mein") && userQuestion.includes("heißt") && !userQuestion.includes("?") && !userQuestion.includes("wie")){
             let personpart1 = userQuestion.split("mein")[1].trim();
             let person = personpart1.split("heißt")[0].trim();
             let name = userQuestion.split("heißt")[1].trim();
