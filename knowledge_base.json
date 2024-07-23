@@ -4405,12 +4405,6 @@
         "answer3": "ja, ich kann mir namen merken, wenn du mir namen zum merken gibst und mir sagst von wem dieser name ist."
     },
     {
-        "question": "wer bin ich",
-        "answer": "(Username)",
-        "answer2": "du bist (Username)",
-        "answer3": "du bist (Username) oder ?"
-    },
-    {
         "question": "kannst du mir passwoerter geben",
         "answer": "ja, ich kann dir passwoerter geben, allerdings sind die passwoerter zufaellig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwoerter",
         "answer2": "ja, ich kann dir passwoerter geben, mit zahlen oder zahlen mit buchstaben oder nur buchstaben, allerdings sind die passwörter zufaellig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwoerter",
