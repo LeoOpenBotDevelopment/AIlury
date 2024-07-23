@@ -4397,6 +4397,30 @@
       "answer": "The heliosphere is a bubble-like region of space dominated by the solar wind, extending far beyond the orbit of Pluto.",
       "answer2": "It acts as a shield protecting the Solar System from the majority of cosmic radiation.",
       "answer3": "The boundary where the solar wind slows down and interacts with the interstellar medium is called the heliopause."
+    },
+    {
+      "question": "wer bin ich",
+      "answer": "(Username)",
+      "answer2": "du bist (Username)",
+      "answer3": "du bist (Username) oder ?",
+    },
+    {
+      "question": "kannst du dir namen merken",
+      "answer": "ja, ich kann mir namen merken",
+      "answer2": "ja, ich kann mir deinen namen merken und auch namen von anderen",
+      "answer3": "ja, ich kann mir namen merken, wenn du mir namen zum merken gibst und mir sagst von wem dieser name ist.",
+    },
+    {
+      "question": "kannst du mir passwörter geben",
+      "answer": "ja, ich kann dir passwörter geben, allerdings sind die passwörter zufällig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwörter",
+      "answer2": "ja, ich kann dir passwörter geben, mit zahlen oder zahlen mit buchstaben oder nur buchstaben, allerdings sind die passwörter zufällig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwörter",
+      "answer3": "ja, ich kann dir passwörter geben, wenn du mich danach fragst, allerdings sind die passwörter zufällig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwörter",
+    },
+    {
+      "question": "can you remember names",
+      "answer": "yes, i can remember names",
+      "answer2": "yes, i can remember your name and names from other people",
+      "answer3": "yes, i can remember names, if you give me names to remember and tell me whos names these are",
     }
   ]
 }
