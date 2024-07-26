@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="AIlurylogo.ico" type="image/x-icon">
+    <title>AIlury</title>
+    <style>
+        :root { 
+            --light-bg: #f9f9f9;
+            --light-text: #333;
+            --primary-color: #1e90ff;
+            --secondary-color: #000000;
+            --accent-color: #000000;
+            --gradient-light: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+        }
+
+        html{
+          scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background: var(--gradient-light);
+            color: var(--light-text);
+            transition: background 0.5s, color 0.5s;
+            width: 100vw;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideInDown 0.5s ease-out;
+            transition: 1s;
+        }
+
+        nav div a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav div a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        nav div a:hover::before {
+            width: 100%;
+        }
+
+        header, section, footer {
+            padding: 100px 20px 20px;
+            text-align: center;
+            position: relative;
+            transition: 1s;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 100px 20px;
+            height: 60vh;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+            transition: 1s;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin: 0;
+            animation: fadeInDown 1s ease-out;
+            transition: 1s;
+        }
+
+        header p {
+            font-size: 1.5em;
+            animation: fadeInUp 1s ease-out;
+            transition: 1s;
+        }
+
+        section {
+            padding: 60px 20px;
+            margin: 40px 0;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out, slideUp 1.5s ease-out;
+            min-height: 50vh;
+            transition: 1s;
+        }
+
+        section.visible {
+            animation: fadeInUp 1s;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            animation: fadeInLeft 1.5s ease-out;
+            transition: 1s;
+        }
+
+        .section-content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            animation: fadeInRight 1.5s ease-out;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: #fff;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            border-radius: 50px;
+            animation: bounceIn 1s ease-out;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1.5s ease-out;
+            transition: 1s;
+        }
+
+        .feature {
+            flex: 1 1 calc(33.333% - 40px);
+            background: var(--gradient-light);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: zoomIn 1s ease-out;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.8em;
+            margin-top: 0;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .feature:hover h3 {
+            color: var(--secondary-color);
+        }
+
+        .feature p {
+            font-size: 1em;
+            line-height: 1.5;
+            transition: 1s;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            animation: fadeIn 2s ease-out;
+            transition: 1s;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+            transition: 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            80% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1);}
+            50% { transform: scale(1.05);}
+            100% { transform: scale(1);}
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes colorChange {
+            0% { color: #fff; }
+            50% { color: var(--secondary-color); }
+            100% { color: #fff; }
+        }
+
+        .feature::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature:hover::after {
+            opacity: 1;
+        }
+        .button {
+            display: block;
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: #fff;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 50px;
+            animation: bounceIn 1s ease-out;
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 50px;
+            opacity: 1;
+            transition: 1s;
+        }
+        .button2 {
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            background: var(--secondary-color);
+            color: #fff;
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 50px;
+            animation: bounceIn 1s ease-out;
+            display: inline-block;
+            margin-top: 10px;
+            opacity: 1;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#about">about</a>
+            <a href="#solutions">solution</a>
+            <a href="#start">start</a>
+        </div>
+        <a href="start.html"><button class="button">start</button></a>
+    </nav>
+    <header id="home">
+        <h1 class="header1">welcome Ailury</h1>
+        <p>learn, play and have fun</p>
+    </header>
+    <section id="about">
+        <div class="section-title">about</div>
+        <div class="section-content">
+            <p>Ailury is a bot currently in development. We aim to make its responses as natural and human-like as possible, while ensuring it is clear that Ailury is a bot and not a human being.</p>
+        </div>
+    </section>
+    <section id="solutions">
+        <div class="section-title">Problems and Solutions</div>
+        <div class="features">
+            <div class="feature">
+                <h3>dont you know...</h3>
+                <p>When using language models for learning, you might encounter incorrect answers?! Well we carefully research every response to ensure accuracy, for more productive learning. but please keep in mind that Ailury can still make mistakes, but if she makes a mistake you will know.</p>
+            </div>
+            <div class="feature">
+                <h3>dont you know...</h3>
+                <p>If you’re using a language model, you might find that it sometimes provides an answer even when it doesn’t know the correct one. With Ailury, if she doesn’t find a fitting answer, she will let you know that she doesn’t know the answer.</p>
+            </div>
+            <div class="feature">
+                <h3>want to play some games?…</h3>
+                <p>For those who enjoy playing games, we have added a variety of fun games to Ailury, such as "Find the Different Emoji" and quizzes. We constantly add new games to the model to keep things exciting.</p>
+            </div>
+        </div>
+    </section>
+    <section id="start">
+        <div class="section-title">want to start chatting now?</div>
+        <div class="section-content">
+            <p>start chatting with AIlury without having to give personal information.</p>
+            <a href="start.html"><button class="button2">start</button></a>
+        </div>
+    </section>
+    <footer>
+        <p>wanna try it out ?</p>
+    </footer>
+    <script>
+
+        let header1 = document.querySelector('.header1');
+        function changeText(word){
+            // add every letter if the word individually with 1 second delay
+            header1.textContent= "";
+            for(let i = 0; i < word.length; i++){
+                setTimeout(() => {
+                    header1.textContent += word[i];
+                    if (header1.textContent == "play games and quizes"){
+                        setTimeout(() => {
+                            header1.textContent= "";
+                            changeText("welcome to AIlury");
+                        }, 1000);
+                    }
+                }, i * 100);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const boxes = document.querySelectorAll('section');
+            const startbtn = document.querySelector('.button2');
+            const button = document.querySelector('.button');
+            changeText("play games and quizes");
+            const observer2 = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Füge die Klasse hinzu, wenn das Element sichtbar ist
+                        button.style.opacity = 0;
+                        setTimeout(() => {
+                            button.style.display = 'none';
+                        }, 1000);
+                    } else {
+                        // Entferne die Klasse, wenn das Element nicht mehr sichtbar ist
+                        button.style.display = 'block';
+                        button.style.opacity = 1;
+                    }
+                });
+            }, { threshold: 0.1 }); // 10% des Elements muss sichtbar sein
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Füge die Klasse hinzu, wenn das Element sichtbar ist
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Entferne die Klasse, wenn das Element nicht mehr sichtbar ist
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            boxes.forEach(box => {
+                observer.observe(box);
+            });
+            observer2.observe(startbtn);
+        });
+        
+    </script>
+</body>
+</html>
