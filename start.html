@@ -7,7 +7,7 @@
     <title>User Profile</title>
     <style>
         :root{
-          --f0f0f0-color: #f0f0f0;
+          --f0f0f0-color: #fff;
           --e9e9ea-color: #e9e9ea;
           --333-color: #333;
           --fff-color: #fff;
@@ -143,9 +143,6 @@
             transition: background-color 0.3s;
         }
 
-        .custom-file-input:hover {
-            background-color: var(--grey-color);
-        }
         .custom-file-div{
             background-color: var(--e9e9ea-color);
             color: var(--367af6-color);
@@ -156,6 +153,11 @@
             width: 90%;
             transition: background-color 0.3s;
         }
+
+        .custom-file-div:hover {
+            background-color: var(--grey-color);
+        }
+        
         p{
           font-size: 12px;
           font-weight: bold;
@@ -181,7 +183,7 @@
         <form id="profile-form">
             <input type="text" id="username" placeholder="Enter username" maxlength="8">
             <div class="custom-file-div">
-              <label for="avatar" class="custom-file-input">Choose a Prifile</label>
+              <label for="avatar" class="custom-file-input">Choose a Prifile Picture</label>
             </div>
             <input type="file" id="avatar" accept="image/*"><br>
             <p>When starting, you accept the <a href="User-Regulations-Privacy-policy.html" id="links">privacy policy</a> and the <a href="User-Regulations-Privacy-policy.html" id="links">user regulations</a></p>
