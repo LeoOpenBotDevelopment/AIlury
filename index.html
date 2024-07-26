@@ -7,12 +7,28 @@
     <title>AIlury</title>
     <style>
         :root { 
-            --light-bg: #f9f9f9;
+            --light-bg: #000;
             --light-text: #333;
-            --primary-color: #1e90ff;
+            --primary-color: #fff;
             --secondary-color: #000000;
             --accent-color: #000000;
-            --gradient-light: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            --gradient-light: linear-gradient(135deg, #000, #ccc);
+            --black-color: #000;
+            --light-color: #fff;
+            --sectionb-color: #fff;
+            --button-color: #fff;
+        }
+        .dark-theme { 
+            --light-bg: #fff;
+            --light-text: #fff;
+            --primary-color: #000;
+            --secondary-color: #fff;
+            --accent-color: #fff;
+            --gradient-light: linear-gradient(135deg, #ccc, #000);
+            --black-color: #fff;
+            --light-color: #fff;
+            --sectionb-color: #000;
+            --button-color: #000;
         }
 
         html{
@@ -34,8 +50,9 @@
             position: fixed;
             top: 0;
             width: 100%;
+            height: 50px;
             background: var(--primary-color);
-            color: #fff;
+            color: var(--light-color);
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
@@ -47,7 +64,7 @@
         }
 
         nav div a {
-            color: #fff;
+            color: var(--black-color);
             text-decoration: none;
             margin: 0 15px;
             font-size: 1em;
@@ -79,7 +96,7 @@
 
         header {
             background: var(--primary-color);
-            color: #fff;
+            color: var(--black-color);
             padding: 100px 20px;
             height: 60vh;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
@@ -103,15 +120,19 @@
             padding: 60px 20px;
             margin: 40px 0;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--sectionb-color);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1.5s ease-out, slideUp 1.5s ease-out;
             min-height: 50vh;
             transition: 1s;
+            transform: translateY(20px);
+            opacity: 0;
         }
 
         section.visible {
-            animation: fadeInUp 1s;
+            opacity: 1;
+            transform: translateY(0);
+            /*animation: fadeInUp 1s;*/
         }
 
         .section-title {
@@ -134,7 +155,7 @@
             border: none;
             cursor: pointer;
             background: var(--secondary-color);
-            color: #fff;
+            color: var(--light-color);
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border-radius: 50px;
             animation: bounceIn 1s ease-out;
@@ -168,6 +189,7 @@
             text-align: left;
             position: relative;
             overflow: hidden;
+            color: var(--light-color);
         }
 
         .feature:hover {
@@ -194,7 +216,7 @@
 
         footer {
             background: var(--primary-color);
-            color: #fff;
+            color: var(--black-color);
             padding: 20px 0;
             animation: fadeIn 2s ease-out;
             transition: 1s;
@@ -292,7 +314,7 @@
             border: none;
             cursor: pointer;
             background: var(--secondary-color);
-            color: #fff;
+            color: var(--button-color);
             transition: background-color 0.3s, transform 0.3s;
             border-radius: 50px;
             animation: bounceIn 1s ease-out;
@@ -308,7 +330,7 @@
             border: none;
             cursor: pointer;
             background: var(--secondary-color);
-            color: #fff;
+            color: var(--button-color);
             transition: background-color 0.3s, transform 0.3s;
             border-radius: 50px;
             animation: bounceIn 1s ease-out;
@@ -422,6 +444,35 @@
             observer2.observe(startbtn);
         });
         
+
+
+        function change_mood(){
+          document.body.classList.toggle("dark-theme");
+        }
+        function isDarkMode() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Function to update the mode information
+        function updateModeInfo() {
+            if (isDarkMode()) {
+                change_mood();
+            }
+            /*else {
+                change_mood();
+            }*/
+        }
+
+        // Call the function initially
+        updateModeInfo();
+
+        // Listen for changes in mode preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateModeInfo);
+
     </script>
 </body>
 </html>
