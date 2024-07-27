@@ -29,6 +29,9 @@
       --plane-color: #ebebeb;
       --fff1-color: #fff;/*#fff;*/
       --blurbc-color: rgba(255, 255, 255, 0.3);
+      --alert5-color: rgba(255, 255, 255, 0.5);
+      --alert8-color: rgba(255, 255, 255, 0.8);
+      --alert9-color: rgba(200, 200, 200, 0.9);
     }
 
     /* #5c3884 */
@@ -95,6 +98,9 @@
       --plane-color: #fff;
       --fff1-color: #000;
       --blurbc-color: rgba(0, 0, 0, 0.5);
+      --alert5-color: rgba(0, 0, 0, 0.5);
+      --alert8-color: rgba(0, 0, 0, 0.8);
+      --alert9-color: rgba(255, 255, 255, 0.9);
       /*c3c3c4*/
     }
 
@@ -122,6 +128,9 @@
       --plane-color: #490d61;
       --fff1-color: #010758;
       --blurbc-color: #0f87ff1A;
+      --alert5-color: rgba(0, 0, 255, 0.5);
+      --alert8-color: rgba(0, 0, 255, 0.8);
+      --alert9-color: rgba(0, 0, 255, 0.9);
     }
 
     .beautiful-theme{
@@ -148,6 +157,9 @@
         --plane-color: #fff;
         --fff1-color: #0b091f;
         --blurbc-color: #17152e1A;
+        --alert5-color: rgba(0, 0, 0, 0.5);
+        --alert8-color: rgba(0, 0, 0, 0.8);
+        --alert9-color: rgba(255, 255, 255, 0.9);
     }
     input[type=text] {
       background: transparent;
@@ -1786,9 +1798,9 @@
       text-align: center;
       padding: 10px;
       width: 78%;
-      background-color: rgba(255, 0, 0, 0.5);
-      color: rgba(255, 0, 0, 0.9);
-      border: 1px solid rgba(255, 0, 0, 0.8);
+      background-color: var(--alert5-color);
+      color: var(--alert9-color);
+      border: 1px solid var(--alert8-color);
       border-radius: 5px;
       font-size: 15px;
       display: none;
@@ -1798,9 +1810,9 @@
       margin-top: 20px;
       padding: 10px;
       width: 20%;
-      background-color: rgba(255, 0, 0, 0.5);
-      color: rgba(255, 0, 0, 0.9);
-      border: 1px solid rgba(255, 0, 0, 0.8);
+      background-color: var(--alert5-color);
+      color: var(--alert9-color);
+      border: 1px solid var(--alert8-color);
       border-radius: 5px;
       font-size: 15px;
       display: none;
