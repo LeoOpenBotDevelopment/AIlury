@@ -50,6 +50,11 @@
       text-shadow: 0px 0px 10px var(--theme-shadow);
       transition: 1s;
     }
+    @media(max-width: 750px) {
+      #RoomBuilderLink{
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -57,11 +62,11 @@
   <a href="AIlury.html"><button class="app">
     <div class="text">AIlury</div>
   </button></a>
-  
-  <a href="3DRoomBuilder.html"><button class="app">
+
+  <a id="RoomBuilderLink" href="3DRoomBuilder.html"><button class="app">
     <div class="text">3D RB</div><!--hast meinen text bekommen-->
   </button></a>
-  
+
   <a href="calculator.html"><button class="app">
     <div class="text">calculator</div>
   </button></a>
