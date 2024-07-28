@@ -147,9 +147,47 @@
             border-radius: 20px;
             font-size: 1em;
         }
+        #profile{
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            top: 10px;
+            left: 10px;
+            height: 55px;
+            border: none;
+            font-size: 1em;
+            border-radius: 20px;
+            background: var(--theme-glas);
+            -webkit-backdrop-filter: blur(70px);
+            color: var(--theme-color);
+            padding: 10px;
+            animation: fadeInDown 1s;
+            transition: 1s;
+        }
+        #profile:hover{
+            transform: scale(1.1);
+        }
+        #profile img{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            transition: 1s;
+            /* image cover */
+            object-fit: cover;
+            margin: 5px;
+        }
+        #profile h2{
+            margin: 10px;
+            margin-top: 14px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <a href="start.html"><div id="profile">
+        <img src="" alt="profile image" id="theprofileimage">
+        <h2 id="theprofilename">Guest</h2>
+    </div></a>
     <div id="alertElement">
         <button id="alertmessage">text</button><button id="alertmessagebtn">ok</button>
     </div>
@@ -158,6 +196,21 @@
     <p>Player Score: <span id="player-score">0</span> Computer Score: <span id="computer-score">0</span></p>
     <a href="AIluryApps.html"><button id="back">back</button></a>
     <script>
+        let theprofilename = document.getElementById('theprofilename');
+        let theprofileimage = document.getElementById('theprofileimage');
+        function loadProfile() {
+            const savedUsername = localStorage.getItem("username");
+            const savedAvatar = localStorage.getItem("avatar");
+
+            if (savedUsername) {
+                theprofilename.textContent = savedUsername;
+            }
+
+            if (savedAvatar) {
+                theprofileimage.src = savedAvatar;
+
+            }
+        }
         const cards = [
             'A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F',
             'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J' ,'K', 'K', 'L', 'L',
