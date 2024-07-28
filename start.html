@@ -47,7 +47,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 40px;
             width: 400px;
+            animation: fadeInDown 1s;
             text-align: center;
+            transition: 1s;
         }
 
         h1 {
@@ -169,6 +171,16 @@
           font-size: 12px;
           font-weight: bold;
           color: var(--blue-color);
+        }
+        @keyframes fadeInDown{
+          0%{
+            opacity: 0;
+            transform: translateY(-100px);
+          }
+          100%{
+            opacity: 1;
+            transform: translateY(0px);
+          }
         }
     </style>
 </head>
