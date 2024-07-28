@@ -4,13 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>replit</title>
+  <link rel="icon" href="AIlurylogo.ico" type="image/x-icon">
+  <title>AIlury</title>
   <style>
     :root{
-      --theme-color: rgba(255, 255, 255, 0.5)
+      --theme-color: rgba(255, 255, 255, 0.5);
+      --theme-color2: black;
     }
     .dark-theme{
-      --theme-color: rgba(0, 0, 0, 0.5)
+      --theme-color: rgba(0, 0, 0, 0.5);
+      --theme-color2: white;
     }
     body{
       margin: 0;
@@ -41,7 +44,7 @@
       /*background-color: hsl(0, 0%, 20%);*/
       background: var(--theme-color);
       -webkit-backdrop-filter: blur(70px);
-      color: white;
+      color: var(--theme-color2);
     }
     #keys{
       display: grid;
@@ -57,7 +60,7 @@
       /*background-color: hsl(0, 0%, 30%);*/
       background: var(--theme-color);
       -webkit-backdrop-filter: blur(70px);
-      color: white;
+      color: var(--theme-color2);
       font-size: 35px;
       font-weight: bold;
       cursor: pointer;
@@ -112,6 +115,7 @@
       <button onclick="appendToDisplay('.')">.</button>
       <button onclick="calculate()">=</button>
       <button onclick="clearDisplay()" class="operator-btn">C</button>
+      <a href="AIluryApps.html"><button class="back"><-</button></a>
     </div>
   </div>
   <script>
