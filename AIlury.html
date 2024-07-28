@@ -2179,6 +2179,11 @@
     let logo = document.querySelector('.logo-header');
     let logoSpan = document.querySelectorAll('.logo');
     window.addEventListener('DOMContentLoaded', () => {
+      let bodyb2 = document.querySelector('body');
+      let image = localStorage.getItem('backgroundImage');
+      if (image) {
+          bodyb2.style.backgroundImage = `url(${image})`;
+      }
       setTimeout(() => {
         logoSpan.forEach((span, idx) => {
           setTimeout(() => {
@@ -2574,12 +2579,17 @@
     let bimageInput = document.getElementById('bimage');
 
     let bodyb = document.querySelector('body');
+    function saveUserProfile(backgroundimg) {
+        localStorage.setItem('backgroundImage', backgroundimg);
+        bodyb.style.backgroundImage = `url(${backgroundimg})`;
+    }
     bimageInput.addEventListener("change", function () {
         const file = this.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function () {
-                bodyb.style.backgroundImage = `url(${reader.result})`;
+                const backgroundimg = reader.result;
+                saveUserProfile(backgroundimg);
             }
             reader.readAsDataURL(file);
         }
