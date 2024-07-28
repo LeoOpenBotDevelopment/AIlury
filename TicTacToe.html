@@ -25,12 +25,16 @@
             background-image: url(AIluryBackground.jpeg);
             background-size: cover;
             background-position: center;
+            animation: BodyfadeIn 1s;
+            transition: 1s;
         }
         #game {
             display: grid;
             grid-template-columns: repeat(3, 100px);
             grid-template-rows: repeat(3, 100px);
+            animation: fadeInDown 1s;
             gap: 5px;
+            transition: 1s;
         }
         .cell {
             width: 100px;
@@ -45,10 +49,12 @@
             border: none;
             color: var(--theme-color);
             border-radius: 20px;
+            transition: 1s;
         }
         #message {
             margin-top: 20px;
             font-size: 1.5em;
+            transition: 1s;
         }
         button {
             margin-top: 20px;
@@ -60,9 +66,31 @@
             background: var(--theme-glas);
             -webkit-backdrop-filter: blur(70px);
             color: var(--theme-color);
+            animation: fadeInDown 1s;
+            transition: 1s;
         }
         #mode-select {
             margin-bottom: 20px;
+            animation: fadeInDown 1s;
+            transition: 1s;
+        }
+        @keyframes fadeInDown{
+          0%{
+            opacity: 0;
+            transform: translateY(-100px);
+          }
+          100%{
+            opacity: 1;
+            transform: translateY(0px);
+          }
+        }
+        @keyframes BodyfadeIn{
+          0%{
+            opacity: 0;
+          }
+          100%{
+            opacity: 1;
+          }
         }
     </style>
 </head>
