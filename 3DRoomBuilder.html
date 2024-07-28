@@ -16,6 +16,8 @@
             margin: 0;
             height: 100vh;
             width: 100vw;
+            animation: BodyfadeIn 1s;
+            transition: 1s;
         }
         canvas { display: block; }
         button {
@@ -428,6 +430,14 @@
             position: absolute;
             top: 370px;
             left: 10px;
+        }
+        @keyframes BodyfadeIn{
+          0%{
+            opacity: 0;
+          }
+          100%{
+            opacity: 1;
+          }
         }
     </style>
 </head>
