@@ -501,7 +501,7 @@
             for(let i = 0; i < word.length; i++){
                 setTimeout(() => {
                     header1.textContent += word[i];
-                    if (header1.textContent == "play games and quizes"){
+                    if (header1.textContent == "chat with AIlury and play many games"){
                         setTimeout(() => {
                             header1.textContent= "";
                             changeText("welcome to AIlury");
@@ -514,7 +514,9 @@
             const boxes = document.querySelectorAll('section');
             const startbtn = document.querySelector('.button2');
             const button = document.querySelector('.button');
-            changeText("play games and quizes");
+            setTimeout(() => {
+                changeText("chat with AIlury and play many games");
+            }, 5000);
             const observer2 = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
