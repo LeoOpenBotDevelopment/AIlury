@@ -197,6 +197,7 @@
     </div></a>
     <div class="chess-board" id="chess-board"></div>
     <a href="AIluryApps.html"><button id="back">back</button></a>
+    <a><button id="reset">reset</button></a>
     <div id="alertElement">
         <button id="alertmessage">text</button><button id="alertmessagebtn">ok</button>
     </div>
@@ -600,6 +601,10 @@
 
         // Listen for changes in mode preference
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateModeInfo);
+        let resetbtn = document.getElementById('reset');
+        resetbtn.addEventListener('click', () => {
+            resetGame();
+        });
     </script>
 </body>
 </html>
