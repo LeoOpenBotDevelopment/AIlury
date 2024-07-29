@@ -218,6 +218,7 @@
         <div class="player-hand"></div>
     </div>
     <a href="AIluryApps.html"><button id="back">back</button></a>
+    <a><button id="resetbtn">reset</button></a>
     <script>
         let theprofilename = document.getElementById('theprofilename');
         let theprofileimage = document.getElementById('theprofileimage');
@@ -495,6 +496,10 @@
             alertbtn.removeEventListener("click", hideAlert); // Ensure no duplicate listeners
             alertbtn.addEventListener("click", hideAlert);
         }
+        let resetbtn = document.getElementById('resetbtn');
+        resetbtn.addEventListener('click', () => {
+            new UnoGame();
+        });
 
     </script>
 </body>
