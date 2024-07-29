@@ -339,9 +339,113 @@
             opacity: 1;
             transition: 1s;
         }
+        /* the intro */
+        .hintroc {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOutfi 1s 2s forwards;
+        }
+
+        .intro-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-text {
+            font-size: 6em;
+            color: transparent;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, #ff0077, #7700ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            animation: shine 2s ease-in-out forwards, fadeInfi 1.5s ease-out;
+        }
+
+        .intro-text::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #ff0077, #7700ff) 1;
+            animation: borderGlow 2s ease-in-out infinite;
+        }
+
+        .intro-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+            transform: translateX(-100%);
+            animation: shineEffect 2s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInfi {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes shineEffect {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                text-shadow: none;
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 0, 119, 0.8), 0 0 40px rgba(119, 0, 255, 0.6);
+            }
+        }
+
+        @keyframes fadeOutfi {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+            }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                border-color: #ff0077;
+            }
+            50% {
+                border-color: #7700ff;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="hintroc">
+        <div class="intro-container">
+            <div class="intro-text">AIlury</div>
+        </div>
+    </div>
     <nav>
         <div>
             <a href="#home">Home</a>
