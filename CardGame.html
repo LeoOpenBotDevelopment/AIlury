@@ -185,6 +185,19 @@
         .game-board{
             animation: fadeInDown 1s;
         }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: var(--theme-glas);
+            -webkit-backdrop-filter: blur(70px);
+            color: var(--theme-color);
+            animation: fadeInDown 1s;
+            transition: 1s;
+        }
     </style>
 </head>
 <body>
@@ -203,6 +216,7 @@
         </div>
         <div class="player-hand"></div>
     </div>
+    <a href="AIluryApps.html"><button id="back">back</button></a>
     <script>
         let theprofilename = document.getElementById('theprofilename');
         let theprofileimage = document.getElementById('theprofileimage');
