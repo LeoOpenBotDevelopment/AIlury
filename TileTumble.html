@@ -57,6 +57,12 @@
             animation: fadeInDown 1s;
             margin-left: -50%;
         }
+        #buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            animation: fadeInDown 1s;
+        }
         #scores {
             display: flex;
             justify-content: space-between;
@@ -145,7 +151,7 @@
             <button class="button" id="down">Down</button>
         </div>
         <div id="scores"><div>score </div><div id="score">0</div></div>
-        <a href="AIluryApps.html"><button class="button" id="back">back</button></a>
+        <div id="buttons"><button id="resetbtn" class="button">reset</button><a href="AIluryApps.html"><button class="button" id="back">back</button></a></div>
     </div>
     <script>
         let theprofilename = document.getElementById('theprofilename');
@@ -443,6 +449,17 @@
         playerReset();
         updateScore();
         update();
+
+        let resetbtn = document.getElementById('resetbtn');
+        resetbtn.addEventListener('click', () => {
+            const pieces = 'TJLOSZI';
+            player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+            player.pos.y = 0;
+            player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
+            arena.forEach(row => row.fill(0));
+            player.score = 0;
+            updateScore();
+        });
 
     </script>
 </body>
