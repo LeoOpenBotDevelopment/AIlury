@@ -8,10 +8,12 @@
     <style>
         :root{
             --theme-color: black;
+            --theme-color2: white;
             --theme-glas: rgba(255, 255, 255, 0.5);
         }
         .dark-theme{
             --theme-color: white;
+            --theme-color2: black;
             --theme-glas: rgba(0, 0, 0, 0.5);
         }
         body {
@@ -127,9 +129,23 @@
             margin-top: 14px;
             font-weight: bold;
         }
+        .clock {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: var(--theme-color2);
+            text-shadow: 0px 0px 10px var(--theme-color);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            animation: fadeInDown 1s;
+            font-family: 'Arial', sans-serif;
+        }
     </style>
 </head>
 <body>
+    <div id="clock" class="clock"></div>
     <a href="start.html"><div id="profile">
         <img src="" alt="profile image" id="theprofileimage">
         <h2 id="theprofilename">Guest</h2>
@@ -153,6 +169,21 @@
     <div id="message"></div>
     <button id="restart">Restart</button>
     <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock immediately
+        updateClock();
         let theprofilename = document.getElementById('theprofilename');
         let theprofileimage = document.getElementById('theprofileimage');
         function loadProfile() {
