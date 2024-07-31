@@ -193,9 +193,23 @@
           z-index: 999;
           transition: 1s;
         }
+        .clock {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            color: var(--theme-shadow);
+            text-shadow: 0px 0px 10px var(--theme-color);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            animation: fadeInDown 1s;
+            font-family: 'Arial', sans-serif;
+        }
     </style>
 </head>
 <body>
+    <div id="clock" class="clock"></div>
     <a href="start.html"><div id="profile">
         <img src="" alt="profile image" id="theprofileimage">
         <h2 id="theprofilename">Guest</h2>
@@ -207,6 +221,21 @@
         <button id="alertmessage">text</button><button id="alertmessagebtn">ok</button>
     </div>
     <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock immediately
+        updateClock();
         function showalert(AlertText) {
             let alertbtn = document.getElementById('alertmessagebtn');
             let alertmessage = document.getElementById('alertmessage');
