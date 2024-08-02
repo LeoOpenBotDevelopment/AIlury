@@ -2569,7 +2569,7 @@
     })
 
   </script>
-  
+
   <div class="gamecontainer" id="gamecontainer2">
     <div class="cross-container" id="gamecontainercross2">
         <div class="tcross"></div>
@@ -2578,7 +2578,7 @@
     <div id="game-board"></div>
     <p id="memorygamep">Player Score: <span id="player-score">0</span> Computer Score: <span id="computer-score">0</span></p>
   </div>
-    
+
   <div id="alertElement">
     <button id="alertmessage">text</button><button id="alertmessagebtn">ok</button>
   </div>
@@ -2635,7 +2635,7 @@
         <div id="scores"><div id="tiletumblescorecontainer">score </div><div id="score">0</div></div>
     </div>
   </div>
-  
+
   <div class="timer"><div class="timer-num1">00</div>:<div class="timer-num2">00</div>:<div class="timer-num3">00</div></div>
   <div class="bell">
     <div class="bell-top"></div>
@@ -2732,8 +2732,8 @@
       emojis from left to right until you get to the different one and then send AIlury the number or you can send
       AIlury the different emoji! If you want to practice German, you can write for example: "I want to practice German"
       and then AIlury will give you words to translate! If you want to practice math you can write for example: "I want
-      to practice math" and then AIlury will give you math exercises. If you want to play a quiz, you can simply say: "i want to play a quiz" and then AIlury will ask you questions. If at any time you don't know the answer to a
-      function, you can simply say: "idk".<br><br>
+      to practice math" and then AIlury will give you math exercises. If you want to play a quiz, you can simply say: "i want to play a quiz" and then AIlury will ask you questions. If you want to play Tic Tac Toe, just say: "i want to play Tic Tac Toe", and AIlury will open the game on screen. If you want to play Memory just say: "i want to play Memory" and AIlury will open the game on screen two. and If you want to play Tile Tumble, just say: "i want to play Tile Tumble" and AIlury will open the game on screen three. If at any time you don't know the answer to a
+      text function, you can simply say: "idk".<br><br>
       Text filters and keywords: AIlury offers a lot of functions. You can use AIlury to replace text with text in a
       large or small text, for example: "replace I with you in I eat". Or you can ask if a text is in another text by
       saying for example: "is hello in hello how are you?". You can also remove one text from another by saying, for
@@ -5428,6 +5428,42 @@
               }
               gamecontainercross1.addEventListener('click', gamecontainercross1click);
               return "did you have fun playing Cards?";
+          }else if (userQuestion.includes("spiel") && userQuestion.includes("tile") && userQuestion.includes("tumble")) {
+              startTileTumbleGame();
+              let gamecontainercross4 = document.getElementById('gamecontainercross4');
+              function gamecontainercross4click() {
+                  gamecontainercross4.removeEventListener('click', gamecontainercross4click);
+                  stopTileTumbleGame();
+              }
+              gamecontainercross4.addEventListener('click', gamecontainercross4click);
+              return "Mochtest du Tile Tumble spielen?";
+          }else if (userQuestion.includes("spiel") && userQuestion.includes("tic") && userQuestion.includes("tac") && userQuestion.includes("toe")) {
+              startTicTacToeGame();
+              let gamecontainercross3 = document.getElementById('gamecontainercross3');
+              function gamecontainercross3click() {
+                  gamecontainercross3.removeEventListener('click', gamecontainercross3click);
+                  stopTicTacToeGame();
+              }
+              gamecontainercross3.addEventListener('click', gamecontainercross3click);
+              return "Mochtest du Tic Tac Toe spielen?";
+          }else if (userQuestion.includes("spiel") && userQuestion.includes("memory")) {
+              startMemoryGame();
+              let gamecontainercross2 = document.getElementById('gamecontainercross2');
+              function gamecontainercross2click() {
+                  gamecontainercross2.removeEventListener('click', gamecontainercross2click);
+                  stopMemoryGame();
+              }
+              gamecontainercross2.addEventListener('click', gamecontainercross2click);
+              return "Mochtest du Memory spielen?";
+          }else if (userQuestion.includes("spiel") && userQuestion.includes("kerten")) {
+              startCardGame();
+              let gamecontainercross1 = document.getElementById('gamecontainercross1');
+              function gamecontainercross1click() {
+                  gamecontainercross1.removeEventListener('click', gamecontainercross1click);
+                  stopCardGame();
+              }
+              gamecontainercross1.addEventListener('click', gamecontainercross1click);
+              return "Mochtest du karten spielen?";
           }else if (userQuestion.includes("mein") && userQuestion.includes("heisst") && !userQuestion.includes("?") && !userQuestion.includes("wie")){
             let personpart1 = userQuestion.split("mein")[1].trim();
             let person = personpart1.split("heisst")[0].trim();
@@ -7579,8 +7615,8 @@
                 emojis from left to right until you get to the different one and then send AIlury the number or you can send
                 AIlury the different emoji! If you want to practice German, you can write for example: "I want to practice German"
                 and then AIlury will give you words to translate! If you want to practice math you can write for example: "I want
-                to practice math" and then AIlury will give you math exercises. If you want to play a quiz, you can simply say: "i want to play a quiz" and then AIlury will ask you questions. If at any time you don't know the answer to a
-                function, you can simply say: "idk".<br><br>
+                to practice math" and then AIlury will give you math exercises. If you want to play a quiz, you can simply say: "i want to play a quiz" and then AIlury will ask you questions. If you want to play Tic Tac Toe, just say: "i want to play Tic Tac Toe", and AIlury will open the game on screen. If you want to play Memory just say: "i want to play Memory" and AIlury will open the game on screen two. and If you want to play Tile Tumble, just say: "i want to play Tile Tumble" and AIlury will open the game on screen three. If at any time you don't know the answer to a
+                text function, you can simply say: "idk".<br><br>
                 Text filters and keywords: AIlury offers a lot of functions. You can use AIlury to replace text with text in a
                 large or small text, for example: "replace I with you in I eat". Or you can ask if a text is in another text by
                 saying for example: "is hello in hello how are you?". You can also remove one text from another by saying, for
@@ -7691,8 +7727,8 @@
                 und dann AIlury die Nummer senden, oder Sie können AIlury das andere Emoji senden! Wenn Sie Englisch üben möchten,
                 können Sie zum Beispiel schreiben: "Ich möchte Englisch üben" und dann wird Ihnen AIlury Wörter zum Übersetzen
                 geben! Wenn Sie Mathematik üben möchten, können Sie zum Beispiel schreiben: "Ich möchte Mathematik üben" und dann
-                wird Ihnen AIlury Mathematikaufgaben geben. wenn du ein quiz spielen möchstest kannst du zum beispiel schreiben: "ich möchte ein quiz spielen" und dann wird AIlury dir fragen stellen. Wenn Sie zu irgendeinem Zeitpunkt die Antwort auf eine Funktion nicht
-                wissen, können Sie einfach sagen: "idk".<br><br>
+                wird Ihnen AIlury Mathematikaufgaben geben. wenn du ein quiz spielen möchstest kannst du zum beispiel schreiben: "ich möchte ein quiz spielen" und dann wird AIlury dir fragen stellen. wenn du Tic Tac Toe spielen möchtest, sag einfach: "ich möchte Tic Tac Toe spielen", und AIlury wird das spiel auf den bildschirm öffnen. Wenn du Memory spielen möchtest, sag einfach: "ich möchte Memory spielen" und AIlury wird das spiel auch auf den bildschirm öffnen. Wenn du Tile Tumble spielen möchtest, sag einfach: "ich möchte Tile Tumble spielen" und AIlury wird das spiel auch auf den bildschirm öffnene. und Wenn Sie zu irgendeinem Zeitpunkt die Antwort auf eine Funktion nicht
+                wissen bei text spielen, können Sie einfach sagen: "idk".<br><br>
                 Textfilter und Schlüsselwörter: AIlury bietet viele Funktionen. Sie können AIlury verwenden, um Text durch großen
                 oder kleinen Text zu ersetzen, zum Beispiel: "ersetze ich durch du in ich esse". Oder Sie können fragen, ob ein
                 Text in einem anderen Text enthalten ist, indem Sie zum Beispiel sagen: "ist hallo in hallo wie geht's?". Sie
@@ -7905,7 +7941,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
       youwoncomputertext = translations[newLang].youwoncomputertextv;
       winstext = translations[newLang].winstextv;
       drawtext = translations[newLang].drawtextv;
-      
+
       youfailedChallenge = translations[newLang].youfailedChallengev;
       youpassedChallenge = translations[newLang].youpassedChallengev;
       textsend = translations[newLang].textsendv;
