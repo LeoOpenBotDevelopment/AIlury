@@ -2576,7 +2576,7 @@
     </div>
     <h1 id="memorygameh1">Memory Game</h1>
     <div id="game-board"></div>
-    <p id="memorygamep">Player Score: <span id="player-score">0</span> Computer Score: <span id="computer-score">0</span></p>
+    <p><span id="memorygamep">Player Score: </span><span id="player-score">0</span><span id="memorygamepc"> AIlury Score: </span><span id="computer-score">0</span></p>
   </div>
 
   <div id="alertElement">
@@ -2979,6 +2979,8 @@
         card.innerHTML = card.dataset.value;
         flippedCards.push(card);
     }
+    let memorygameyouwoncongrats = "Congratulations! You won!";
+    let memorygameyoulostbetterlucknexttime = 'You lost! Better luck next time!';
 
     function checkMatch() {
         if (flippedCards.length === 2) {
@@ -2991,9 +2993,9 @@
                 flippedCards = [];
                 if (allCardsMatched()) {
                     if (playerScore > computerScore) {
-                        showalert('Congratulations! You won!');
+                        showalert(`${memorygameyouwoncongrats}`);
                     } else if (playerScore < computerScore) {
-                        showalert('You lost! Better luck next time!');
+                        showalert(`${memorygameyoulostbetterlucknexttime}`);
                     }
                     resetGame();
                 }
@@ -3012,7 +3014,6 @@
     }
 
     function computerMove2() {
-        console.log("Computer is making a move");
         const availableCards = Array.from(document.querySelectorAll('.card:not(.flipped):not(.matched)'));
         if (availableCards.length < 2) return;
 
@@ -3044,9 +3045,9 @@
             playerTurn = true;
             if (allCardsMatched()) {
                 if (playerScore > computerScore) {
-                    showalert('Congratulations! You won!');
+                    showalert(`${memorygameyouwoncongrats}`);
                 } else if (playerScore < computerScore) {
-                    showalert('You lost! Better luck next time!');
+                    showalert(`${memorygameyoulostbetterlucknexttime}`);
                 }
                 resetGame();
             }
@@ -7657,7 +7658,8 @@
           textclickchagemoodv: "click the \"light/dark\" button",
           nmyv: `no messages yet<a id="inscructionlink" onclick="instructionlinkclick()">instructions</a>`,
           memorygameh1v: `Memory Game`,
-          memorygamepv: `Player Score: <span id="player-score">0</span> Computer Score: <span id="computer-score">0</span>`,
+          memorygamepv: `Player Score: `,
+          memorygamepcv: ` AIlury Score: `,
           draw_pilev: `Draw`,
           cardgameresetbtnv: `reset`,
           tuctactoegamesetting1v: `you vs AIlury`,
@@ -7673,6 +7675,8 @@
           youwoncomputertextv: `AIlury won!`,
           winstextv: `wins`,
           drawtextv: `Draw`,
+          memorygameyouwoncongratsv: `Congratulations! You won!`,
+          memorygameyoulostbetterlucknexttimev: `You lost! Better luck next time!`,
           notificationstext: `<strong>Update 2.0.1: Introducing the Heli Update Series</strong><br><br>
       We are excited to announce the release of Update 2.0.1, the first installment of the Heli Update Series. This series will bring a range of enhancements to improve language, behavior, and knowledge.<br><br>
 
@@ -7771,7 +7775,8 @@
           textclickchagemoodv: "klicke den \"hell/dunkel\" knopf",
           nmyv: `noch keine nachrichten<a id="inscructionlink" onclick="instructionlinkclick()">instructions</a>`,
           memorygameh1v: `Memory Spiel`,
-          memorygamepv: `Spieler Punktstand: <span id="player-score">0</span> AIlury's Punktstand: <span id="computer-score">0</span>`,
+          memorygamepv: `Spieler Punktstand: `,
+          memorygamepcv: ` AIlury Punktstand: `,
           draw_pilev: `Ziehe`,
           cardgameresetbtnv: `Zurücksetzen`,
           tuctactoegamesetting1v: `du vs AIlury`,
@@ -7787,6 +7792,8 @@
           youwoncomputertextv: `AIlury hat gewonnen!`,
           winstextv: `gewinnt`,
           drawtextv: `gleichstand`,
+          memorygameyouwoncongratsv: `glückwunsch! du hast gewonnen!`,
+          memorygameyoulostbetterlucknexttimev: `du hast verloren! mehr glück nächstes mal`,
           notificationstext: `<strong>Update 2.0.1: Einführung der Heli-Update-Serie</strong><br><br>
 Wir freuen uns, die Veröffentlichung von Update 2.0.1 bekannt zu geben, dem ersten Teil der Heli-Update-Serie. Diese Serie bringt eine Reihe von Verbesserungen zur Optimierung von Sprache, Verhalten und Wissen.<br><br>
 
@@ -7811,6 +7818,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
     let memorygameh1 = document.getElementById("memorygameh1");
     let memorygamep = document.getElementById("memorygamep");
+    let memorygamepc = document.getElementById("memorygamepc");
     let draw_pile = document.getElementById("draw-pile");
     let cardgameresetbtn = document.querySelector(".cardgameresetbtn");
     let tuctactoegamesetting1 = document.getElementById("tuctactoegamesetting1");
@@ -7844,8 +7852,12 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
     textmessages = translations['en'].textmessagesv;
     idkanswer = translations['en'].idkanswerv;
 
+    memorygameyouwoncongrats = translations['en'].memorygameyouwoncongratsv;
+    memorygameyoulostbetterlucknexttime = translations['en'].memorygameyoulostbetterlucknexttimev;
+
     memorygameh1.innerHTML = translations['en'].memorygameh1v;
     memorygamep.innerHTML = translations['en'].memorygamepv;
+    memorygamepc.innerHTML = translations['en'].memorygamepcv;
     draw_pile.innerHTML = translations['en'].draw_pilev;
     cardgameresetbtn.innerHTML = translations['en'].cardgameresetbtnv;
     tuctactoegamesetting1.innerHTML = translations['en'].tuctactoegamesetting1v;
@@ -7925,6 +7937,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
       memorygameh1.innerHTML = translations[newLang].memorygameh1v;
       memorygamep.innerHTML = translations[newLang].memorygamepv;
+      memorygamepc.innerHTML = translations[newLang].memorygamepcv;
       draw_pile.innerHTML = translations[newLang].draw_pilev;
       cardgameresetbtn.innerHTML = translations[newLang].cardgameresetbtnv;
       tuctactoegamesetting1.innerHTML = translations[newLang].tuctactoegamesetting1v;
@@ -7936,6 +7949,9 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
       variabledown.innerHTML = translations[newLang].downv;
       variableresetbtntwo.innerHTML = translations[newLang].resetbtntwov;
       tiletumblescorecontainer.innerHTML = translations[newLang].tiletumblescorecontainerv;
+
+      memorygameyouwoncongrats = translations[newLang].memorygameyouwoncongratsv;
+      memorygameyoulostbetterlucknexttime = translations[newLang].memorygameyoulostbetterlucknexttimev;
 
       youwonplayertext = translations[newLang].youwonplayertextv;
       youwoncomputertext = translations[newLang].youwoncomputertextv;
