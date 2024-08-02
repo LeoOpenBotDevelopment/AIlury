@@ -1756,8 +1756,10 @@
 
     .hilfe-option {
       display: flex;
-      background: var(--newc-color);
-      border-radius: 10px;
+      background: var(--232323-color);/*var(--newc-color);*/
+      /*invert shadow */
+      box-shadow: 0 0 5px var(--primary-color);/*inset;*/
+      border-radius: 3px;
       margin-top: 10px;
       padding: 3px;
       transition: 1s;
@@ -2172,6 +2174,7 @@
       width: 100px;
       background: var(--primary-color);
       transform: scale(0.5);
+      transition: 1s;
     }
     #resetbtn{
         margin-top: 20px;
