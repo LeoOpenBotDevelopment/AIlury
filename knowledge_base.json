@@ -4267,154 +4267,160 @@
       "answer3": "Our galaxy, the Milky Way, is just one of billions of galaxies in the observable universe."
     },
     {
-      "question": "what is an exoplanet?",
+      "question": "what is an exoplanet ?",
       "answer": "An exoplanet is a planet that orbits a star outside our Solar System.",
       "answer2": "Exoplanets can vary widely in size, composition, and orbit, and some may potentially support life.",
       "answer3": "The discovery of exoplanets has revolutionized our understanding of planetary systems and the potential for life elsewhere in the universe."
     },
     {
-      "question": "what is a neutron star?",
+      "question": "what is a neutron star ?",
       "answer": "A neutron star is the collapsed core of a massive star that has undergone a supernova explosion.",
       "answer2": "Neutron stars are incredibly dense, with a mass greater than that of the Sun but a radius of only about 10 kilometers.",
       "answer3": "These stars are composed almost entirely of neutrons and have extremely strong magnetic fields."
     },
     {
-      "question": "what is a white dwarf?",
+      "question": "what is a white dwarf ?",
       "answer": "A white dwarf is a small, dense star that is the leftover center of a star like our Sun after it has exhausted its nuclear fuel and shed its outer layers.",
       "answer2": "White dwarfs are incredibly dense, with a mass similar to the Sun's but a volume similar to Earth's.",
       "answer3": "Over billions of years, white dwarfs cool and fade, eventually becoming black dwarfs, which are hypothetical objects since the universe is not old enough for any to exist yet."
     },
     {
-      "question": "what is a galaxy?",
+      "question": "what is a galaxy ?",
       "answer": "A galaxy is a massive system of stars, stellar remnants, interstellar gas, dust, dark matter, and dark energy, bound together by gravity.",
       "answer2": "Galaxies come in various shapes and sizes, including spiral, elliptical, and irregular galaxies.",
       "answer3": "Our galaxy, the Milky Way, is just one of billions of galaxies in the observable universe."
     },
     {
-      "question": "what is an exoplanet?",
+      "question": "what is an exoplanet ?",
       "answer": "An exoplanet is a planet that orbits a star outside our Solar System.",
       "answer2": "Exoplanets can vary widely in size, composition, and orbit, and some may potentially support life.",
       "answer3": "The discovery of exoplanets has revolutionized our understanding of planetary systems and the potential for life elsewhere in the universe."
     },
     {
-      "question": "what is a neutron star?",
+      "question": "what is a neutron star ?",
       "answer": "A neutron star is the collapsed core of a massive star that has undergone a supernova explosion.",
       "answer2": "Neutron stars are incredibly dense, with a mass greater than that of the Sun but a radius of only about 10 kilometers.",
       "answer3": "These stars are composed almost entirely of neutrons and have extremely strong magnetic fields."
     },
     {
-      "question": "what is a white dwarf?",
+      "question": "what is a white dwarf ?",
       "answer": "A white dwarf is a small, dense star that is the leftover center of a star like our Sun after it has exhausted its nuclear fuel and shed its outer layers.",
       "answer2": "White dwarfs are incredibly dense, with a mass similar to the Sun's but a volume similar to Earth's.",
       "answer3": "Over billions of years, white dwarfs cool and fade, eventually becoming black dwarfs, which are hypothetical objects since the universe is not old enough for any to exist yet."
     },
     {
-      "question": "what is a pulsar?",
+      "question": "what is a pulsar ?",
       "answer": "A pulsar is a highly magnetized, rotating neutron star that emits beams of electromagnetic radiation out of its magnetic poles.",
       "answer2": "As the star rotates, these beams sweep through space, and if one of them crosses Earth, it can be detected as a regular pulse of radiation.",
       "answer3": "Pulsars are used by astronomers to study extreme states of matter, measure cosmic distances, and detect gravitational waves."
     },
     {
-      "question": "what is a quasar?",
+      "question": "what is a quasar ?",
       "answer": "A quasar is an extremely luminous active galactic nucleus, powered by a supermassive black hole at its center.",
       "answer2": "Quasars emit vast amounts of energy, making them some of the brightest objects in the universe.",
       "answer3": "The light from quasars can help scientists study the early universe, as they are often located billions of light-years away."
     },
     {
-      "question": "what is the Andromeda Galaxy?",
+      "question": "what is the Andromeda Galaxy ?",
       "answer": "The Andromeda Galaxy is the nearest spiral galaxy to the Milky Way and is on a collision course with our galaxy, expected to merge in about 4.5 billion years.",
       "answer2": "It is located about 2.537 million light-years from Earth and contains roughly one trillion stars.",
       "answer3": "The Andromeda Galaxy, also known as M31, is the largest galaxy in the Local Group of galaxies that includes the Milky Way."
     },
     {
-      "question": "what is the Hubble Space Telescope?",
+      "question": "what is the Hubble Space Telescope ?",
       "answer": "The Hubble Space Telescope is a space-based observatory launched by NASA in 1990 that has provided unprecedented images and data about the universe.",
       "answer2": "Hubble has helped scientists determine the age of the universe, discover exoplanets, and study the expansion of the universe.",
       "answer3": "The telescope orbits Earth and has contributed to many significant discoveries, including the acceleration of the universe's expansion."
     },
     {
-      "question": "what is the James Webb Space Telescope?",
+      "question": "what is the James Webb Space Telescope ?",
       "answer": "The James Webb Space Telescope (JWST) is an advanced space telescope set to succeed the Hubble Space Telescope, with improved infrared capabilities.",
       "answer2": "Scheduled to launch in 2021, JWST will study the formation of stars and galaxies, as well as the atmospheres of exoplanets.",
       "answer3": "JWST's primary mirror is much larger than Hubble's, allowing it to observe fainter objects and provide more detailed images."
     },
     {
-      "question": "what is gravitational lensing?",
+      "question": "what is gravitational lensing ?",
       "answer": "Gravitational lensing is a phenomenon where light from a distant object is bent and magnified by the gravity of a massive object between it and the observer.",
       "answer2": "This effect can create multiple images of the distant object and is used to study dark matter and distant galaxies.",
       "answer3": "Gravitational lensing confirms predictions made by Einstein's general theory of relativity and is a powerful tool in astrophysics."
     },
     {
-      "question": "what is the Cosmic Microwave Background?",
+      "question": "what is the Cosmic Microwave Background ?",
       "answer": "The Cosmic Microwave Background (CMB) is the afterglow radiation from the Big Bang, providing a snapshot of the early universe about 380,000 years after its formation.",
       "answer2": "The CMB is a nearly uniform background of microwave radiation that fills the universe and offers critical evidence for the Big Bang theory.",
       "answer3": "Studying the CMB helps scientists understand the universe's origin, structure, and evolution."
     },
     {
-      "question": "what is a gamma-ray burst?",
+      "question": "what is a gamma-ray burst ?",
       "answer": "A gamma-ray burst (GRB) is a brief, intense emission of gamma rays, the most energetic form of light, typically associated with the collapse of massive stars or the merger of neutron stars.",
       "answer2": "GRBs are among the most luminous events in the universe and can release more energy in a few seconds than the Sun will in its entire lifetime.",
       "answer3": "Scientists study GRBs to understand the processes of star formation, black hole creation, and the early universe."
     },
     {
-      "question": "what is an asteroid?",
+      "question": "what is an asteroid ?",
       "answer": "An asteroid is a small, rocky body that orbits the Sun, primarily found in the asteroid belt between Mars and Jupiter.",
       "answer2": "Asteroids can vary in size from a few meters to hundreds of kilometers in diameter and are remnants from the early Solar System.",
       "answer3": "Studying asteroids helps scientists learn about the conditions and materials present in the early Solar System."
     },
     {
-      "question": "what is a comet?",
+      "question": "what is a comet ?",
       "answer": "A comet is an icy small Solar System body that, when passing close to the Sun, warms and begins to release gases, a process called outgassing.",
       "answer2": "This outgassing produces a visible atmosphere or coma, and sometimes also a tail.",
       "answer3": "Comets are often referred to as 'dirty snowballs' because they are composed of rock, dust, and frozen gases."
     },
     {
-      "question": "what is the Oort Cloud?",
+      "question": "what is the Oort Cloud ?",
       "answer": "The Oort Cloud is a theoretical cloud of icy bodies that surrounds the Solar System at a distance of up to one light-year from the Sun.",
       "answer2": "It is thought to be the source of long-period comets that take thousands of years to orbit the Sun.",
       "answer3": "The Oort Cloud marks the outer boundary of the Solar System and contains remnants from its formation."
     },
     {
-      "question": "what is a meteor shower?",
+      "question": "what is a meteor shower ?",
       "answer": "A meteor shower occurs when Earth passes through the debris trail left by a comet, causing numerous meteors to streak across the sky.",
       "answer2": "Meteor showers are named after the constellation from which they appear to originate, such as the Perseids or the Leonids.",
       "answer3": "Meteor showers provide a spectacular natural light show and offer opportunities for studying cometary debris."
     },
     {
-      "question": "what is a black hole?",
+      "question": "what is a black hole ?",
       "answer": "A black hole is a region of space where the gravitational pull is so strong that nothing, not even light, can escape from it.",
       "answer2": "Black holes are formed from the remnants of massive stars that have ended their life cycles.",
       "answer3": "The boundary around a black hole beyond which nothing can escape is called the event horizon."
     },
     {
-      "question": "what is dark energy?",
+      "question": "what is dark energy ?",
       "answer": "Dark energy is a mysterious force that is driving the accelerated expansion of the universe.",
       "answer2": "It is thought to make up about 68% of the universe, though its exact nature is still unknown.",
       "answer3": "Dark energy is one of the biggest mysteries in cosmology and affects the fate of the universe."
     },
     {
-      "question": "what is the heliosphere?",
+      "question": "what is the heliosphere ?",
       "answer": "The heliosphere is a bubble-like region of space dominated by the solar wind, extending far beyond the orbit of Pluto.",
       "answer2": "It acts as a shield protecting the Solar System from the majority of cosmic radiation.",
       "answer3": "The boundary where the solar wind slows down and interacts with the interstellar medium is called the heliopause."
     },
     {
-        "question": "kannst du dir namen merken",
+        "question": "kannst du dir namen merken ?",
         "answer": "ja, ich kann mir namen merken",
         "answer2": "ja, ich kann mir deinen namen merken und auch namen von anderen",
         "answer3": "ja, ich kann mir namen merken, wenn du mir namen zum merken gibst und mir sagst von wem dieser name ist."
     },
     {
-        "question": "kannst du mir passwoerter geben",
+        "question": "kannst du mir passwoerter geben ?",
         "answer": "ja, ich kann dir passwoerter geben, allerdings sind die passwoerter zufaellig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwoerter",
         "answer2": "ja, ich kann dir passwoerter geben, mit zahlen oder zahlen mit buchstaben oder nur buchstaben, allerdings sind die passwörter zufaellig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwoerter",
         "answer3": "ja, ich kann dir passwoerter geben, wenn du mich danach fragst, allerdings sind die passwörter zufaellig generiert, es wird nicht drauf geachtet ob das passwort schon existiert. ich empfehle dir ein passwort mit zahlen und buchstaben zu benutzen, ich garantiere aber keine sicheren passwoerter"
     },
     {
-        "question": "can you remember names",
+        "question": "can you remember names ?",
         "answer": "yes, i can remember names",
         "answer2": "yes, i can remember your name and names from other people",
         "answer3": "yes, i can remember names, if you give me names to remember and tell me whos names these are"
+    },
+    {
+        "question": "was für spiele kann ich spielen ?",
+        "answer": "du kannst memory, ein quiz, tic tac toe und karten spielen wenn du mich einfach danach fragst",
+        "answer2": "du kannst mit mir memory, ein quiz, tic tac toe und karten spielen wenn du mich einfach danach fragst",
+        "answer3": "ich biete spiele wie memory, ein quiz, tic tac toe und karten wenn du mich einfach danach fragst"
     }
   ]
 }
