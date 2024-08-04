@@ -3676,7 +3676,7 @@
         requestAnimationFrame(update);
     }
 
-    document.addEventListener('keydown', event => {
+    /*document.addEventListener('keydown', event => {
         if (event.keyCode === 37) {
             playerMove(-1);
         } else if (event.keyCode === 39) {
@@ -3688,7 +3688,7 @@
         } else if (event.keyCode === 87) {
             playerRotate(1);
         }
-    });
+    });*/
     function resettiletumblegamec(){
       const pieces = 'TJLOSZI';
       player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
@@ -3702,7 +3702,7 @@
     resetbtntwo.addEventListener('click', () => {
         resettiletumblegamec();
     });
-    document.addEventListener('keydown', event => {
+    /*document.addEventListener('keydown', event => {
         if (event.keyCode === 37) {
             playerMove(-1);
         } else if (event.keyCode === 39) {
@@ -3714,7 +3714,7 @@
         } else if (event.keyCode === 87) {
             playerRotate(1);
         }
-    });
+    });*/
     document.getElementById('left').addEventListener('click', () => playerMove(-1));
     document.getElementById('right').addEventListener('click', () => playerMove(1));
     document.getElementById('down').addEventListener('click', () => playerDrop());
