@@ -721,6 +721,7 @@
         height: 100vh;
         overflow: hidden;
         cursor: pointer;
+        background: var(--chat-background-color);
     }
 
     /* Sidebar Styles */
@@ -804,7 +805,7 @@
         display: flex;
         justify-content: space-between;
         position: fixed;
-        bottom: 60px;
+        bottom: 6vh;
         transition: 1s;
     }
 
@@ -952,6 +953,7 @@
       background-position: center;
       background-repeat: no-repeat;
       transition: 1s;
+      overflow: hidden;
     }
     #searchbtn{
         height: 100%;
@@ -1357,11 +1359,6 @@
     let logo = document.querySelector('.logo-header');
     let logoSpan = document.querySelectorAll('.logo');
     window.addEventListener('DOMContentLoaded', () => {
-      let bodyb2 = document.querySelector('body');
-      let image = localStorage.getItem('backgroundImage');
-      if (image) {
-          bodyb2.style.backgroundImage = `url(${image})`;
-      }
       setTimeout(() => {
         logoSpan.forEach((span, idx) => {
           setTimeout(() => {
@@ -1569,15 +1566,17 @@
               </div>
           </div>
           <button class="sidebar-button" id="changethemebtn" onclick="change_mood()">☾ Dark Theme</button>
-          <button class="sidebar-button" id="profilebtn">○ Profile pic</button>
           <button class="sidebar-button" id="logoutbtn" onclick="logout()">← Logout</button>
           <button class="sidebar-button" id="speakbtn">♩ Speak: off</button>
-          <button class="sidebar-button" id="languagebtn" onclick="change_language()">⚑ German</button>
-          <button class="sidebar-button" id="backgroundbtn">□ Background</button>
           <button class="sidebar-button" id="randombtn" onclick="setinputvalue()">↔ Random</button>
+          <button class="sidebar-button" id="languagebtn" onclick="change_language()">⚑ German</button>
+          <button class="sidebar-button" id="instructionbtn" onclick="instructionlinkclick()">? Instruction</button>
+          <button class="sidebar-button" id="profilebtn">○ Profile pic</button>
+          <button class="sidebar-button" id="backgroundbtn">□ Background</button>
           <button class="sidebar-button" id="Breakbtn">⚠ Break</button>
           <button class="sidebar-button" id="Löschbtn">⊗ Trash</button>
           <button class="sidebar-button" id="Editbtn">✎ Edit</button>
+          <button class="sidebar-button"></button>
       </div>
 
       <div id="chat">
@@ -1595,7 +1594,7 @@
               </div>
           </div>
           <div class="chat-messages" id="chat-messages">
-            <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a id="inscructionlink">instructions</a></h2>
+            <h2 id="nmy" style="text-align: center;color: var(--primary-color);">no messages yet<a id="inscructionlink" onclick="instructionlinkclick()">instructions</a></h2>
           </div>
           <div id="chat-bottom">
               <input type="text" id="user-input" class="user-input" placeholder="Write AIlury...">
@@ -1606,7 +1605,6 @@
   </section>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const userProfile = document.getElementById("user-profile");
       const usernameDisplay = document.getElementById("username-display");
       const userAvatar = document.getElementById("user-avatar");
 
@@ -5893,6 +5891,7 @@
           breakbtnv: `⚠ Break`,
           editbtnv: `✎ Edit`,
           profilebtnv: `○ Profile pic`,
+          instructionbtnv: `? Instruction`,
           notificationstext: `<strong>Update 2.0.1: Introducing the Heli Update Series</strong><br><br>
       We are excited to announce the release of Update 2.0.1, the first installment of the Heli Update Series. This series will bring a range of enhancements to improve language, behavior, and knowledge.<br><br>
 
@@ -6014,6 +6013,7 @@
           breakbtnv: `⚠ Abbrechen`,
           editbtnv: `✎ Bearbeiten`,
           profilebtnv: `○ Profil bild`,
+          instructionbtnv: `? Anleitung`,
           notificationstext: `<strong>Update 2.0.1: Einführung der Heli-Update-Serie</strong><br><br>
 Wir freuen uns, die Veröffentlichung von Update 2.0.1 bekannt zu geben, dem ersten Teil der Heli-Update-Serie. Diese Serie bringt eine Reihe von Verbesserungen zur Optimierung von Sprache, Verhalten und Wissen.<br><br>
 
@@ -6111,6 +6111,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
     document.getElementById('Breakbtn').textContent = translations['en'].breakbtnv;
     document.getElementById('Editbtn').textContent = translations['en'].editbtnv;
     document.getElementById('profilebtn').textContent = translations['en'].profilebtnv;
+    document.getElementById('instructionbtn').textContent = translations['en'].instructionbtnv;
     // local storage user name
     if (document.querySelector('.username-display').textContent == "Guest" || document.querySelector('.username-display').textContent == "Gast"){
       document.querySelector('.username-display').textContent = translations['en'].username;
@@ -6188,6 +6189,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
       document.getElementById('Breakbtn').textContent = translations[newLang].breakbtnv;
       document.getElementById('Editbtn').textContent = translations[newLang].editbtnv;
       document.getElementById('profilebtn').textContent = translations[newLang].profilebtnv;
+      document.getElementById('instructionbtn').textContent = translations[newLang].instructionbtnv;
       if (themeDS.textContent == "☾ Dark Theme"){
         themeDS.textContent = "☾ Dunkel Modus";
         dark2 = "☾ Dunkel Modus";
