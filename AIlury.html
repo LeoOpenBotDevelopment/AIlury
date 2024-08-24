@@ -1259,16 +1259,6 @@
           transition: 1s;
       }
     }
-    @keyframes fadeInDown2{
-      0%{
-        opacity: 0;
-        transform: translateY(-100px) scale(0.7);
-      }
-      100%{
-        opacity: 1;
-        transform: translateY(0px) scale(0.7);
-      }
-    }
 
     @media(max-width: 750px) {
       .chat-messages {
@@ -1373,13 +1363,23 @@
       }
     }
     @media(max-width: 600px) {
+      @keyframes fadeInDown{
+        0%{
+          opacity: 0;
+          transform: translateY(-100px) scale(0.7);
+        }
+        100%{
+          opacity: 1;
+          transform: translateY(0px) scale(0.7);
+        }
+      }
       .searchinputcontainer{
         display: none;
         justify-content: center;
         align-items: center;
         position: fixed;
         background: var(--message-background-color);
-        animation: fadeInDown2 1s;
+        animation: fadeInDown 1s;
         border-radius: 100px;
         top: 45%;
         left: 6%;
