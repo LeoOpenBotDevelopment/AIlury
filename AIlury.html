@@ -23,6 +23,7 @@
         --input-field-text-color: #000;
         --intro-background-color: linear-gradient(to right, #ccc, #fff);
         --blurbc-color: rgba(255, 255, 255, 0.5);
+        --blurbc2-color: rgba(120, 120, 120, 0.2);
         --bubble-color: #999999;
     }
 
@@ -41,6 +42,7 @@
         --input-field-text-color: #fff;
         --intro-background-color: linear-gradient(to right, #232323, #000);
         --blurbc-color: rgba(0, 0, 0, 0.5);
+        --blurbc2-color: rgba(70, 70, 70, 0.2);
         --bubble-color: #121212;
     }
     input[type=text] {
@@ -316,7 +318,7 @@
         flex-direction: column;
         align-items: center;
         animation: BodyfadeIn 1s;
-        background: var(--blurbc-color);
+        background: var(--blurbc2-color);
         backdrop-filter: blur(70px);
         -webkit-backdrop-filter: blur(70px);
         transition: 1s;
@@ -403,7 +405,7 @@
         height: 100vh;
         width: 100vw;
         margin: 0;
-        background: var(--blurbc-color);
+        background: var(--blurbc2-color);
         color: var(--primary-color);
         backdrop-filter: blur(70px);
         -webkit-backdrop-filter: blur(70px);
@@ -495,7 +497,7 @@
         align-items: center;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: var(--blurbc-color);
+        background: var(--blurbc2-color);
         color: var(--primary-color);
         backdrop-filter: blur(70px);
         -webkit-backdrop-filter: blur(70px);
@@ -564,7 +566,7 @@
         z-index: 900;
         font-family: Arial, sans-serif;
         text-align: center;
-        background: var(--blurbc-color);
+        background: var(--blurbc2-color);
         color: var(--primary-color);
         backdrop-filter: blur(70px);
         -webkit-backdrop-filter: blur(70px);
