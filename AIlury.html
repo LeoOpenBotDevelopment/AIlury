@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AIlury</title>
   <!--<link rel="icon" type="image/ICO" href="templates/Favicon.ICO">-->
-  <link rel="icon" href="AIlurylogo.ico" type="image/x-icon">
+  <link id="faviconico" rel="icon" href="AIlurylogo.ico" type="image/x-icon">
   <style>
     :root {
         --primary-color: #000;
@@ -5853,16 +5853,16 @@
       }
     }
     function changeFavicon(url) {
-        var link = document.querySelector("link[rel='icon']");
+        let favilink = document.getElementById("faviconico");
 
-        if (link) {
-            link.href = url;
+        if (favilink) {
+            favilink.href = url;
         } else {
-            link = document.createElement('link');
-            link.rel = 'icon';
-            link.href = url;
-            link.type = 'image/x-icon';
-            document.head.appendChild(link);
+            favilink = document.createElement('link');
+            favilink.rel = 'icon';
+            favilink.href = url;
+            favilink.type = 'image/x-icon';
+            document.head.appendChild(favilink);
         }
     }
     
