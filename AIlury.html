@@ -5852,15 +5852,30 @@
         return false;
       }
     }
+    function changeFavicon(url) {
+        var link = document.querySelector("link[rel='icon']");
 
+        if (link) {
+            link.href = url;
+        } else {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            link.href = url;
+            link.type = 'image/x-icon';
+            document.head.appendChild(link);
+        }
+    }
+    
     // Function to update the mode information
     function updateModeInfo() {
       var modeInfo2 = document.getElementById("changethemebtn");
       if (isDarkMode()) {
         modeInfo2.textContent = light2;
         change_mood();
+        changeFavicon('AIlurylogo2.ico');
       } else {
         modeInfo2.textContent = dark2;
+        changeFavicon('AIlurylogo.ico');
       }
     }
 
