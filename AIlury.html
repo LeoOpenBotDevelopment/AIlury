@@ -5846,48 +5846,49 @@
       }, 5000);
     }
     function isDarkMode() {
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        changeFavicon('AIlurylogo2.ico');
-        return true;
-      } else {
-        changeFavicon('AIlurylogo.ico');
-        return false;
-      }
-    }
-    function changeFavicon(faviconurl) {
-      let favilink = document.getElementById("faviconico");
-      
-      favilink.href = faviconurl;
-      /*if (favilink) {
-          favilink.href = faviconurl;
-      } else {
-          favilink = document.createElement('link');
-          favilink.rel = 'icon';
-          favilink.href = faviconurl;
-          favilink.type = 'image/x-icon';
-          document.head.appendChild(favilink);
-      }*/
-    }
-    
-    // Function to update the mode information
-    function updateModeInfo() {
-      var modeInfo2 = document.getElementById("changethemebtn");
-      if (isDarkMode()) {
-        modeInfo2.textContent = light2;
-        changeFavicon('AIlurylogo2.ico');
-        change_mood();
-      } else {
-        modeInfo2.textContent = dark2;
-        changeFavicon('AIlurylogo.ico');
-      }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            changeFavicon('AIlurylogo2.ico');
+            return true;
+        } else {
+            changeFavicon('AIlurylogo.ico');
+            return false;
+        }
     }
 
-    // Call the function initially
+    function changeFavicon(faviconurl) {
+        let favilink = document.getElementById("faviconico");
+    
+        if (favilink) {
+            favilink.href = faviconurl;
+        } else {
+            // Fallback, falls das Element nicht existiert
+            favilink = document.createElement('link');
+            favilink.id = 'faviconico';
+            favilink.rel = 'icon';
+            favilink.href = faviconurl;
+            favilink.type = 'image/x-icon';
+            document.head.appendChild(favilink);
+        }
+    }
+
+    // Funktion zur Aktualisierung des Modus
+    function updateModeInfo() {
+        var modeInfo2 = document.getElementById("changethemebtn");
+        if (isDarkMode()) {
+            modeInfo2.textContent = light2;
+            change_mood();
+        } else {
+            modeInfo2.textContent = dark2;
+        }
+    }
+
+    // Initiale Aufruf der Funktion
     updateModeInfo();
 
-    // Listen for changes in mode preference
+    // Änderungen im Modusvorlieben überwachen
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateModeInfo);
-    let speech = new SpeechSynthesisUtterance();
+
+    let speech = new SpeechSynthesisUtterance();  // Sicherstellen, dass keine Fehler aufgrund dieses Objekts auftreten
 
     let voices = [];
     let speakon = document.getElementById("speakbtn");
