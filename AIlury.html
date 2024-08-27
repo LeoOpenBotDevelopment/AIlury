@@ -5847,20 +5847,22 @@
     }
     function isDarkMode() {
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        changeFavicon('AIlurylogo2.ico');
         return true;
       } else {
+        changeFavicon('AIlurylogo.ico');
         return false;
       }
     }
-    function changeFavicon(url) {
+    function changeFavicon(faviconurl) {
         let favilink = document.getElementById("faviconico");
 
         if (favilink) {
-            favilink.href = url;
+            favilink.href = faviconurl;
         } else {
             favilink = document.createElement('link');
             favilink.rel = 'icon';
-            favilink.href = url;
+            favilink.href = faviconurl;
             favilink.type = 'image/x-icon';
             document.head.appendChild(favilink);
         }
@@ -5871,8 +5873,8 @@
       var modeInfo2 = document.getElementById("changethemebtn");
       if (isDarkMode()) {
         modeInfo2.textContent = light2;
-        change_mood();
         changeFavicon('AIlurylogo2.ico');
+        change_mood();
       } else {
         modeInfo2.textContent = dark2;
         changeFavicon('AIlurylogo.ico');
