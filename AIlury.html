@@ -13,15 +13,15 @@
         --secondary-color: #fff;
         --chat-background-color: #fff;
         --sidebar-background-color: #fff;
-        --sidebarbtn-background-color: #ccc;
-        --message-background-color: #ccc;
+        --sidebarbtn-background-color: #e8eaee;
+        --message-background-color: #e8eaee;
         --message-text-color: #000;
         --sign-background-color: #000;
-        --info-background-color: #ccc;
+        --info-background-color: #e8eaee;
         --info-text-color: #000;
-        --input-field-background-color: #ccc;
+        --input-field-background-color: #e8eaee;
         --input-field-text-color: #000;
-        --intro-background-color: linear-gradient(to right, #ccc, #fff);
+        --intro-background-color: linear-gradient(to right, #e8eaee, #fff);
         --blurbc-color: rgba(255, 255, 255, 0.5);
         --blurbc2-color: rgba(120, 120, 120, 0.2);
         --bubble-color: #999999;
@@ -5855,17 +5855,18 @@
       }
     }
     function changeFavicon(faviconurl) {
-        let favilink = document.getElementById("faviconico");
-
-        if (favilink) {
-            favilink.href = faviconurl;
-        } else {
-            favilink = document.createElement('link');
-            favilink.rel = 'icon';
-            favilink.href = faviconurl;
-            favilink.type = 'image/x-icon';
-            document.head.appendChild(favilink);
-        }
+      let favilink = document.getElementById("faviconico");
+      
+      favilink.href = faviconurl;
+      /*if (favilink) {
+          favilink.href = faviconurl;
+      } else {
+          favilink = document.createElement('link');
+          favilink.rel = 'icon';
+          favilink.href = faviconurl;
+          favilink.type = 'image/x-icon';
+          document.head.appendChild(favilink);
+      }*/
     }
     
     // Function to update the mode information
