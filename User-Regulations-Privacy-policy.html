@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="AIlurylogo.ico" type="image/x-icon">
+    <link id="faviconico" rel="icon" href="AIlurylogo.ico" type="image/x-icon">
     <title>Guidelines</title>
     <style>
       :root{
@@ -126,9 +126,26 @@ Breach of these regulations may result in restricted access or banning from the 
       
     function isDarkMode() {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            changeFavicon('AIlurylogo2.ico');
             return true;
         } else {
+            changeFavicon('AIlurylogo.ico');
             return false;
+        }
+    }
+    function changeFavicon(faviconurl) {
+        let favilink = document.getElementById("faviconico");
+    
+        if (favilink) {
+            favilink.href = faviconurl;
+        } else {
+            // Fallback, falls das Element nicht existiert
+            favilink = document.createElement('link');
+            favilink.id = 'faviconico';
+            favilink.rel = 'icon';
+            favilink.href = faviconurl;
+            favilink.type = 'image/x-icon';
+            document.head.appendChild(favilink);
         }
     }
 
