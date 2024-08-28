@@ -15,6 +15,7 @@
           --input-bg-color: rgba(150, 150, 150, 0.1);
           --border-color: rgba(255, 255, 255, 0.3);
           --shadow-color: rgba(0, 0, 0, 0.2);
+          --alink-color: #367af6;
         }
 
         .dark-theme{
@@ -25,6 +26,7 @@
           --input-bg-color: rgba(100, 100, 100, 0.3);
           --border-color: rgba(255, 255, 255, 0.5);
           --shadow-color: rgba(0, 0, 0, 0.2);
+          --alink-color: #6495ed;
         }
 
         body {
@@ -147,9 +149,12 @@
             border-radius: 10px;
             padding: 10px 20px;
             cursor: pointer;
-            color: var(--text-color);
+            color: var(--main-bg-color);
             font-size: 16px;
             width: auto;
+        }
+        #links{
+            color: var(--alink-color);
         }
     </style>
 </head>
