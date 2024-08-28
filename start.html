@@ -9,7 +9,7 @@
         :root{
           --bg-color: #fff;
           --main-bg-color: #fff;
-          --primary-color: #367af6;
+          --primary-color: #000;/*#367af6;*/
           --text-color: #333;
           --text-color-dark: #f0f0f0;
           --input-bg-color: rgba(150, 150, 150, 0.1);
@@ -20,7 +20,7 @@
         .dark-theme{
           --bg-color: #000;
           --main-bg-color: #121212;
-          --primary-color: #6495ed;
+          --primary-color: #fff;/*#6495ed;*/
           --text-color: #f0f0f0;
           --input-bg-color: rgba(100, 100, 100, 0.3);
           --border-color: rgba(255, 255, 255, 0.5);
@@ -85,6 +85,7 @@
         
         button {
             background-color: var(--primary-color);
+            color: var(--main-bg-color);
             border: none;
             color: white;
             font-weight: bold;
