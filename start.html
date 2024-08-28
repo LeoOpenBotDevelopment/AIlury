@@ -7,31 +7,26 @@
     <title>User Profile</title>
     <style>
         :root{
-          --f0f0f0-color: #fff;
-          --e9e9ea-color:rgba(255, 255, 255, 0.5);
-          --333-color: #333;
-          --fff-color: white;
-          --000-color: #000;
-          --367af6-color: #000;
-          --white-color: white;
-          --blue-color: blue;
-          --grey-color: #000;
+          --main-bg-color: rgba(255, 255, 255, 0.2);
+          --primary-color: #367af6;
+          --text-color: #333;
+          --text-color-dark: #f0f0f0;
+          --input-bg-color: rgba(150, 150, 150, 0.1);
+          --border-color: rgba(255, 255, 255, 0.3);
+          --shadow-color: rgba(0, 0, 0, 0.2);
         }
-        /* #5c3884 */
+
         .dark-theme{
-          --f0f0f0-color: #000;
-          --e9e9ea-color: rgba(100, 100, 100, 0.5);
-          --333-color: #f0f0f0;
-          --fff-color: black;
-          --000-color: #cdd5f2;
-          --367af6-color: white;
-          --white-color: #cdd5f2;
-          --blue-color: #6495ed;
-          --grey-color: white;
+          --main-bg-color: rgba(0, 0, 0, 0.7);
+          --primary-color: #6495ed;
+          --text-color: #f0f0f0;
+          --input-bg-color: rgba(100, 100, 100, 0.3);
+          --border-color: rgba(255, 255, 255, 0.5);
+          --shadow-color: rgba(255, 255, 255, 0.1);
         }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: var(--f0f0f0-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-image: url(AIluryBackground.jpg);
             background-size: cover;
             background-repeat: no-repeat;
@@ -41,82 +36,71 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: 1s;
-            animation: BodyfadeIn 1s;
             height: 100vh;
-            width: 100vw;
+            transition: 1s;
         }
 
         .container {
-            background-color: var(--e9e9ea-color);
-            -webkit-backdrop-filter: blur(70px);
-            border-radius: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--main-bg-color);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
             padding: 40px;
-            width: 400px;
-            animation: fadeInDown 1s;
+            width: 350px;
             text-align: center;
             transition: 1s;
+            color: var(--text-color);
         }
 
         h1 {
-            color: var(--333-color);
+            color: var(--text-color);
+            margin-bottom: 30px;
+            font-weight: 600;
         }
 
-        input[type="text"] {
-            padding: 10px;
+        input[type="text"], .custom-file-div, button {
+            width: calc(100% - 40px);
+            padding: 12px 20px;
             margin: 10px 0;
-            width: 93%;
-            border: 1px solid var(--fff-color);
-            border-radius: 5px;
-            background-color: transparent;
-            color: var(--000-color);
-        }
-        input[type="file"] {
-            display: none;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg-color);
+            color: var(--text-color);
+            font-size: 16px;
+            transition: 0.3s;
         }
 
-        button{
-            background-color: transparent;
-            color: grey;
-            border: 1px solid var(--fff-color);
-            padding: 10px 20px;
+        /* focus */
+        input[type="text"]:focus{
+            outline: none;
+            background: var(--primary-color);
+        }
+        /* focus placeholder */
+        input[type="text"]:focus::placeholder{
+            color: var(--text-color-dark);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            border: none;
+            color: white;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
-            height: 40px;
-            width: 79%;
-            color: var(--grey-color);
-            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: var(--grey-color);
-        }
-        #start{
-            background-color: transparent;
-            color: var(--grey-color);
-            border: 1px solid var(--fff-color);
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        #start:hover {
-            background-color: var(--grey-color);
+            background-color: darken(var(--primary-color), 10%);
+            color: var(--text-color);
         }
 
         .user-profile {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: transparent;
-            font-weight: bold;
-            border: 1px solid var(--fff-color);
-            color: var(--000-color);
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 30px;
+            background-color: var(--input-bg-color);
         }
 
         .user-profile img {
@@ -126,96 +110,48 @@
             margin-right: 10px;
             object-fit: cover;
         }
-        #button1 img{
-            height: 59px;
-        }
 
-        .change-icon-btn {
-            background-color: var(--367af6-color);
-            color: var(--fff-color);
-            border: none;
-            padding: 5px 10px;
+        .custom-file-div {
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .change-icon-btn:hover {
-            background-color: var(--blue-color);
-        }
-        .custom-file-input{
-            background-color: transparent;
-            color: var(--367af6-color);
-            /*border: 1px solid var(--e9e9ea-color);*/
-            cursor: pointer;
-            border-radius: 5px;
-            width: 90%;
-            transition: background-color 0.3s;
-        }
-
-        .custom-file-div{
-            background-color: transparent;
-            color: var(--367af6-color);
-            border: 1px solid var(--fff-color);
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 90%;
-            transition: background-color 0.3s;
         }
 
         .custom-file-div:hover {
-            background-color: var(--grey-color);
+            background-color: var(--primary-color);
+            color: white;
         }
 
-        p{
-          font-size: 12px;
-          font-weight: bold;
+        p {
+            font-size: 12px;
+            color: var(--text-color);
         }
-        #links{
-          font-size: 12px;
-          font-weight: bold;
-          color: var(--blue-color);
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
         }
-        @keyframes fadeInDown{
-          0%{
-            opacity: 0;
-            transform: translateY(-100px);
-          }
-          100%{
-            opacity: 1;
-            transform: translateY(0px);
-          }
+
+        a:hover {
+            text-decoration: underline;
         }
-        @keyframes BodyfadeIn{
-          0%{
-            opacity: 0;
-          }
-          100%{
-            opacity: 1;
-          }
-        }
-        .clearinfo{
+
+        .clearinfo {
             position: fixed;
-            top: 10px;
-            left: 10px;
-            background: var(--e9e9ea-color);
-            -webkit-backdrop-filter: blur(70px);
-            color: var(--grey-color);
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
             border: none;
             border-radius: 10px;
             padding: 10px 20px;
             cursor: pointer;
+            color: var(--text-color);
             font-size: 16px;
-            animation: fadeInDown 1s;
-            width: 120px;
-            transition: 1s;
+            width: auto;
         }
     </style>
 </head>
 
 <body>
-    <button class="clearinfo">clear info</button>
+    <button class="clearinfo">Clear Info</button>
     <div class="container">
         <h1>Your Profile</h1>
         <div class="user-profile" id="user-profile">
@@ -228,10 +164,10 @@
         <form id="profile-form">
             <input type="text" id="username" placeholder="Enter username" maxlength="8">
             <div class="custom-file-div">
-              <label for="avatar" class="custom-file-input">Choose a Prifile Picture</label>
+                <label for="avatar" class="custom-file-input">Profile Picture</label>
             </div>
-            <input type="file" id="avatar" accept="image/*"><br>
-            <p>When starting, you accept the <a href="User-Regulations-Privacy-policy.html" id="links">privacy policy</a> and the <a href="User-Regulations-Privacy-policy.html" id="links">user regulations</a></p>
+            <input type="file" id="avatar" style="display: none;" accept="image/*"><br>
+            <p>By starting, you accept the <a href="User-Regulations-Privacy-policy.html" id="links">privacy policy</a> and the <a href="User-Regulations-Privacy-policy.html" id="links">user regulations</a></p>
             <button type="submit" class="submit-btn">Save Profile</button>
             <a id="start" href="AIlury.html">Start</a><br>
         </form>
@@ -253,7 +189,6 @@
             const usernameDisplay = document.getElementById("username-display");
             const changeIconButton = document.getElementById("change-icon-btn");
 
-            // Load user profile from localStorage
             loadUserProfile();
 
             function loadUserProfile() {
@@ -267,16 +202,14 @@
 
                 if (savedAvatar) {
                     userProfile.querySelector("img").src = savedAvatar;
-
                 }
             }
-            // Save user profile to localStorage
+
             function saveUserProfile(username, avatar) {
                 localStorage.setItem("username", username);
                 localStorage.setItem("avatar", avatar);
             }
 
-            // Submit profile form
             document.getElementById("profile-form").addEventListener("submit", function (e) {
                 e.preventDefault();
                 const username = usernameInput.value.trim();
@@ -285,7 +218,6 @@
                 loadUserProfile();
             });
 
-            // Change user icon
             changeIconButton.addEventListener("click", function () {
                 avatarInput.click();
             });
@@ -300,9 +232,11 @@
                 }
             });
         });
+
         function change_mood(){
-          document.body.classList.toggle("dark-theme");
+            document.body.classList.toggle("dark-theme");
         }
+
         function isDarkMode() {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 changeFavicon('AIlurylogo2.ico');
@@ -312,13 +246,13 @@
                 return false;
             }
         }
+
         function changeFavicon(faviconurl) {
             let favilink = document.getElementById("faviconico");
     
             if (favilink) {
                 favilink.href = faviconurl;
             } else {
-                // Fallback, falls das Element nicht existiert
                 favilink = document.createElement('link');
                 favilink.id = 'faviconico';
                 favilink.rel = 'icon';
@@ -328,26 +262,22 @@
             }
         }
 
-        // Function to update the mode information
         function updateModeInfo() {
             if (isDarkMode()) {
                 change_mood();
             }
-            /*else {
-                change_mood();
-            }*/
         }
 
-        // Call the function initially
         updateModeInfo();
 
-        // Listen for changes in mode preference
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateModeInfo);
+
         function removeallinfo() {
             localStorage.clear();
             localStorage.setItem('avatar', 'default_avatar.png');
             localStorage.setItem('username', 'Guest');
         }
+
         let clearinfo = document.querySelector('.clearinfo');
         clearinfo.addEventListener('click', () => {
             removeallinfo();
