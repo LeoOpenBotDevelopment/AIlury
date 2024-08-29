@@ -5075,7 +5075,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             leicht1 = "leicht";
             return themathquestion;
@@ -5086,7 +5094,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return themathquestion;
             // if the user question == the answer to the mathematical question, return "correct"
@@ -5096,7 +5112,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return 'Richtig! hier hast du die nächste aufgabe ' + themathquestion;
           } else if (userQuestion == themathanswer && leicht1 == "leicht") {
@@ -5104,7 +5128,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return 'Richtig! hier hast du die nächste aufgabe ' + themathquestion;
           } else if (themathquestion != "" && userQuestion.includes("idk") && leicht1 != "leicht") {
@@ -5114,8 +5146,16 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             //the oldmathanswer to string
             let theoldmathanswer2 = theoldmathanswer.toString();
@@ -5135,8 +5175,16 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5155,8 +5203,16 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             //the oldmathanswer to string
             let theoldmathanswer2 = theoldmathanswer.toString();
@@ -5176,8 +5232,16 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5283,7 +5347,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return themathquestion;
             // if the user question == the answer to the mathematical question, return "correct"
@@ -5293,7 +5365,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             leicht2 = "easy";
             return themathquestion;
@@ -5304,7 +5384,15 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return 'correct! there you have the next question: ' + themathquestion;
           } else if (userQuestion == themathanswer && leicht2 == "easy") {
@@ -5312,18 +5400,34 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
-            themathquestion = `${num1} ${operator} ${num2}`;
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             return 'correct! there you have the next question: ' + themathquestion;
           } else if (themathquestion != "" && userQuestion.includes("idk") && leicht2 != "easy") {
             let oldnum1 = num1;
             let oldnum2 = num2;
             let oldoperator = operator;
+            operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
-            operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5342,8 +5446,16 @@
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
             operator = ['+', '-'][Math.floor(Math.random() * 2)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5360,11 +5472,19 @@
             let oldnum1 = num1;
             let oldnum2 = num2;
             let oldoperator = operator;
+            operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
-            operator = ['+', '-', '*', '/'][Math.floor(Math.random() * 4)];
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5380,11 +5500,19 @@
             let oldnum1 = num1;
             let oldnum2 = num2;
             let oldoperator = operator;
+            operator = ['+', '-'][Math.floor(Math.random() * 2)];
+            let operator2;
+            if (operator == "/"){
+              operator2 = "÷";
+            }else if (operator == "*"){
+              operator2 = "×";
+            }else {
+              operator2 = operator;
+            }
             num1 = Math.floor(Math.random() * 10) + 1;
             num2 = Math.floor(Math.random() * 10) + 1;
-            operator = ['+', '-'][Math.floor(Math.random() * 2)];
             theoldmathanswer = themathanswer;
-            themathquestion = `${num1} ${operator} ${num2}`;
+            themathquestion = `${num1} ${operator2} ${num2}`;
             themathanswer = eval(`${num1} ${operator} ${num2}`);
             let theoldmathanswer2 = theoldmathanswer.toString();
             if (oldoperator == "*") {
@@ -5903,7 +6031,7 @@
 
     function changeFavicon(faviconurl) {
         let favilink = document.getElementById("faviconico");
-    
+
         if (favilink) {
             favilink.href = faviconurl;
         } else {
