@@ -3847,6 +3847,7 @@
       localStorage.setItem("username", gekuerzterName);
       document.getElementById("username-display").textContent = gekuerzterName;
     }
+    let dyhfpttt = "did you have fun playing Tic Tac Toe?";
     let persons = {}
     let importantpeopleE = {"steve jobs": "steve jobs was the founder of apple", "bill gates": "bill gates was the founder of microsoft","mark zuckerberg": "mark zuckerberg was the founder of facebook", "elon musk": "elon musk was the founder of tesla", "jeff bezos": "jeff bezos was the founder of amazon"}
     let importantpeopleD = {"steve jobs": "steve jobs war der gründer von apple", "bill gates": "bill gates war der gründer von microsoft", "mark zuckerberg": "mark zuckerberg war der gründer von facebook", "elon musk": "elon musk war der gründer von tesla", "jeff bezos": "jeff bezos war der gründer von amazon"}
@@ -3886,6 +3887,24 @@
               }
               gamecontainercross3.addEventListener('click', gamecontainercross3click);
               return "did you have fun playing Tic Tac Toe?";
+          }else if (userQuestion == "#") {
+              startTicTacToeGame();
+              let gamecontainercross3 = document.getElementById('gamecontainercross3');
+              function gamecontainercross3click() {
+                  gamecontainercross3.removeEventListener('click', gamecontainercross3click);
+                  stopTicTacToeGame();
+              }
+              gamecontainercross3.addEventListener('click', gamecontainercross3click);
+              return dyhfpttt;
+          }else if (userQuestion == "♯") {
+              startTicTacToeGame();
+              let gamecontainercross3 = document.getElementById('gamecontainercross3');
+              function gamecontainercross3click() {
+                  gamecontainercross3.removeEventListener('click', gamecontainercross3click);
+                  stopTicTacToeGame();
+              }
+              gamecontainercross3.addEventListener('click', gamecontainercross3click);
+              return dyhfpttt;
           }else if (userQuestion.includes("play") && userQuestion.includes("memory")) {
               startMemoryGame();
               let gamecontainercross2 = document.getElementById('gamecontainercross2');
@@ -6231,6 +6250,7 @@ I hope this gives you a good overview of what AIlury can do!`,
           editbtnv: `✎ Edit`,
           profilebtnv: `○ Profile pic`,
           instructionbtnv: `? Instruction`,
+          dyhfptttv: `did you have fun playing Tic Tac Toe?`,
           notificationstext: `<strong>Update 2.1.2: Introducing the 2nd Update in the Heli Update series</strong><br><br>
       We are thrilled to unveil Update 2.1.2, the latest release in the Heli Update series, designed to enhance your user experience with a modern interface.<br><br>
 
@@ -6355,6 +6375,7 @@ Ich hoffe, dies gibt Ihnen einen guten Überblick darüber, was AIlury kann!`,
           editbtnv: `✎ Bearbeiten`,
           profilebtnv: `○ Profil bild`,
           instructionbtnv: `? Anleitung`,
+          dyhfptttv: `mochtest du Tic Tac Toe Spielen?`,
           notificationstext: `<strong>Update 2.1.2: Das zweite update in der Heli update Serie</strong><br><br>
 Wir freuen uns, das Update 2.1.2 vorzustellen, das neuste update in der Heli-Update-Serie, die darauf abzielt, Ihre Benutzererfahrung mit einer modernen Oberfläche zu verbessern.<br><br>
 
@@ -6421,6 +6442,8 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
     textsend = translations['en'].textsendv;
     textmessages = translations['en'].textmessagesv;
     idkanswer = translations['en'].idkanswerv;
+
+    dyhfpttt = translations['en'].dyhfptttv;
 
     memorygameyouwoncongrats = translations['en'].memorygameyouwoncongratsv;
     memorygameyoulostbetterlucknexttime = translations['en'].memorygameyoulostbetterlucknexttimev;
@@ -6534,6 +6557,8 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
       textclickchagemood = translations[newLang].textclickchagemoodv;
 
       nmyelement.innerHTML = translations[newLang].nmyv;
+
+      dyhfpttt = translations[newLang].dyhfptttv;
 
       document.getElementById('Löschbtn').textContent = translations[newLang].löschbtnv;
       document.getElementById('Breakbtn').textContent = translations[newLang].breakbtnv;
