@@ -3094,6 +3094,10 @@
     }
     // Füge den Event-Listener für das resize-Event hinzu
     window.addEventListener("resize", handleResize);
+    let iwtpteg = "i want to play the emoji game!";
+    let iwtpg = "i want to practice german!";
+    let iwtptq = "i want to play the quiz!";
+    let iwtpm = "i want to practice math!";
     function checkvalueoc() {
       defaultchalange = chalange;
       helptext.textContent = "whats your problem?";
@@ -3109,10 +3113,10 @@
         hilfeop2.style.display = "flex";
         hilfeop3.style.display = "flex";
         hilfeop4.style.display = "flex";
-        hilfeop1.textContent = "i want to play the emoji game!";
-        hilfeop2.textContent = "i want to practice german!";
-        hilfeop3.textContent = "i want to play the quiz!";
-        hilfeop4.textContent = "i want to practice math!";
+        hilfeop1.textContent = iwtpteg;
+        hilfeop2.textContent = iwtpg;
+        hilfeop3.textContent = iwtptq;
+        hilfeop4.textContent = iwtpm;
         if (afteropening == "yes"){
           showalert("you are back in the normal conversation now!");
         }
@@ -3121,10 +3125,10 @@
         hilfeop2.style.display = "flex";
         hilfeop3.style.display = "flex";
         hilfeop4.style.display = "flex";
-        hilfeop1.textContent = "i want to play the emoji game!";
-        hilfeop2.textContent = "i want to practice german!";
-        hilfeop3.textContent = "i want to play the quiz!";
-        hilfeop4.textContent = "i want to practice math!";
+        hilfeop1.textContent = iwtpteg;
+        hilfeop2.textContent = iwtpg;
+        hilfeop3.textContent = iwtptq;
+        hilfeop4.textContent = iwtpm;
         if (afteropening == "yes"){
           showalert("you are back in the normal conversation now!");
         }
@@ -3219,6 +3223,9 @@
       if (hilfeop1.textContent == "i want to play the emoji game!") {
         inputvaluefc.value = "i want to play the emoji game";
         helptext.textContent = "just send what i entered in the input field";
+      } else if (hilfeop1.textContent == "ich möchte das emoji spiel spielen!") {
+        inputvaluefc.value = "ich möchte das emoji spiel spielen";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else if (hilfeop1.textContent == "i dont know the answer!") {
         inputvaluefc.value = "idk";
         helptext.textContent = "just send what i entered in the input field";
@@ -3239,6 +3246,9 @@
       if (hilfeop2.textContent == "i want to practice german!") {
         inputvaluefc.value = "i want to practice german";
         helptext.textContent = "just send what i entered in the input field";
+      } else if (hilfeop2.textContent == "ich möchte englisch üben!") {
+        inputvaluefc.value = "ich möchte englisch üben";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else if (hilfeop2.textContent == "i want to go back to the normal conversation!") {
         inputvaluefc.value = "i want to go back to the normal chat";
         helptext.textContent = "just send what i entered in the input field";
@@ -3257,8 +3267,11 @@
     });
     hilfeop3.addEventListener("click", () => {
       if (hilfeop3.textContent == "i want to play the quiz!") {
-        inputvaluefc.value = "i want to play the quiz!";
+        inputvaluefc.value = "i want to play the quiz";
         helptext.textContent = "just send what i entered in the input field";
+      } else if (hilfeop3.textContent == "ich möchte das quiz spielen!") {
+        inputvaluefc.value = "ich möchte das quiz spielen";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else if (hilfeop3.textContent == "i want to go back to the normal conversation!") {
         inputvaluefc.value = "i want to go back to the normal chat";
         helptext.textContent = "just send what i entered in the input field";
@@ -3273,6 +3286,9 @@
       if (hilfeop4.textContent == "i want to practice math!") {
         inputvaluefc.value = "i want to practice math";
         helptext.textContent = "just send what i entered in the input field";
+      } else if (hilfeop4.textContent == "ich möchte mathe üben!") {
+        inputvaluefc.value = "ich möchte mathe üben";
+        helptext.textContent = "sende einfach den text den ich in das eingabefeld gemacht habe";
       } else if (hilfeop4.textContent == "its to easy!") {
         leicht2 = "";
         helptext.textContent = "now its not in easy mode!";
@@ -6027,9 +6043,9 @@
     function font3() {
       font2 = 'h3';
     }
+    let randri = ['Hi', 'Hello', 'How are you?', 'i want to play Memory', 'i want to play Tic Tac Toe', 'i want to play Tile Tumble', 'i want to practice german', 'i want to practice math', 'hi AIlury'];
     function setinputvalue() {
-      const rand = ['Hi', 'Hello', 'How are you', 'How are you doing', 'What is your name', 'Who are you?', 'What are you?', 'What is Architecture', 'Whats a Computer'];
-      const randq = rand[Math.floor(Math.random() * rand.length)];
+      const randq = randri[Math.floor(Math.random() * randri.length)];
       const input = document.getElementById('user-input');
       input.value = randq;
     }
@@ -6252,6 +6268,11 @@ I hope this gives you a good overview of what AIlury can do!`,
           profilebtnv: `○ Profile pic`,
           instructionbtnv: `? Instruction`,
           dyhfptttv: `did you have fun playing Tic Tac Toe?`,
+          iwtptegv: "i want to play the emoji game!",
+          iwtpgv: "i want to practice german!",
+          iwtptqv: "i want to play the quiz!",
+          iwtpmv: "i want to practice math!",
+          randriv: ['Hi', 'Hello', 'How are you?', 'i want to play Memory', 'i want to play Tic Tac Toe', 'i want to play Tile Tumble', 'i want to practice german', 'i want to practice math', 'hi AIlury'],
           notificationstext: `<strong>Update 2.1.2: Introducing the 2nd Update in the Heli Update series</strong><br><br>
       We are thrilled to unveil Update 2.1.2, the latest release in the Heli Update series, designed to enhance your user experience with a modern interface.<br><br>
 
@@ -6377,6 +6398,11 @@ Ich hoffe, dies gibt Ihnen einen guten Überblick darüber, was AIlury kann!`,
           profilebtnv: `○ Profil bild`,
           instructionbtnv: `? Anleitung`,
           dyhfptttv: `mochtest du Tic Tac Toe Spielen?`,
+          iwtptegv: "ich möchte das emoji spiel spielen!",
+          iwtpgv: "ich möchte englisch üben!",
+          iwtptqv: "ich möchte das quiz spielen!",
+          iwtpmv: "ich möchte mathe üben!",
+          randriv: ['hallo', 'wie gehts?', 'wie geht es dir?', 'ich möchte mathe üben', 'ich möchte Tic Tac Toe spielen', 'ich möchte Tile Tumble spielen', 'ich möchte Memory spielen', 'ich möchte englisch üben', 'hallo AIlury'],
           notificationstext: `<strong>Update 2.1.2: Das zweite update in der Heli update Serie</strong><br><br>
 Wir freuen uns, das Update 2.1.2 vorzustellen, das neuste update in der Heli-Update-Serie, die darauf abzielt, Ihre Benutzererfahrung mit einer modernen Oberfläche zu verbessern.<br><br>
 
@@ -6446,6 +6472,11 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
     dyhfpttt = translations['en'].dyhfptttv;
 
+    iwtpteg = translations['en'].iwtptegv;
+    iwtpg = translations['en'].iwtpgv;
+    iwtptq = translations['en'].iwtptqv;
+    iwtpm = translations['en'].iwtpmv;
+
     memorygameyouwoncongrats = translations['en'].memorygameyouwoncongratsv;
     memorygameyoulostbetterlucknexttime = translations['en'].memorygameyoulostbetterlucknexttimev;
 
@@ -6466,6 +6497,8 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
     textclickrandom = translations['en'].textclickrandomv;
     textclickchagemood = translations['en'].textclickchagemoodv;
+
+    randri = translations['en'].randriv;
 
     nmyelement.innerHTML = translations['en'].nmyv;
     function instructionlinkclick() {
@@ -6561,6 +6594,13 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
 
       dyhfpttt = translations[newLang].dyhfptttv;
 
+      iwtpteg = translations[newLang].iwtptegv;
+      iwtpg = translations[newLang].iwtpgv;
+      iwtptq = translations[newLang].iwtptqv;
+      iwtpm = translations[newLang].iwtpmv;
+
+      randri = translations[newLang].randriv;
+
       document.getElementById('Löschbtn').textContent = translations[newLang].löschbtnv;
       document.getElementById('Breakbtn').textContent = translations[newLang].breakbtnv;
       document.getElementById('Editbtn').textContent = translations[newLang].editbtnv;
@@ -6593,6 +6633,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
         isguessing = "yes";
       }
 
+      checkvalueoc();
 
     }
   </script>
