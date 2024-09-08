@@ -4004,7 +4004,27 @@
             } else {
               return "weiss ich nicht";
             }
-          }else if (userQuestion.includes("my") && userQuestion.includes("is called")) {
+          } else if (userQuestion.includes("wer heißt ")){
+            let name = userQuestion.split("heißt")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]){
+              return name + " ist dein " + persons[name];
+            } else if (importantpeopleD[name]) {
+              return importantpeopleD[name];
+            } else {
+              return "weiss ich nicht";
+            }
+          } else if (userQuestion.includes("wer heisst ")){
+            let name = userQuestion.split("heisst")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]){
+              return name + " ist dein " + persons[name];
+            } else if (importantpeopleD[name]) {
+              return importantpeopleD[name];
+            } else {
+              return "weiss ich nicht";
+            }
+          } else if (userQuestion.includes("my") && userQuestion.includes("is called")) {
             let personpart1 = userQuestion.split("my")[1].trim();
             let person = personpart1.split("is called")[0].trim();
             let name = userQuestion.split("is called ")[1].trim();
@@ -4024,6 +4044,40 @@
             return "ok, your " + person + " name is " + name;
           } else if (userQuestion.includes("who is ")) {
             let name = userQuestion.split("who is ")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]) {
+              // check last letter
+              if (persons[name].includes("'s")) {
+                return name + " is your " + persons[name];
+              } else if (persons[name][persons[name].length - 1] == "s") {
+                return name + " is your " + persons[name] + " name";
+              } else {
+                return name + " is your " + persons[name] + "'s name";
+              }
+            } else if (importantpeopleE[name]) {
+              return importantpeopleE[name];
+            } else {
+              return "i dont know";
+            }
+          } else if (userQuestion.includes("who's name is ")) {
+            let name = userQuestion.split("who's name is ")[1].trim();
+            name = name.split("?")[0].trim();
+            if (persons[name]) {
+              // check last letter
+              if (persons[name].includes("'s")) {
+                return name + " is your " + persons[name];
+              } else if (persons[name][persons[name].length - 1] == "s") {
+                return name + " is your " + persons[name] + " name";
+              } else {
+                return name + " is your " + persons[name] + "'s name";
+              }
+            } else if (importantpeopleE[name]) {
+              return importantpeopleE[name];
+            } else {
+              return "i dont know";
+            }
+          } else if (userQuestion.includes("whos name is ")) {
+            let name = userQuestion.split("whos name is ")[1].trim();
             name = name.split("?")[0].trim();
             if (persons[name]) {
               // check last letter
