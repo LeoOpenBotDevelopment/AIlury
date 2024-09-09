@@ -2525,7 +2525,7 @@
     {
       "question": "bist du eine ki?",
       "answer": "ja",
-      "answer2": "ja, ich bin ki, so weit ich weiss.",
+      "answer2": "ja, ich bin eine ki, so weit ich weiss.",
       "answer3": "ja, ich bin eine ki, ich glaube schon."
     },
     {
@@ -3385,10 +3385,6 @@
       "answer": "du hast noch 50%"
     },
     {
-      "question": "787 : 393.5",
-      "answer": "787 : 393.5 = 2"
-    },
-    {
       "question": "wie hei\u00dft du ",
       "answer": "ailury"
     },
@@ -3485,7 +3481,7 @@
       "answer": "thanks"
     },
     {
-      "question": "i sick of this place ",
+      "question": "im sick of this place ",
       "answer": "okay"
     },
     {
