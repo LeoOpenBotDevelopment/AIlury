@@ -342,7 +342,9 @@
         .hintroc {
             font-family: 'Arial', sans-serif;
             background: #000;
-            position: absolute;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             display: flex;
@@ -441,6 +443,11 @@
             background: linear-gradient(90deg, #ff0077, #7700ff);
             color: #fff;
         }
+        @media (max-width: 750px){
+            .startStudio{
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -492,7 +499,7 @@
             <a href="start.html"><button class="button2" id="startBtn">start</button></a>
         </div>
     </section>
-    <section id="start">
+    <section class="startStudio" id="start">
         <div class="section-title">Want to become a front-end developer?</div>
         <div class="section-content">
             <p>Start using AIlury Programming Studio with unlimited access for <span style="color: green">free</span>.</p>
