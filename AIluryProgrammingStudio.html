@@ -3382,6 +3382,42 @@ body {
             document.querySelector('.console-setting-btn.enabled')?.classList.remove('enabled');
             allelement.classList.add("enabled");
         });
+        function isDarkMode() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                changeFavicon('AIlurylogo2.ico');
+                //return true;
+            } else {
+                changeFavicon('AIlurylogo.ico');
+                //return false;
+            }
+        }
+        function changeFavicon(faviconurl) {
+            let favilink = document.getElementById("faviconico");
+    
+            if (favilink) {
+                favilink.href = faviconurl;
+            } else {
+                // Fallback, falls das Element nicht existiert
+                favilink = document.createElement('link');
+                favilink.id = 'faviconico';
+                favilink.rel = 'icon';
+                favilink.href = faviconurl;
+                favilink.type = 'image/x-icon';
+                document.head.appendChild(favilink);
+            }
+        }
+
+        // Function to update the mode information
+        function updateModeInfo() {
+            isDarkMode();
+        }
+
+        // Call the function initially
+        updateModeInfo();
+
+        // Listen for changes in mode preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateModeInfo);
+
     </script>
 </body>
 </html>
