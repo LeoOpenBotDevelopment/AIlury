@@ -271,18 +271,20 @@
         }
 
         #sidebar {
-            width: 250px;
             background-color: var(--header-background-color);
             color: var(--text-color);
+            position: absolute;
+            width: 250px;
             height: 100vh;
-            position: fixed;
             top: 0;
             left: -300px;
             padding: 10px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
+            /*overflow-y: auto;*/
             transition: left 0.3s;
             z-index: 100;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
 
         #sidebar.show {
