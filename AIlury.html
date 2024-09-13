@@ -1128,10 +1128,11 @@
       background: transparent;
       color: var(--primary-color);
       border: none;
-      border-radius: 5px;
+      border-radius: 0;
       font-size: 15px;
       display: none;
       transition: 1s;
+      border-right: 1px solid #ccc;
     }
     #alertmessagebtn{
       padding: 10px;
@@ -1146,7 +1147,7 @@
       transition: 1s;
     }
     #alertElement{
-      display: flex;
+      display: none;
       justify-content: space-between;
       position: fixed;
       top: 0;
@@ -1155,10 +1156,11 @@
       z-index: 999;
       transition: 1s;
       background: var(--sidebarbtn-background-color);
-      border-radius: 100px;
+      border-radius: 10px;
       margin-left: 40%;
       margin-top: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      min-height: 50px;
     }
     .chat-messages {
       flex: 1;
