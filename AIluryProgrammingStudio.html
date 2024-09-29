@@ -4567,21 +4567,30 @@ body {
                 fileList.appendChild(newFile);
             }
 
-            addFileButton.addEventListener('click', async () => { // Hier async hinzufügen
-                let newfilename;
-                do {
-                    newfilename = await showPrompt('file path:');
-                    if (newfilename === null) {
-                        let namebeginning = ["index", "project", "app", "page", "site", "file"];
-                        let pathend = [".html", ".js", ".css"];
-                        let randomStart = Math.floor(Math.random() * namebeginning.length);
-                        let randomEnd = Math.floor(Math.random() * pathend.length);
-                        newfilename = namebeginning[randomStart] + (filenames.length + 1) + pathend[randomEnd];
-                    }
-                } while (filenames.includes(newfilename) || newfilename == null);
+            addFileButton.addEventListener('click', () => {
+                function promptForFileName() {
+                    showPrompt('file path:', (newfilename) => {
+                        // Überprüfen, ob der Prompt abgelehnt wurde
+                        if (newfilename === null) {
+                            let namebegining = ["index", "project", "app", "page", "site", "file"];
+                            let pathsend = [".html", ".js", ".css"];
+                            let randomStart = Math.floor(Math.random() * namebegining.length);
+                            let randomEnd = Math.floor(Math.random() * pathsend.length);
+                            newfilename = namebegining[randomStart] + (filenames.length + 1) + pathsend[randomEnd];
+                        }
 
-                addNewFile(newfilename);
+                        // Überprüfen, ob der Dateiname bereits existiert
+                        if (filenames.includes(newfilename) || newfilename == null) {
+                            promptForFileName(); // Wenn der Dateiname nicht gültig ist, erneut fragen
+                        } else {
+                            addNewFile(newfilename); // Datei hinzufügen, wenn der Name gültig ist
+                        }
+                    });
+                }
+
+                promptForFileName(); // Erste Anfrage für den Dateinamen starten
             });
+
 
 
             toggleSidebarButton.addEventListener('click', () => {
