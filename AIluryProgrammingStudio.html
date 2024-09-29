@@ -4568,8 +4568,8 @@ body {
             }
 
             addFileButton.addEventListener('click', () => {
-                let newfilename = "index" + (filenames.length + 1) + ".html";
-                do {
+                //let newfilename = "index" + (filenames.length + 1) + ".html";
+                //do {
                     //newfilename = prompt('file path:');
                     /*showPrompt('file path:', (newfilename) => {
                         // check if the prompt was declined
@@ -4582,19 +4582,6 @@ body {
                            newfilename = namebegining[randommmmm] + (filenames.length + 1) + pathsend[randommmmmm2];
                         }
                     });*/
-                    let newfilename;
-                    do {
-                        newfilename = await showPromptAsync('file path:');
-                        if (newfilename === null) {
-                            let namebeginning = ["index", "project", "app", "page", "site", "file"];
-                            let pathend = [".html", ".js", ".css"];
-                            let randomStart = Math.floor(Math.random() * namebeginning.length);
-                            let randomEnd = Math.floor(Math.random() * pathend.length);
-                            newfilename = namebeginning[randomStart] + (filenames.length + 1) + pathend[randomEnd];
-                        }
-                    } while (filenames.includes(newfilename) || newfilename == null);
-    
-                    addNewFile(newfilename);
                     // check if the prompt was declined
                     /*if (newfilename === null){
                         let namebegining = ["index", "project", "app", "page", "site", "file"];
@@ -4604,8 +4591,22 @@ body {
                         let randommmmmm2 = Math.floor(Math.random() * pathsend.length);
                         newfilename = namebegining[randommmmm] + (filenames.length + 1) + pathsend[randommmmmm2];
                     }*/
-                }while(filenames.includes(newfilename) || newfilename == null);
+                //}while(filenames.includes(newfilename) || newfilename == null);
                 
+                
+                //addNewFile(newfilename);
+                let newfilename;
+                do {
+                    newfilename = await showPrompt('file path:');
+                    if (newfilename === null) {
+                        let namebeginning = ["index", "project", "app", "page", "site", "file"];
+                        let pathend = [".html", ".js", ".css"];
+                        let randomStart = Math.floor(Math.random() * namebeginning.length);
+                        let randomEnd = Math.floor(Math.random() * pathend.length);
+                        newfilename = namebeginning[randomStart] + (filenames.length + 1) + pathend[randomEnd];
+                    }
+                } while (filenames.includes(newfilename) || newfilename == null);
+    
                 addNewFile(newfilename);
             });
 
