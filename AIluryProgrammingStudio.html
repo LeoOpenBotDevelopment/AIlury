@@ -3542,6 +3542,8 @@
             let preview = document.getElementById("preview");
             let previewContainer = document.getElementById("preview-container");
             let previewCross = document.getElementById("preview-cross");
+            let pcleft = previewContainer.style.left;
+            let pctop = previewContainer.style.top;
             if (previewIsFullScreen){
                 preview.style.height = "75vh";
                 preview.style.width = "100vw";
@@ -3560,7 +3562,9 @@
                 preview.style.top = "0";
                 preview.style.zIndex = "555";
                 preview.style.borderRadius = "5px";
-                previewCross.style.display = "block";
+                previewContainer.style.left = pcleft;
+                previewContainer.style.top = pctop;
+                previewCross.style.display = "flex";
                 previewIsFullScreen = true;
             }
         }
