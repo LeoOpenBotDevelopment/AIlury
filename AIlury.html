@@ -1214,9 +1214,15 @@
     #Breakbtn {
       display: none;
     }
+    
+    #Copybtn {
+      display: none;
+    }
+    
     button{
       transition: 1s;
     }
+    
     @media(min-width: 750px) {
       .sent.border-active{
         transform: scale(1.1) translateX(-10%);
@@ -1777,6 +1783,7 @@
           <button class="sidebar-button" id="Breakbtn">⚠ Stop</button>
           <button class="sidebar-button" id="Löschbtn">⊗ Trash</button>
           <button class="sidebar-button" id="Editbtn">✎ Edit</button>
+          <button class="sidebar-button" id="Copybtn">◌ Copy</button>
           <button class="sidebar-button"></button>
       </div>
 
@@ -3510,13 +3517,27 @@
             const löschbtn = document.getElementById('Löschbtn');
             const editbtn = document.getElementById('Editbtn');
             const Breakbtn = document.getElementById('Breakbtn');
+            const Copybtn = document.getElementById('Copybtn');
 
             // Show delete button and add delete event listener
-            showButton(löschbtn, () => {
+            showButton(Copybtn, () => {
+              document.querySelectorAll('.border-active').forEach(borderElement => {
+                resetButtonsAndBorders(borderElement);
+              });
+              copyTextFromElement(clickedElement);
+            });
+
+            /*showButton(löschbtn, () => {
                 if (clickedElement.classList.contains('border-active')) {
                     resetButtonsAndBorders(clickedElement);
                     clickedElement.remove();
                 }
+            });*/
+            showButton(löschbtn, () => {
+              document.querySelectorAll('.border-active').forEach(borderElement => {
+                resetButtonsAndBorders(borderElement);
+                borderElement.remove();
+              });
             });
 
             // Show edit button and add edit event listener
@@ -3528,7 +3549,10 @@
 
             // Show break button to cancel operation
             showButton(Breakbtn, () => {
-                resetButtonsAndBorders(clickedElement);
+                //resetButtonsAndBorders(clickedElement);
+                document.querySelectorAll('.border-active').forEach(borderElement => {
+                  resetButtonsAndBorders(borderElement);
+                });
             });
         } else {
             // Toggle border for non-sent elements
@@ -3536,18 +3560,37 @@
 
             const löschbtn = document.getElementById('Löschbtn');
             const Breakbtn = document.getElementById('Breakbtn');
+            const Copybtn = document.getElementById('Copybtn');
+
+            // Show delete button and add delete event listener
+            showButton(Copybtn, () => {
+              document.querySelectorAll('.border-active').forEach(borderElement => {
+                resetButtonsAndBorders(borderElement);
+              });
+              copyTextFromElement(clickedElement);
+            });
 
             // Show delete button for non-sent messages
-            showButton(löschbtn, () => {
+            /*showButton(löschbtn, () => {
                 if (clickedElement.classList.contains('border-active')) {
                     resetButtonsAndBorders(clickedElement);
                     clickedElement.remove();
                 }
+            });*/
+            showButton(löschbtn, () => {
+              document.querySelectorAll('.border-active').forEach(borderElement => {
+                resetButtonsAndBorders(borderElement);
+                borderElement.remove();
+              });
             });
+            
 
             // Show break button for non-sent messages
             showButton(Breakbtn, () => {
-                resetButtonsAndBorders(clickedElement);
+                //resetButtonsAndBorders(clickedElement);
+                document.querySelectorAll('.border-active').forEach(borderElement => {
+                  resetButtonsAndBorders(borderElement);
+                });
             });
         }
     }
@@ -3566,7 +3609,22 @@
             
         }
     }
-
+    
+    function copyTextFromElement(element) {
+        // Erstelle ein Eingabefeld
+        const ctfeinput = document.createElement('input');
+        ctfeinput.type = 'text';
+        ctfeinput.value = element.textContent;
+        document.body.appendChild(ctfeinput);
+        
+        // Fokussiere und wähle den Text im Eingabefeld aus
+        ctfeinput.select();
+        document.execCommand('copy');
+        
+        // Lösche das Eingabefeld
+        document.body.removeChild(ctfeinput);
+    }
+    
     // Show button and add event listener
     function showButton(button, callback) {
         button.style.display = 'block';
@@ -6362,6 +6420,7 @@ I hope this gives you a good overview of what AIlury can do!`,
           löschbtnv: `⊗ Trash`,
           breakbtnv: `⚠ Stop`,
           editbtnv: `✎ Edit`,
+          copybtnv: `◌ Copy`,
           profilebtnv: `○ Profile pic`,
           instructionbtnv: `? Instruction`,
           dyhfptttv: `did you have fun playing Tic Tac Toe?`,
@@ -6491,6 +6550,7 @@ Ich hoffe, dies gibt Ihnen einen guten Überblick darüber, was AIlury kann!`,
           memorygameyoulostbetterlucknexttimev: `du hast verloren! mehr glück nächstes mal`,
           löschbtnv: `⊗ Löschen`,
           breakbtnv: `⚠ Stopp`,
+          copybtnv: `◌ Kopieren`,
           editbtnv: `✎ Bearbeiten`,
           profilebtnv: `○ Profil bild`,
           instructionbtnv: `? Anleitung`,
@@ -6614,6 +6674,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
     document.getElementById('Löschbtn').textContent = translations['en'].löschbtnv;
     document.getElementById('Breakbtn').textContent = translations['en'].breakbtnv;
     document.getElementById('Editbtn').textContent = translations['en'].editbtnv;
+    document.getElementById('Copybtn').textContent = translations['en'].copybtnv;
     document.getElementById('profilebtn').textContent = translations['en'].profilebtnv;
     document.getElementById('instructionbtn').textContent = translations['en'].instructionbtnv;
     // local storage user name
@@ -6701,6 +6762,7 @@ Bleiben Sie gespannt auf weitere aufregende Updates in der Heli-Update-Serie!`,
       document.getElementById('Löschbtn').textContent = translations[newLang].löschbtnv;
       document.getElementById('Breakbtn').textContent = translations[newLang].breakbtnv;
       document.getElementById('Editbtn').textContent = translations[newLang].editbtnv;
+      document.getElementById('Copybtn').textContent = translations[newLang].copybtnv;
       document.getElementById('profilebtn').textContent = translations[newLang].profilebtnv;
       document.getElementById('instructionbtn').textContent = translations[newLang].instructionbtnv;
       if (themeDS.textContent == "☾ Dark Theme"){
