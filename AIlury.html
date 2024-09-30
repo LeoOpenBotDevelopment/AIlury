@@ -1536,13 +1536,13 @@
       }
     }
 
-    .received.border-active, .sent.border-active{
+    /*.received.border-active, .sent.border-active{
       border: 2px solid transparent;
       border-image: linear-gradient(90deg, #ff0077, #7700ff);
       border-image-slice: 1;
       border-radius: 2px;
       animation: border-animation 2s linear infinite;
-    }
+    }*/
 
     @keyframes border-animation {
         0% {
@@ -3555,11 +3555,11 @@
     // Toggle border for the clicked element
     function toggleBorder(element) {
         if (element.classList.contains('border-active')) {
-            //element.style.border = 'none';
+            element.style.border = 'none';
             element.classList.remove('border-active');
         } else {
-            /*element.style.border = '2px solid transparent';
-            element.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+            element.style.border = '2px solid #ff0077';
+            /*element.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
             element.style.borderImageSlice = '1';
             element.style.borderRadius = '40px';*/
             element.classList.add('border-active');
