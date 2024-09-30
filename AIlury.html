@@ -1528,7 +1528,8 @@
         border: 2px solid transparent;
         background-image: linear-gradient(90deg, #ff0077, #7700ff);
         background-size: 200% 200%;
-        animation: border-animation 2s linear infinite; /* Hinter dem Hauptinhalt */
+        animation: border-animation 2s linear infinite;
+        z-index: -1;
     }
     .sent.border-active::before {
         content: '';
@@ -1541,7 +1542,8 @@
         border: 2px solid transparent;
         background-image: linear-gradient(90deg, #ff0077, #7700ff);
         background-size: 200% 200%;
-        animation: border-animation 2s linear infinite; /* Hinter dem Hauptinhalt */
+        animation: border-animation 2s linear infinite;
+        z-index: -1;
     }
 
     @keyframes border-animation {
