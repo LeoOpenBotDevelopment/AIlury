@@ -3456,187 +3456,122 @@
       return returnthis;
     }
     function handleEditMessage(event) {
-      const clickedElement = event;
-      const backgroundColor = window.getComputedStyle(clickedElement).getPropertyValue('background-color').toLowerCase();
-      document.querySelectorAll('.sidebar-button').forEach(button => {
-        button.style.display = 'none';
-      });
-      if (clickedElement.classList.contains('sent')) {
-        if (clickedElement.classList.contains('border-active')) {
-          clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
+        const clickedElement = event;
+        const backgroundColor = window.getComputedStyle(clickedElement).getPropertyValue('background-color').toLowerCase();
+
+        // Hide all sidebar buttons
+        document.querySelectorAll('.sidebar-button').forEach(button => {
+            button.style.display = 'none';
+        });
+
+        if (clickedElement.classList.contains('sent')) {
+            toggleBorder(clickedElement);
+
+            const messageContent = clickedElement.textContent;
+            const messageID = clickedElement.dataset.id;
+            const löschbtn = document.getElementById('Löschbtn');
+            const editbtn = document.getElementById('Editbtn');
+            const Breakbtn = document.getElementById('Breakbtn');
+
+            // Show delete button and add delete event listener
+            showButton(löschbtn, () => {
+                if (clickedElement.classList.contains('border-active')) {
+                    resetButtonsAndBorders(clickedElement);
+                    clickedElement.remove();
+                }
+            });
+
+            // Show edit button and add edit event listener
+            showButton(editbtn, () => {
+                if (clickedElement.classList.contains('border-active')) {
+                    handleEdit(clickedElement, messageContent);
+                }
+            });
+
+            // Show break button to cancel operation
+            showButton(Breakbtn, () => {
+                resetButtonsAndBorders(clickedElement);
+            });
         } else {
-          clickedElement.style.border = '2px solid transparent';
-          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
-          clickedElement.style.borderImageSlice = '1';
-          clickedElement.classList.add('border-active');
+            // Toggle border for non-sent elements
+            toggleBorder(clickedElement);
+
+            const löschbtn = document.getElementById('Löschbtn');
+            const Breakbtn = document.getElementById('Breakbtn');
+
+            // Show delete button for non-sent messages
+            showButton(löschbtn, () => {
+                if (clickedElement.classList.contains('border-active')) {
+                    resetButtonsAndBorders(clickedElement);
+                    clickedElement.remove();
+                }
+            });
+
+            // Show break button for non-sent messages
+            showButton(Breakbtn, () => {
+                resetButtonsAndBorders(clickedElement);
+            });
         }
-        const messageContent = clickedElement.textContent;
-        const messageID = clickedElement.dataset.id;
-        const löschbtn = document.getElementById('Löschbtn');
-        const editbtn = document.getElementById('Editbtn');
-        const Breakbtn = document.getElementById('Breakbtn');
-        löschbtn.style.display = 'block';
-        löschbtn.addEventListener('click', () => {
-          if (clickedElement.classList.contains('border-active')) {
-            document.querySelectorAll('.sidebar-button').forEach(button => {
-              button.style.display = 'block';
-            });
-            clickedElement.remove();
-            löschbtn.style.display = 'none';
-            editbtn.style.display = 'none';
-            Breakbtn.style.display = 'none';
-            clickedElement.style.border = 'none';
-            if (clickedElement.classList.contains('border-active')){
-              clickedElement.classList.remove('border-active');
-            }
-          }
-        });
-        editbtn.style.display = 'block';
-        editbtn.addEventListener('click', () => {
-          if (clickedElement.classList.contains('border-active')/*clickedElement.style.border == '2px solid var(--highlight-message-color)'*/) {
-            const inputElement = document.createElement('input');
-            inputElement.type = 'text';
-            inputElement.value = messageContent;
+    }
 
-            // Replace the text content with an input field for editing
-            clickedElement.textContent = '';
-            clickedElement.appendChild(inputElement);
-            let theId = clickedElement.id;
+    // Toggle border for the clicked element
+    function toggleBorder(element) {
+        if (element.classList.contains('border-active')) {
+            element.style.border = 'none';
+            element.classList.remove('border-active');
+        } else {
+            element.style.border = '2px solid transparent';
+            element.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+            element.style.borderImageSlice = '1';
+            element.classList.add('border-active');
+        }
+    }
 
-            inputElement.focus();
+    // Show button and add event listener
+    function showButton(button, callback) {
+        button.style.display = 'block';
+        button.onclick = callback;
+    }
 
-            // Add event listener to save the edited message on input blur
-            inputElement.addEventListener('blur', function () {
-              saveEditedMessage(clickedElement, inputElement);
-            });
-            document.querySelectorAll('.sidebar-button').forEach(button => {
-              button.style.display = 'block';
-            });
-            löschbtn.style.display = 'none';
-            editbtn.style.display = 'none';
-            Breakbtn.style.display = 'none';
-
-            //for each clickedElement border = 'none' 
-            for (const element of document.querySelectorAll('.sent')) {
-              element.style.border = 'none';
-              if (element.classList.contains('border-active')){
-                element.classList.remove('border-active');
-              }
-              if (parseInt(element.id) > parseInt(theId)) {
-                //remove element dataset id
-                element.remove();
-              }
-            }
-            /* check class */
-            for (const element2 of document.querySelectorAll('.received')) {
-              element2.style.border = 'none';
-              if (element2.classList.contains('border-active')){
-                element2.classList.remove('border-active');
-              }
-              if (parseInt(element2.id) > parseInt(theId)) {
-                //remove element dataset id
-                element2.remove();
-              }
-            }
-          }
-        });
-        Breakbtn.style.display = 'block';
-        Breakbtn.addEventListener('click', () => {
-          document.querySelectorAll('.sidebar-button').forEach(button => {
+    // Reset all buttons and borders when cancelling
+    function resetButtonsAndBorders(element) {
+        document.querySelectorAll('.sidebar-button').forEach(button => {
             button.style.display = 'block';
-          });
-          löschbtn.style.display = 'none';
-          editbtn.style.display = 'none';
-          Breakbtn.style.display = 'none';
-          clickedElement.style.border = 'none';
-          if (clickedElement.classList.contains('border-active')){
-            clickedElement.classList.remove('border-active');
-          }
         });
-        /*if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
-          clickedElement.style.border = '2px solid var(--highlight-message-color)';
-          löschbtn.style.display = 'block';
-          editbtn.style.display = 'block';
-          Breakbtn.style.display = 'block';
-        } else {
-          clickedElement.style.border = 'none';
-        }*/
-        if (clickedElement.classList.contains('border-active')) {
-          clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
-        } else {
-          clickedElement.style.border = '2px solid transparent';
-          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
-          clickedElement.style.borderImageSlice = '1';
-          clickedElement.classList.add('border-active');
-        }
-      } else {
-        /*if (clickedElement.style.border == '2px solid transparent') {
-          clickedElement.style.border = 'none';
-        } else {
-          //clickedElement.style.border = '2px solid var(--highlight-message-color)';
-          clickedElement.style.border = '2px solid transparent';
-          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
-          clickedElement.style.borderImageSlice = '1';
-        }*/
-        if (clickedElement.classList.contains('border-active')) {
-          clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
-        } else {
-          clickedElement.style.border = '2px solid transparent';
-          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
-          clickedElement.style.borderImageSlice = '1';
-          clickedElement.classList.add('border-active');
-        }
-        const messageContent = clickedElement.textContent;
-        const messageID = clickedElement.dataset.id;
-        const löschbtn = document.getElementById('Löschbtn');
-        const editbtn = document.getElementById('Editbtn');
-        const Breakbtn = document.getElementById('Breakbtn');
-        löschbtn.style.display = 'block';
-        löschbtn.addEventListener('click', () => {
-          if (clickedElement.classList.contains('border-active')) {
-            document.querySelectorAll('.sidebar-button').forEach(button => {
-              button.style.display = 'block';
-            });
-            clickedElement.remove();
-            löschbtn.style.display = 'none';
-            editbtn.style.display = 'none';
-            Breakbtn.style.display = 'none';
-            clickedElement.style.border = 'none';
-            if (clickedElement.classList.contains('border-active')){
-              clickedElement.classList.remove('border-active');
-            }
-          }
+        element.style.border = 'none';
+        element.classList.remove('border-active');
+    }
+
+    // Handle editing the message
+    function handleEdit(element, originalContent) {
+        const inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.value = originalContent;
+
+        // Replace message with input for editing
+        element.textContent = '';
+        element.appendChild(inputElement);
+        let theId = element.id;
+
+        inputElement.focus();
+
+        // Save the edited message on input blur
+        inputElement.addEventListener('blur', function () {
+            saveEditedMessage(element, inputElement);
         });
-        editbtn.style.display = 'none';
-        Breakbtn.style.display = 'block';
-        Breakbtn.addEventListener('click', () => {
-          document.querySelectorAll('.sidebar-button').forEach(button => {
+
+        // Reset all other elements
+        document.querySelectorAll('.sidebar-button').forEach(button => {
             button.style.display = 'block';
-          });
-          löschbtn.style.display = 'none';
-          editbtn.style.display = 'none';
-          Breakbtn.style.display = 'none';
-          clickedElement.style.border = 'none';
-          if (clickedElement.classList.contains('border-active')){
-            clickedElement.classList.remove('border-active');
-          }
         });
-        if (!clickedElement.classList.contains('border-active')) {
-          clickedElement.style.border = '2px solid transparent';
-          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
-          clickedElement.style.borderImageSlice = '1';
-          löschbtn.style.display = 'block';
-          editbtn.style.display = 'none';
-          Breakbtn.style.display = 'block';
-          clickedElement.classList.add('border-active');
-        } else {
-          clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
-        }
-      }
+        resetButtonsAndBorders(element);
+
+        // Remove elements with a higher ID
+        document.querySelectorAll('.sent, .received').forEach(item => {
+            if (parseInt(item.id) > parseInt(theId)) {
+                item.remove();
+            }
+        });
     }
 
     function saveEditedMessage(messageElement, inputElement) {
