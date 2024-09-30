@@ -26,7 +26,7 @@
         --blurbc2-color: rgba(120, 120, 120, 0.2);
         --blurs-color: rgba(0, 0, 0, 0.2);
         --bubble-color: #999999;
-        --highlight-message-color: linear-gradient(90deg, #ff0077, #7700ff);
+        --highlight-message-color: transparent;/*linear-gradient(90deg, #ff0077, #7700ff);*/
     }
 
     .dark-theme {
@@ -47,7 +47,7 @@
         --blurbc2-color: rgba(70, 70, 70, 0.2);
         --blurs-color: rgba(0, 0, 0, 0.2);
         --bubble-color: #121212;
-        --highlight-message-color: linear-gradient(90deg, #ff0077, #7700ff);
+        --highlight-message-color: transparent;/*linear-gradient(90deg, #ff0077, #7700ff);*/
     }
     input[type=text] {
       background: transparent;
@@ -1238,6 +1238,8 @@
         transition: 0.5s;
         border-bottom-right-radius: 0;
         animation: blop2 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
       .received {
         background: var(--message-background-color);
@@ -1249,6 +1251,8 @@
         transition: 0.5s;
         border-bottom-left-radius: 0;
         animation: blop 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
       #sidebar {
           position: relative;
@@ -1320,6 +1324,8 @@
         transition: 0.5s;
         border-bottom-right-radius: 0;
         animation: blop2 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
 
       .received {
@@ -1332,6 +1338,8 @@
         transition: 0.5s;
         border-bottom-left-radius: 0;
         animation: blop 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
       #sidebar {
           position: absolute;
@@ -1491,6 +1499,8 @@
         transition: 0.5s;
         border-bottom-right-radius: 0;
         animation: blop2 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
 
       .received {
@@ -1503,6 +1513,8 @@
         transition: 0.5s;
         border-bottom-left-radius: 0;
         animation: blop 0.5s;
+        border-image: linear-gradient(90deg, #ff0077, #7700ff);
+        border-image-slice: 1;
       }
     }
   </style>
