@@ -3636,6 +3636,10 @@
         document.querySelectorAll('.sidebar-button').forEach(button => {
             button.style.display = 'block';
         });
+        document.getElementById('Löschbtn').style.display = 'none';
+        document.getElementById('Editbtn').style.display = 'none';
+        document.getElementById('Breakbtn').style.display = 'none';
+        document.getElementById('Copybtn').style.display = 'none';
         element.style.border = 'none';
         element.classList.remove('border-active');
     }
@@ -3662,7 +3666,10 @@
         document.querySelectorAll('.sidebar-button').forEach(button => {
             button.style.display = 'block';
         });
-        resetButtonsAndBorders(element);
+        //resetButtonsAndBorders(element);
+        document.querySelectorAll('.border-active').forEach(borderElement => {
+            resetButtonsAndBorders(borderElement);
+        });
 
         // Remove elements with a higher ID
         document.querySelectorAll('.sent, .received').forEach(item => {
