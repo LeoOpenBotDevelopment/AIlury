@@ -26,6 +26,7 @@
         --blurbc2-color: rgba(120, 120, 120, 0.2);
         --blurs-color: rgba(0, 0, 0, 0.2);
         --bubble-color: #999999;
+        --highlight-message-color: 
     }
 
     .dark-theme {
@@ -46,6 +47,7 @@
         --blurbc2-color: rgba(70, 70, 70, 0.2);
         --blurs-color: rgba(0, 0, 0, 0.2);
         --bubble-color: #121212;
+        --highlight-message-color: 
     }
     input[type=text] {
       background: transparent;
@@ -3448,10 +3450,10 @@
         button.style.display = 'none';
       });
       if (clickedElement.classList.contains('sent')) {
-        if (clickedElement.style.border == '2px solid var(--primary-color)') {
+        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
           clickedElement.style.border = 'none';
         } else {
-          clickedElement.style.border = '2px solid var(--primary-color)';
+          clickedElement.style.border = '2px solid var(--highlight-message-color)';
         }
         const messageContent = clickedElement.textContent;
         const messageID = clickedElement.dataset.id;
@@ -3460,7 +3462,7 @@
         const Breakbtn = document.getElementById('Breakbtn');
         löschbtn.style.display = 'block';
         löschbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--primary-color)') {
+          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
             document.querySelectorAll('.sidebar-button').forEach(button => {
               button.style.display = 'block';
             });
@@ -3473,7 +3475,7 @@
         });
         editbtn.style.display = 'block';
         editbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--primary-color)') {
+          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
             const inputElement = document.createElement('input');
             inputElement.type = 'text';
             inputElement.value = messageContent;
@@ -3524,8 +3526,8 @@
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
         });
-        if (clickedElement.style.border == '2px solid var(--primary-color)') {
-          clickedElement.style.border = '2px solid var(--primary-color)';
+        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+          clickedElement.style.border = '2px solid var(--highlight-message-color)';
           löschbtn.style.display = 'block';
           editbtn.style.display = 'block';
           Breakbtn.style.display = 'block';
@@ -3533,10 +3535,10 @@
           clickedElement.style.border = 'none';
         }
       } else {
-        if (clickedElement.style.border == '2px solid var(--primary-color)') {
+        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
           clickedElement.style.border = 'none';
         } else {
-          clickedElement.style.border = '2px solid var(--primary-color)';
+          clickedElement.style.border = '2px solid var(--highlight-message-color)';
         }
         const messageContent = clickedElement.textContent;
         const messageID = clickedElement.dataset.id;
@@ -3545,7 +3547,7 @@
         const Breakbtn = document.getElementById('Breakbtn');
         löschbtn.style.display = 'block';
         löschbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--primary-color)') {
+          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
             document.querySelectorAll('.sidebar-button').forEach(button => {
               button.style.display = 'block';
             });
@@ -3567,8 +3569,8 @@
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
         });
-        if (clickedElement.style.border == '2px solid var(--primary-color)') {
-          clickedElement.style.border = '2px solid var(--primary-color)';
+        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+          clickedElement.style.border = '2px solid var(--highlight-message-color)';
           löschbtn.style.display = 'block';
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'block';
