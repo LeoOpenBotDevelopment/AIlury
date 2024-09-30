@@ -3518,11 +3518,13 @@
     function toggleBorder(element) {
         if (element.classList.contains('border-active')) {
             element.style.border = 'none';
+            element.style.borderRadius = '40px';
             element.classList.remove('border-active');
         } else {
             element.style.border = '2px solid transparent';
             element.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
             element.style.borderImageSlice = '1';
+            element.style.borderRadius = '40px';
             element.classList.add('border-active');
         }
     }
