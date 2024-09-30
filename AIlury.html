@@ -3487,6 +3487,9 @@
             editbtn.style.display = 'none';
             Breakbtn.style.display = 'none';
             clickedElement.style.border = 'none';
+            if (clickedElement.classList.contains('border-active')){
+              clickedElement.classList.remove('border-active');
+            }
           }
         });
         editbtn.style.display = 'block';
@@ -3517,6 +3520,9 @@
             //for each clickedElement border = 'none' 
             for (const element of document.querySelectorAll('.sent')) {
               element.style.border = 'none';
+              if (element.classList.contains('border-active')){
+                element.classList.remove('border-active');
+              }
               if (parseInt(element.id) > parseInt(theId)) {
                 //remove element dataset id
                 element.remove();
@@ -3525,6 +3531,9 @@
             /* check class */
             for (const element2 of document.querySelectorAll('.received')) {
               element2.style.border = 'none';
+              if (element2.classList.contains('border-active')){
+                element2.classList.remove('border-active');
+              }
               if (parseInt(element2.id) > parseInt(theId)) {
                 //remove element dataset id
                 element2.remove();
@@ -3541,7 +3550,9 @@
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
+          if (clickedElement.classList.contains('border-active')){
+            clickedElement.classList.remove('border-active');
+          }
         });
         /*if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
           clickedElement.style.border = '2px solid var(--highlight-message-color)';
@@ -3594,7 +3605,9 @@
             editbtn.style.display = 'none';
             Breakbtn.style.display = 'none';
             clickedElement.style.border = 'none';
-            clickedElement.classList.remove('border-active');
+            if (clickedElement.classList.contains('border-active')){
+              clickedElement.classList.remove('border-active');
+            }
           }
         });
         editbtn.style.display = 'none';
@@ -3607,9 +3620,11 @@
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
-          clickedElement.classList.remove('border-active');
+          if (clickedElement.classList.contains('border-active')){
+            clickedElement.classList.remove('border-active');
+          }
         });
-        if (clickedElement.classList.contains('border-active')) {
+        if (!clickedElement.classList.contains('border-active')) {
           clickedElement.style.border = '2px solid transparent';
           clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
           clickedElement.style.borderImageSlice = '1';
