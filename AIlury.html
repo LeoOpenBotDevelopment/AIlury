@@ -1528,17 +1528,16 @@
     .received.border-active::before, .sent.border-active::before {
         content: '';
         position: absolute;
-        top: 0;
+        /*top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
-        border-radius: 40px; /* Gleicher Radius wie im Element */
-        border: 2px solid transparent; /* Der Rahmen selbst ist transparent */
+        bottom: 0;*/
+        border-radius: 40px;
+        border: 2px solid transparent;
         background-image: linear-gradient(90deg, #ff0077, #7700ff);
         background-size: 100% 100%;
-        background-clip: border-box; /* Damit der Gradient sichtbar ist */
-        z-index: -1; /* Hinter dem Element */
-        animation: border-animation 2s linear infinite; /* Füge eine Animation hinzu, wenn gewünscht */
+        background-clip: border-box;
+        animation: border-animation 2s linear infinite;
     }
 
     @keyframes border-animation {
