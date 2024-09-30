@@ -3462,10 +3462,14 @@
         button.style.display = 'none';
       });
       if (clickedElement.classList.contains('sent')) {
-        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+        if (clickedElement.classList.contains('border-active')) {
           clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
         } else {
-          clickedElement.style.border = '2px solid var(--highlight-message-color)';
+          clickedElement.style.border = '2px solid transparent';
+          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+          clickedElement.style.borderImageSlice = '1';
+          clickedElement.classList.add('border-active');
         }
         const messageContent = clickedElement.textContent;
         const messageID = clickedElement.dataset.id;
@@ -3474,7 +3478,7 @@
         const Breakbtn = document.getElementById('Breakbtn');
         löschbtn.style.display = 'block';
         löschbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+          if (clickedElement.classList.contains('border-active')) {
             document.querySelectorAll('.sidebar-button').forEach(button => {
               button.style.display = 'block';
             });
@@ -3487,7 +3491,7 @@
         });
         editbtn.style.display = 'block';
         editbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+          if (clickedElement.classList.contains('border-active')/*clickedElement.style.border == '2px solid var(--highlight-message-color)'*/) {
             const inputElement = document.createElement('input');
             inputElement.type = 'text';
             inputElement.value = messageContent;
@@ -3537,20 +3541,42 @@
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
         });
-        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+        /*if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
           clickedElement.style.border = '2px solid var(--highlight-message-color)';
           löschbtn.style.display = 'block';
           editbtn.style.display = 'block';
           Breakbtn.style.display = 'block';
         } else {
           clickedElement.style.border = 'none';
+        }*/
+        if (clickedElement.classList.contains('border-active')) {
+          clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
+        } else {
+          clickedElement.style.border = '2px solid transparent';
+          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+          clickedElement.style.borderImageSlice = '1';
+          clickedElement.classList.add('border-active');
         }
       } else {
-        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+        /*if (clickedElement.style.border == '2px solid transparent') {
           clickedElement.style.border = 'none';
         } else {
-          clickedElement.style.border = '2px solid var(--highlight-message-color)';
+          //clickedElement.style.border = '2px solid var(--highlight-message-color)';
+          clickedElement.style.border = '2px solid transparent';
+          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+          clickedElement.style.borderImageSlice = '1';
+        }*/
+        if (clickedElement.classList.contains('border-active')) {
+          clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
+        } else {
+          clickedElement.style.border = '2px solid transparent';
+          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+          clickedElement.style.borderImageSlice = '1';
+          clickedElement.classList.add('border-active');
         }
         const messageContent = clickedElement.textContent;
         const messageID = clickedElement.dataset.id;
@@ -3559,7 +3585,7 @@
         const Breakbtn = document.getElementById('Breakbtn');
         löschbtn.style.display = 'block';
         löschbtn.addEventListener('click', () => {
-          if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
+          if (clickedElement.classList.contains('border-active')) {
             document.querySelectorAll('.sidebar-button').forEach(button => {
               button.style.display = 'block';
             });
@@ -3568,6 +3594,7 @@
             editbtn.style.display = 'none';
             Breakbtn.style.display = 'none';
             clickedElement.style.border = 'none';
+            clickedElement.classList.remove('border-active');
           }
         });
         editbtn.style.display = 'none';
@@ -3580,14 +3607,19 @@
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'none';
           clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
         });
-        if (clickedElement.style.border == '2px solid var(--highlight-message-color)') {
-          clickedElement.style.border = '2px solid var(--highlight-message-color)';
+        if (clickedElement.classList.contains('border-active')) {
+          clickedElement.style.border = '2px solid transparent';
+          clickedElement.style.borderImage = 'linear-gradient(90deg, #ff0077, #7700ff)';
+          clickedElement.style.borderImageSlice = '1';
           löschbtn.style.display = 'block';
           editbtn.style.display = 'none';
           Breakbtn.style.display = 'block';
+          clickedElement.classList.add('border-active');
         } else {
           clickedElement.style.border = 'none';
+          clickedElement.classList.remove('border-active');
         }
       }
     }
