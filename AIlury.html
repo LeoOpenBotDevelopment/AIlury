@@ -3553,6 +3553,13 @@
                 document.querySelectorAll('.border-active').forEach(borderElement => {
                   resetButtonsAndBorders(borderElement);
                 });
+                document.querySelectorAll('.sidebar-button').forEach(button => {
+                  button.style.display = 'block';
+                });
+                document.getElementById('Löschbtn').style.display = 'none';
+                document.getElementById('Editbtn').style.display = 'none';
+                document.getElementById('Breakbtn').style.display = 'none';
+                document.getElementById('Copybtn').style.display = 'none';
             });
         } else {
             // Toggle border for non-sent elements
@@ -3591,6 +3598,13 @@
                 document.querySelectorAll('.border-active').forEach(borderElement => {
                   resetButtonsAndBorders(borderElement);
                 });
+                document.querySelectorAll('.sidebar-button').forEach(button => {
+                  button.style.display = 'block';
+                });
+                document.getElementById('Löschbtn').style.display = 'none';
+                document.getElementById('Editbtn').style.display = 'none';
+                document.getElementById('Breakbtn').style.display = 'none';
+                document.getElementById('Copybtn').style.display = 'none';
             });
         }
     }
