@@ -4669,7 +4669,7 @@ body {
             addNewFile('script.js');
         });
 
-        function replacePaths(htmlString, allimages) {
+        /*function replacePaths(htmlString, allimages) {
             function findVariableValue(code, variableName, seen = new Set()) {
                 if (seen.has(variableName)) return variableName;
                 seen.add(variableName);
@@ -4774,11 +4774,113 @@ body {
                     let checkedCode = findVariableValue(code, p1);
                     return allimages[checkedCode] ? `new THREE.TextureLoader().load('${allimages[checkedCode]}')` : match;
                 });
-                return `<script>${code}<\/script>`;
+                return `<script>\n${code}\n<\/script>`;
+            });
+
+            return htmlString;
+        }*/
+        async function replacePaths(htmlString, allimages) {
+            // Hilfsfunktion: Findet den Wert einer Variable im Code
+            function findVariableValue(code, variableName, seen = new Set()) {
+                if (seen.has(variableName)) return variableName; // Zirkuläre Referenz vermeiden
+                seen.add(variableName);
+
+                // Suche nach der Variablenzuweisung im Code (var, let, const)
+                const regex = new RegExp(`(?:var|let|const)?\\s+${variableName}\\s*=\\s*(['"\`]?)([^'"\`]+)\\1`, 'g');
+                const match = regex.exec(code);
+
+                if (match) {
+                    const value = match[2];
+
+                    // Überprüfe, ob der Wert eine weitere Variable ist
+                    const variableRegex = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
+                    if (variableRegex.test(value)) {
+                        return findVariableValue(code, value, seen);
+                    }
+
+                    // Verarbeite Template Literals (z.B. `${variable}`)
+                    const templateLiteralRegex = /\$\{([^}]+)\}/g;
+                    if (templateLiteralRegex.test(value)) {
+                        return value.replace(templateLiteralRegex, (match, p1) => {
+                            const innerValue = findVariableValue(code, p1, seen);
+                            return innerValue !== undefined ? innerValue : p1;
+                        });
+                    }
+
+                    return value; // Gib den Wert der Variablen zurück
+                }
+
+                return variableName; // Wenn keine Zuweisung gefunden wird, gib den Variablennamen zurück
+            }
+
+            // 1. Ersetze Pfade in <img> Tags
+            htmlString = htmlString.replaceAll(/<img\s+[^>]*src=["']([^"']+)["'][^>]*>/g, (match, src) => {
+                if (allimages[src]) {
+                    return match.replace(src, allimages[src]);
+                }
+                return match;
+            });
+
+            // 2. Ersetze Pfade in <style> Blöcken
+            htmlString = htmlString.replaceAll(/<style[^>]*>([\s\S]*?)<\/style>/g, (match, cssText) => {
+                Object.keys(allimages).forEach(key => {
+                    const regex = new RegExp(`url\\(['"]?${key}['"]?\\)`, 'g');
+                    cssText = cssText.replace(regex, `url('${allimages[key]}')`);
+                });
+                return `<style>${cssText}</style>`;
+            });
+
+            // 3. Ersetze Pfade in style Attributen
+            htmlString = htmlString.replaceAll(/style=["']([^"']+)["']/g, (match, styleText) => {
+                Object.keys(allimages).forEach(key => {
+                    const regex = new RegExp(`url\\(['"]?${key}['"]?\\)`, 'g');
+                    styleText = styleText.replace(regex, `url('${allimages[key]}')`);
+                });
+                return `style="${styleText}"`;
+            });
+
+            // 4. Ersetze Pfade in <script> Blöcken, die kein src-Attribut haben
+            htmlString = htmlString.replaceAll(/<script(?![^>]*\ssrc)[\s\S]*?>([\s\S]*?)<\/script>/g, (match, code) => {
+                Object.keys(allimages).forEach(key => {
+                    // Verarbeite Template Literals in JavaScript (z.B. `${variable}`)
+                    const regexTemplateLiteral = new RegExp("\\${([^}]+)}", "g");
+                    code = code.replace(regexTemplateLiteral, (match, p1) => {
+                        const p1split = p1.split("+");
+                        let result = "";
+                        p1split.forEach(part => {
+                            const variableName = part.trim();
+                            const variableValue = findVariableValue(code, variableName);
+                            result += variableValue;
+                        });
+                        return result;
+                    });
+
+                    // Ersetze Pfade in `url()` Ausdrücken (z.B. `url('image.png')`)
+                    const urlRegex = new RegExp(`url\\(['"]?${key}['"]?\\)`, 'g');
+                    code = code.replace(urlRegex, `url('${allimages[key]}')`);
+
+                    // Ersetze direkte String-Vergleiche
+                    const stringRegex = new RegExp(`(['"\`]?${key}['"\`]?)`, 'g');
+                    code = code.replace(stringRegex, `'${allimages[key]}'`);
+
+                    // Ersetze Zuweisungen von `src` Attributen
+                    const srcRegex = new RegExp(`.src\\s*=\\s*['"\`]?${key}['"\`]?`, 'g');
+                    code = code.replace(srcRegex, `.src = '${allimages[key]}'`);
+                });
+
+                // Spezielle Behandlung für THREE.js TextureLoader
+                const textureRegex = /new\s*THREE\.TextureLoader\(\)\.load\(['"`]?([^'"`]+)['"`]?\)/g;
+                code = code.replace(textureRegex, (match, p1) => {
+                    const imagePath = findVariableValue(code, p1);
+                    return allimages[imagePath] ? `new THREE.TextureLoader().load('${allimages[imagePath]}')` : match;
+                });
+
+                return `<script>\n${code}\n<\/script>`;
             });
 
             return htmlString;
         }
+
 
 
         const preview = document.getElementById('preview');
@@ -4938,8 +5040,12 @@ body {
                 if (code && indexfile.includes('.html')) {
                     // Verarbeite den HTML-Code mit den nötigen Ersetzungen
                     code = await replaceLinksAndScripts(code, values);
-                    code = await replacePaths(code, allimages);
-                    code = await processHtmlMixedCode(code);
+                    if (allimages.length > 0){
+                        code = await replacePaths(code, allimages);
+                    }
+                    if (document.querySelector('.edit-sidebar-container-button.Active')) {
+                        code = await processHtmlMixedCode(code);
+                    }
                     code = await processHtmlForWindowLocation(code);
 
                     // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
