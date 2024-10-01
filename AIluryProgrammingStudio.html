@@ -5043,13 +5043,13 @@ body {
                     if (allimages.length > 0){
                         code = await replacePaths(code, allimages);
                     }
-                    if (document.querySelector('.edit-sidebar-container-button.Active')) {
+                    if (document.getElementById('edit-console-button').classList.contains('Active')) {
                         code = await processHtmlMixedCode(code);
                     }
                     code = await processHtmlForWindowLocation(code);
 
                     // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
-                    if (document.querySelector('.edit-sidebar-container-button.Active')) {
+                    if (document.getElementById('edit-console-button').classList.contains('Active')) {
                         code = await replaceConsoleMethodsInCode(code);
                     }
 
