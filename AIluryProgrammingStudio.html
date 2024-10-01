@@ -5037,6 +5037,13 @@ body {
                 let consoleDiv = document.getElementById('console');
                 let alertIcon = document.getElementById('alert-icon');
 
+                let showailurywebsite = !running;
+                if (indexfile == "AIlury" && showailurywebsite) {
+                    runButton.textContent = "||";
+                    preview.src = "https://ailury.com/AIlury.html";
+                    return;
+                }
+
                 if (code && indexfile.includes('.html')) {
 
                     // Schalte den Button-Status um (läuft / gestoppt)
