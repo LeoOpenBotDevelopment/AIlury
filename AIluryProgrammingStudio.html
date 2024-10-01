@@ -4878,7 +4878,7 @@ body {
             runbuttononclick();
         }
 
-        function runbuttononclick() {
+        /*function runbuttononclick() {
             isonpreview = true;
             iswhiteboard = false;
             document.querySelector('.index.highlight')?.classList.remove('highlight');
@@ -4893,7 +4893,9 @@ body {
                 code = replacePaths(code, allimages);
                 code = processHtmlMixedCode(code);
                 code = processHtmlForWindowLocation(code);
-                code = replaceConsoleMethodsInCode(code);
+                if (document.querySelector('.edit-sidebar-container-button.Active')){
+                    code = replaceConsoleMethodsInCode(code);
+                }
                 running = !running;
                 runButton.textContent = running ? "||" : "▶";
                 if (running){
@@ -4917,7 +4919,68 @@ body {
                 runButton.textContent = "▶";
                 finishLoading();
             }
+        }*/
+        async function runbuttononclick() {
+            try {
+                isonpreview = true;
+                iswhiteboard = false;
+
+                // Entferne Highlight von der aktuellen Datei
+                document.querySelector('.index.highlight')?.classList.remove('highlight');
+                viewelement.classList.add('highlight');
+
+                // Speichere den aktuellen Inhalt des Editors
+                values[currentFile] = editor.getValue();
+                let code = values[indexfile];
+                let consoleDiv = document.getElementById('console');
+                let alertIcon = document.getElementById('alert-icon');
+
+                if (code && indexfile.includes('.html')) {
+                    // Verarbeite den HTML-Code mit den nötigen Ersetzungen
+                    code = await replaceLinksAndScripts(code, values);
+                    code = await replacePaths(code, allimages);
+                    code = await processHtmlMixedCode(code);
+                    code = await processHtmlForWindowLocation(code);
+
+                    // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
+                    if (document.querySelector('.edit-sidebar-container-button.Active')) {
+                        code = await replaceConsoleMethodsInCode(code);
+                    }
+
+                    // Schalte den Button-Status um (läuft / gestoppt)
+                    running = !running;
+                    runButton.textContent = running ? "||" : "▶";
+
+                    // Wenn gestartet, HTML in die Vorschau laden
+                    if (running) {
+                        document.getElementById('filename').value = `${indexfile}`;
+                        startLoading();
+                        preview.srcdoc = code;
+                        finishLoading();
+                    } else {
+                        // Wenn gestoppt, die Vorschau leeren und Konsole zurücksetzen
+                        startLoading();
+                        consoleDiv.innerHTML = '';
+                        alertIcon.style.display = 'none';
+                        preview.srcdoc = "";
+                        finishLoading();
+                    }
+
+                } else {
+                    // Wenn kein HTML-Code gefunden wurde, Vorschau leeren und zurücksetzen
+                    startLoading();
+                    consoleDiv.innerHTML = '';
+                    alertIcon.style.display = 'none';
+                    preview.srcdoc = "";
+                    running = false;
+                    runButton.textContent = "▶";
+                    finishLoading();
+                }
+            } catch (error) {
+                let thiserrorwascatched = error;
+            }
         }
+
         runButton.addEventListener('click', () => {
             runbuttononclick();
         });
