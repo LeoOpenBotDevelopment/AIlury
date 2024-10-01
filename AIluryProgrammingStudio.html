@@ -5038,20 +5038,6 @@ body {
                 let alertIcon = document.getElementById('alert-icon');
 
                 if (code && indexfile.includes('.html')) {
-                    // Verarbeite den HTML-Code mit den nötigen Ersetzungen
-                    code = await replaceLinksAndScripts(code, values);
-                    if (allimages.length > 0){
-                        code = await replacePaths(code, allimages);
-                    }
-                    if (document.getElementById('edit-console-button').classList.contains('Active')) {
-                        code = await processHtmlMixedCode(code);
-                    }
-                    code = await processHtmlForWindowLocation(code);
-
-                    // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
-                    if (document.getElementById('edit-console-button').classList.contains('Active')) {
-                        code = await replaceConsoleMethodsInCode(code);
-                    }
 
                     // Schalte den Button-Status um (läuft / gestoppt)
                     running = !running;
@@ -5059,6 +5045,20 @@ body {
 
                     // Wenn gestartet, HTML in die Vorschau laden
                     if (running) {
+                        document.querySelector('.view').click();
+                        code = await replaceLinksAndScripts(code, values);
+                        if (allimages.length > 0){
+                            code = await replacePaths(code, allimages);
+                        }
+                        if (document.getElementById('edit-console-button').classList.contains('Active')) {
+                            code = await processHtmlMixedCode(code);
+                        }
+                        code = await processHtmlForWindowLocation(code);
+
+                        // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
+                        if (document.getElementById('edit-console-button').classList.contains('Active')) {
+                            code = await replaceConsoleMethodsInCode(code);
+                        }
                         document.getElementById('filename').value = `${indexfile}`;
                         startLoading();
                         preview.srcdoc = code;
