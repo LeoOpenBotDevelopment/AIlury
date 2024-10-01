@@ -5022,7 +5022,7 @@ body {
                 finishLoading();
             }
         }*/
-        async function runbuttononclick() {
+        /*async function runbuttononclick() {
             try {
                 isonpreview = true;
                 iswhiteboard = false;
@@ -5037,18 +5037,15 @@ body {
                 let consoleDiv = document.getElementById('console');
                 let alertIcon = document.getElementById('alert-icon');
 
-                let showailurywebsite = !running;
-                if (indexfile == "AIlury" && showailurywebsite) {
-                    runButton.textContent = "||";
+                running = !running;
+                runButton.textContent = running ? "||" : "▶";
+                
+                if (indexfile == "AIlury" && running) {
                     preview.src = "https://ailury.com/AIlury.html";
                     return;
                 }
 
                 if (code && indexfile.includes('.html')) {
-
-                    // Schalte den Button-Status um (läuft / gestoppt)
-                    running = !running;
-                    runButton.textContent = running ? "||" : "▶";
 
                     // Wenn gestartet, HTML in die Vorschau laden
                     if (running) {
@@ -5092,7 +5089,85 @@ body {
             } catch (error) {
                 let thiserrorwascatched = error;
             }
+        }*/
+        async function runbuttononclick() {
+            try {
+                isonpreview = true;
+                iswhiteboard = false;
+
+                // Entferne Highlight von der aktuellen Datei
+                document.querySelector('.index.highlight')?.classList.remove('highlight');
+                viewelement.classList.add('highlight');
+
+                // Speichere den aktuellen Inhalt des Editors
+                values[currentFile] = editor.getValue();
+                let code = values[indexfile];
+                let consoleDiv = document.getElementById('console');
+                let alertIcon = document.getElementById('alert-icon');
+
+                // Überprüfe zuerst den speziellen Fall für "AIlury"
+                if (indexfile == "AIlury") {
+                    if (!running) {
+                        running = true;
+                        runButton.textContent = "||";
+                        preview.src = "https://ailury.com/AIlury.html";
+                    } else {
+                        running = false;
+                        runButton.textContent = "▶";
+                        preview.src = "";
+                    }
+                    return;
+                }
+
+                // Wenn indexfile nicht "AIlury" ist, schalte den Status um
+                running = !running;
+                runButton.textContent = running ? "||" : "▶";
+
+                if (code && indexfile.includes('.html')) {
+                    // Wenn gestartet, HTML in die Vorschau laden
+                    if (running) {
+                        document.querySelector('.view').click();
+                        code = await replaceLinksAndScripts(code, values);
+                        if (allimages.length > 0) {
+                            code = await replacePaths(code, allimages);
+                        }
+                        if (document.getElementById('edit-console-button').classList.contains('Active')) {
+                            code = await processHtmlMixedCode(code);
+                        }
+                        code = await processHtmlForWindowLocation(code);
+
+                        // Falls die Sidebar aktiv ist, Konsolenmethoden im Code ersetzen
+                        if (document.getElementById('edit-console-button').classList.contains('Active')) {
+                            code = await replaceConsoleMethodsInCode(code);
+                        }
+                        document.getElementById('filename').value = `${indexfile}`;
+                        startLoading();
+                        preview.srcdoc = code;
+                        finishLoading();
+                    } else {
+                        // Wenn gestoppt, die Vorschau leeren und Konsole zurücksetzen
+                        startLoading();
+                        consoleDiv.innerHTML = '';
+                        alertIcon.style.display = 'none';
+                        preview.srcdoc = "";
+                        finishLoading();
+                    }
+
+                } else {
+                    // Wenn kein HTML-Code gefunden wurde, Vorschau leeren und zurücksetzen
+                    startLoading();
+                    consoleDiv.innerHTML = '';
+                    alertIcon.style.display = 'none';
+                    preview.srcdoc = "";
+                    running = false;
+                    runButton.textContent = "▶";
+                    finishLoading();
+                }
+            } catch (error) {
+                let thiserrorwascatched = error;
+            }
         }
+
 
         runButton.addEventListener('click', () => {
             runbuttononclick();
