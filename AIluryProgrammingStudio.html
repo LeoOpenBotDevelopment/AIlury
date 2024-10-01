@@ -643,6 +643,7 @@
             z-index: 50;
             transition: background-color 1s ease;
         }
+        
         .resizable-draggable.show{
             display: block;
         }
@@ -812,6 +813,19 @@
             align-items: center;
             padding: calc(1% + 60px) 10%;
             overflow: hidden;
+        }
+
+        @media (max-width: 650px) {
+            .resizable-draggable{
+                height: 100vh;
+                width: 100vw;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+            .move-button{
+                display: none;
+            }
         }
 
         #currentFileImg-container img{
@@ -1014,6 +1028,15 @@
             max-width: 100vw;
             z-index: 52;
             transition: 1s;
+        }
+        @media (max-width: 650px){
+            #edit-sidebar-container{
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100vw;
+            }
         }
         #edit-sidebar-content{
             height: 100%;
