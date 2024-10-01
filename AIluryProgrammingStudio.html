@@ -5037,17 +5037,19 @@ body {
                 let consoleDiv = document.getElementById('console');
                 let alertIcon = document.getElementById('alert-icon');
 
-                running = !running;
+                /*running = !running;
                 runButton.textContent = running ? "||" : "▶";
 
                 if (indexfile == "AIlury" && running) {
                     document.querySelector('.view').click();
                     preview.src = "https://ailury.com/AIlury.html";
                     return;
-                }
+                }*/
 
                 if (code && indexfile.includes('.html')) {
 
+                    running = !running;
+                    runButton.textContent = running ? "||" : "▶";
                     // Wenn gestartet, HTML in die Vorschau laden
                     if (running) {
                         document.querySelector('.view').click();
