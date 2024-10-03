@@ -5054,7 +5054,7 @@ body {
                     if (running) {
                         document.querySelector('.view').click();
                         code = await replaceLinksAndScripts(code, values);
-                        if (allimages.length > 0){
+                        if (allimages != ""){
                             code = await replacePaths(code, allimages);
                         }
                         if (document.getElementById('edit-console-button').classList.contains('Active')) {
