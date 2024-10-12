@@ -116,13 +116,16 @@
 	.editor-selected-line-btns button:hover{
 	    background: #ccc;
 	}
+	.pinned{
+	   transform: rotate(45deg);
+	}
     </style>
 </head>
 <body>
     <div class="code-editor-container">
         <div id="1" class="code-editor-line" contenteditable="true"></div>
     </div>
-    <div class="editor-selected-line-btns"><button id="deletebtn">⌧</button><button id="importantPinbtn">⚠</button><button id="upbtn">↑</button><button id="downbtn">↓</button><button id="sleapbtn">☾</button><button id="pinbtn">☉</button><button id="copybtn">❝</button></div>
+    <div class="editor-selected-line-btns"><button id="deletebtn">⌧</button><button id="importantPinbtn">⚠</button><button id="upbtn">↑</button><button id="downbtn">↓</button><button id="sleapbtn">☾</button><button id="pinbtn">⊕</button><button id="copybtn">□</button></div>
     <script>
         let startX, startLine;
 
