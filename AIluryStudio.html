@@ -587,7 +587,7 @@
 
         const allKeywords = [...jsKeywords, ...cssKeywords, ...htmlKeywords];
         const suggestionBox = document.getElementById('suggestion-box');
-        const editor = document.querySelector('.code-editor-line::focus');
+        const editor = document.querySelector('.code-editor-line:focus');
 
         inputDiv.addEventListener('keydown', function(event) {
 	    if (!editor){
