@@ -7,16 +7,16 @@
     <style>
         body {
             background: #fcfcfc;
-			width: 100vw;
-			overflow-x: hidden;
+	    width: 100vw;
+	    overflow-x: hidden;
         }
         .code-editor-container {
             height: 80vh;
             width: 100vw;
             border-radius: 5px;
             background: #fff;
-			padding: 5px 3em;
-			overflow-y: scroll;
+	    padding: 5px 3em;
+	    overflow-y: scroll;
         }
         .code-editor-line {
             display: inline-block;
@@ -66,7 +66,20 @@
         .code-editor-line.selected {
             background-color: #e0f7e9;
             transform: translateX(1.5em); /* Slight movement to the right */
+	    border-radius: 0;
         }
+        .code-editor-line.selected.topSelected{
+            border-bottom-radius: 0;
+	}
+        .code-editor-line.selected.bottomSelected{
+            border-top-radius: 0;
+	}
+        .code-editor-line.selected.middleSelected{
+            border-radius: 0;
+	}
+        .code-editor-line.selected.singleSelected{
+            border-radius: 5px;
+	}
     </style>
 </head>
 <body>
@@ -96,14 +109,16 @@
             // Wenn nach rechts geswiped wird und auf derselben Zeile geendet wird
             if (diffX > 50) {
                 startLine.classList.add('selected');  // Linie auswählen
+                updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
+                updateSelectedClasses();
             }
 
             startLine = null;  // Touch-Zustand zurücksetzen
         });
 		
-		let correntids = 1;
+	let correntids = 1;
         let inputDiv = document.querySelector('.code-editor-container');
 
         // Paste Event-Listener
@@ -113,7 +128,7 @@
             let celine = document.querySelector('.code-editor-line:focus');
             if (!celine) return;
 
-			let spaces = "";
+	    let spaces = "";
             let continueSpaces = true;
             for (let i = 0; i < celine.textContent.length; i++) {
                 let character = celine.textContent[i];
@@ -243,7 +258,7 @@
                 }
             }
 			
-			if (event.key === '>') {
+	    if (event.key === '>') {
         	 let selection = window.getSelection();
         	 let range = selection.getRangeAt(0);
         	 let cursorOffset = range.startOffset;
@@ -270,12 +285,12 @@
            		 selection.removeAllRanges();
           		 selection.addRange(range);
        		 }
-    		}
+    	    }
 			
-			let selection = window.getSelection();
+	    let selection = window.getSelection();
    
-			let range = selection.getRangeAt(0);
-			let cursorOffset = range.startOffset;
+	    let range = selection.getRangeAt(0);
+	    let cursorOffset = range.startOffset;
             
             // Erstellen einer Funktion, die das aktuelle Zeichen schließt
             function insertClosingCharacter(openingChar, closingChar) {
@@ -325,7 +340,7 @@
                 insertClosingCharacter('\'', '\'');
             }
 			
-			if (event.key === '"') {
+	    if (event.key === '"') {
                 event.preventDefault();
                 insertClosingCharacter('"', '"');
             }
@@ -336,37 +351,67 @@
                 insertClosingCharacter('\'', '\'');
             }
 			
-			function checkAndSkipClosingCharacter(closingChar) {
-				let text = celine.textContent;
-				let nextChar = text.charAt(cursorOffset);
-				if (nextChar === closingChar) {
-					event.preventDefault();
-					range.setStart(celine.firstChild, cursorOffset + 1);
-					range.collapse(true);
-					selection.removeAllRanges();
-					selection.addRange(range);
-				}
-			}
+	    function checkAndSkipClosingCharacter(closingChar) {
+	        let text = celine.textContent;
+		let nextChar = text.charAt(cursorOffset);
+		if (nextChar === closingChar) {
+		    event.preventDefault();
+		    range.setStart(celine.firstChild, cursorOffset + 1);
+		    range.collapse(true);
+		    selection.removeAllRanges();
+		    selection.addRange(range);
+	        }
+	    }
 
-			if (event.key === ']') {
-				checkAndSkipClosingCharacter(']');
-			}
-			if (event.key === '}') {
-				checkAndSkipClosingCharacter('}');
-			}
-			if (event.key === '"') {
-				checkAndSkipClosingCharacter('"');
-			}
-			if (event.key === "'") {
-				checkAndSkipClosingCharacter("'");
-			}
-			if (event.key === ')') {
-				checkAndSkipClosingCharacter(')');
-			}
-			if (event.key === ';') {
-				checkAndSkipClosingCharacter(';');
-			}
-		});
+	    if (event.key === ']') {
+	        checkAndSkipClosingCharacter(']');
+	    }
+	    if (event.key === '}') {
+		checkAndSkipClosingCharacter('}');
+	    }
+	    if (event.key === '"') {
+	        checkAndSkipClosingCharacter('"');
+	    }
+	    if (event.key === "'") {
+		checkAndSkipClosingCharacter("'");
+	    }
+	    if (event.key === ')') {
+		checkAndSkipClosingCharacter(')');
+	    }
+	    if (event.key === ';') {
+		checkAndSkipClosingCharacter(';');
+	    }
+	});
+        function updateSelectedClasses() {
+            const lines = document.querySelectorAll('.code-editor-line');
+
+            lines.forEach((line, index) => {
+                const isSelected = line.classList.contains('selected');
+
+                // Überprüfen, ob es über und unter der Zeile selektierte Zeilen gibt
+                const hasAbove = index > 0 && lines[index - 1].classList.contains('selected');
+                const hasBelow = index < lines.length - 1 && lines[index + 1].classList.contains('selected');
+
+                // Entfernen aller relevanten Klassen
+                line.classList.remove('topSelected', 'bottomSelected', 'middleSelected', 'singleSelected');
+
+                if (isSelected) {
+                    if (!hasAbove && !hasBelow) {
+                        // Single selected
+                        line.classList.add('singleSelected');
+                    } else if (!hasAbove && hasBelow) {
+                        // Top selected
+                        line.classList.add('topSelected');
+                    } else if (hasAbove && !hasBelow) {
+                        // Bottom selected
+                        line.classList.add('bottomSelected');
+                    } else if (hasAbove && hasBelow) {
+                        // Middle selected
+                        line.classList.add('middleSelected');
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
