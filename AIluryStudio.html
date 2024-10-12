@@ -102,7 +102,7 @@
 	    height: 8vh;
 	    padding: 10px;
 	}
-	.editor-selected-line-btns button{
+	.eslbtn{
 	    color: #000;
 	    width: 6vh;
 	    height: 6vh;
@@ -115,16 +115,16 @@
 	    margin-left: 1%;
 	    transition: 0.5s;
 	}
-	.editor-selected-line-btns button:hover{
+	.eslbtn:hover{
 	    background: #f0f0f0;
 	}
 	.pinned{
 	    transform: rotate(45deg);
 	}
-	.disabled{
+	.eslbtn .disabled{
 	    color: #f0f0f0;
 	}
-	.disabled:hover{
+	.eslbtn .disabled:hover{
 	    background: #fcfcfc;
 	}
     </style>
@@ -133,7 +133,7 @@
     <div class="code-editor-container">
         <div id="1" class="code-editor-line" contenteditable="true"></div>
     </div>
-    <div class="editor-selected-line-btns"><button class="disabled" id="deletebtn">⌧</button><button class="disabled" id="importantPinbtn">⚠</button><button class="disabled" id="upbtn">↑</button><button class="disabled" id="downbtn">↓</button><button class="disabled" id="sleapbtn">☾</button><button class="disabled" id="pinbtn">⊕</button><button class="disabled" id="copybtn">□</button></div>
+    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn">⌧</button><button class="eslbtn disabled" id="importantPinbtn">⚠</button><button class="eslbtn disabled" id="upbtn">↑</button><button class="eslbtn disabled" id="downbtn">↓</button><button class="eslbtn disabled" id="sleapbtn">☾</button><button class="eslbtn disabled" id="pinbtn">⊕</button><button class="eslbtn disabled" id="copybtn">□</button></div>
     <script>
         let startX, startLine;
 
