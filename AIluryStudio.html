@@ -245,6 +245,7 @@
                     range.collapse(true);
                     selection.removeAllRanges();
                     selection.addRange(range);
+		    updateSelectedClasses();
                 }
             }
 
@@ -258,6 +259,7 @@
 
                     const previousLine = celine.previousElementSibling;
                     if (previousLine) {
+			updateSelectedClasses();
                         let currentLineText = celine.textContent;
 
                         celine.remove();
