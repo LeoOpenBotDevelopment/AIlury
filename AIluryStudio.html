@@ -68,18 +68,29 @@
             transform: translateX(1.5em); /* Slight movement to the right */
 	    border-radius: 0;
         }
-        .code-editor-line.selected.topSelected{
-            border-bottom-radius: 0;
-	}
-        .code-editor-line.selected.bottomSelected{
-            border-top-radius: 0;
-	}
-        .code-editor-line.selected.middleSelected{
-            border-radius: 0;
-	}
-        .code-editor-line.selected.singleSelected{
-            border-radius: 5px;
-	}
+        .code-editor-line.selected.topSelected {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0; /* Falls du die untere rechte Ecke ebenfalls abgerundet haben möchtest */
+        }
+
+        .code-editor-line.selected.bottomSelected {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0; /* Falls du die obere rechte Ecke ebenfalls abgerundet haben möchtest */
+        }
+
+        .code-editor-line.selected.middleSelected {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0; /* Entfernt alle Ecken */
+        }
+
+        .code-editor-line.selected.singleSelected {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px; /* Rundet alle Ecken */
+        }
     </style>
 </head>
 <body>
