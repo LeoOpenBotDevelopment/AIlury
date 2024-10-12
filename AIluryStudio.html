@@ -96,13 +96,30 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px; /* Rundet alle Ecken */
         }
+	.editor-selected-line-btns{
+	    width: 100%;
+	    background: #fff;
+	    height: 10vh;
+	    padding: 10px;
+	}
+	.editor-selected-line-btns button{
+	    color: #fff;
+	    width: 8vh;
+	    height: 8vh;
+	    background: #000;
+	    text-align: center;
+	    boder: none;
+	    border-radius: 50%;
+	    font-weight: bold;
+	    font-size: 1em;
+	}
     </style>
 </head>
 <body>
     <div class="code-editor-container">
         <div id="1" class="code-editor-line" contenteditable="true"></div>
     </div>
-
+    <div class="editor-selected-line-btns"><button id="deletebtn">⌧</button><button id="importantPinbtn">⚠</button><button id="upbtn">↑</button><button id="downbtn">↓</button><button id="sleapbtn">☾</button><button id="pinbtn">☉</button><button id="copybtn">❝</button></div>
     <script>
         let startX, startLine;
 
@@ -287,9 +304,9 @@
         	 let openTagMatch = text.match(/<(\w+)([^>]*)$/);
 
        		 if (openTagMatch) {
-            		event.preventDefault(); // Verhindert das Standardverhalten
+            		 event.preventDefault(); // Verhindert das Standardverhalten
 
-            		// Tag automatisch schließen
+            		 // Tag automatisch schließen
            		 let tagName = openTagMatch[1];
            		 let tagEnd = `</${tagName}>`;
 
