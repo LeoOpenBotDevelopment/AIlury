@@ -69,11 +69,15 @@
 	    border-radius: 0;
         }
         .code-editor-line.selected.topSelected {
+	    border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0; /* Falls du die untere rechte Ecke ebenfalls abgerundet haben möchtest */
         }
 
         .code-editor-line.selected.bottomSelected {
+	    border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
             border-top-left-radius: 0;
             border-top-right-radius: 0; /* Falls du die obere rechte Ecke ebenfalls abgerundet haben möchtest */
         }
@@ -174,7 +178,7 @@
                 newline.setAttribute('contenteditable', 'true');
                 newline.id = correntids;
                 newline.classList.add('code-editor-line');
-				newline.innerHTML = spaces;
+		newline.innerHTML = spaces;
                 newline.innerText += convertToNonBreakingSpaces(lines[i]);
                 celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
@@ -404,7 +408,18 @@
                 const hasBelow = index < lines.length - 1 && lines[index + 1].classList.contains('selected');
 
                 // Entfernen aller relevanten Klassen
-                line.classList.remove('topSelected', 'bottomSelected', 'middleSelected', 'singleSelected');
+		if (line.classList.contains('topSelected')){
+		    line.classList.remove('topSelected');
+		}
+		if (line.classList.contains('bottomSelected')){
+		    line.classList.remove('bottomSelected');
+		}
+		if (line.classList.contains('middleSelected')){
+		    line.classList.remove('middleSelected');
+		}
+		if (line.classList.contains('singleSelected')){
+		    line.classList.remove('singleSelected');
+		}
 
                 if (isSelected) {
                     if (!hasAbove && !hasBelow) {
