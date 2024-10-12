@@ -347,7 +347,7 @@
                 insertClosingCharacter('{', '}');
             }
 			
-			if (event.key === '[') {
+	    if (event.key === '[') {
                 event.preventDefault();
                 insertClosingCharacter('[', ']');
             }
@@ -471,118 +471,14 @@
 
 
 
-	const jsKeywords = [
-    // Schlüsselwörter
-    "abstract", "arguments", "await", "boolean", "break", "byte", "case", "catch",
-    "char", "class", "const", "continue", "debugger", "default", "delete", "do",
-    "double", "else", "enum", "eval", "export", "extends", "false", "final",
-    "finally", "float", "for", "function", "goto", "if", "implements", "import",
-    "in", "instanceof", "int", "interface", "let", "long", "native", "new",
-    "null", "package", "private", "protected", "public", "return", "short",
-    "static", "super", "switch", "synchronized", "this", "throw", "throws",
-    "transient", "true", "try", "typeof", "var", "void", "volatile", "while",
-    "with", "yield",
-
-    // Globale Objekte
-    "Array", "ArrayBuffer", "Boolean", "DataView", "Date", "Error", "EvalError",
-    "Float32Array", "Float64Array", "Function", "Generator", "GeneratorFunction",
-    "Infinity", "Int16Array", "Int32Array", "Int8Array", "Intl", "JSON", "Map",
-    "Math", "NaN", "Number", "Object", "Promise", "Proxy", "RangeError",
-    "ReferenceError", "Reflect", "RegExp", "Set", "SharedArrayBuffer",
-    "String", "Symbol", "SyntaxError", "TypeError", "URIError", "Uint16Array",
-    "Uint32Array", "Uint8Array", "Uint8ClampedArray", "WeakMap", "WeakSet",
-    "decodeURI", "decodeURIComponent", "encodeURI", "encodeURIComponent",
-    "escape", "eval", "isFinite", "isNaN", "parseFloat", "parseInt", "unescape",
-
-    // Kontrollstrukturen
-    "if", "else", "switch", "case", "default", "for", "while", "do", "break",
-    "continue", "try", "catch", "finally", "throw", "return",
-
-    // DOM-Methoden
-    "getElementById", "getElementsByClassName", "getElementsByTagName", "querySelector",
-    "querySelectorAll", "addEventListener", "removeEventListener", "createElement",
-    "appendChild", "removeChild", "setAttribute", "getAttribute", "classList.add",
-    "classList.remove", "classList.toggle", "classList.contains", "innerHTML",
-    "textContent", "style"
+	const jsKeywords = ["abstract", "arguments", "await", "boolean", "break", "byte", "case", "catch", "char", "class", "const", "continue", "debugger", "default", "delete", "do", "double", "else", "enum", "eval", "export", "extends", "false", "final", "finally", "float", "for", "function", "goto", "if", "implements", "import", "in", "instanceof", "int", "interface", "let", "long", "native", "new", "null", "package", "private", "protected", "public", "return", "short", "static", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "true", "try", "typeof", "var", "void", "volatile", "while", "with", "yield", "Array", "ArrayBuffer", "Boolean", "DataView", "Date", "Error", "EvalError", "Float32Array", "Float64Array", "Function", "Generator", "GeneratorFunction", "Infinity", "Int16Array", "Int32Array", "Int8Array", "Intl", "JSON", "Map", "Math", "NaN", "Number", "Object", "Promise", "Proxy", "RangeError", "ReferenceError", "Reflect", "RegExp", "Set", "SharedArrayBuffer", "String", "Symbol", "SyntaxError", "TypeError", "URIError", "Uint16Array", "Uint32Array", "Uint8Array", "Uint8ClampedArray", "WeakMap", "WeakSet", "decodeURI", "decodeURIComponent", "encodeURI", "encodeURIComponent", "escape", "eval", "isFinite", "isNaN", "parseFloat", "parseInt", "unescape", "if", "else", "switch", "case", "default", "for", "while", "do", "break", "continue", "try", "catch", "finally", "throw", "return" "getElementById", "getElementsByClassName", "getElementsByTagName", "querySelector", "querySelectorAll", "addEventListener", "removeEventListener", "createElement" "appendChild", "removeChild", "setAttribute", "getAttribute", "classList.add", "classList.remove", "classList.toggle", "classList.contains", "innerHTML", "textContent", "style"
         ];
 
-	const cssKeywords = [
-    // CSS Eigenschaften
-    "align-content", "align-items", "align-self", "all", "animation", "animation-delay",
-    "animation-direction", "animation-duration", "animation-fill-mode",
-    "animation-iteration-count", "animation-name", "animation-play-state",
-    "animation-timing-function", "backface-visibility", "background",
-    "background-attachment", "background-blend-mode", "background-clip",
-    "background-color", "background-image", "background-origin",
-    "background-position", "background-repeat", "background-size", "border",
-    "border-bottom", "border-bottom-color", "border-bottom-left-radius",
-    "border-bottom-right-radius", "border-bottom-style", "border-bottom-width",
-    "border-collapse", "border-color", "border-image", "border-image-outset",
-    "border-image-repeat", "border-image-slice", "border-image-source",
-    "border-image-width", "border-left", "border-left-color", "border-left-style",
-    "border-left-width", "border-radius", "border-right", "border-right-color",
-    "border-right-style", "border-right-width", "border-spacing", "border-style",
-    "border-top", "border-top-color", "border-top-left-radius",
-    "border-top-right-radius", "border-top-style", "border-top-width",
-    "border-width", "bottom", "box-decoration-break", "box-shadow", "box-sizing",
-    "caption-side", "caret-color", "clear", "clip", "color", "column-count",
-    "column-fill", "column-gap", "column-rule", "column-rule-color", "column-rule-style",
-    "column-rule-width", "column-span", "column-width", "columns", "content",
-    "counter-increment", "counter-reset", "cursor", "direction", "display",
-    "empty-cells", "filter", "flex", "flex-basis", "flex-direction", "flex-flow",
-    "flex-grow", "flex-shrink", "flex-wrap", "float", "font", "font-family",
-    "font-feature-settings", "font-kerning", "font-size", "font-size-adjust",
-    "font-stretch", "font-style", "font-synthesis", "font-variant", "font-weight",
-    "gap", "grid", "grid-area", "grid-auto-columns", "grid-auto-flow", "grid-auto-rows",
-    "grid-column", "grid-column-end", "grid-column-gap", "grid-column-start",
-    "grid-gap", "grid-row", "grid-row-end", "grid-row-gap", "grid-row-start",
-    "grid-template", "grid-template-areas", "grid-template-columns", "grid-template-rows",
-    "height", "justify-content", "left", "letter-spacing", "line-height", "list-style",
-    "list-style-image", "list-style-position", "list-style-type", "margin",
-    "max-height", "max-width", "min-height", "min-width", "opacity", "outline",
-    "overflow", "padding", "position", "right", "text-align", "text-decoration",
-    "text-shadow", "top", "transform", "transition", "width", "z-index",
-
-    // CSS Pseudoklassen
-    ":active", ":checked", ":disabled", ":empty", ":enabled", ":first-child",
-    ":first-of-type", ":focus", ":hover", ":in-range", ":invalid", ":last-child",
-    ":last-of-type", ":link", ":not", ":nth-child", ":nth-last-child", ":nth-last-of-type",
-    ":nth-of-type", ":only-child", ":only-of-type", ":optional", ":out-of-range",
-    ":read-only", ":read-write", ":required", ":root", ":target", ":valid", ":visited",
-
-    // CSS Pseudoelemente
-    "::after", "::before", "::first-letter", "::first-line", "::marker", "::selection", "::placeholder"
+	const cssKeywords = [ "align-content", "align-items", "align-self", "all", "animation", "animation-delay", "animation-direction", "animation-duration", "animation-fill-mode", "animation-iteration-count", "animation-name", "animation-play-state", "animation-timing-function", "backface-visibility", "background", "background-attachment", "background-blend-mode", "background-clip", "background-color", "background-image", "background-origin", "background-position", "background-repeat", "background-size", "border", "border-bottom", "border-bottom-color", "border-bottom-left-radius", "border-bottom-right-radius", "border-bottom-style", "border-bottom-width", "border-collapse", "border-color", "border-image", "border-image-outset" "border-image-repeat", "border-image-slice", "border-image-source", "border-image-width", "border-left", "border-left-color", "border-left-style", "border-left-width", "border-radius", "border-right", "border-right-color", "border-right-style", "border-right-width", "border-spacing", "border-style", "border-top", "border-top-color", "border-top-left-radius", "border-top-right-radius", "border-top-style", "border-top-width", "border-width", "bottom", "box-decoration-break", "box-shadow", "box-sizing", "caption-side", "caret-color", "clear", "clip", "color", "column-count", "column-fill", "column-gap", "column-rule", "column-rule-color", "column-rule-style", "column-rule-width", "column-span", "column-width", "columns", "content", "counter-increment", "counter-reset", "cursor", "direction", "display", "empty-cells", "filter", "flex", "flex-basis", "flex-direction", "flex-flow", "flex-grow", "flex-shrink", "flex-wrap", "float", "font", "font-family", "font-feature-settings", "font-kerning", "font-size", "font-size-adjust", "font-stretch", "font-style", "font-synthesis", "font-variant", "font-weight", "gap", "grid", "grid-area", "grid-auto-columns", "grid-auto-flow", "grid-auto-rows", "grid-column", "grid-column-end", "grid-column-gap", "grid-column-start", "grid-gap", "grid-row", "grid-row-end", "grid-row-gap", "grid-row-start", "grid-template", "grid-template-areas", "grid-template-columns", "grid-template-rows", "height", "justify-content", "left", "letter-spacing", "line-height", "list-style", "list-style-image", "list-style-position", "list-style-type", "margin", "max-height", "max-width", "min-height", "min-width", "opacity", "outline", "overflow", "padding", "position", "right", "text-align", "text-decoration", "text-shadow", "top", "transform", "transition", "width", "z-index", ":active", ":checked", ":disabled", ":empty", ":enabled", ":first-child" ":first-of-type", ":focus", ":hover", ":in-range", ":invalid", ":last-child", ":last-of-type", ":link", ":not", ":nth-child", ":nth-last-child", ":nth-last-of-type", ":nth-of-type", ":only-child", ":only-of-type", ":optional", ":out-of-range", ":read-only", ":read-write", ":required", ":root", ":target", ":valid", ":visited", "::after", "::before", "::first-letter", "::first-line", "::marker", "::selection", "::placeholder"
         ];
 
 
-	const htmlKeywords = [
-    // HTML Tags
-    "a", "abbr", "address", "area", "article", "aside", "audio", "b", "base",
-    "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption",
-    "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details",
-    "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption",
-    "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head",
-    "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins",
-    "kbd", "label", "legend", "li", "link", "main", "map", "mark", "meta",
-    "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output",
-    "p", "param", "picture", "pre", "progress", "q", "rp", "rt", "ruby",
-    "s", "samp", "script", "section", "select", "small", "source", "span",
-    "strong", "style", "sub", "summary", "sup", "svg", "table", "tbody",
-    "td", "template", "textarea", "tfoot", "th", "thead", "time", "title",
-    "tr", "track", "u", "ul", "var", "video", "wbr",
-
-    // HTML Attribute
-    "accept", "accept-charset", "action", "align", "alt", "async", "autocomplete",
-    "autofocus", "checked", "cite", "class", "cols", "content", "contenteditable",
-    "controls", "coords", "data-*", "datetime", "default", "defer", "disabled",
-    "download", "enctype", "for", "form", "formaction", "headers", "height",
-    "hidden", "high", "href", "hreflang", "http-equiv", "id", "label",
-    "lang", "list", "loop", "low", "manifest", "max", "maxlength", "min",
-    "minlength", "multiple", "name", "novalidate", "open", "optimum", "pattern",
-    "placeholder", "poster", "preload", "readonly", "rel", "required", "reversed",
-    "rows", "rowspan", "sandbox", "scope", "selected", "shape", "size", "sizes",
-    "span", "src", "srcdoc", "srclang", "start", "style", "tabindex",
-    "target", "title", "type", "value", "width", "wrap"
+	const htmlKeywords = [ "a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "label", "legend", "li", "link", "main", "map", "mark", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "svg", "table", "tbody", "td", "template", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr", "accept", "accept-charset", "action", "align", "alt", "async", "autocomplete", "autofocus", "checked", "cite", "class", "cols", "content", "contenteditable", "controls", "coords", "data-*", "datetime", "default", "defer", "disabled", "download", "enctype", "for", "form", "formaction", "headers", "height", "hidden", "high", "href", "hreflang", "http-equiv", "id", "label", "lang", "list", "loop", "low", "manifest", "max", "maxlength", "min", "minlength", "multiple", "name", "novalidate", "open", "optimum", "pattern", "placeholder", "poster", "preload", "readonly", "rel", "required", "reversed", "rows", "rowspan", "sandbox", "scope", "selected", "shape", "size", "sizes", "span", "src", "srcdoc", "srclang", "start", "style", "tabindex", "target", "title", "type", "value", "width", "wrap"
         ];
 
         const allKeywords = [...jsKeywords, ...cssKeywords, ...htmlKeywords];
@@ -639,7 +535,7 @@
                 });
                 const rect = editor.getBoundingClientRect();
                 suggestionBox.style.left = `${rect.left}px`;
-                suggestionBox.style.top = `${rect.bottom}px`;
+                suggestionBox.style.top = `${rect.top}px`;
                 suggestionBox.style.display = 'block';
             } else {
                 suggestionBox.style.display = 'none';
