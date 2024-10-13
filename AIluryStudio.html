@@ -190,8 +190,6 @@
                     const previousLine = selectedline.previousElementSibling;
                     if (previousLine) {
                         selectedline.parentNode.insertBefore(selectedline, previousLine);
-			selectedline.classList.remove('selected');
-			checkifselectedlines();
                     }
                 });
             }
@@ -204,8 +202,6 @@
                     const nextLine = selectedline.nextElementSibling;
                     if (nextLine) {
                         selectedline.parentNode.insertBefore(nextLine, selectedline);
-			selectedline.classList.remove('selected');
-			checkifselectedlines();
                     }
                 });
             }
