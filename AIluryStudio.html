@@ -114,13 +114,13 @@
 	    background: #f0f0f0;
 	}
 	.disabled{
-	    /*color: #f0f0f0;*/
 	    pointer-events: none;
             opacity: 0.5;
 	}
-	/*.eslbtn .disabled:hover{
-	    background: #fcfcfc;
-	}*/
+	.disablel{
+	    pointer-events: none;
+            opacity: 0.5;
+	}
 	.importantpin{
 	    background: #F09286;
 	}
@@ -224,10 +224,10 @@
         }
 
 	function unsleepalllines() {
-            const allselectedlines = document.querySelectorAll(".code-editor-line.disabled");
+            const allselectedlines = document.querySelectorAll(".disablel");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
-		    selectedline.classList.remove('disabled');
+		    selectedline.classList.remove('disablel');
                 });
             }
         }
