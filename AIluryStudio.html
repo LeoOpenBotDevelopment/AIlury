@@ -64,11 +64,6 @@
             font-size: 1.2em;
         }
         /* Selected line styling */
-        .code-editor-line.selected {
-            background-color: #e0f7e9;
-            transform: translateX(1.5em); /* Slight movement to the right */
-	    border-radius: 0;
-        }
         .code-editor-line.selected.topSelected {
 	    border-top-left-radius: 5px;
             border-top-right-radius: 5px;
@@ -121,7 +116,7 @@
 	.pinned{
 	    transform: rotate(45deg);
 	}
-	.eslbtn.disabled{
+	.disabled{
 	    /*color: #f0f0f0;*/
 	    pointer-events: none;
             opacity: 0.5;
@@ -129,14 +124,76 @@
 	/*.eslbtn .disabled:hover{
 	    background: #fcfcfc;
 	}*/
+	.importantpin{
+	    background: #F09286;
+	    transform: translateX(1.5em);
+	}
+	.code-editor-line.selected {
+            background: #e0f7e9;
+            transform: translateX(1.5em); /* Slight movement to the right */
+	    border-radius: 0;
+        }
     </style>
 </head>
 <body>
     <div class="code-editor-container">
         <div id="1" class="code-editor-line" contenteditable="true"></div>
     </div>
-    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn">⌧</button><button class="eslbtn disabled" id="importantPinbtn">⚠</button><button class="eslbtn disabled" id="upbtn">↑</button><button class="eslbtn disabled" id="downbtn">↓</button><button class="eslbtn disabled" id="sleapbtn">☾</button><button class="eslbtn disabled" id="pinbtn">⊕</button><button class="eslbtn disabled" id="copybtn">□</button></div>
+    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="pinbtn">⊕</button><button class="eslbtn disabled" id="copybtn">□</button></div>
     <script>
+	function deleteSelectedLines(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		allselectedlines.forEach(selectedline => {
+		    selectedline.remove();
+		});
+	    }
+	}
+	function importantselectedlines(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		allselectedlines.forEach(selectedline => {
+		    selectedline.classList.toggle("importantpin");
+		});
+	    }
+	}
+	function moveselectedlineup(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		allselectedlines.forEach(selectedline => {
+                    const previousLine = selectedline.previousElementSibling;
+                    if (previousLine) {
+                        selectedline.parentNode.insertBefore(selectedline, previousLine);
+                    }
+		});
+	    }
+	}
+	function moveselectedlinedown(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		allselectedlines.forEach(selectedline => {
+                    const nextLine = selectedline.nextElementSibling;
+                    if (nextLine) {
+                        selectedline.parentNode.insertBefore(nextLine, selectedline);
+                    }
+		});
+	    }
+	}
+	function restselectedline(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		allselectedlines.forEach(selectedline => {
+                    if (selectedline.getAttribute('contenteditable') == 'true') {
+                        selectedline.setAttribute('contenteditable', 'false');
+			selectedline.classList.remove('disabled');
+                    } else {
+                        selectedline.setAttribute('contenteditable', 'true');
+			selectedline.classList.add('disabled');
+                    }
+		}
+	    }
+	}
+
         let startX, startLine;
 
         // Allgemeiner Event Listener für Touch-Events
