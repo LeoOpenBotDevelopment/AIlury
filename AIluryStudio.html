@@ -138,74 +138,82 @@
     </div>
     <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
     <script>
-	function deleteSelectedLines(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		allselectedlines.forEach(selectedline => {
-		    selectedline.remove();
-		});
-	    }
-	}
-	function importantselectedlines(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		allselectedlines.forEach(selectedline => {
-		    selectedline.classList.toggle("importantpin");
-		});
-	    }
-	}
-	function moveselectedlineup(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		allselectedlines.forEach(selectedline => {
+	function deleteSelectedLines() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.remove();
+                });
+            }
+        }
+
+        function importantselectedlines() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.toggle("importantpin");
+                });
+            }
+        }
+
+        function moveselectedlineup() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
                     const previousLine = selectedline.previousElementSibling;
                     if (previousLine) {
                         selectedline.parentNode.insertBefore(selectedline, previousLine);
                     }
-		});
-	    }
-	}
-	function moveselectedlinedown(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		allselectedlines.forEach(selectedline => {
+                });
+            }
+        }
+
+        function moveselectedlinedown() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
                     const nextLine = selectedline.nextElementSibling;
                     if (nextLine) {
                         selectedline.parentNode.insertBefore(nextLine, selectedline);
                     }
-		});
-	    }
-	}
-	function restselectedline(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		allselectedlines.forEach(selectedline => {
-                    if (selectedline.getAttribute('contenteditable') == 'true') {
+                });
+            }
+        }
+
+        function restselectedline() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    if (selectedline.getAttribute('contenteditable') === 'true') {
                         selectedline.setAttribute('contenteditable', 'false');
-			selectedline.classList.remove('disabled');
+                        selectedline.classList.remove('disabled');
                     } else {
                         selectedline.setAttribute('contenteditable', 'true');
-			selectedline.classList.add('disabled');
+                        selectedline.classList.add('disabled');
                     }
-		}
-	    }
-	}
+                }); // Korrekte Klammerung hier
+            }
+        }
 
-	function copyselectedlinetexts(){
-	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
-	    if (allselectedlines){
-		let linetexts = "";
-		allselectedlines.forEach(selectedline => {
-                    linetexts += selectedline.textContent;
-		}
-		const textarea = document.createElement('textarea');
-                textarea.value = linetexts;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-	    }
-	}
+        function copyselectedlinetexts() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                let linetexts = "";
+                allselectedlines.forEach(selectedline => {
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                }); // Korrekte Klammerung hier
+
+                // Verwende die Clipboard API
+                navigator.clipboard.writeText(linetexts)
+                    .then(() => {
+                        console.log('Text copied to clipboard');
+                    })
+                    .catch(err => {
+                        console.error('Error copying text: ', err);
+                    });
+            }
+        }
+
 	    
         let startX, startLine;
 
@@ -228,14 +236,14 @@
             // Wenn nach rechts geswiped wird und auf derselben Zeile geendet wird
             if (diffX > 50) {
                 startLine.classList.add('selected');  // Linie auswählen
-		document.querySelectorAll('.eslbtn.disabled').forEach(line => {
-		    line.classList.remove('disabled');
+		document.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+		    dline.classList.remove('disabled');
 		});
                 updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
-		document.querySelectorAll('.eslbtn').forEach(line => {
-		    line.classList.add('disabled');
+		document.querySelectorAll('.eslbtn').forEach(dline => {
+		    dline.classList.add('disabled');
 		});
                 updateSelectedClasses();
             }
