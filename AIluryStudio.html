@@ -234,13 +234,17 @@
                 allselectedlines.forEach(selectedline => {
                     linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
-
-		const newtextarea = document.createElement('textarea');
-                newtextarea.value = linetexts;
-                document.body.appendChild(newtextarea);
-                newtextarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(newtextarea);
+		
+		try {
+		    const newtextarea = document.createElement('textarea');
+                    newtextarea.value = linetexts;
+                    document.body.appendChild(newtextarea);
+                    newtextarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(newtextarea);
+                } catch (error) {
+                    const thiserrorwascatched = error;
+                }
 
 		selectedline.classList.remove('selected');
 		checkifselectedlines();
