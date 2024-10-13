@@ -137,11 +137,21 @@
     </div>
     <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
     <script>
+	function checkifselectedlines() {
+	    const check = document.querySelector(".code-editor-line.selected");
+	    if (!check) {
+		document.querySelectorAll('.eslbtn').forEach(dline => {
+		    dline.classList.add('disabled');
+		});
+	    }
+	}
 	function deleteSelectedLines() {
             const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
                     selectedline.remove();
+		    selectedline.classList.remove('selected');
+		    checkifselectedlines();
                 });
             }
         }
@@ -151,6 +161,8 @@
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
                     selectedline.classList.toggle("importantpin");
+		    selectedline.classList.remove('selected');
+		    checkifselectedlines();
                 });
             }
         }
@@ -162,6 +174,8 @@
                     const previousLine = selectedline.previousElementSibling;
                     if (previousLine) {
                         selectedline.parentNode.insertBefore(selectedline, previousLine);
+			selectedline.classList.remove('selected');
+			checkifselectedlines();
                     }
                 });
             }
@@ -174,6 +188,8 @@
                     const nextLine = selectedline.nextElementSibling;
                     if (nextLine) {
                         selectedline.parentNode.insertBefore(nextLine, selectedline);
+			selectedline.classList.remove('selected');
+			checkifselectedlines();
                     }
                 });
             }
@@ -190,6 +206,8 @@
                         selectedline.setAttribute('contenteditable', 'true');
                         selectedline.classList.add('disabled');
                     }
+		    selectedline.classList.remove('selected');
+		    checkifselectedlines();
                 }); // Korrekte Klammerung hier
             }
         }
@@ -202,6 +220,8 @@
                     linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 
+		selectedline.classList.remove('selected');
+		checkifselectedlines();
                 // Verwende die Clipboard API
                 navigator.clipboard.writeText(linetexts)
                     .then(() => {
