@@ -136,7 +136,7 @@
     <div class="code-editor-container">
         <div id="1" class="code-editor-line" contenteditable="true"></div>
     </div>
-    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn">□</button></div>
+    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
     <script>
 	function deleteSelectedLines(){
 	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
@@ -191,6 +191,22 @@
 	    }
 	}
 
+	function copyselectedlinetexts(){
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    if (allselectedlines){
+		let linetexts = "";
+		allselectedlines.forEach(selectedline => {
+                    linetexts += selectedline.textContent;
+		}
+		const textarea = document.createElement('textarea');
+                textarea.value = linetexts;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+	    }
+	}
+	    
         let startX, startLine;
 
         // Allgemeiner Event Listener für Touch-Events
