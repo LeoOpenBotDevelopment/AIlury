@@ -235,16 +235,23 @@
                     linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 
+		const newtextarea = document.createElement('textarea');
+                newtextarea.value = linetexts;
+                document.body.appendChild(newtextarea);
+                newtextarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(newtextarea);
+
 		selectedline.classList.remove('selected');
 		checkifselectedlines();
                 // Verwende die Clipboard API
-                navigator.clipboard.writeText(linetexts)
+                /*navigator.clipboard.writeText(linetexts)
                     .then(() => {
                         console.log('Text copied to clipboard');
                     })
                     .catch(err => {
                         console.error('Error copying text: ', err);
-                    });
+                    });*/
             }
         }
 
