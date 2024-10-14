@@ -289,7 +289,7 @@
             }
         });
 
-	const result = {};
+	let result = {};
         document.addEventListener('touchend', function(event) {
             if (!startLine) return;  // Keine Linie gestartet, nichts tun
 
@@ -305,7 +305,7 @@
                 updateSelectedClasses();
             } else if (diffX > 50 && startLine.classList.contains('hiddenlinesparent')) {
                 startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
-		unhideElements();
+		showHiddenElements(startLine);
                 updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
@@ -430,18 +430,13 @@
           result[element] = hiddenElements;
         }
 	    
-	function unhideElements() {
-            // Gehe alle Einträge im result-Objekt durch
-            for (let key in result) {
-                if (result.hasOwnProperty(key)) {
-                    // result[key] enthält die Liste der versteckten Elemente
-                    const hiddenElements = result[key];
-
-                    // Gehe durch alle versteckten Elemente und entferne die 'hidden'-Klasse
-                    hiddenElements.forEach(element => {
-                        element.classList.remove('hidden');
-                    });
-                }
+	function showHiddenElements(element) {
+            if (result[element]) {
+                const hiddenElements = result[element];
+                hiddenElements.forEach(hiddenElement => {
+                    hiddenElement.classList.remove('hidden');
+                });
+                delete result[element];
             }
         }
 
