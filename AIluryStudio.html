@@ -419,7 +419,7 @@
               const nextSpaces = countLeadingSpaces(nextText);
 
               // Überprüfen, ob das nächste Element mehr führende Leerzeichen hat
-              if (nextSpaces > referenceSpaces) {
+              if (nextSpaces > referenceSpaces || nextText.trim() == "") {
                   // Element in die Liste der versteckten Elemente aufnehmen
                   hiddenElements.push(nextElement);
                   nextElement.classList.add('hidden');  // Element verstecken
