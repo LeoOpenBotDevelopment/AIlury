@@ -150,7 +150,8 @@
 	    transform: translateX(-1.5em);
 	}
 	.hidden{
-	    animation: Hide 1s forwards;
+	    display: none;
+	    /*animation: Hide 1s forwards;*/
 	}
 	@keyframes Hide {
 	    100%{
@@ -302,6 +303,10 @@
 		    dline.classList.remove('disabled');
 		});
                 updateSelectedClasses();
+            } else if (diffX > 50 && startLine.classList.contains('hiddenlinesparent')) {
+                startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
+		unhideElements();
+                updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
 		if (!document.querySelector('.code-editor-line.selected')){
@@ -314,11 +319,7 @@
                 startLine.classList.add('hiddenlinesparent');  // Linie auswählen
 		analyzeAndHideElements(startLine);
                 updateSelectedClasses();
-            } else if (diffX > 50 && startLine.classList.contains('hiddenlinesparent') && !startLine.classList.contains('selected')) {
-                startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
-		//unhideElements();
-                updateSelectedClasses();
-            }
+            } 
 
             startLine = null;  // Touch-Zustand zurücksetzen
         });
