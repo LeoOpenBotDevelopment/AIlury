@@ -316,7 +316,7 @@
 		}
                 updateSelectedClasses();
             } else if (diffX < -50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
-                startLine.classList.add('hiddenlinesparent');  // Linie auswählen
+                //startLine.classList.add('hiddenlinesparent');
 		analyzeAndHideElements(startLine);
                 updateSelectedClasses();
             } 
@@ -408,6 +408,11 @@
           // Nächstes Element in der DOM-Hierarchie bekommen
           let nextElement = element.nextElementSibling;
 
+	  if (nextElement){
+	      element.classList.add('hiddenlinesparent');
+	  }else {
+	      return;
+	  }
           // Schleife durch alle nachfolgenden Geschwister-Elemente
           while (nextElement) {
               const nextText = nextElement.textContent;
