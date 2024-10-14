@@ -375,7 +375,18 @@
         });
 	function analyzeAndHideElements(element) {
           function countLeadingSpaces(text) {
-              return text.match(/^ */)[0].length;
+              //return text.match(/^ */)[0].length;
+	      let spaces = 0;
+              let continueSpaces = true;
+              for (let i = 0; i < text.length; i++) {
+                  let character = text[i];
+                  if ((character === " " || character === "\u00A0") && continueSpaces) {
+                      spaces += 1;
+                  } else {
+                      continueSpaces = false;
+                  }
+              }
+	      return spaces;
           }
 
           // Das empfangene Element und seine führenden Leerzeichen ermitteln
