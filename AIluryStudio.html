@@ -145,6 +145,9 @@
 	.unsleeplines:hover{
 	    background: #f0f0f0;
 	}
+	.hiddenlinesparent{
+	    transform: translateX(-1.5em);
+	}
     </style>
 </head>
 <body>
@@ -274,6 +277,7 @@
             }
         });
 
+	const result = {};
         document.addEventListener('touchend', function(event) {
             if (!startLine) return;  // Keine Linie gestartet, nichts tun
 
@@ -281,7 +285,7 @@
             let diffX = endX - startX;  // Unterschied zwischen Start und Ende berechnen
 
             // Wenn nach rechts geswiped wird und auf derselben Zeile geendet wird
-            if (diffX > 50) {
+            if (diffX > 50 && !startLine.classList.contains('selected')) {
                 startLine.classList.add('selected');  // Linie auswählen
 		document.querySelectorAll('.eslbtn.disabled').forEach(dline => {
 		    dline.classList.remove('disabled');
@@ -294,6 +298,14 @@
 		        dline.classList.add('disabled');
 		    });
 		}
+                updateSelectedClasses();
+            } else if (diffX < -50 && !startLine.classList.contains('selected')) {
+                startLine.classList.add('hiddenlinesparent');  // Linie auswählen
+		analyzeAndHideElements(startLine);
+                updateSelectedClasses();
+            } else if (diffX > 50 && startLine.classList.contains('hiddenlinesparent')) {
+                startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
+		unhideElements();
                 updateSelectedClasses();
             }
 
@@ -361,6 +373,56 @@
             selection.removeAllRanges();
             selection.addRange(newRange);
         });
+	function analyzeAndHideElements(element) {
+          function countLeadingSpaces(text) {
+              return text.match(/^ */)[0].length;
+          }
+
+          // Das empfangene Element und seine führenden Leerzeichen ermitteln
+          const referenceSpaces = countLeadingSpaces(element.textContent);
+          const hiddenElements = [];
+    
+          // Nächstes Element in der DOM-Hierarchie bekommen
+          let nextElement = element.nextElementSibling;
+
+          // Schleife durch alle nachfolgenden Geschwister-Elemente
+          while (nextElement) {
+              const nextText = nextElement.textContent;
+              const nextSpaces = countLeadingSpaces(nextText);
+
+              // Überprüfen, ob das nächste Element mehr führende Leerzeichen hat
+              if (nextSpaces > referenceSpaces) {
+                  // Element in die Liste der versteckten Elemente aufnehmen
+                  hiddenElements.push(nextElement);
+                  nextElement.classList.add('hidden');  // Element verstecken
+              } else {
+                  break;  // Schleife beenden, wenn weniger oder gleich viele Leerzeichen
+              }
+
+              // Zum nächsten Geschwister-Element wechseln
+              nextElement = nextElement.nextElementSibling;
+          }
+
+          // JSON-Struktur erstellen
+          result[element] = hiddenElements;
+        }
+	    
+	function unhideElements() {
+            // Gehe alle Einträge im result-Objekt durch
+            for (let key in result) {
+                if (result.hasOwnProperty(key)) {
+                    // result[key] enthält die Liste der versteckten Elemente
+                    const hiddenElements = result[key];
+
+                    // Gehe durch alle versteckten Elemente und entferne die 'hidden'-Klasse
+                    hiddenElements.forEach(element => {
+                        element.classList.remove('hidden');
+                    });
+                }
+            }
+        }
+
+
 
         // Hilfsfunktion, um Leerzeichen in &nbsp; zu konvertieren
         function convertToNonBreakingSpaces(text) {
