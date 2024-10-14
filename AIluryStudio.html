@@ -432,16 +432,16 @@
           }
 
           // JSON-Struktur erstellen
-          result[element] = hiddenElements;
+          result[element.id] = hiddenElements;
         }
 	    
 	function showHiddenElements(element) {
-            if (result[element]) {
-                const hiddenElements = result[element];
+            if (result[element.id]) {
+                const hiddenElements = result[element.id];
                 hiddenElements.forEach(hiddenElement => {
                     hiddenElement.classList.remove('hidden');
                 });
-                delete result[element];
+                delete result[element.id];
             }
         }
 
