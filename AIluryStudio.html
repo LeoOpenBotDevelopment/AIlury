@@ -196,7 +196,9 @@
         }
 
         function moveselectedlinedown() {
-            const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            //const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	    let allselectedlines = [...document.querySelectorAll('.code-editor-line.selected')];
+            allselectedlines.reverse();
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
                     const nextLine = selectedline.nextElementSibling;
