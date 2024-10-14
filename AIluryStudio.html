@@ -285,7 +285,7 @@
             let diffX = endX - startX;  // Unterschied zwischen Start und Ende berechnen
 
             // Wenn nach rechts geswiped wird und auf derselben Zeile geendet wird
-            if (diffX > 50 && !startLine.classList.contains('selected')) {
+            if (diffX > 50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
                 startLine.classList.add('selected');  // Linie auswählen
 		document.querySelectorAll('.eslbtn.disabled').forEach(dline => {
 		    dline.classList.remove('disabled');
@@ -299,7 +299,7 @@
 		    });
 		}
                 updateSelectedClasses();
-            } else if (diffX < -50 && !startLine.classList.contains('selected')) {
+            } else if (diffX < -50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
                 startLine.classList.add('hiddenlinesparent');  // Linie auswählen
 		analyzeAndHideElements(startLine);
                 updateSelectedClasses();
