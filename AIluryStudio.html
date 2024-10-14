@@ -289,7 +289,7 @@
                 updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
-		if (!document.querySelector('.code-editor-line.disabled')){
+		if (!document.querySelector('.code-editor-line.selected')){
 		    document.querySelectorAll('.eslbtn').forEach(dline => {
 		        dline.classList.add('disabled');
 		    });
