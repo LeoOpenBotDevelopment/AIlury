@@ -440,7 +440,13 @@
             if (result[element.id]) {
                 const hiddenElements = result[element.id];
                 hiddenElements.forEach(hiddenElement => {
-                    hiddenElement.classList.remove('hidden');
+		    if (hiddenElement){
+			hiddenElement.classList.remove('hidden');
+			if (hiddenElement.classList.contains('hiddenlinesparent')){
+			    hiddenElement.classList.remove('hiddenlinesparent');
+			    analyzeAndHideElements(hiddenElement);
+			}
+		    }
                 });
                 delete result[element.id];
             }
