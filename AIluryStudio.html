@@ -364,6 +364,22 @@
             celine.innerText += convertToNonBreakingSpaces(lines[0]);
 
             // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
+	    let leadingSpaces = 0;
+
+	    function countLeadingSpaces(text) {
+                for (let char of text) {
+                    if (char === ' ') {
+                        leadingSpaces++;
+                    } else {
+                        break;
+                    }
+                }
+            }  
+
+            function removeLeadingSpaces(text) {
+                return text.slice(leadingSpaces);
+            }
+	    let spaces2 = "";
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
                 const newline = document.createElement('div');
@@ -371,9 +387,13 @@
                 newline.id = correntids;
                 newline.classList.add('code-editor-line');
 		newline.innerHTML = spaces;
-                newline.innerText += convertToNonBreakingSpaces(lines[i]);
-                celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
+		if (i == 0) {
+                    countLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
+		}
+		newline.innerText += removeLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
+		
+		celine.insertAdjacentElement('afterend', newline);
             }
 
             // Text nach dem Cursor in die letzte Linie einfügen
