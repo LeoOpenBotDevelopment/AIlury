@@ -363,24 +363,6 @@
             // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
             celine.innerText += convertToNonBreakingSpaces(lines[0]);
 
-            // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
-	    let leadingSpaces = 0;
-
-            function countLeadingSpaces(text) {
-                leadingSpaces = 0;  // Setze die Variable bei jedem Aufruf zurück
-                for (let char of text) {
-                    if (char === ' ') {
-                        leadingSpaces++;
-                    } else {
-                        break;  // Beende die Schleife, wenn kein Leerzeichen mehr ist
-                    }
-                }
-            }
-
-            function removeLeadingSpaces(text) {
-                return text.slice(leadingSpaces);  // Entferne die gezählten Leerzeichen
-            }
-
             // Schleife durch die Zeilen (startet bei 1)
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
@@ -390,14 +372,7 @@
                 newline.classList.add('code-editor-line');
                 newline.innerHTML = spaces;
                 celine = newline;
-
-                // Nur für die erste Zeile die führenden Leerzeichen zählen
-                if (i == 1) {
-                    countLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
-                }
-    
-                // Füge den bereinigten Text zur Zeile hinzu
-                newline.innerText += removeLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
+                newline.innerText += convertToNonBreakingSpaces(lines[i]);
 
                 // Füge die neue Zeile nach dem aktuellen Element hinzu
                 celine.insertAdjacentElement('afterend', newline);
