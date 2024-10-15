@@ -371,8 +371,8 @@
                 newline.id = correntids;
                 newline.classList.add('code-editor-line');
                 newline.innerHTML = spaces;
+		newline.innerText += convertToNonBreakingSpaces(lines[i]);
                 celine = newline;
-                newline.innerText += convertToNonBreakingSpaces(lines[i]);
 
                 // Füge die neue Zeile nach dem aktuellen Element hinzu
                 celine.insertAdjacentElement('afterend', newline);
