@@ -185,7 +185,7 @@
                 allselectedlines.forEach(selectedline => {
                     selectedline.remove();
 		    selectedline.classList.remove('selected');
-		    if (!document.querySelectorAll(".code-editor-line")){
+		    if (!document.querySelector(".code-editor-line")){
 		        const newline = document.createElement('div');
                         newline.setAttribute('contenteditable', 'true');
                         newline.id = newid;
