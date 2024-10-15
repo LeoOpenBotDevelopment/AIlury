@@ -366,35 +366,45 @@
             // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
 	    let leadingSpaces = 0;
 
-	    function countLeadingSpaces(text) {
+	    let leadingSpaces = 0;  // Definiere leadingSpaces außerhalb der Funktion
+
+            function countLeadingSpaces(text) {
+                leadingSpaces = 0;  // Setze die Variable bei jedem Aufruf zurück
                 for (let char of text) {
                     if (char === ' ') {
                         leadingSpaces++;
                     } else {
-                        break;
+                        break;  // Beende die Schleife, wenn kein Leerzeichen mehr ist
                     }
                 }
-            }  
+            }
 
             function removeLeadingSpaces(text) {
-                return text.slice(leadingSpaces);
+                return text.slice(leadingSpaces);  // Entferne die gezählten Leerzeichen
             }
-	    let spaces2 = "";
+
+            // Schleife durch die Zeilen (startet bei 1)
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
                 const newline = document.createElement('div');
                 newline.setAttribute('contenteditable', 'true');
                 newline.id = correntids;
                 newline.classList.add('code-editor-line');
-		newline.innerHTML = spaces;
+                newline.innerHTML = spaces;
                 celine = newline;
-		if (i == 0) {
+
+                // Nur für die erste Zeile die führenden Leerzeichen zählen
+                if (i == 1) {
                     countLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
-		}
-		newline.innerText += removeLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
-		
-		celine.insertAdjacentElement('afterend', newline);
+                }
+    
+                // Füge den bereinigten Text zur Zeile hinzu
+                newline.innerText += removeLeadingSpaces(convertToNonBreakingSpaces(lines[i]));
+
+                // Füge die neue Zeile nach dem aktuellen Element hinzu
+                celine.insertAdjacentElement('afterend', newline);
             }
+
 
             // Text nach dem Cursor in die letzte Linie einfügen
             celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
