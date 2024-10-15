@@ -12,14 +12,18 @@
         }
         .code-editor-container {
             height: 70vh;
-            /*width: 90vw;*/
-	    display: flex;
+            width: 90vw;
             border-radius: 5px;
             background: #fff;
 	    padding: 5px 4.5em;/*4.5em*/
 	    overflow-y: scroll;
 	    overflow-x: hidden;
 	    box-shadow: inset 0px 0px 10px #fcfcfc;
+        }
+	@media (min-width: 600px) {
+            .code-editor-container {
+                width: 70vw;
+            }
         }
         .code-editor-line {
             display: flex;/*inline-block*/
