@@ -183,15 +183,10 @@
             const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
-                    selectedline.remove();
-		    selectedline.classList.remove('selected');
-		    if (!document.querySelector(".code-editor-line")){
-		        const newline = document.createElement('div');
-                        newline.setAttribute('contenteditable', 'true');
-                        newline.id = newid;
-                        newline.classList.add('code-editor-line');
-                        document.querySelector(".code-editor-container").appendChild(newline);
+		    if (element.previousElementSibling || element.nextElementSibling){
+			selectedline.remove();
 		    }
+		    selectedline.classList.remove('selected');
 		    checkifselectedlines();
                 });
             }
