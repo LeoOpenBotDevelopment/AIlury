@@ -355,12 +355,15 @@
             let range = selection.getRangeAt(0);
             let cursorOffset = range.startOffset;
 
+            // Text vor dem Cursor behalten und Text nach dem Cursor extrahieren
             let currentText = celine.textContent;
             let textAfterCursor = currentText.substring(cursorOffset);
             celine.textContent = currentText.substring(0, cursorOffset);
 
+            // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
             celine.innerText += convertToNonBreakingSpaces(lines[0]);
 
+            // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
                 const newline = document.createElement('div');
@@ -368,12 +371,15 @@
                 newline.id = correntids;
                 newline.classList.add('code-editor-line');
 		newline.innerHTML = spaces;
-		newline.innerText += convertToNonBreakingSpaces(lines[i]);
+                newline.innerText += convertToNonBreakingSpaces(lines[i]);
+                celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
-		
-		celine.insertAdjacentElement('afterend', newline);
-	    }
-	    
+            }
+
+            // Text nach dem Cursor in die letzte Linie einfügen
+            celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
+
+            // Setze den Cursor ans Ende der letzten Linie
             const newRange = document.createRange();
             newRange.setStart(celine.childNodes[0], celine.childNodes[0].length);
             newRange.collapse(true);
