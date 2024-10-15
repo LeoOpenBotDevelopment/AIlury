@@ -183,7 +183,7 @@
             const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
-		    if (element.previousElementSibling || element.nextElementSibling){
+		    if (selectedline.previousElementSibling || selectedline.nextElementSibling){
 			selectedline.remove();
 		    }
 		    selectedline.classList.remove('selected');
