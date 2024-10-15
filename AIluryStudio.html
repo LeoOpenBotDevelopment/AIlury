@@ -8,8 +8,7 @@
         body {
             background: #fff;/*#fcfcfc*/
 	    width: 100vw;
-	    overflow-x: hidden;
-            overflow-y: scroll;
+	    overflow: hidden;
         }
         .code-editor-container {
             height: 70vh;
@@ -25,12 +24,14 @@
             .code-editor-container {
                 width: 70vw;
 		padding: 5px 3.5em;
+		height: 60vh;
             }
         }
 	@media (max-width: 600px) {
             .code-editor-container {
                 width: 60vw;
 		padding: 5px 3em;
+		height: 50vh;
             }
         }
         .code-editor-line {
