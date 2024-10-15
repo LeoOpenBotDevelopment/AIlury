@@ -169,6 +169,8 @@
     </div>
     <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines()">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button><button class="unsleeplines" id="unsleeplines" onclick="unsleepalllines()">☼</button></div>
     <script>
+	let correntids = 1;
+	
 	function checkifselectedlines() {
 	    const check = document.querySelector(".code-editor-line.selected");
 	    if (!check) {
@@ -183,6 +185,13 @@
                 allselectedlines.forEach(selectedline => {
                     selectedline.remove();
 		    selectedline.classList.remove('selected');
+		    if (!document.querySelectorAll(".code-editor-line")){
+		        const newline = document.createElement('div');
+                        newline.setAttribute('contenteditable', 'true');
+                        newline.id = newid;
+                        newline.classList.add('code-editor-line');
+                        document.querySelector(".code-editor-container").appendChild(newline);
+		    }
 		    checkifselectedlines();
                 });
             }
@@ -325,7 +334,6 @@
             startLine = null;  // Touch-Zustand zurücksetzen
         });
 		
-	let correntids = 1;
         let inputDiv = document.querySelector('.code-editor-container');
 
         // Paste Event-Listener
