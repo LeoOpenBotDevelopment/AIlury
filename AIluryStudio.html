@@ -438,12 +438,13 @@
 	    
 	function showHiddenElements(element) {
             if (result[element.id]) {
-                const hiddenElements = result[element.id];
+                const hiddenElements = result[element.id].reverse();
                 hiddenElements.forEach(hiddenElement => {
 		    if (hiddenElement){
 			hiddenElement.classList.remove('hidden');
 			if (hiddenElement.classList.contains('hiddenlinesparent')){
 			    hiddenElement.classList.remove('hiddenlinesparent');
+			    showHiddenElements(hiddenElement);
 			    analyzeAndHideElements(hiddenElement);
 			}
 		    }
