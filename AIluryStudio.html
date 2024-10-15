@@ -377,7 +377,7 @@
             }
 
             // Text nach dem Cursor in die letzte Linie einfügen
-            //celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
+            celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
 
             // Setze den Cursor ans Ende der letzten Linie
             const newRange = document.createRange();
@@ -385,7 +385,6 @@
             newRange.collapse(true);
             selection.removeAllRanges();
             selection.addRange(newRange);
-	    celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
         });
 	function analyzeAndHideElements(element) {
           function countLeadingSpaces(text) {
