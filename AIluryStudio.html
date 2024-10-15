@@ -193,8 +193,24 @@
                 allselectedlines.forEach(selectedline => {
 		    if (selectedline.previousElementSibling || selectedline.nextElementSibling){
 			selectedline.remove();
+		    }else {
+			selectedline.innerHTML = "";
 		    }
 		    selectedline.classList.remove('selected');
+		    checkifselectedlines();
+                });
+            }
+        }
+
+	function deleteAllLines() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+		    if (selectedline.previousElementSibling || selectedline.nextElementSibling){
+			selectedline.remove();
+		    }else {
+			selectedline.innerHTML = "";
+		    }
 		    checkifselectedlines();
                 });
             }
@@ -206,6 +222,42 @@
                 allselectedlines.forEach(selectedline => {
                     selectedline.classList.toggle("importantpin");
 		    selectedline.classList.remove('selected');
+		    checkifselectedlines();
+                });
+            }
+        }
+
+	function unselectalllines() {
+	    const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove('selected');  // Linie abwählen bei links Swipe
+		    if (!document.querySelector('.code-editor-line.selected')){
+		        document.querySelectorAll('.eslbtn').forEach(dline => {
+		            dline.classList.add('disabled');
+		        });
+		    }
+                    updateSelectedClasses();
+                });
+            }
+	}
+
+	function unfoldalllines()() {
+	    const allselectedlines = document.querySelectorAll(".hiddenlinesparent");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove('hiddenlinesparent');  // Linie auswählen
+		    showHiddenElements(selectedline);
+                    updateSelectedClasses();
+                });
+            }
+	}
+	
+	function importantalllines() {
+            const allselectedlines = document.querySelectorAll(".importantpin");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove("importantpin");
 		    checkifselectedlines();
                 });
             }
@@ -269,6 +321,37 @@
 
         function copyselectedlinetexts() {
             const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                let linetexts = "";
+                allselectedlines.forEach(selectedline => {
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                }); // Korrekte Klammerung hier
+		
+		try {
+		    const newtextarea = document.createElement('textarea');
+                    newtextarea.value = linetexts;
+                    document.body.appendChild(newtextarea);
+                    newtextarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(newtextarea);
+                } catch (error) {
+                    const thiserrorwascatched = error;
+                }
+
+		selectedline.classList.remove('selected');
+		checkifselectedlines();
+                // Verwende die Clipboard API
+                /*navigator.clipboard.writeText(linetexts)
+                    .then(() => {
+                        console.log('Text copied to clipboard');
+                    })
+                    .catch(err => {
+                        console.error('Error copying text: ', err);
+                    });*/
+            }
+        }
+	function copyalllinetexts() {
+            const allselectedlines = document.querySelectorAll(".code-editor-line");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 let linetexts = "";
                 allselectedlines.forEach(selectedline => {
