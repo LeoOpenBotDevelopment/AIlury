@@ -1,35 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vollbild iFrame mit JavaScript</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Verhindert Scrollen */
-        }
-        iframe {
-            width: 100vw;  /* Breite des Viewports */
-            height: 100vh; /* Höhe des Viewports */
-            border: none;  /* Entfernt den Rahmen */
-        }
-    </style>
-</head>
-<body>
-    <iframe id="myIframe"></iframe>
-
-    <script>
-        // HTML-Code, der in den iFrame eingefügt werden soll
-        const htmlContent = `
-            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>Fixed Scroll with Snap Points</title>
     <style>
         * {
@@ -712,29 +687,29 @@
 			}
 		}
 		#addFile{
-		    position: fixed;
-		    right: 5px;
-		    bottom: 3px;
-		    color: #000;
-	            width: 4vh;
-	            height: 4vh;
-	            min-width: 40px;
-	            min-height: 40px;
-	            background: transparent;
-	            text-align: center;
-	            border: none;
-	            border-radius: 50%;
-	            font-weight: bold;
-	            font-size: 1em;
-	            margin-left: 1%;
-        	    transition: 0.5s;
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
+			position: fixed;
+			right: 5px;
+			bottom: 3px;
+			color: #000;
+	        width: 4vh;
+	        height: 4vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: transparent;
+	        text-align: center;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 1em;
+	        margin-left: 1%;
+	        transition: 0.5s;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		#addFile:hover{
-	            background: #f0f0f0;
-	        }
+	        background: #f0f0f0;
+	    }
 		#specialbtn{
 			transition: 1s;
 			justify-content: center;
@@ -749,9 +724,9 @@
 			color: #000;
 		}
 		@keyframes rotatesign {
-		    100%{
-			transform: rotate(360deg);
-		    }
+			100%{
+				transform: rotate(360deg);
+			}
 		}
     </style>
 </head>
@@ -899,7 +874,7 @@
                 <span class="slider"></span>
             </label> search
 		</div>
-		<div class="seccontainer-line">
+		<div class="seccontainer-line" id="search-check">
 		    <label class="switch">
                 <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
                 <span class="slider"></span>
@@ -923,8 +898,8 @@
 
         // Update iFrame function for both views
         function updateIframe(type) {
-            const iframe = document.getElementById(\`\${type}-frame\`);
-            const url = document.getElementById(\`\${type}-url-input\`).value;
+            const iframe = document.getElementById(`${type}-frame`);
+            const url = document.getElementById(`${type}-url-input`).value;
             iframe.src = url;
         }
 
@@ -981,11 +956,11 @@
 			const dataValue = checkbox.getAttribute('data-checked');
 			if (dataValue){
 				if (checkbox.checked == false){
-					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn => {
+					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
 					    btn.style.display = "none";
 				    });
 				}else if (checkbox.checked == true){
-					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn => {
+					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
 					    btn.style.display = "inline-block";
 				    });
 				}
@@ -996,9 +971,9 @@
 			const dataValue = checkbox.getAttribute('data-update-id');
 			if (dataValue){
 				if (checkbox.checked == false){
-					section.querySelector(\`.code-editor-container\`).id = dataValue + "off";
+					section.querySelector(`.code-editor-container`).id = dataValue + "off";
 				}else if (checkbox.checked == true){
-					section.querySelector(\`.code-editor-container\`).id = dataValue + "on";
+					section.querySelector(`.code-editor-container`).id = dataValue + "on";
 				}
 			}
 		}
@@ -1007,7 +982,7 @@
        		    const dataValue = checkbox0.getAttribute('data-checked');
 				//const dv = checkbox0.getAttribute('data-update-id');
                 if (dataValue){
-					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn0 => {
+					section.querySelectorAll(`#${dataValue}`).forEach(btn0 => {
            		        const displayStyle = btn0.style.display;
 
             		    if (displayStyle == "none") {
@@ -1054,7 +1029,7 @@
                 if (newHeight > 100) newHeight = 100;
                 if (newHeight < 50) newHeight = 50;
 
-                navBar.style.height = \`\${newHeight}vh\`;
+                navBar.style.height = `${newHeight}vh`;
             }
         });
 
@@ -1069,7 +1044,7 @@
                 if (newHeight > 100) newHeight = 100;
                 if (newHeight < 50) newHeight = 50;
 
-                navBar.style.height = \`\${newHeight}vh\`;
+                navBar.style.height = `${newHeight}vh`;
             }
         });
 
@@ -1111,7 +1086,7 @@
         // Function to scroll to specific section horizontally
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-            container.style.transform = \`translateX(-\${sectionWidth * index}px)\`;
+            container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
 
         // Highlight active dot
@@ -1126,7 +1101,7 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
-				section = document.getElementById(\`section\${index}\`);
+				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
 				checkboxupdatefunction();
                 scrollToSection(index);
@@ -1155,7 +1130,7 @@
            const elements = container.children;
            // Iteriere durch die Elemente und setze den data-index-Wert
            for (let i = 0; i < elements.length; i++) {
-                 elements[i].id = \`section\${i}\`;
+                 elements[i].id = `section${i}`;
            }
         }
         // Event listeners for navigation dots
@@ -1164,7 +1139,7 @@
             scrollToSection(index);
             highlightDot(index);
             navBar.scrollLeft = index * window.innerWidth; // Scroll the bar
-		    section = document.getElementById(\`section\${index}\`);
+		    section = document.getElementById(`section${index}`);
 		    inputDiv = section.querySelector('.code-editor-container');
 			checkboxupdatefunction();
         }
@@ -1328,7 +1303,7 @@
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 let linetexts = "";
                 allselectedlines.forEach(selectedline => {
-                    linetexts += selectedline.textContent + "\\n"; // Füge Zeilenumbruch hinzu
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 		
 		        try {
@@ -1359,7 +1334,7 @@
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 let linetexts = "";
                 allselectedlines.forEach(selectedline => {
-                    linetexts += selectedline.textContent + "\\n"; // Füge Zeilenumbruch hinzu
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 		
 		        try {
@@ -1447,7 +1422,7 @@
             let continueSpaces = true;
             for (let i = 0; i < celine.textContent.length; i++) {
                 let character = celine.textContent[i];
-                if ((character === " " || character === "\\u00A0") && continueSpaces) {
+                if ((character === " " || character === "\u00A0") && continueSpaces) {
                     spaces += "&nbsp;";
                 } else {
                     continueSpaces = false;
@@ -1457,7 +1432,7 @@
             let pasteText = (event.clipboardData || window.clipboardData).getData('text');
 
             // Aufteilen des eingefügten Textes bei Zeilenumbrüchen
-            let lines = pasteText.split(/\\r\\n|\\n|\\r/);
+            let lines = pasteText.split(/\r\n|\n|\r/);
 
             let selection = window.getSelection();
             let range = selection.getRangeAt(0);
@@ -1501,7 +1476,7 @@
               let continueSpaces = true;
               for (let i = 0; i < text.length; i++) {
                   let character = text[i];
-                  if ((character === " " || character === "\\u00A0") && continueSpaces) {
+                  if ((character === " " || character === "\u00A0") && continueSpaces) {
                       spaces += 1;
                   } else {
                       continueSpaces = false;
@@ -1565,7 +1540,7 @@
 
         // Hilfsfunktion, um Leerzeichen in &nbsp; zu konvertieren
         function convertToNonBreakingSpaces(text) {
-            return text.replace(/ /g, ' ').replace(/\\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
+            return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
         // Enter- und Backspace-Event-Listener
@@ -1591,7 +1566,7 @@
                     let continueSpaces = true;
                     for (let i = 0; i < celine.textContent.length; i++) {
                         let character = celine.textContent[i];
-                        if ((character === " " || character === "\\u00A0") && continueSpaces) {
+                        if ((character === " " || character === "\u00A0") && continueSpaces) {
                             spaces += "&nbsp;";
                         } else {
                             continueSpaces = false;
@@ -1651,14 +1626,14 @@
       		   // Holen des aktuellen Texts vor dem Cursor
        		   let text = celine.textContent.substring(0, cursorOffset);
        		   // Prüfen, ob der Text einen öffnenden Tag enthält
-        	   let openTagMatch = text.match(/<(\\w+)([^>]*)$/);
+        	   let openTagMatch = text.match(/<(\w+)([^>]*)$/);
 
        		   if (openTagMatch) {
             	   event.preventDefault(); // Verhindert das Standardverhalten
 
             	   // Tag automatisch schließen
            		   let tagName = openTagMatch[1];
-           		   let tagEnd = \`</\${tagName}>\`;
+           		   let tagEnd = `</${tagName}>`;
           		   // Fügen Sie den schließenden Tag direkt nach dem Cursor ein
           		   let textAfterCursor = celine.textContent.substring(cursorOffset);
           		   celine.textContent = text + '>' + tagEnd + textAfterCursor;
@@ -1706,8 +1681,8 @@
                 insertClosingCharacter('(', ')');
             }
 
-            // Automatisches Schließen von '\`'
-            if (event.key === '\`') {
+            // Automatisches Schließen von '`'
+            if (event.key === '`') {
                 event.preventDefault();
                 insertClosingCharacter('`', '`');
             }
@@ -1721,7 +1696,7 @@
             // Automatisches Schließen von '‚'
             if (event.key === '‚') {
                 event.preventDefault();
-                insertClosingCharacter('\\'', '\\'');
+                insertClosingCharacter('\'', '\'');
             }
 			
 	        if (event.key === '"') {
@@ -1732,7 +1707,7 @@
             // Automatisches Schließen von '‚'
             if (event.key === "'") {
                 event.preventDefault();
-                insertClosingCharacter('\\'', '\\'');
+                insertClosingCharacter('\'', '\'');
             }
 			
 	        function checkAndSkipClosingCharacter(closingChar) {
@@ -1807,23 +1782,8 @@
                 }
             });
         }
-    <\/script>
-
-</body>
-</html>
-
-
-        `;
-
-        // iFrame auswählen und Inhalt setzen
-        const iframe = document.getElementById('myIframe');
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-        // HTML-Inhalt in das iFrame einfügen
-        iframeDoc.open();
-        iframeDoc.write(htmlContent);
-        iframeDoc.close();
     </script>
+
 </body>
 </html>
 
