@@ -1,4 +1,30 @@
 <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vollbild iFrame mit JavaScript</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Verhindert Scrollen */
+        }
+        iframe {
+            width: 100vw;  /* Breite des Viewports */
+            height: 100vh; /* Höhe des Viewports */
+            border: none;  /* Entfernt den Rahmen */
+        }
+    </style>
+</head>
+<body>
+    <iframe id="myIframe"></iframe>
+
+    <script>
+        // HTML-Code, der in den iFrame eingefügt werden soll
+        const htmlContent = ```
+            <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -897,8 +923,8 @@
 
         // Update iFrame function for both views
         function updateIframe(type) {
-            const iframe = document.getElementById(`${type}-frame`);
-            const url = document.getElementById(`${type}-url-input`).value;
+            const iframe = document.getElementById(\`\${type}-frame\`);
+            const url = document.getElementById(\`\${type}-url-input\`).value;
             iframe.src = url;
         }
 
@@ -955,11 +981,11 @@
 			const dataValue = checkbox.getAttribute('data-checked');
 			if (dataValue){
 				if (checkbox.checked == false){
-					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
+					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn => {
 					    btn.style.display = "none";
 				    });
 				}else if (checkbox.checked == true){
-					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
+					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn => {
 					    btn.style.display = "inline-block";
 				    });
 				}
@@ -970,9 +996,9 @@
 			const dataValue = checkbox.getAttribute('data-update-id');
 			if (dataValue){
 				if (checkbox.checked == false){
-					section.querySelector(`.code-editor-container`).id = dataValue + "off";
+					section.querySelector(\`.code-editor-container\`).id = dataValue + "off";
 				}else if (checkbox.checked == true){
-					section.querySelector(`.code-editor-container`).id = dataValue + "on";
+					section.querySelector(\`.code-editor-container\`).id = dataValue + "on";
 				}
 			}
 		}
@@ -981,7 +1007,7 @@
        		    const dataValue = checkbox0.getAttribute('data-checked');
 				//const dv = checkbox0.getAttribute('data-update-id');
                 if (dataValue){
-					section.querySelectorAll(`#${dataValue}`).forEach(btn0 => {
+					section.querySelectorAll(\`#\${dataValue}\`).forEach(btn0 => {
            		        const displayStyle = btn0.style.display;
 
             		    if (displayStyle == "none") {
@@ -1028,7 +1054,7 @@
                 if (newHeight > 100) newHeight = 100;
                 if (newHeight < 50) newHeight = 50;
 
-                navBar.style.height = `${newHeight}vh`;
+                navBar.style.height = \`\${newHeight}vh\`;
             }
         });
 
@@ -1043,7 +1069,7 @@
                 if (newHeight > 100) newHeight = 100;
                 if (newHeight < 50) newHeight = 50;
 
-                navBar.style.height = `${newHeight}vh`;
+                navBar.style.height = \`\${newHeight}vh\`;
             }
         });
 
@@ -1085,7 +1111,7 @@
         // Function to scroll to specific section horizontally
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-            container.style.transform = `translateX(-${sectionWidth * index}px)`;
+            container.style.transform = \`translateX(-\${sectionWidth * index}px)\`;
         }
 
         // Highlight active dot
@@ -1100,7 +1126,7 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
-				section = document.getElementById(`section${index}`);
+				section = document.getElementById(\`section\${index}\`);
 				inputDiv = section.querySelector('.code-editor-container');
 				checkboxupdatefunction();
                 scrollToSection(index);
@@ -1129,7 +1155,7 @@
            const elements = container.children;
            // Iteriere durch die Elemente und setze den data-index-Wert
            for (let i = 0; i < elements.length; i++) {
-                 elements[i].id = `section${i}`;
+                 elements[i].id = \`section\${i}\`;
            }
         }
         // Event listeners for navigation dots
@@ -1138,7 +1164,7 @@
             scrollToSection(index);
             highlightDot(index);
             navBar.scrollLeft = index * window.innerWidth; // Scroll the bar
-		    section = document.getElementById(`section${index}`);
+		    section = document.getElementById(\`section\${index}\`);
 		    inputDiv = section.querySelector('.code-editor-container');
 			checkboxupdatefunction();
         }
@@ -1632,7 +1658,7 @@
 
             	   // Tag automatisch schließen
            		   let tagName = openTagMatch[1];
-           		   let tagEnd = `</${tagName}>`;
+           		   let tagEnd = \`</\${tagName}>\`;
           		   // Fügen Sie den schließenden Tag direkt nach dem Cursor ein
           		   let textAfterCursor = celine.textContent.substring(cursorOffset);
           		   celine.textContent = text + '>' + tagEnd + textAfterCursor;
@@ -1680,8 +1706,8 @@
                 insertClosingCharacter('(', ')');
             }
 
-            // Automatisches Schließen von '`'
-            if (event.key === '`') {
+            // Automatisches Schließen von '\`'
+            if (event.key === '\`') {
                 event.preventDefault();
                 insertClosingCharacter('`', '`');
             }
@@ -1781,8 +1807,23 @@
                 }
             });
         }
-    </script>
+    <\/script>
 
+</body>
+</html>
+
+
+        ```;
+
+        // iFrame auswählen und Inhalt setzen
+        const iframe = document.getElementById('myIframe');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // HTML-Inhalt in das iFrame einfügen
+        iframeDoc.open();
+        iframeDoc.write(htmlContent);
+        iframeDoc.close();
+    </script>
 </body>
 </html>
 
