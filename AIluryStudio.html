@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Scroll with Snap Points</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f7f9fc;
+        }
+
+        .container {
+            height: 100vh;
+            width: 500vw; /* Enough width for 5 sections */
+            display: flex;
+            scroll-snap-type: x mandatory;
+            overflow-x: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .section {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+			flex-direction: column;
+            /*justify-content: center;
+            align-items: center;
+            position: relative;
+            font-size: 2rem;
+            text-align: center;
+			color: rgba(0, 0, 0, 0.5);*/
+			background: #fff;
+		}
+
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            display: flex;
+            height: 50px;
+            background-color: #fcfcfc;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px 10px 0 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            transition: height 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .nav-bar.expanded {
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-bar div {
+            min-width: 100vw;
+            height: 50px;
+            background-color: #fcfcfc;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+            scroll-snap-align: center;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-bar div:hover {
+            background-color: #f4f4f4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-bar .active {
+            background-color: #fcfcfc;
+        }
+
+        .expanded {
+            height: 100vh;
+        }
+
+        .nav-dot-content {
+            display: none;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        .expanded .nav-dot-content {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-field {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .input-field:focus {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            outline: none;
+        }
+		
+		.seccontainer {
+            width: 100vw;
+            height: 85vh;
+            background-color: #fcfcfc;
+            color: #000;
+            transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+            scroll-snap-align: center;
+            border-radius: 10px 10px 0 0;
+            position: fixed;
+            overflow: hidden;
+			bottom: 0;
+			left: 0;
+			animation: up 1s;
+			padding: 10px;
+			display: none;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			overflow-y: scroll;
+        }
+		
+		.seccontainer-line{
+			display: flex;
+			justify-content: space-between;
+			width: 70vw;
+			/*min-width: 500px;*/
+			font-size: 1.5em;
+			margin-bottom: 2vh;
+			border-radius: 10px;
+			background: rgba(200, 200, 200, 0.5);
+			padding: 10px;
+			color: white;
+		}
+		
+		@keyframes up{
+			0%{ transform: translateY(100vh); }
+			100%{ transform: translateY(0); }
+		}
+		
+		.input-field {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .input-field:focus {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            outline: none;
+        }
+		.switch {
+    		position: relative;
+  		    display: inline-block;
+  		    width: 51px;
+   		    height: 31px;
+		}
+
+		.switch input {
+   		    opacity: 0;
+   		    width: 0;
+   		    height: 0;
+		}
+
+		.slider {
+  		  position: absolute;
+  		  cursor: pointer;
+   		  top: 0;
+   		  left: 0;
+   		  right: 0;
+   		  bottom: 0;
+  		  background-color: #ccc;
+  		  border-radius: 34px;
+   	      transition: .4s;
+		}
+
+		.slider:before {
+   		    position: absolute;
+   		    content: "";
+    		height: 23px;
+    		width: 23px;
+    		left: 4px;
+    		bottom: 4px;
+    		background: white;
+    		border-radius: 50%;
+    		transition: .4s;
+		}
+
+		input:checked + .slider {
+    		background: #007aff;/*linear-gradient(90deg, #ff0077, #7700ff);*//*#4cd964*/
+		}
+
+		input:checked + .slider:before {
+    		transform: translateX(20px);
+		}
+		
+		
+		
+		
+		
+		
+		
+		.code-editor-container {
+            height: 75vh;
+            width: 90vw;
+            border-radius: 5px;
+            background: #fff;
+	        padding: 5px 4.5em;/*4.5em*/
+	        overflow-y: scroll;
+	        overflow-x: hidden;
+	        box-shadow: inset 0px 0px 10px #fcfcfc;
+        }
+	    @media (max-width: 700px) {
+            .code-editor-container {
+                width: 90vw;
+		        padding: 5px 3.5em;
+		        height: 70vh;
+            }
+        }
+	    @media (max-width: 600px) {
+            .code-editor-container {
+                width: 90w;
+		        padding: 5px 3em;
+		        height: 65vh;
+            }
+        }
+        .code-editor-line {
+            display: flex;/*inline-block*/
+            position: relative;
+            border-radius: 5px;
+            background: #fff;
+            color: #000;
+            font-size: 1em;
+            font-family: "Fira Code", "JetBrains Mono", monospace;
+            letter-spacing: 0.06em;
+            text-align: left;
+            padding: 5px;
+            transition: 0.5s;
+            white-space: pre-wrap;
+            /*width: 70vw;*/
+            box-sizing: border-box;
+            cursor: pointer;
+	        opacity: 1;
+        }
+        .code-editor-line:focus {
+            outline: none;
+            background: #f0f0f0;
+        }
+        .code-editor-line {
+            counter-increment: line-number;
+            position: relative;
+        }
+        #linenumberingon .code-editor-line::before {
+            content: counter(line-number) ". ";
+            position: absolute;
+            right: 101%;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.7em;
+            border: none;
+            color: #999999;
+        }
+        /* Checkmark style */
+        .code-editor-line.selected::after {
+            content: '✓';
+            position: absolute;
+            left: -3.5em;
+            top: 0;
+            color: #28a745;
+            font-size: 1.2em;
+        }
+        /* Selected line styling */
+        .code-editor-line.selected.topSelected {
+	        border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0; /* Falls du die untere rechte Ecke ebenfalls abgerundet haben möchtest */
+        }
+
+        .code-editor-line.selected.bottomSelected {
+	        border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0; /* Falls du die obere rechte Ecke ebenfalls abgerundet haben möchtest */
+        }
+
+        .code-editor-line.selected.middleSelected {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0; /* Entfernt alle Ecken */
+        }
+
+        .code-editor-line.selected.singleSelected {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px; /* Rundet alle Ecken */
+        }
+	    .editor-selected-line-btns{
+	        width: 90vw;
+	        background: #fff;
+	        height: 8vh;
+	        padding: 10px;
+	    }
+	    .eslbtn{
+	        color: #000;
+	        width: 6vh;
+	        height: 6vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: #fff;
+	        text-align: center;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 0.85em;
+	        margin-left: 1%;
+	        transition: 0.5s;
+	    }
+	    .eslbtn:hover{
+	        background: #f0f0f0;
+	    }
+	    .disabled{
+	        pointer-events: none;
+            opacity: 0.5;
+	    }
+	    .disableline{
+	        pointer-events: none;
+            opacity: 0.5;
+	    }
+	    .importantpin{
+	        background: rgba(255, 0, 0, 0.5);/*#F09286*/
+	    }
+	    .code-editor-line.selected {
+            background: #e0f7e9;
+            transform: translateX(1.5em); /* Slight movement to the right */
+	        border-radius: 0;
+        }
+	    /*.unsleeplines{*/
+	    .code-editor-btn{
+	        color: #000;
+	        width: 6vh;
+	        height: 6vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: #fff;
+	        text-align: center;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 0.85em;
+	        margin-left: 1%;
+	        transition: 0.5s;
+	    
+	    }
+	    .unsleeplines:hover{
+	        background: #f0f0f0;
+	    }
+	    .hiddenlinesparent{
+	        transform: translateX(-1.5em);
+	    }
+	    .hidden{
+	        display: none;
+	        /*animation: Hide 1s forwards;*/
+	    }
+	    @keyframes Hide {
+	        100%{
+		        transform: translateY(-50px);
+		        opacity: 0;
+		        display: none;
+	        }
+        }
+	    .code-editor-btns{
+	        width: 90vw;
+	        background: #fff;
+	        height: 8vh;
+	        padding: 10px;
+	    }
+		.filePathInput{
+			font-size: 1em;
+			color: rgba(0, 0, 0, 0.5);
+			font-weight: bold;
+			background: transparent;
+			border: none;
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+		}
+		.filePathInput:focus{
+			outline: none;
+		}
+		
+		
+		
+		
+		
+		
+        .viewcontainer {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .swipe-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+        }
+
+        .view {
+            width: 100vw;
+            height: 90vh;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+			padding: 5vh 0;
+        }
+
+        .mobile-container, .browser-container {
+            margin: auto;
+        }
+
+        .mobile-container {
+            max-width: 375px;
+			width: calc(100vw - 1em);
+            max-height: 667px;
+			height: calc(100vh - 1em);
+            border-radius: 35px;
+            background-color: #fff;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            border: 1em solid #333;
+        }
+
+        /* Safari-like top bar */
+        .safari-header {
+            background-color: #f7f7f8;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-bottom: 1px solid #dcdcdc;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .safari-header .safari-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .safari-buttons .back-btn {
+            width: 12px;
+            height: 12px;
+            background-color: #333;
+            mask: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Chevron_left_font_awesome.svg') no-repeat center;
+            -webkit-mask: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Chevron_left_font_awesome.svg') no-repeat center;
+            mask-size: 100%;
+            -webkit-mask-size: 100%;
+        }
+
+        .url-bar {
+            width: 70%;
+            height: 28px;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            background-color: #e6e6e6;
+            border-radius: 12px;
+            padding: 0 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .url-bar input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .safari-header .action-btn {
+            background-color: #007aff;
+            padding: 4px 10px;
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* iFrame container */
+        .iframe-container {
+            flex-grow: 1;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+		.browser-container {
+            width: 80vw;
+            max-width: 1200px;
+            height: 70vh;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+			border: 1em solid #333;/*alt option #BBBCBE*/
+        }
+
+        /* Browser-like top bar */
+        .browser-header {
+            background-color: #f0f0f0;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-bottom: 1px solid #ddd;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .browser-header .browser-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .browser-header .browser-buttons div {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .close-btn {
+            background-color: #f96256;
+        }
+
+        .minimize-btn {
+            background-color: #fdbc40;
+        }
+
+        .maximize-btn {
+            background-color: #34c84a;
+        }
+
+        .url-bar {
+            flex-grow: 1;
+            height: 28px;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            background-color: #e6e6e6;
+            border-radius: 8px;
+            padding: 0 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .url-bar input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-group button {
+            background-color: #333;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-group button:hover {
+            background-color: #555;
+        }
+
+        .iframe-container {
+            flex-grow: 1;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+		.code-search-input{
+			color: #000;
+	        width: 6vh;
+	        height: 6vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: #fff;
+	        text-align: left;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 0.85em;
+	        margin-left: 1%;
+	        transition: 0.5s;
+			padding: 0 2.5vh;
+		}
+		.code-search-input:focus{
+			border-radius: 100px;
+			width: 25vw;
+			outline: none;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+		}
+		@media(max-width: 700px){
+			#view2{
+				display: none;
+			}
+			.view{
+				padding: 0;
+			}
+			.code-search-input{
+				display: none;
+			}
+			#search-check{
+				display: none;
+			}
+		}
+		#addFile{
+			position: fixed;
+			right: 5px;
+			bottom: 3px;
+			color: #000;
+	        width: 4vh;
+	        height: 4vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: transparent;
+	        text-align: center;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 1em;
+	        margin-left: 1%;
+	        transition: 0.5s;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#addFile:hover{
+	        background: #f0f0f0;
+	    }
+		#specialbtn{
+			transition: 1s;
+			justify-content: center;
+			background: #007aff;
+		}
+		#specialbtn:active{
+			background: #ccc;
+			color: #000;
+		}
+		#specialbtn:hover{
+			background: #ccc;
+			color: #000;
+		}
+		@keyframes rotatesign {
+			100%{
+				transform: rotate(360deg);
+			}
+		}
+    </style>
+</head>
+<body>
+
+    <!-- Main content container with sections -->
+    <div class="container" id="container">
+        <div class="section" id="section0">
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+                <div id="1" class="code-editor-line" contenteditable="true"></div>
+            </div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			
+		</div>
+		<div class="section" id="section1">
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+                <div id="1" class="code-editor-line" contenteditable="true"></div>
+            </div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			
+		</div>
+		<div class="section" id="section2">
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+                <div id="1" class="code-editor-line" contenteditable="true"></div>
+            </div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			
+		</div>
+		<div class="section viewcontainer" id="section3">
+			<div class="swipe-container">
+        		
+        		<div class="view">
+            		<div class="mobile-container">
+                		
+                		<div class="safari-header">
+                    		<div class="safari-buttons">
+                        		<div class="back-btn"></div>
+                    		</div>
+                    		<div class="url-bar">
+                        		<input type="text" id="mobile-url-input" placeholder="file...">
+                    		</div>
+                    		<div class="action-btn" onclick="updateIframe('mobile')">⌕</div>
+                		</div>
+
+                		
+                		<div class="iframe-container">
+                    		<iframe id="mobile-frame" src="about:blank"></iframe>
+                		</div>
+            		</div>
+        		</div>
+
+        		
+        		<div class="view" id="view2">
+            		<div class="browser-container">
+                		
+                		<div class="browser-header">
+                    		<div class="browser-buttons">
+                        		<div class="close-btn"></div>
+                        		<div class="minimize-btn"></div>
+                        		<div class="maximize-btn"></div>
+                    		</div>
+                    		<div class="url-bar">
+                        		<input type="text" id="computer-url-input" placeholder="file...">
+                    		</div>
+                    		<div class="btn-group">
+                        		<button onclick="updateIframe('computer')">⌕</button>
+                    		</div>
+                		</div>
+
+                		
+                		<div class="iframe-container">
+                    		<iframe id="computer-frame" src="about:blank"></iframe>
+                		</div>
+            		</div>
+        		</div>
+    		</div>
+		</div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar" id="nav-bar">
+        <div data-index="0" class="nav-dot" onclick="dotonclick()">
+            <input class="filePathInput" type="text" value="index.html">
+        </div>
+		<div data-index="1" class="nav-dot" onclick="dotonclick()">
+            <input class="filePathInput" type="text" value="styles.html">
+        </div>
+		<div data-index="2" class="nav-dot" onclick="dotonclick()">
+            <input class="filePathInput" type="text" value="script.html">
+		</div>
+		<div data-index="3" class="nav-dot" id="view-nav-dot" onclick="dotonclick()">
+            <input class="filePathInput" type="text" value="view">
+        </div>
+    </div>
+	<!--<span id="addFile" onclick="createCodeEditorSection()">+</span>-->
+	<div class="seccontainer">
+		<div class="seccontainer-line">
+			<label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="copybtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> copy
+		</div>
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="deletebtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> delete
+		</div>
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="downbtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> move down
+		</div> 
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="upbtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> move up
+		</div> 
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="importantPinbtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> highlight
+		</div>
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="sleapbtn" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> sleep
+		</div>
+		<div class="seccontainer-line">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="unsleeplines" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> unsleep
+		</div>
+		<div class="seccontainer-line" id="search-check">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-checked="code-search-input" onchange="updatecheckboxed(this)" checked>
+                <span class="slider"></span>
+            </label> search
+		</div>
+		<div class="seccontainer-line" id="search-check">
+		    <label class="switch">
+                <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
+                <span class="slider"></span>
+            </label> line numbering
+		</div>
+		<div class="seccontainer-line" id="specialbtn" onclick="deleteAllLines()">
+		    clear
+		</div>
+	</div>
+
+    <script>
+        const navBar = document.getElementById('nav-bar');
+        let isDragging = false;
+        let startY = 0;
+        let currentHeight = 50; // Initial height
+		let section = document.getElementById('section0');
+		let inputDiv = section.querySelector('.code-editor-container');
+		
+		const swipeContainer = document.querySelector('.swipe-container');
+        let startXvvv;
+
+        // Update iFrame function for both views
+        function updateIframe(type) {
+            const iframe = document.getElementById(`${type}-frame`);
+            const url = document.getElementById(`${type}-url-input`).value;
+            iframe.src = url;
+        }
+
+        // Add touch event for swiping
+        swipeContainer.addEventListener('touchstart', (e) => {
+            startXvvv = e.touches[0].clientX;
+        });
+
+        swipeContainer.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            handleSwipe(startXvvv, endX);
+        });
+
+        // Add mouse event for dragging to switch views
+        swipeContainer.addEventListener('mousedown', (e) => {
+            startXvvv = e.clientX;
+        });
+
+        swipeContainer.addEventListener('mouseup', (e) => {
+            const endX = e.clientX;
+            handleSwipe(startXvvv, endX);
+        });
+
+        // Function to handle swipe action
+        function handleSwipe(start, end) {
+            const distance = start - end;
+            const threshold = 100; // Minimum swipe distance to trigger a change
+
+            if (distance > threshold) {
+                swipeContainer.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
+            } else if (distance < -threshold) {
+                swipeContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
+            }
+        }
+		
+		function searchcode(thiselementhasthevalue){
+			const inputvalue = thiselementhasthevalue.value;
+			section.querySelectorAll(".code-editor-line").forEach(line => {
+				if (!line.textContent.includes(inputvalue)){
+					line.style.display = 'none';
+				}else {
+					line.style.display = 'flex';
+				}
+			});
+			
+		}
+		
+		
+		
+		
+		
+		
+		function updatecheckboxed(checkbox){
+			const dataValue = checkbox.getAttribute('data-checked');
+			if (dataValue){
+				if (checkbox.checked == false){
+					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
+					    btn.style.display = "none";
+				    });
+				}else if (checkbox.checked == true){
+					section.querySelectorAll(`#${dataValue}`).forEach(btn => {
+					    btn.style.display = "inline-block";
+				    });
+				}
+			}
+		}
+		
+		function updatelinenumbercheckbox(checkbox){
+			const dataValue = checkbox.getAttribute('data-update-id');
+			if (dataValue){
+				if (checkbox.checked == false){
+					section.querySelector(`.code-editor-container`).id = dataValue + "off";
+				}else if (checkbox.checked == true){
+					section.querySelector(`.code-editor-container`).id = dataValue + "on";
+				}
+			}
+		}
+		function checkboxupdatefunction() {
+    	    document.querySelectorAll('.switchbox').forEach(checkbox0 => {
+       		    const dataValue = checkbox0.getAttribute('data-checked');
+				//const dv = checkbox0.getAttribute('data-update-id');
+                if (dataValue){
+					section.querySelectorAll(`#${dataValue}`).forEach(btn0 => {
+           		        const displayStyle = btn0.style.display;
+
+            		    if (displayStyle == "none") {
+                		    checkbox0.checked = false;
+            		    } else {
+                		    checkbox0.checked = true;
+            		    }
+        		    });
+				}
+				if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingoff"){
+					checkbox0.checked = false;
+				}else if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingon"){
+					checkbox0.checked = true;
+				}
+				/*if (dv){
+					const lno = section.getElementById('linenumberingoff');
+					checkbox0.checked = !lno;
+				}*/
+    		});
+		}
+
+
+
+        navBar.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startY = e.clientY;
+        });
+
+        navBar.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startY = e.touches[0].clientY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaY = startY - e.clientY;
+                let newHeight = currentHeight + deltaY;
+
+				if (section.classList.contains('viewcontainer')){
+					return;
+				}
+                if (newHeight > 100) newHeight = 100;
+                if (newHeight < 50) newHeight = 50;
+
+                navBar.style.height = `${newHeight}vh`;
+            }
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                const deltaY = startY - e.touches[0].clientY;
+                let newHeight = currentHeight + deltaY;
+
+				if (section.classList.contains('viewcontainer')){
+					return;
+				}
+                if (newHeight > 100) newHeight = 100;
+                if (newHeight < 50) newHeight = 50;
+
+                navBar.style.height = `${newHeight}vh`;
+            }
+        });
+
+		const seccontainer = document.querySelector('.seccontainer');
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                if (parseInt(navBar.style.height) > 75 && !section.classList.contains('viewcontainer')) {
+                    navBar.style.height = '100vh';
+                    navBar.classList.add('expanded');
+					seccontainer.style.display = 'flex';
+                } else {
+                    navBar.style.height = '50px';
+                    navBar.classList.remove('expanded');
+					seccontainer.style.display = 'none';
+                }
+            }
+        });
+
+        window.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                if (parseInt(navBar.style.height) > 75 && !section.classList.contains('viewcontainer')) {
+                    navBar.style.height = '100vh';
+                    navBar.classList.add('expanded');
+					seccontainer.style.display = 'flex';
+                } else {
+                    navBar.style.height = '50px';
+                    navBar.classList.remove('expanded');
+					seccontainer.style.display = 'none';
+                }
+            }
+        });
+		
+		const container = document.getElementById('container');
+        const navDots = document.querySelectorAll('.nav-dot');
+        let currentIndex = 0;
+
+        // Function to scroll to specific section horizontally
+        function scrollToSection(index) {
+            const sectionWidth = window.innerWidth;
+            container.style.transform = `translateX(-${sectionWidth * index}px)`;
+        }
+
+        // Highlight active dot
+        function highlightDot(index) {
+            navDots.forEach(dot => dot.classList.remove('active'));
+            navDots[index].classList.add('active');
+        }
+
+        // Listen for scroll events on the navigation bar
+		function scrolleivs() {
+			const sectionWidth = window.innerWidth;
+            const scrollPos = navBar.scrollLeft;
+            const index = Math.round(scrollPos / sectionWidth);
+            if (index !== currentIndex) {
+				section = document.getElementById(`section${index}`);
+				inputDiv = section.querySelector('.code-editor-container');
+				checkboxupdatefunction();
+                scrollToSection(index);
+                highlightDot(index);
+                currentIndex = index;
+            }
+		}
+        navBar.addEventListener('scroll', () => {
+			scrolleivs();
+		});
+            
+		function updateDataIndex(divId) {
+           // Hole das div-Element mit der übergebenen ID
+           const container = document.getElementById(divId);
+           // Hole alle direkten Kind-Elemente des div
+           const elements = container.children;
+           // Iteriere durch die Elemente und setze den data-index-Wert
+           for (let i = 0; i < elements.length; i++) {
+                 elements[i].setAttribute('data-index', i);
+           }
+        }
+		function updateClass(divclass) {
+           // Hole das div-Element mit der übergebenen ID
+           const container = document.querySelector("." + divId);
+           // Hole alle direkten Kind-Elemente des div
+           const elements = container.children;
+           // Iteriere durch die Elemente und setze den data-index-Wert
+           for (let i = 0; i < elements.length; i++) {
+                 elements[i].id = `section${i}`;
+           }
+        }
+        // Event listeners for navigation dots
+        function dotonclick() {
+            const index = parseInt(dot.getAttribute('data-index'));
+            scrollToSection(index);
+            highlightDot(index);
+            navBar.scrollLeft = index * window.innerWidth; // Scroll the bar
+		    section = document.getElementById(`section${index}`);
+		    inputDiv = section.querySelector('.code-editor-container');
+			checkboxupdatefunction();
+        }
+
+        // Initialize first dot as active
+        highlightDot(0);
+		let correntids = 2;
+	
+	    function checkifselectedlines() {
+	        const check = section.querySelector(".code-editor-line.selected");
+	        if (!check) {
+		        section.querySelectorAll('.eslbtn').forEach(dline => {
+		            dline.classList.add('disabled');
+		        });
+	        }
+	    }
+	    function deleteSelectedLines() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+		            if (selectedline.previousElementSibling || selectedline.nextElementSibling){
+			            selectedline.remove();
+		            }else {
+			            selectedline.innerHTML = "";
+		            }
+		            selectedline.classList.remove('selected');
+		            checkifselectedlines();
+                });
+            }
+        }
+
+	    function deleteAllLines() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+		            if (selectedline.previousElementSibling || selectedline.nextElementSibling){
+			            selectedline.remove();
+		            }else {
+			            selectedline.innerHTML = "";
+		            }
+		            checkifselectedlines();
+                });
+            }
+        }
+
+        function importantselectedlines() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.toggle("importantpin");
+		            selectedline.classList.remove('selected');
+		            checkifselectedlines();
+                });
+            }
+        }
+
+	    function unselectalllines() {
+	        const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove('selected');  // Linie abwählen bei links Swipe
+		            if (!section.querySelector('.code-editor-line.selected')){
+		                section.querySelectorAll('.eslbtn').forEach(dline => {
+		                    dline.classList.add('disabled');
+		                });
+		            }
+                    updateSelectedClasses();
+                });
+            }
+	    }
+
+	    function unfoldalllines() {
+	        const allselectedlines = section.querySelectorAll(".hiddenlinesparent");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove('hiddenlinesparent');  // Linie auswählen
+		            showHiddenElements(selectedline);
+                    updateSelectedClasses();
+                });
+            }
+	    }
+	
+	    function importantalllines() {
+            const allselectedlines = section.querySelectorAll(".importantpin");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    selectedline.classList.remove("importantpin");
+		            checkifselectedlines();
+                });
+            }
+        }
+
+        function moveselectedlineup() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    const previousLine = selectedline.previousElementSibling;
+                    if (previousLine) {
+                        selectedline.parentNode.insertBefore(selectedline, previousLine);
+                    }
+                });
+            }
+        }
+
+        function moveselectedlinedown() {
+            //const allselectedlines = document.querySelectorAll(".code-editor-line.selected");
+	        let allselectedlines = [...section.querySelectorAll('.code-editor-line.selected')];
+            allselectedlines.reverse();
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+                    const nextLine = selectedline.nextElementSibling;
+                    if (nextLine) {
+                        selectedline.parentNode.insertBefore(nextLine, selectedline);
+                    }
+                });
+            }
+        }
+
+        function restselectedline() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+		            selectedline.classList.toggle("disableline");
+		            selectedline.classList.remove('selected');
+		            checkifselectedlines();
+                }); // Korrekte Klammerung hier
+            }
+        }
+
+	    function unsleepalllines() {
+            const allselectedlines = section.querySelectorAll(".disableline");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                allselectedlines.forEach(selectedline => {
+		            selectedline.classList.remove('disableline');
+                });
+            }
+        }
+
+	    function changedeletebtn(deletebtnnnn) {
+	        const initialsign = deletebtnnnn.textContent;
+			deletebtnnnn.style.animation = "none";
+            void deletebtnnnn.offsetWidth; // Trigger reflow
+            deletebtnnnn.style.animation = "rotatesign 0.5s ease-out";
+			deletebtnnnn.disabled = true;
+			setTimeout(() => {
+			    deletebtnnnn.textContent = '☑';
+		    }, 250);
+		    setTimeout(() => {
+				deletebtnnnn.style.animation = "none";
+                void deletebtnnnn.offsetWidth; // Trigger reflow
+                deletebtnnnn.style.animation = "rotatesign 0.5s ease-out";
+				setTimeout(() => {
+					deletebtnnnn.textContent = initialsign;
+					deletebtnnnn.disabled = false;
+				}, 250);
+			}, 1000);
+	    };
+
+        function copyselectedlinetexts() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                let linetexts = "";
+                allselectedlines.forEach(selectedline => {
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                }); // Korrekte Klammerung hier
+		
+		        try {
+		            const newtextarea = document.createElement('textarea');
+                    newtextarea.value = linetexts;
+                    document.body.appendChild(newtextarea);
+                    newtextarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(newtextarea);
+                } catch (error) {
+                    const thiserrorwascatched = error;
+                }
+
+		        selectedline.classList.remove('selected');
+		        checkifselectedlines();
+                // Verwende die Clipboard API
+                //navigator.clipboard.writeText(linetexts)
+                //    .then(() => {
+                //        console.log('Text copied to clipboard');
+                //    })
+                //    .catch(err => {
+                //        console.error('Error copying text: ', err);
+                //    });
+            }
+        }
+	    function copyalllinetexts() {
+            const allselectedlines = section.querySelectorAll(".code-editor-line");
+            if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
+                let linetexts = "";
+                allselectedlines.forEach(selectedline => {
+                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                }); // Korrekte Klammerung hier
+		
+		        try {
+		            const newtextarea = document.createElement('textarea');
+                    newtextarea.value = linetexts;
+                    document.body.appendChild(newtextarea);
+                    newtextarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(newtextarea);
+                } catch (error) {
+                    const thiserrorwascatched = error;
+                }
+
+		        selectedline.classList.remove('selected');
+		        checkifselectedlines();
+                // Verwende die Clipboard API
+                //navigator.clipboard.writeText(linetexts)
+                //    .then(() => {
+                //        console.log('Text copied to clipboard');
+                //    })
+                //    .catch(err => {
+                //        console.error('Error copying text: ', err);
+                //    });
+            }
+        }
+
+	    
+        let startX, startLine;
+
+        // Allgemeiner Event Listener für Touch-Events
+        document.addEventListener('touchstart', function(event) {
+            // Überprüfen, ob das Element eine Linie ist
+            let target = event.target.closest('.code-editor-line');
+            if (target) {
+                startX = event.touches[0].clientX;  // Startkoordinate speichern
+                startLine = target;  // Die Zeile speichern, auf der der Touch gestartet wurde
+            }
+        });
+
+	    let result = {};
+        document.addEventListener('touchend', function(event) {
+            if (!startLine) return;  // Keine Linie gestartet, nichts tun
+
+            let endX = event.changedTouches[0].clientX;  // Endkoordinate speichern
+            let diffX = endX - startX;  // Unterschied zwischen Start und Ende berechnen
+
+            // Wenn nach rechts geswiped wird und auf derselben Zeile geendet wird
+            if (diffX > 50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
+                startLine.classList.add('selected');  // Linie auswählen
+		        section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+		            dline.classList.remove('disabled');
+		        });
+                updateSelectedClasses();
+            } else if (diffX > 50 && startLine.classList.contains('hiddenlinesparent')) {
+                startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
+		        showHiddenElements(startLine);
+                updateSelectedClasses();
+            } else if (diffX < -50 && startLine.classList.contains('selected')) {
+                startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
+		        if (!section.querySelector('.code-editor-line.selected')){
+		            section.querySelectorAll('.eslbtn').forEach(dline => {
+		                dline.classList.add('disabled');
+		            });
+		        }
+                updateSelectedClasses();
+            } else if (diffX < -50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
+                //startLine.classList.add('hiddenlinesparent');
+		        analyzeAndHideElements(startLine);
+                updateSelectedClasses();
+            } 
+
+            startLine = null;  // Touch-Zustand zurücksetzen
+        });
+		
+        //let inputDiv = section.querySelector('.code-editor-container');
+
+        // Paste Event-Listener
+        function handlePaste(event) {
+            event.preventDefault(); // Verhindert das Standardverhalten des Einfügens
+
+            let celine = section.querySelector('.code-editor-line:focus');
+            if (!celine) return;
+
+	        let spaces = "";
+            let continueSpaces = true;
+            for (let i = 0; i < celine.textContent.length; i++) {
+                let character = celine.textContent[i];
+                if ((character === " " || character === "\u00A0") && continueSpaces) {
+                    spaces += "&nbsp;";
+                } else {
+                    continueSpaces = false;
+                }
+            }
+            // Kopierten Text aus der Zwischenablage holen
+            let pasteText = (event.clipboardData || window.clipboardData).getData('text');
+
+            // Aufteilen des eingefügten Textes bei Zeilenumbrüchen
+            let lines = pasteText.split(/\r\n|\n|\r/);
+
+            let selection = window.getSelection();
+            let range = selection.getRangeAt(0);
+            let cursorOffset = range.startOffset;
+
+            // Text vor dem Cursor behalten und Text nach dem Cursor extrahieren
+            let currentText = celine.textContent;
+            let textAfterCursor = currentText.substring(cursorOffset);
+            celine.textContent = currentText.substring(0, cursorOffset);
+
+            // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
+            celine.innerText += convertToNonBreakingSpaces(lines[0]);
+
+            // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
+            for (let i = 1; i < lines.length; i++) {
+                correntids += 1;
+                const newline = document.createElement('div');
+                newline.setAttribute('contenteditable', 'true');
+                newline.id = correntids;
+                newline.classList.add('code-editor-line');
+		        newline.innerHTML = spaces;
+                newline.innerText += convertToNonBreakingSpaces(lines[i]);
+                celine.insertAdjacentElement('afterend', newline);
+                celine = newline;
+            }
+
+            // Text nach dem Cursor in die letzte Linie einfügen
+            celine.innerText += convertToNonBreakingSpaces(textAfterCursor);
+
+            // Setze den Cursor ans Ende der letzten Linie
+            const newRange = document.createRange();
+            newRange.setStart(celine.childNodes[0], celine.childNodes[0].length);
+            newRange.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        };
+	    function analyzeAndHideElements(element) {
+          function countLeadingSpaces(text) {
+              //return text.match(/^ * /)[0].length;
+	          let spaces = 0;
+              let continueSpaces = true;
+              for (let i = 0; i < text.length; i++) {
+                  let character = text[i];
+                  if ((character === " " || character === "\u00A0") && continueSpaces) {
+                      spaces += 1;
+                  } else {
+                      continueSpaces = false;
+                  }
+              }
+	          return spaces;
+          }
+
+          // Das empfangene Element und seine führenden Leerzeichen ermitteln
+          const referenceSpaces = countLeadingSpaces(element.textContent);
+          const hiddenElements = [];
+    
+          // Nächstes Element in der DOM-Hierarchie bekommen
+          let nextElement = element.nextElementSibling;
+
+	      if (nextElement){
+	          element.classList.add('hiddenlinesparent');
+	      }else {
+	          return;
+	      }
+          // Schleife durch alle nachfolgenden Geschwister-Elemente
+          while (nextElement) {
+              const nextText = nextElement.textContent;
+              const nextSpaces = countLeadingSpaces(nextText);
+
+              // Überprüfen, ob das nächste Element mehr führende Leerzeichen hat
+              if (nextSpaces > referenceSpaces || nextText.trim() == "") {
+                  // Element in die Liste der versteckten Elemente aufnehmen
+                  hiddenElements.push(nextElement);
+                  nextElement.classList.add('hidden');  // Element verstecken
+              } else {
+                  break;  // Schleife beenden, wenn weniger oder gleich viele Leerzeichen
+              }
+
+              // Zum nächsten Geschwister-Element wechseln
+              nextElement = nextElement.nextElementSibling;
+          }
+
+          // JSON-Struktur erstellen
+          result[element.id] = hiddenElements;
+        }
+	    
+	    function showHiddenElements(element) {
+            if (result[element.id]) {
+                const hiddenElements = result[element.id].reverse();
+                hiddenElements.forEach(hiddenElement => {
+		            if (hiddenElement){
+			            hiddenElement.classList.remove('hidden');
+			            if (hiddenElement.classList.contains('hiddenlinesparent')){
+			                hiddenElement.classList.remove('hiddenlinesparent');
+			                showHiddenElements(hiddenElement);
+			                analyzeAndHideElements(hiddenElement);
+			            }
+		            }
+                });
+                delete result[element.id];
+            }
+        }
+
+
+
+        // Hilfsfunktion, um Leerzeichen in &nbsp; zu konvertieren
+        function convertToNonBreakingSpaces(text) {
+            return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
+        }
+
+        // Enter- und Backspace-Event-Listener
+        function handleKeyDown(event) {
+            let celine = section.querySelector('.code-editor-line:focus');
+			
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Verhindert das Standardverhalten der Enter-Taste
+
+                if (celine) {
+                    correntids += 1;
+                    const newid = correntids;
+
+                    let text = celine.textContent;
+                    let selection = window.getSelection();
+                    let range = selection.getRangeAt(0);
+                    let cursorOffset = range.startOffset;
+
+                    let textBehindCursor = text.substring(cursorOffset);
+                    celine.textContent = text.substring(0, cursorOffset);
+
+                    let spaces = "";
+                    let continueSpaces = true;
+                    for (let i = 0; i < celine.textContent.length; i++) {
+                        let character = celine.textContent[i];
+                        if ((character === " " || character === "\u00A0") && continueSpaces) {
+                            spaces += "&nbsp;";
+                        } else {
+                            continueSpaces = false;
+                        }
+                    }
+
+                    const newline = document.createElement('div');
+                    newline.setAttribute('contenteditable', 'true');
+                    newline.id = newid;
+                    newline.classList.add('code-editor-line');
+                    newline.innerHTML = spaces;
+
+                    celine.insertAdjacentElement('afterend', newline);
+                    newline.innerText += textBehindCursor;
+
+                    newline.focus();
+                    range = document.createRange();
+                    range.setStart(newline.childNodes[0], newline.childNodes[0].length - textBehindCursor.length);
+                    range.collapse(true);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+		            updateSelectedClasses();
+                }
+            }
+
+            // Backspace-Taste
+            if (event.key === 'Backspace') {
+                let selection = window.getSelection();
+                let range = selection.getRangeAt(0);
+
+                if (range.startOffset === 0 && celine) {
+                    event.preventDefault();
+
+                    const previousLine = celine.previousElementSibling;
+                    if (previousLine) {
+			            updateSelectedClasses();
+                        let currentLineText = celine.textContent;
+
+                        celine.remove();
+                        previousLine.textContent += currentLineText;
+
+                        previousLine.focus();
+                        range = document.createRange();
+                        range.setStart(previousLine.childNodes[0], previousLine.childNodes[0].length - currentLineText.length);
+                        range.collapse(true);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
+                }
+            }
+			
+	        if (event.key === '>') {
+        	   let selection = window.getSelection();
+        	   let range = selection.getRangeAt(0);
+        	   let cursorOffset = range.startOffset;
+
+      		   // Holen des aktuellen Texts vor dem Cursor
+       		   let text = celine.textContent.substring(0, cursorOffset);
+       		   // Prüfen, ob der Text einen öffnenden Tag enthält
+        	   let openTagMatch = text.match(/<(\w+)([^>]*)$/);
+
+       		   if (openTagMatch) {
+            	   event.preventDefault(); // Verhindert das Standardverhalten
+
+            	   // Tag automatisch schließen
+           		   let tagName = openTagMatch[1];
+           		   let tagEnd = `</${tagName}>`;
+          		   // Fügen Sie den schließenden Tag direkt nach dem Cursor ein
+          		   let textAfterCursor = celine.textContent.substring(cursorOffset);
+          		   celine.textContent = text + '>' + tagEnd + textAfterCursor;
+
+           		   // Setzen Sie den Cursor zwischen die Tags
+           		   range.setStart(celine.firstChild, cursorOffset + 1);
+           		   range.collapse(true);
+           		   selection.removeAllRanges();
+          		   selection.addRange(range);
+       		   }
+    	    }
+			
+	        let selection = window.getSelection();
+   
+	        let range = selection.getRangeAt(0);
+	        let cursorOffset = range.startOffset;
+            
+            // Erstellen einer Funktion, die das aktuelle Zeichen schließt
+            function insertClosingCharacter(openingChar, closingChar) {
+                let text = celine.textContent;
+                let textAfterCursor = text.substring(cursorOffset);
+                celine.textContent = text.substring(0, cursorOffset) + openingChar + closingChar + textAfterCursor;
+
+                // Cursor zwischen den Zeichen platzieren
+                range.setStart(celine.firstChild, cursorOffset + 1);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            // Automatisches Schließen von '{'
+            if (event.key === '{') {
+                event.preventDefault();
+                insertClosingCharacter('{', '}');
+            }
+			
+	        if (event.key === '[') {
+                event.preventDefault();
+                insertClosingCharacter('[', ']');
+            }
+
+            // Automatisches Schließen von '('
+            if (event.key === '(') {
+                event.preventDefault();
+                insertClosingCharacter('(', ')');
+            }
+
+            // Automatisches Schließen von '`'
+            if (event.key === '`') {
+                event.preventDefault();
+                insertClosingCharacter('`', '`');
+            }
+
+            // Automatisches Schließen von '„'
+            if (event.key === '„') {
+                event.preventDefault();
+                insertClosingCharacter('"', '"');
+            }
+
+            // Automatisches Schließen von '‚'
+            if (event.key === '‚') {
+                event.preventDefault();
+                insertClosingCharacter('\'', '\'');
+            }
+			
+	        if (event.key === '"') {
+                event.preventDefault();
+                insertClosingCharacter('"', '"');
+            }
+
+            // Automatisches Schließen von '‚'
+            if (event.key === "'") {
+                event.preventDefault();
+                insertClosingCharacter('\'', '\'');
+            }
+			
+	        function checkAndSkipClosingCharacter(closingChar) {
+	            let text = celine.textContent;
+		        let nextChar = text.charAt(cursorOffset);
+		        if (nextChar === closingChar) {
+		            event.preventDefault();
+		            range.setStart(celine.firstChild, cursorOffset + 1);
+		            range.collapse(true);
+		            selection.removeAllRanges();
+		            selection.addRange(range);
+	            }
+	        }
+
+	        if (event.key === ']') {
+	            checkAndSkipClosingCharacter(']');
+	        }
+	        if (event.key === '}') {
+		        checkAndSkipClosingCharacter('}');
+	        }
+	        if (event.key === '"') {
+	            checkAndSkipClosingCharacter('"');
+	        }
+	        if (event.key === "'") {
+		        checkAndSkipClosingCharacter("'");
+	        }
+	        if (event.key === ')') {
+		        checkAndSkipClosingCharacter(')');
+	        }
+	        if (event.key === ';') {
+		        checkAndSkipClosingCharacter(';');
+	        }
+	    }
+        function updateSelectedClasses() {
+            const lines = section.querySelectorAll('.code-editor-line');
+
+            lines.forEach((line, index) => {
+                const isSelected = line.classList.contains('selected');
+
+                // Überprüfen, ob es über und unter der Zeile selektierte Zeilen gibt
+                const hasAbove = index > 0 && lines[index - 1].classList.contains('selected');
+                const hasBelow = index < lines.length - 1 && lines[index + 1].classList.contains('selected');
+
+                // Entfernen aller relevanten Klassen
+		        if (line.classList.contains('topSelected')){
+		            line.classList.remove('topSelected');
+		        }
+		        if (line.classList.contains('bottomSelected')){
+		            line.classList.remove('bottomSelected');
+		        }
+		        if (line.classList.contains('middleSelected')){
+		            line.classList.remove('middleSelected');
+		        }
+		        if (line.classList.contains('singleSelected')){
+		            line.classList.remove('singleSelected');
+		        }
+
+                if (isSelected) {
+                    if (!hasAbove && !hasBelow) {
+                        // Single selected
+                        line.classList.add('singleSelected');
+                    } else if (!hasAbove && hasBelow) {
+                        // Top selected
+                        line.classList.add('topSelected');
+                    } else if (hasAbove && !hasBelow) {
+                        // Bottom selected
+                        line.classList.add('bottomSelected');
+                    } else if (hasAbove && hasBelow) {
+                        // Middle selected
+                        line.classList.add('middleSelected');
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
