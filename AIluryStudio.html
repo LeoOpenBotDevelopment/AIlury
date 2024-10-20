@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fixed Scroll with Snap Points</title>
     <style>
         * {
@@ -16,7 +14,7 @@
         body {
             font-family: 'Arial', sans-serif;
             height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             background-color: #f7f9fc;
         }
 
@@ -33,15 +31,15 @@
             min-width: 100vw;
             height: 100vh;
             display: flex;
-	    flex-direction: column;
+			flex-direction: column;
             /*justify-content: center;
             align-items: center;
             position: relative;
             font-size: 2rem;
             text-align: center;
-	    color: rgba(0, 0, 0, 0.5);*/
-	    background: #fff;
-	}
+			color: rgba(0, 0, 0, 0.5);*/
+			background: #fff;
+		}
 
         .nav-bar {
             position: fixed;
@@ -812,13 +810,13 @@
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
         <div data-index="0" class="nav-dot" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="index.html">
+            <input class="filePathInput" type="text" value="index1.html">
         </div>
 		<div data-index="1" class="nav-dot" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="styles.html">
+            <input class="filePathInput" type="text" value="index1.html">
         </div>
 		<div data-index="2" class="nav-dot" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="script.html">
+            <input class="filePathInput" type="text" value="index1.html">
 		</div>
 		<div data-index="3" class="nav-dot" id="view-nav-dot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="view">
@@ -893,6 +891,8 @@
 		let section = document.getElementById('section0');
 		let inputDiv = section.querySelector('.code-editor-container');
 		
+		
+		
 		const swipeContainer = document.querySelector('.swipe-container');
         let startXvvv;
 
@@ -950,7 +950,16 @@
 		
 		
 		
-		
+		function updatelinenumbercheckbox(checkbox){
+			const dataValue = checkbox.getAttribute('data-update-id');
+			if (dataValue){
+				if (checkbox.checked == false){
+					section.querySelector(`.code-editor-container`).id = dataValue + "off";
+				}else if (checkbox.checked == true){
+					section.querySelector(`.code-editor-container`).id = dataValue + "on";
+				}
+			}
+		}
 		
 		function updatecheckboxed(checkbox){
 			const dataValue = checkbox.getAttribute('data-checked');
@@ -967,31 +976,19 @@
 			}
 		}
 		
-		function updatelinenumbercheckbox(checkbox){
-			const dataValue = checkbox.getAttribute('data-update-id');
-			if (dataValue){
-				if (checkbox.checked == false){
-					section.querySelector(`.code-editor-container`).id = dataValue + "off";
-				}else if (checkbox.checked == true){
-					section.querySelector(`.code-editor-container`).id = dataValue + "on";
-				}
-			}
-		}
 		function checkboxupdatefunction() {
     	    document.querySelectorAll('.switchbox').forEach(checkbox0 => {
        		    const dataValue = checkbox0.getAttribute('data-checked');
-				//const dv = checkbox0.getAttribute('data-update-id');
-                if (dataValue){
-					section.querySelectorAll(`#${dataValue}`).forEach(btn0 => {
-           		        const displayStyle = btn0.style.display;
+        
+        		section.querySelectorAll(`#${dataValue}`).forEach(btn0 => {
+           		    const displayStyle = btn0.style.display; // Holen des tatsächlichen Display-Werts
 
-            		    if (displayStyle == "none") {
-                		    checkbox0.checked = false;
-            		    } else {
-                		    checkbox0.checked = true;
-            		    }
-        		    });
-				}
+            		if (displayStyle == "none") {
+                		checkbox0.checked = false;
+            		} else {
+                		checkbox0.checked = true; // Sobald das Element angezeigt wird, setzen wir die Checkbox auf true
+            		}
+        		});
 				if (section.querySelector('.code-editor-container')){
 					if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingoff"){
 						checkbox0.checked = false;
@@ -999,10 +996,6 @@
 						checkbox0.checked = true;
 					}
 				}
-				/*if (dv){
-					const lno = section.getElementById('linenumberingoff');
-					checkbox0.checked = !lno;
-				}*/
     		});
 		}
 
@@ -1786,4 +1779,3 @@
 
 </body>
 </html>
-
