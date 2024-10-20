@@ -1328,7 +1328,7 @@
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 let linetexts = "";
                 allselectedlines.forEach(selectedline => {
-                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                    linetexts += selectedline.textContent + "\\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 		
 		        try {
@@ -1359,7 +1359,7 @@
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 let linetexts = "";
                 allselectedlines.forEach(selectedline => {
-                    linetexts += selectedline.textContent + "\n"; // Füge Zeilenumbruch hinzu
+                    linetexts += selectedline.textContent + "\\n"; // Füge Zeilenumbruch hinzu
                 }); // Korrekte Klammerung hier
 		
 		        try {
@@ -1447,7 +1447,7 @@
             let continueSpaces = true;
             for (let i = 0; i < celine.textContent.length; i++) {
                 let character = celine.textContent[i];
-                if ((character === " " || character === "\u00A0") && continueSpaces) {
+                if ((character === " " || character === "\\u00A0") && continueSpaces) {
                     spaces += "&nbsp;";
                 } else {
                     continueSpaces = false;
@@ -1457,7 +1457,7 @@
             let pasteText = (event.clipboardData || window.clipboardData).getData('text');
 
             // Aufteilen des eingefügten Textes bei Zeilenumbrüchen
-            let lines = pasteText.split(/\r\n|\n|\r/);
+            let lines = pasteText.split(/\\r\\n|\\n|\\r/);
 
             let selection = window.getSelection();
             let range = selection.getRangeAt(0);
@@ -1501,7 +1501,7 @@
               let continueSpaces = true;
               for (let i = 0; i < text.length; i++) {
                   let character = text[i];
-                  if ((character === " " || character === "\u00A0") && continueSpaces) {
+                  if ((character === " " || character === "\\u00A0") && continueSpaces) {
                       spaces += 1;
                   } else {
                       continueSpaces = false;
@@ -1565,7 +1565,7 @@
 
         // Hilfsfunktion, um Leerzeichen in &nbsp; zu konvertieren
         function convertToNonBreakingSpaces(text) {
-            return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
+            return text.replace(/ /g, ' ').replace(/\\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
         // Enter- und Backspace-Event-Listener
@@ -1591,7 +1591,7 @@
                     let continueSpaces = true;
                     for (let i = 0; i < celine.textContent.length; i++) {
                         let character = celine.textContent[i];
-                        if ((character === " " || character === "\u00A0") && continueSpaces) {
+                        if ((character === " " || character === "\\u00A0") && continueSpaces) {
                             spaces += "&nbsp;";
                         } else {
                             continueSpaces = false;
@@ -1651,7 +1651,7 @@
       		   // Holen des aktuellen Texts vor dem Cursor
        		   let text = celine.textContent.substring(0, cursorOffset);
        		   // Prüfen, ob der Text einen öffnenden Tag enthält
-        	   let openTagMatch = text.match(/<(\w+)([^>]*)$/);
+        	   let openTagMatch = text.match(/<(\\w+)([^>]*)$/);
 
        		   if (openTagMatch) {
             	   event.preventDefault(); // Verhindert das Standardverhalten
@@ -1721,7 +1721,7 @@
             // Automatisches Schließen von '‚'
             if (event.key === '‚') {
                 event.preventDefault();
-                insertClosingCharacter('\'', '\'');
+                insertClosingCharacter('\\'', '\\'');
             }
 			
 	        if (event.key === '"') {
@@ -1732,7 +1732,7 @@
             // Automatisches Schließen von '‚'
             if (event.key === "'") {
                 event.preventDefault();
-                insertClosingCharacter('\'', '\'');
+                insertClosingCharacter('\\'', '\\'');
             }
 			
 	        function checkAndSkipClosingCharacter(closingChar) {
