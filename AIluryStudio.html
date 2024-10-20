@@ -990,10 +990,12 @@
             		    }
         		    });
 				}
-				if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingoff"){
-					checkbox0.checked = false;
-				}else if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingon"){
-					checkbox0.checked = true;
+				if (section.querySelector('.code-editor-container')){
+					if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingoff"){
+						checkbox0.checked = false;
+					}else if (!dataValue && section.querySelector('.code-editor-container').id == "linenumberingon"){
+						checkbox0.checked = true;
+					}
 				}
 				/*if (dv){
 					const lno = section.getElementById('linenumberingoff');
