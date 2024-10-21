@@ -1145,9 +1145,11 @@
 		    }
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
-	    document.querySelector(`#section${index}`).style.animation = "none";
-            void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-            document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
+	    setTimeout(() => {
+		document.querySelector(`#section${index}`).style.animation = "none";
+                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+                document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
+	    }, 500);
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
