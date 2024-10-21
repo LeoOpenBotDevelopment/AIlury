@@ -1130,6 +1130,8 @@
         const navDots = document.querySelectorAll('.nav-dot');
         let currentIndex = 0;
 
+	let lastindex = 0;
+	let currentindexn = 0;
         // Function to scroll to specific section horizontally
 	let previoussectionfsts = section;
         function scrollToSection(index) {
@@ -1177,6 +1179,8 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
+		                lastindex = currentindexn;
+	                        currentindexn = index;
 		                previoussectionfsts = section;
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
