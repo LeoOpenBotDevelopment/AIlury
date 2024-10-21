@@ -1081,7 +1081,7 @@
         // Function to scroll to specific section horizontally
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-	    document.querySelector('.section').forEach(sec => {
+	    document.querySelectorAll('.section').forEach(sec => {
 		    sec.style.display = 'none';
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
