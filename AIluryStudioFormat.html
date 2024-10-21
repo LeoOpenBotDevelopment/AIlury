@@ -1081,9 +1081,12 @@
         // Function to scroll to specific section horizontally
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-            container.style.transform = `translateX(-${sectionWidth * index}px)`;
+	    document.querySelector('.section').forEach(sec => {
+		    sec.style.display = 'none';
+	    });
+	    document.querySelector(`#section${index}`).style.display = 'flex';
+            //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
-
         // Highlight active dot
         function highlightDot(index) {
             navDots.forEach(dot => dot.classList.remove('active'));
