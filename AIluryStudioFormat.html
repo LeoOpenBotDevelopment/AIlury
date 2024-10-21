@@ -1135,21 +1135,34 @@
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
 	    document.querySelectorAll('.section').forEach(sec => {
-		    if (sec != document.querySelector(`#section${index}`)){
-			sec.style.animation = "none";
-                        void sec.offsetWidth; // Trigger reflow
-                        sec.style.animation = "swipeout 0.5s ease-out";
-                        setTimeout(() => {
-                            sec.style.display = 'none';
-                         }, 500);
+		    if (sec.id != `section${index}`)){
+			if (lastindex > index){
+			    sec.style.animation = "none";
+                            void sec.offsetWidth; // Trigger reflow
+                            sec.style.animation = "swipeoutright 0.5s ease-out";
+                            setTimeout(() => {
+                                sec.style.display = 'none';
+                            }, 500);
+	                }else if (lastindex < index){
+			    sec.style.animation = "none";
+                            void sec.offsetWidth; // Trigger reflow
+                            sec.style.animation = "swipeoutleft 0.5s ease-out";
+                            setTimeout(() => {
+                                sec.style.display = 'none';
+                            }, 500);
+	                }
 		    }
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
-	    setTimeout(() => {
+	    if (lastindex > index){
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
-	    }, 500);
+                document.querySelector(`#section${index}`).style.animation = "swipeinleft 0.5s ease-out";
+	    }else if (lastindex < index){
+		document.querySelector(`#section${index}`).style.animation = "none";
+                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+                document.querySelector(`#section${index}`).style.animation = "swipeinright 0.5s ease-out";
+	    }
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
