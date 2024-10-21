@@ -1130,41 +1130,27 @@
         const navDots = document.querySelectorAll('.nav-dot');
         let currentIndex = 0;
 
-	let lastindex = 0;
-	let currentindexn = 0;
+	/*let lastindex = 0;
+	let currentindexn = 0;*/
         // Function to scroll to specific section horizontally
 	let previoussectionfsts = section;
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
 	    document.querySelectorAll('.section').forEach(sec => {
 		    if (sec.id != `section${index}`)){
-			if (lastindex > index){
 			    sec.style.animation = "none";
                             void sec.offsetWidth; // Trigger reflow
-                            sec.style.animation = "swipeOutRight 0.5s ease-out";
+                            sec.style.animation = "swipeout 0.5s ease-out";
                             setTimeout(() => {
                                 sec.style.display = 'none';
                             }, 500);
-	                }else {
-			    sec.style.animation = "none";
-                            void sec.offsetWidth; // Trigger reflow
-                            sec.style.animation = "swipeOutLeft 0.5s ease-out";
-                            setTimeout(() => {
-                                sec.style.display = 'none';
-                            }, 500);
-	                }
 		    }
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
-	    if (lastindex > index){
-		document.querySelector(`#section${index}`).style.animation = "none";
-                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeInLeft 0.5s ease-out";
-	    }else {
-		document.querySelector(`#section${index}`).style.animation = "none";
-                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeInRight 0.5s ease-out";
-	    }
+	    
+	    document.querySelector(`#section${index}`).style.animation = "none";
+            void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+            document.querySelector(`#section${index}`).style.animation = "swipeout 0.5s ease-out";
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
@@ -1179,8 +1165,8 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
-		                lastindex = currentindexn;
-	                        currentindexn = index;
+		                /*lastindex = currentindexn;
+	                        currentindexn = index;*/
 		                previoussectionfsts = section;
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
