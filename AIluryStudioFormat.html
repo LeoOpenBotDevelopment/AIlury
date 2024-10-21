@@ -40,8 +40,25 @@
             text-align: center;
 			color: rgba(0, 0, 0, 0.5);*/
 			background: #fff;
+		animation: swipein 0.5s;
 		}
 
+	@keyframes swipein {
+		0%{
+		    transform: translateY(-100vh);
+		}
+		100%{
+		    transform: translateY(0);
+		}
+	}
+	@keyframes swipeout {
+		0%{
+		    transform: translateY();
+		}
+		100%{
+		    transform: translateY(-100vh);
+		}
+	}
         .nav-bar {
             position: fixed;
             bottom: 0;
@@ -1118,19 +1135,7 @@
 	let previoussectionfsts = section;
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-	    document.querySelector(`#section${index}`).style.display = 'flex';
-	    if (parseInt(index) > parseInt(previoussectionfsts.id.replace('section', ''))){
-		document.querySelector(`#section${index}`).style.animation = "none";
-                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeoutleft 0.5s ease-out";
-		    
-		previoussectionfsts.style.animation = "none";
-                void previoussectionfsts.offsetWidth; // Trigger reflow
-                previoussectionfsts.style.animation = "swipeinleft 0.5s ease-out";
-		setTimeout(() => {
-                    previoussectionfsts.style.display = 'none';
-                }, 500);
-		/*document.querySelectorAll('.section').forEach(sec => {
+	    document.querySelectorAll('.section').forEach(sec => {
 		    if (sec != document.querySelector(`#section${index}`)){
 			sec.style.animation = "none";
                         void sec.offsetWidth; // Trigger reflow
@@ -1139,19 +1144,8 @@
                             sec.style.display = 'none';
                          }, 500);
 		    }
-	        });*/
-	    }else if (parseInt(index) < parseInt(previoussectionfsts.id.replace('section', ''))){
-		document.querySelector(`#section${index}`).style.animation = "none";
-                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeoutright 0.5s ease-out";
-		    
-		previoussectionfsts.style.animation = "none";
-                void previoussectionfsts.offsetWidth; // Trigger reflow
-                previoussectionfsts.style.animation = "swipeinright 0.5s ease-out";
-		setTimeout(() => {
-                    previoussectionfsts.style.display = 'none';
-                }, 500);
-	    }
+	    });
+	    document.querySelector(`#section${index}`).style.display = 'flex';
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
