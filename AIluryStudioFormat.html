@@ -728,6 +728,42 @@
 				transform: rotate(360deg);
 			}
 		}
+	    @keyframes swipeOutLeft {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {               
+                  transform: translateX(-100%);
+                }
+            }
+
+	    @keyframes swipeInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+	    @keyframes swipeOutRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+	    @keyframes swipeInRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
     </style>
 </head>
 <body>
@@ -1079,12 +1115,43 @@
         let currentIndex = 0;
 
         // Function to scroll to specific section horizontally
+	let previoussectionfsts = section;
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
-	    document.querySelectorAll('.section').forEach(sec => {
-		    sec.style.display = 'none';
-	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
+	    if (parseInt(index) > parseInt(previoussectionfsts.id.replace('section', ''))){
+		document.querySelector(`#section${index}`).style.animation = "none";
+                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+                document.querySelector(`#section${index}`).style.animation = "swipeoutleft 0.5s ease-out";
+		    
+		previoussectionfsts.style.animation = "none";
+                void previoussectionfsts.offsetWidth; // Trigger reflow
+                previoussectionfsts.style.animation = "swipeinleft 0.5s ease-out";
+		setTimeout(() => {
+                    previoussectionfsts.style.display = 'none';
+                }, 500);
+		/*document.querySelectorAll('.section').forEach(sec => {
+		    if (sec != document.querySelector(`#section${index}`)){
+			sec.style.animation = "none";
+                        void sec.offsetWidth; // Trigger reflow
+                        sec.style.animation = "swipeout 0.5s ease-out";
+                        setTimeout(() => {
+                            sec.style.display = 'none';
+                         }, 500);
+		    }
+	        });*/
+	    }else if (parseInt(index) < parseInt(previoussectionfsts.id.replace('section', ''))){
+		document.querySelector(`#section${index}`).style.animation = "none";
+                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+                document.querySelector(`#section${index}`).style.animation = "swipeoutright 0.5s ease-out";
+		    
+		previoussectionfsts.style.animation = "none";
+                void previoussectionfsts.offsetWidth; // Trigger reflow
+                previoussectionfsts.style.animation = "swipeinright 0.5s ease-out";
+		setTimeout(() => {
+                    previoussectionfsts.style.display = 'none';
+                }, 500);
+	    }
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
@@ -1099,6 +1166,7 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
+		                previoussectionfsts = section;
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
 				checkboxupdatefunction();
