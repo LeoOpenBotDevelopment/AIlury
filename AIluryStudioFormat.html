@@ -53,10 +53,13 @@
 	}
 	@keyframes swipeout {
 		0%{
-		    transform: translateY();
+		    transform: translateY(0);
+		}
+		50%{
+		    transform: translateY(-100vh);
 		}
 		100%{
-		    transform: translateY(-100vh);
+		    transform: translateY(0);
 		}
 	}
         .nav-bar {
