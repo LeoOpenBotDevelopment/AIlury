@@ -1145,7 +1145,7 @@
                             setTimeout(() => {
                                 sec.style.display = 'none';
                             }, 500);
-	                }else if (lastindex < index){
+	                }else {
 			    sec.style.animation = "none";
                             void sec.offsetWidth; // Trigger reflow
                             sec.style.animation = "swipeOutLeft 0.5s ease-out";
@@ -1160,7 +1160,7 @@
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
                 document.querySelector(`#section${index}`).style.animation = "swipeInLeft 0.5s ease-out";
-	    }else if (lastindex < index){
+	    }else {
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
                 document.querySelector(`#section${index}`).style.animation = "swipeInRight 0.5s ease-out";
