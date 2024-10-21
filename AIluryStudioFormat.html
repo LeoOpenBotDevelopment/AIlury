@@ -754,31 +754,31 @@
             }
 
 	    @keyframes swipeInLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
+  	      0% {
+      	        transform: translateX(-100%);
+    	      }
+    	      100% {
+      	        transform: translateX(0);
+    	      }
+  	    }
 
 	    @keyframes swipeOutRight {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+  	        0% {
+  	          transform: translateX(0);
+  	        }
+  	        100% {
+  	          transform: translateX(100%);
+  	        }
+  	    }
 
 	    @keyframes swipeInRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
+    	        0% {
+  	          transform: translateX(100%);
+  	        }
+  	        100% {
+  	          transform: translateX(0);
+  	        }
+  	    }
 
     </style>
 </head>
@@ -1139,14 +1139,14 @@
 			if (lastindex > index){
 			    sec.style.animation = "none";
                             void sec.offsetWidth; // Trigger reflow
-                            sec.style.animation = "swipeoutright 0.5s ease-out";
+                            sec.style.animation = "swipeOutRight 0.5s ease-out";
                             setTimeout(() => {
                                 sec.style.display = 'none';
                             }, 500);
 	                }else if (lastindex < index){
 			    sec.style.animation = "none";
                             void sec.offsetWidth; // Trigger reflow
-                            sec.style.animation = "swipeoutleft 0.5s ease-out";
+                            sec.style.animation = "swipeOutLeft 0.5s ease-out";
                             setTimeout(() => {
                                 sec.style.display = 'none';
                             }, 500);
@@ -1157,11 +1157,11 @@
 	    if (lastindex > index){
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeinleft 0.5s ease-out";
+                document.querySelector(`#section${index}`).style.animation = "swipeInLeft 0.5s ease-out";
 	    }else if (lastindex < index){
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-                document.querySelector(`#section${index}`).style.animation = "swipeinright 0.5s ease-out";
+                document.querySelector(`#section${index}`).style.animation = "swipeInRight 0.5s ease-out";
 	    }
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
