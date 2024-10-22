@@ -823,7 +823,7 @@
                     		<div class="url-bar">
                         		<input type="text" id="mobile-url-input" placeholder="file...">
                     		</div>
-                    		<div class="action-btn" onclick="updateIframe('mobile')">⌕</div>
+                    		<div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame')">⌕</div>
                 		</div>
 
                 		
@@ -847,7 +847,7 @@
                         		<input type="text" id="computer-url-input" placeholder="file...">
                     		</div>
                     		<div class="btn-group">
-                        		<button onclick="updateIframe('computer')">⌕</button>
+                        		<button onclick="textCode('computer-url-input', 'computer-frame')">⌕</button>
                     		</div>
                 		</div>
 
@@ -972,7 +972,7 @@
         }
 
 	function textCode(textcontainerid, iframeid){
-	    const code = replaceLinksAndScripts(document.getElementById(textcontainerid));
+	    const code = replaceLinksAndScripts(document.getElementById(textcontainerid).value);
 	    document.getElementById(iframeid).srcdoc = code;
 	}
 		
