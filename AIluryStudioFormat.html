@@ -863,13 +863,13 @@
 
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
-        <div data-index="0" class="nav-dot" onclick="dotonclick()">
+        <div data-index="0" class="nav-dot filedot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="index1.html">
         </div>
-		<div data-index="1" class="nav-dot" onclick="dotonclick()">
+		<div data-index="1" class="nav-dot filedot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="index1.html">
         </div>
-		<div data-index="2" class="nav-dot" onclick="dotonclick()">
+		<div data-index="2" class="nav-dot filedot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="index1.html">
 		</div>
 		<div data-index="3" class="nav-dot" id="view-nav-dot" onclick="dotonclick()">
@@ -942,12 +942,41 @@
         let isDragging = false;
         let startY = 0;
         let currentHeight = 50; // Initial height
-		let section = document.getElementById('section0');
-		let inputDiv = section.querySelector('.code-editor-container');
+	let section = document.getElementById('section0');
+	let sectionindex = 0;
+	let inputDiv = section.querySelector('.code-editor-container');
+	    
 		
+	function replaceLinksAndScripts(values) {
+	    let htmlString = "";
+	    document.querySelectorAll('.filedot').forEach(fd => {
+		    if (fd.querySelector('input[type="text"]').value == values){
+			htmlString = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
+		    }
+	    });
+            htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
+                if (values[href]) {
+                    return `<style>\n${values[href]}\n</style>`;
+                }
+                return match;
+            });
+
+            htmlString = htmlString.replaceAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
+                if (values[src]) {
+                    return `<script>\n${values[src]}\n<\/script>`;
+                }
+                return match;
+            });
+
+            return htmlString;
+        }
+
+	function textCode(textcontainerid, iframeid){
+	    const code = replaceLinksAndScripts(document.getElementById(textcontainerid));
+	    document.getElementById(iframeid).srcdoc = code;
+	}
 		
-		
-		const swipeContainer = document.querySelector('.swipe-container');
+	const swipeContainer = document.querySelector('.swipe-container');
         let startXvvv;
 
         // Update iFrame function for both views
@@ -1165,6 +1194,7 @@
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
 		                previoussectionfsts = section;
+		                sectionindex = index;
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
 				checkboxupdatefunction();
