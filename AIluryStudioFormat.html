@@ -54,14 +54,8 @@
 		0%{
 		    transform: translateY(0);
 		}
-		50%{
-		    transform: translateY(-100vh);
-		}
-		51%{
-		    transform: translateY(100vh);
-		}
 		100%{
-		    transform: translateY(0);
+		    transform: translateY(100vh);
 		}
 	}
         .nav-bar {
@@ -1141,7 +1135,7 @@
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
 	    document.querySelectorAll('.section').forEach(sec => {
-		    if (sec != document.querySelector(`#section${index}`)){
+		    if (sec.id != `section${index}`){
 			sec.style.animation = "none";
                         void sec.offsetWidth; // Trigger reflow
                         sec.style.animation = "swipeout 0.5s ease-out";
@@ -1151,6 +1145,11 @@
 		    }
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
+	    setTimeout(() => {
+		document.querySelector(`#section${index}`).style.animation = "none";
+                void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
+                document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
+	    }, 500);
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
