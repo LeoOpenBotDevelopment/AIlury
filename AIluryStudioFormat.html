@@ -945,28 +945,33 @@
 	let section = document.getElementById('section0');
 	let sectionindex = 0;
 	let inputDiv = section.querySelector('.code-editor-container');
-	function checkiffile(filename){
-	    document.querySelectorAll('.filedot').forEach(fd => {
-		    if (fd.querySelector('input[type="text"]').value == filename){
-			return document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
-		    }
-	    });
-	    return "";
-	    
+	function checkiffile(filename) {
+        	 let fileContent = "";
+ 	        document.querySelectorAll('.filedot').forEach(fd => {
+	            if (fd.querySelector('input[type="text"]').value === filename) {
+	                fileContent = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
+	            }
+	        });
+	        return fileContent;
 	}
-		
+
 	function replaceLinksAndScripts(values) {
-	    let htmlString = checkiffile(values);
-            htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
-                if (values[href]) {
-                    return `<style>\n${checkiffile(href)}\n</style>`;
-                }
+	        let htmlString = checkiffile(values); // Der Dateiname wird als Eingabewert verwendet
+    
+	        // Ersetze <link> mit dem CSS-Inhalt aus der passenden Datei
+	        htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
+   	        const fileContent = checkiffile(href);
+    	        if (fileContent) {
+         	       return `<style>\n${fileContent}\n</style>`;
+	        }
                 return match;
             });
 
-            htmlString = htmlString.replaceAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
-                if (values[src]) {
-                    return `<script>\n${checkiffile(src)}\n<\/script>`;
+            // Ersetze <script> mit dem JavaScript-Inhalt aus der passenden Datei
+            htmlString = htmlString.replace(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
+                const fileContent = checkiffile(src);
+                if (fileContent) {
+                    return `<script>\n${fileContent}\n<\/script>`;
                 }
                 return match;
             });
@@ -974,10 +979,11 @@
             return htmlString;
         }
 
-	function textCode(textcontainerid, iframeid){
-	    const code = replaceLinksAndScripts(document.getElementById(textcontainerid).value);
-	    document.getElementById(iframeid).srcdoc = code;
-	}
+        function textCode(textcontainerid, iframeid) {
+            const code = replaceLinksAndScripts(document.getElementById(textcontainerid).value);
+            document.getElementById(iframeid).srcdoc = code;
+        }
+
 		
 	const swipeContainer = document.querySelector('.swipe-container');
         let startXvvv;
