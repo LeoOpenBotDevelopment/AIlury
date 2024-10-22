@@ -44,7 +44,7 @@
 
 	@keyframes swipein {
 		0%{
-		    transform: translateY(100vh);
+		    transform: translateY(-100vh);
 		}
 		100%{
 		    transform: translateY(0);
@@ -54,8 +54,14 @@
 		0%{
 		    transform: translateY(0);
 		}
-		100%{
+		50%{
 		    transform: translateY(-100vh);
+		}
+		51%{
+		    transform: translateY(100vh);
+		}
+		100%{
+		    transform: translateY(0);
 		}
 	}
         .nav-bar {
@@ -269,14 +275,14 @@
             .code-editor-container {
                 width: 90vw;
 		        padding: 5px 3.5em;
-		        height: 60vh;
+		        height: 65vh;
             }
         }
 	    @media (max-width: 600px) {
             .code-editor-container {
                 width: 90w;
 		        padding: 5px 3em;
-		        height: 50vh;
+		        height: 60vh;
             }
         }
         .code-editor-line {
@@ -754,31 +760,31 @@
             }
 
 	    @keyframes swipeInLeft {
-  	      0% {
-      	        transform: translateX(-100%);
-    	      }
-    	      100% {
-      	        transform: translateX(0);
-    	      }
-  	    }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 	    @keyframes swipeOutRight {
-  	        0% {
-  	          transform: translateX(0);
-  	        }
-  	        100% {
-  	          transform: translateX(100%);
-  	        }
-  	    }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 	    @keyframes swipeInRight {
-    	        0% {
-  	          transform: translateX(100%);
-  	        }
-  	        100% {
-  	          transform: translateX(0);
-  	        }
-  	    }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
     </style>
 </head>
@@ -1130,27 +1136,21 @@
         const navDots = document.querySelectorAll('.nav-dot');
         let currentIndex = 0;
 
-	/*let lastindex = 0;
-	let currentindexn = 0;*/
         // Function to scroll to specific section horizontally
 	let previoussectionfsts = section;
         function scrollToSection(index) {
             const sectionWidth = window.innerWidth;
 	    document.querySelectorAll('.section').forEach(sec => {
-		    if (sec.id != `section${index}`)){
-			    sec.style.animation = "none";
-                            void sec.offsetWidth; // Trigger reflow
-                            sec.style.animation = "swipeout 0.5s ease-out";
-                            setTimeout(() => {
-                                sec.style.display = 'none';
-                            }, 500);
+		    if (sec != document.querySelector(`#section${index}`)){
+			sec.style.animation = "none";
+                        void sec.offsetWidth; // Trigger reflow
+                        sec.style.animation = "swipeout 0.5s ease-out";
+                        setTimeout(() => {
+                            sec.style.display = 'none';
+                         }, 500);
 		    }
 	    });
 	    document.querySelector(`#section${index}`).style.display = 'flex';
-	    
-	    document.querySelector(`#section${index}`).style.animation = "none";
-            void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
-            document.querySelector(`#section${index}`).style.animation = "swipeout 0.5s ease-out";
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
@@ -1165,8 +1165,6 @@
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
             if (index !== currentIndex) {
-		                /*lastindex = currentindexn;
-	                        currentindexn = index;*/
 		                previoussectionfsts = section;
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
