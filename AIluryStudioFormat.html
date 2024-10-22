@@ -945,25 +945,28 @@
 	let section = document.getElementById('section0');
 	let sectionindex = 0;
 	let inputDiv = section.querySelector('.code-editor-container');
-	    
-		
-	function replaceLinksAndScripts(values) {
-	    let htmlString = "";
+	function checkiffile(filename){
 	    document.querySelectorAll('.filedot').forEach(fd => {
-		    if (fd.querySelector('input[type="text"]').value == values){
-			htmlString = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
+		    if (fd.querySelector('input[type="text"]').value == filename){
+			return document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
 		    }
 	    });
+	    return "";
+	    
+	}
+		
+	function replaceLinksAndScripts(values) {
+	    let htmlString = checkiffile(values);
             htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
                 if (values[href]) {
-                    return `<style>\n${values[href]}\n</style>`;
+                    return `<style>\n${checkiffile(href)}\n</style>`;
                 }
                 return match;
             });
 
             htmlString = htmlString.replaceAll(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
                 if (values[src]) {
-                    return `<script>\n${values[src]}\n<\/script>`;
+                    return `<script>\n${checkiffile(src)}\n<\/script>`;
                 }
                 return match;
             });
