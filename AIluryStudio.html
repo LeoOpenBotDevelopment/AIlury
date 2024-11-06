@@ -45,17 +45,21 @@
 	@keyframes swipein {
 		0%{
 		    transform: translateY(-100vh);
+			opacity: 0;
 		}
 		100%{
 		    transform: translateY(0);
+			opacity: 1;
 		}
 	}
 	@keyframes swipeout {
 		0%{
 		    transform: translateY(0);
+			opacity: 1;
 		}
 		100%{
-		    transform: translateY(100vh);
+		    transform: translateY(150vh);
+			opacity: 0;
 		}
 	}
         .nav-bar {
@@ -779,35 +783,234 @@
     transform: translateX(0);
   }
 }
+		.overlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparente schwarze Wand */
+            display: none;/*flex*/
+            justify-content: center;
+            align-items: center;
+			z-index: 1000;
+			animation: swipein 0.5s;
+        }
+		.content-container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box Shadow */
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); /* Flexible Spalten */
+            gap: 20px;
+            width: 80vw;
+            max-width: 1200px;
+            margin-top: 20px;
+            position: relative;
+			max-height: 100vh;
+			overflow-y: scroll;
+        }
+        
+        .top-bar {
+            grid-column: 1 / -1; /* Macht die Top-Bar über die gesamte Breite des Containers */
+            width: 100%;
+            background-color: #ffffff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .overlay-back-btn, .upload-btn, .viewthisfile {
+            background-color: #fcfcfc;
+            border: 1px solid #999999;
+            color: #333;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .rectangle {
+            background-color: #fcfcfc; /* Hintergrund der Rechtecke */
+            border: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+            border-radius: 5px;
+            color: #999999; /* Textfarbe */
+            font-size: 18px;
+            position: relative;
+            min-width: 200px;
+            transition: 0.5s;
+			overflow: hidden;
+        }
+        @keyframes easeinanimationfrb {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .rectangle-buttons {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+        
+        .rectangle:hover .rectangle-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .rectangle.enlarged .rectangle-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .download-btn, .delete-btn, .close, .edit-btn {
+            background-color: #fcfcfc;
+            border: 1px solid #999999;
+            color: #333;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 14px;
+            animation: easeinanimationfrb 0.3s;
+        }
+        
+        .download-btn {
+            display: none;
+        }
+		
+		@keyframes easeinanimationfin {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .image-name {
+            display: none;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);/*#999999*/
+            font-size: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            border-radius: 3px;
+			animation: easeinanimationfin 0.3s;
+			transition: 0.5s;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+        }
+       
+        .rectangle:hover .image-name {
+            display: flex;
+        }
+        
+        .rectangle.enlarged .image-name {
+            display: flex;
+			color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .rectangle.enlarged .rectangle-buttons .download-btn {
+            display: inline-block;
+        }
+        
+        .rectangle.enlarged {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 80vw;
+            height: 80vh;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            display: none;
+        }
+        
+        .rectangle.enlarged .close {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .content-container {
+                width: 100vw;
+                height: 100vh;
+                grid-template-columns: repeat(2, 1fr);
+                overflow-y: auto;
+            }
+            .rectangle.enlarged {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 1000;
+                transform: none;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            }
+        }
+        @media (max-width: 500px) {
+            .content-container {
+                width: 100vw;
+                height: 100vh;
+                grid-template-columns: repeat(1, 1fr);
+                overflow-y: auto;
+            }
+        }
 
     </style>
 </head>
 <body>
-
     <!-- Main content container with sections -->
     <div class="container" id="container">
         <div class="section" id="section0">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
-			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>
 			
 		</div>
 		<div class="section" id="section1">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
-			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>
 			
 		</div>
 		<div class="section" id="section2">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
-			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button></div>
+			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>
 			
 		</div>
 		<div class="section viewcontainer" id="section3">
@@ -930,14 +1133,303 @@
 		    <label class="switch">
                 <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
                 <span class="slider"></span>
-            </label> line numbering
+            </label> line numbers
 		</div>
 		<div class="seccontainer-line" id="specialbtn" onclick="deleteAllLines()">
 		    clear
 		</div>
 	</div>
+	
+	<div class="overlay-container">
+        <!-- Content Container (mit Top Bar drin) -->
+        <div class="content-container">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container')">close</button>
+				<input type="file" id="fileInput" style="display: none;" accept=".txt, .css, .js, .html, image/*" multiple>
+                <button onclick="clickthiselement('#fileInput')" class="upload-btn">Upload</button>
+				<button class="viewthisfile">view this file</button>
+            </div>
+
+            <!-- Rechtecke (Inhalt) -->
+			
+            <div class="rectangle">
+                <span>index.html</span>
+                <div class="rectangle-buttons">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-btn">Edit</button>
+                </div>
+                <button class="close">×</button>
+            </div>
+            <div class="rectangle" data-name="image1.jpg" style="background-image: url('image1.jpg'); background-size: cover; background-position: center;">
+                <span>styles.css</span>
+                <div class="rectangle-buttons">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-btn">Edit</button>
+                </div>
+                <button class="close">×</button>
+            </div>
+            <div class="rectangle">
+                <span>script.js</span>
+                <div class="rectangle-buttons">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-btn">Edit</button>
+                </div>
+                <button class="close">×</button>
+            </div>
+            <div class="rectangle" id="image-rectangle" data-name="image2.jpg" style="background-image: url(Plants_fm.jpg); background-size: cover; background-position: center;">
+                <span class="image-name">Image.png</span>
+                <div class="rectangle-buttons">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn" onclick="deleteImage(this)">Delete</button>
+                </div>
+                <button class="close">×</button>
+            </div>
+        </div>
+    </div>
 
     <script>
+		document.getElementById('fileInput').addEventListener('change', function(event) {
+            const files = event.target.files;
+            
+            // Iteriere durch die ausgewählten Dateien
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const filePath = file.name;
+                // Prüfen, ob die Datei ein Bild ist
+                if (file.type.startsWith('image/')) {
+                    addNewImage(filePath, URL.createObjectURL(file), file); // Bild hinzufügen
+                } else if (file.type === 'text/plain' || file.type === 'text/css' || file.type === 'application/javascript' || file.type === 'text/html') {
+                    addNewFile(filePath); // Text oder Code-Datei hinzufügen
+                }
+            }
+        });
+		
+		function clickthiselement(elementidorclass){
+			document.querySelector(elementidorclass).click();
+		}
+		
+		const imagerectangle = document.getElementById('image-rectangle');
+		imagerectangle.querySelector('.download-btn').addEventListener('click', () => {
+			const a = document.createElement('a');
+          	a.href = imagerectangle.textContent; // Direkt den Base64-URL-String verwenden
+          	a.download = imagerectangle.textContent;
+          	document.body.appendChild(a);
+         	a.click();
+          	document.body.removeChild(a);
+		});
+		
+		function addNewImage(imagePath, imageUrl, file) {
+            // Der Dateiname wird aus dem Pfad extrahiert
+            const fileName = imagePath.split('/').pop(); // Holt den Dateinamen aus dem Pfad
+        
+            // Container, in den das neue Rectangle hinzugefügt wird
+            const contentContainer = document.querySelector('.content-container');
+        
+            // Neues Rectangle-Element erstellen
+            const newRectangle = document.createElement('div');
+            newRectangle.classList.add('rectangle');
+            newRectangle.setAttribute('data-name', fileName);
+            newRectangle.style.backgroundImage = `url('${imageUrl}')`;
+            newRectangle.style.backgroundSize = 'cover';
+            newRectangle.style.backgroundPosition = 'center';
+        
+            // Inhalt des Rectangles
+            newRectangle.innerHTML = `
+                <span class="image-name">${fileName}</span>
+                <div class="rectangle-buttons"><button class="download-btn">Download</button><button class="delete-btn" onclick="deleteImage(this)">Delete</button></div>
+                <button class="close">×</button>
+            `;
+        
+            // Rectangle in den Content-Container einfügen
+            contentContainer.appendChild(newRectangle);
+			
+			newRectangle.querySelector('.download-btn').addEventListener('click', () => {
+				downloadImage(file);
+			});
+			
+			let timer;
+            
+            // Touch and mouse handling
+            newRectangle.querySelector('.close').addEventListener('click', () => {
+                newRectangle.classList.remove('enlarged');
+            });
+            newRectangle.addEventListener('mousedown', startEnlarge);
+            newRectangle.addEventListener('touchstart', startEnlarge);
+        
+            newRectangle.addEventListener('mouseup', stopEnlarge);
+            newRectangle.addEventListener('mouseleave', stopEnlarge);
+            newRectangle.addEventListener('touchend', stopEnlarge);
+        
+            function startEnlarge(event) {
+                timer = setTimeout(() => {
+                    newRectangle.classList.add('enlarged');
+                }, 700); // 1 Sekunde halten
+            }
+        
+            function stopEnlarge() {
+                clearTimeout(timer); // Timer stoppen, wenn das Bild nicht lange genug gehalten wird
+            }
+        }
+        
+        // Hilfsfunktion zum Löschen eines Rectangles
+        function deleteImage(element) {
+            const rectangle = element.closest('.rectangle');
+            rectangle.remove();
+        }
+        
+        // Hilfsfunktion zum Herunterladen eines Bildes
+        function downloadImage(file) {
+            /*const a = document.createElement('a');
+            a.href = imagePath.split('/').pop();
+            a.download = url; // Dateiname für den Download
+            a.click();*/
+			const reader = new FileReader();
+      		reader.onload = (e) => {
+          		const fileUrl = e.target.result;
+          		const a = document.createElement('a');
+          		a.href = fileUrl; // Direkt den Base64-URL-String verwenden
+          		a.download = file.name;
+          		document.body.appendChild(a);
+         		a.click();
+          		document.body.removeChild(a);
+      		};
+      		reader.readAsDataURL(file);
+        }
+		
+		function addNewFile(filename) {
+            // Container für die neuen Sektionen und Navigationselemente
+            const container = document.getElementById('container');
+            const navBar = document.getElementById('nav-bar');
+            
+            // Neue Section hinzufügen
+            const newSection = document.createElement('div');
+            newSection.classList.add('section');
+            const sectionID = `section${container.children.length + 1}`; // Dynamische ID basierend auf Anzahl der Sektionen
+            newSection.id = sectionID;
+            newSection.innerHTML = `
+                <div class="code-editor-btns">
+                    <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button>
+                    <button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button>
+                    <button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button>
+                    <button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button>
+                    <button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button>
+                    <button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button>
+                    <input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕">
+                </div>
+                <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+                    <div id="1" class="code-editor-line" contenteditable="true"></div>
+                </div>
+                <div class="editor-selected-line-btns">
+                    <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button>
+                    <button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button>
+                    <button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button>
+                    <button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button>
+                    <button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button>
+                    <button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button>
+                </div>
+            `;
+            container.appendChild(newSection);
+        
+            // Neuer Nav-Dot hinzufügen
+            const newNavDot = document.createElement('div');
+            newNavDot.classList.add('nav-dot', 'filedot');
+            newNavDot.setAttribute('data-index', container.children.length + 1);
+            newNavDot.innerHTML = `<input class="filePathInput" type="text" value="${filename}">`;
+            newNavDot.onclick = function () {
+                scrollToSection(container.children.length + 1);
+                highlightDot(container.children.length + 1);
+            };
+            navBar.appendChild(newNavDot);
+        
+            // Rectangle hinzufügen (innerhalb der overlay-container)
+            const overlayContainer = document.querySelector('.overlay-container .content-container');
+            const newRectangle = document.createElement('div');
+            newRectangle.classList.add('rectangle');
+            newRectangle.innerHTML = `
+                <span>${filename}</span>
+                <div class="rectangle-buttons">
+                    <button class="download-btn">Download</button>
+                    <button class="delete-btn">Delete</button>
+                    <button class="edit-btn">Edit</button>
+                </div>
+                <button class="close">×</button>
+            `;
+            overlayContainer.appendChild(newRectangle);
+        
+            // Aktualisiere die Indizes und Nummerierung
+            updateDataIndex('nav-bar');
+        }
+        
+
+		document.querySelectorAll('.rectangle').forEach(rect => {
+            let timer;
+            
+            // Touch and mouse handling
+            rect.querySelector('.close').addEventListener('click', () => {
+                rect.classList.remove('enlarged');
+            });
+            rect.addEventListener('mousedown', startEnlarge);
+            rect.addEventListener('touchstart', startEnlarge);
+        
+            rect.addEventListener('mouseup', stopEnlarge);
+            rect.addEventListener('mouseleave', stopEnlarge);
+            rect.addEventListener('touchend', stopEnlarge);
+        
+            function startEnlarge(event) {
+                timer = setTimeout(() => {
+                    rect.classList.add('enlarged');
+                }, 700); // 1 Sekunde halten
+            }
+        
+            function stopEnlarge() {
+                clearTimeout(timer); // Timer stoppen, wenn das Bild nicht lange genug gehalten wird
+            }
+        });
+		
+		document.querySelectorAll('.filePathInput').forEach(rect => {
+            let timer;
+			
+            rect.addEventListener('mousedown', startEnlarge);
+            rect.addEventListener('touchstart', startEnlarge);
+        
+            rect.addEventListener('mouseup', stopEnlarge);
+            rect.addEventListener('mouseleave', stopEnlarge);
+            rect.addEventListener('touchend', stopEnlarge);
+        
+            function startEnlarge(event) {
+                timer = setTimeout(() => {
+                    document.querySelector('.overlay-container').style.display = "flex";
+					document.querySelector('.overlay-container').style.animation = "none";
+                    void document.querySelector('.overlay-container').offsetWidth; // Trigger reflow
+                    document.querySelector('.overlay-container').style.animation = "swipein 0.5s ease-out";
+                }, 700);
+            }
+        
+            function stopEnlarge() {
+                clearTimeout(timer); // Timer stoppen, wenn das Bild nicht lange genug gehalten wird
+            }
+        });
+		function hideelement(type, name){
+			if (type == 'class'){
+				document.querySelector('.' + name).style.animation = "none";
+                void document.querySelector('.' + name).offsetWidth; // Trigger reflow
+                document.querySelector('.' + name).style.animation = "swipeout 0.5s ease-out";
+                setTimeout(() => {
+                    document.querySelector('.' + name).style.display = 'none';
+                }, 500);
+			}else if (type == 'id'){
+				document.querySelector('#' + name).style.animation = "none";
+                void document.querySelector('.' + name).offsetWidth; // Trigger reflow
+                document.querySelector('#' + name).style.animation = "swipeout 0.5s ease-out";
+                setTimeout(() => {
+                    document.querySelector('#' + name).style.display = 'none';
+                }, 500);
+			}
+		}
         const navBar = document.getElementById('nav-bar');
         let isDragging = false;
         let startY = 0;
@@ -1179,7 +1671,7 @@
                         sec.style.animation = "swipeout 0.5s ease-out";
                         setTimeout(() => {
                             sec.style.display = 'none';
-                         }, 500);
+                         }, 400);
 		    }
 	    });
 	    setTimeout(() => {
@@ -1187,7 +1679,7 @@
 		document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
                 document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
-	    }, 500);
+	    }, 400);
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
