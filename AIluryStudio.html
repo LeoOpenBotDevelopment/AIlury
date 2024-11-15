@@ -5,6 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIlury</title>
     <style>
+		:root {
+			--background-color: #fff;
+			--white-color: #fff;
+			--grey-color: #ccc;
+			--lightgrey-color: #fcfcfc;
+			--lightdarkgrey-color: #f4f4f4;
+			--black-color: #000;
+			--linenumber-color: #999999;
+			--drakgrey-color: #f0f0f0;
+			--selected-color: #e0f7e9;
+			--safariheader-color: #dcdcdc;
+			--safariheaderbackground-color: #f7f7f8;
+			--urlbarbackground-color: #e6e6e6;
+			--urlbarcolor-color: #333;
+			--browsercontainerbackground-color: #fff;
+			--browserheaderborderbottom-color: #ddd;
+			--spencialbtnbackground-color: #ccc;
+			--spencialbtncolor-color: #000;
+			--overlayborder-color: #999999;
+			--overlaycolor-color: #333;
+			--rectangleborder: #e0e0e0;
+			--overlaybackground-color: rgba(0, 0, 0, 0.5);
+			--contentcontainer-color: #fff;
+			--checkmark-color: #28a745;
+			--seccontainerbackground-color: #fcfcfc;
+			--seccontainerlinebackground-color: rgba(200, 200, 200, 0.5);
+			--navdotcolor-color: #727272;
+			--seccontainerlinecolor-color: #fff;
+			--switchcheckedbackground-color: #007aff;
+			--filepathinput-color: rgba(0, 0, 0, 0.5);
+			--transparentshade-color: rgba(255, 255, 255, 0.2);
+		}
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--background-color: #000;
+				--white-color: #000;
+	 		    --grey-color: #2E2E2E;
+			    --lightgrey-color: #0c0c0c;/*fcfcfc*/
+			    --lightdarkgrey-color: #4f4f4f;/*f4f4f4*/
+			    --black-color: #fff;
+				--linenumber-color: #555555;
+				--drakgrey-color: #0f0f0f;
+				--selected-color: #0E7F9E;
+				--safariheader-color: #0c0c0c;
+				--safariheaderbackground-color: #0E0F0E;
+				--urlbarbackground-color: #3A3A3A;
+				--urlbarcolor-color: #fff;
+				--browsercontainerbackground-color: #000;
+				--browserheaderborderbottom-color: #121212;
+				--spencialbtnbackground-color: #121212;
+				--spencialbtncolor-color: #fff;
+				--overlayborder-color: #121212;
+				--overlaycolor-color: #666;
+				--rectangleborder: #363736;/*0e0e0e*/
+				--overlaybackground-color: rgba(0, 0, 0, 0.5);
+				--contentcontainer-color: #0c0c0c;
+				--checkmark-color: #0E7F9E;
+				--seccontainerbackground-color: #0c0c0c;
+				--seccontainerlinebackground-color: rgba(50, 50, 50, 0.5);
+				--navdotcolor-color: #999999;
+				--seccontainerlinecolor-color: #666;
+				--switchcheckedbackground-color: #0156CD;
+				--filepathinput-color: rgba(255, 255, 255, 0.5);
+				--transparentshade-color: rgba(0, 0, 0, 0.2);
+			}
+		}
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +81,7 @@
             font-family: 'Arial', sans-serif;
             height: 100vh;
             overflow: hidden;
-            background-color: #fff;/*#f7f9fc*/
+            background-color: var(--background-color);/*#f7f9fc*/
         }
 
         .container {
@@ -39,7 +105,7 @@
             font-size: 2rem;
             text-align: center;
 			color: rgba(0, 0, 0, 0.5);*/
-			background: #fff;
+			background: transparent;
 		}
 
 	@keyframes swipein {
@@ -69,7 +135,7 @@
             width: 100vw;
             display: flex;
             height: 50px;
-            background-color: #fcfcfc;
+            background-color: var(--seccontainerbackground-color);/*--lightgrey-color*/
             box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
             border-radius: 10px 10px 0 0;
             overflow-x: auto;
@@ -82,11 +148,12 @@
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
         }
 
+		
         .nav-bar div {
             min-width: 100vw;
             height: 50px;
-            background-color: #fcfcfc;
-            color: #000;
+            background-color: var(--seccontainerbackground-color);/*--lightgrey-color*/
+            color: var(--black-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -99,12 +166,12 @@
         }
 
         .nav-bar div:hover {
-            background-color: #f4f4f4;
+            background-color: var(--lightdarkgrey-color);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .nav-bar .active {
-            background-color: #fcfcfc;
+            background-color: var(--lightgrey-color);
         }
 
         .expanded {
@@ -118,7 +185,7 @@
             backdrop-filter: blur(10px);
             width: 100%;
             text-align: center;
-            color: #fff;
+            color: var(--black-color);
             position: relative;
             box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
@@ -158,8 +225,8 @@
 		.seccontainer {
             width: 100vw;
             height: 85vh;
-            background-color: #fcfcfc;
-            color: #000;
+            background-color: var(--seccontainerbackground-color);
+            color: var(--black-color);
             transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
             scroll-snap-align: center;
             border-radius: 10px 10px 0 0;
@@ -184,9 +251,9 @@
 			font-size: 1.5em;
 			margin-bottom: 2vh;
 			border-radius: 10px;
-			background: rgba(200, 200, 200, 0.5);
+			background: var(--seccontainerlinebackground-color);
 			padding: 10px;
-			color: white;
+			color: var(--seccontainerlinecolor-color);
 		}
 		
 		@keyframes up{
@@ -228,7 +295,7 @@
    		  left: 0;
    		  right: 0;
    		  bottom: 0;
-  		  background-color: #ccc;
+  		  background-color: var(--grey-color);
   		  border-radius: 34px;
    	      transition: .4s;
 		}
@@ -240,13 +307,13 @@
     		width: 23px;
     		left: 4px;
     		bottom: 4px;
-    		background: white;
+    		background: var(--white-color);
     		border-radius: 50%;
     		transition: .4s;
 		}
 
 		input:checked + .slider {
-    		background: #007aff;/*linear-gradient(90deg, #ff0077, #7700ff);*//*#4cd964*/
+    		background: var(--switchcheckedbackground-color);/*linear-gradient(90deg, #ff0077, #7700ff);*//*#4cd964*/
 		}
 
 		input:checked + .slider:before {
@@ -260,14 +327,15 @@
 		
 		
 		.code-editor-container {
+			position: relative;
             height: 70vh;
             width: 90vw;
             border-radius: 5px;
-            background: #fff;
+            background: var(--white-color);
+			box-shadow: inset 0px 0px 20px var(--white-color);
 	        padding: 5px 4.5em;/*4.5em*/
 	        overflow-y: scroll;
 	        overflow-x: hidden;
-	        box-shadow: inset 0px 0px 10px #fcfcfc;
         }
 	    @media (max-width: 700px) {
             .code-editor-container {
@@ -287,8 +355,8 @@
             display: flex;/*inline-block*/
             position: relative;
             border-radius: 5px;
-            background: #fff;
-            color: #000;
+            background: var(--white-color);
+            color: var(--black-color);
             font-size: 1em;
             font-family: "Fira Code", "JetBrains Mono", monospace;
             letter-spacing: 0.06em;
@@ -300,10 +368,11 @@
             box-sizing: border-box;
             cursor: pointer;
 	        opacity: 1;
+			/*word-break: break-word;*/
         }
         .code-editor-line:focus {
             outline: none;
-            background: #f0f0f0;
+            background: var(--drakgrey-color);
         }
         .code-editor-line {
             counter-increment: line-number;
@@ -317,7 +386,7 @@
             font-weight: bold;
             font-size: 0.7em;
             border: none;
-            color: #999999;
+            color: var(--linenumber-color);
         }
         /* Checkmark style */
         .code-editor-line.selected::after {
@@ -325,7 +394,7 @@
             position: absolute;
             left: -3.5em;
             top: 0;
-            color: #28a745;
+            color: var(--checkmark-color);
             font-size: 1.2em;
         }
         /* Selected line styling */
@@ -358,17 +427,17 @@
         }
 	    .editor-selected-line-btns{
 	        width: 90vw;
-	        background: #fff;
+	        background: var(--white-color);
 	        height: 8vh;
 	        padding: 10px;
 	    }
 	    .eslbtn{
-	        color: #000;
+	        color: var(--black-color);
 	        width: 6vh;
 	        height: 6vh;
 	        min-width: 40px;
 	        min-height: 40px;
-	        background: #fff;
+	        background: var(--white-color);
 	        text-align: center;
 	        border: none;
 	        border-radius: 50%;
@@ -378,7 +447,7 @@
 	        transition: 0.5s;
 	    }
 	    .eslbtn:hover{
-	        background: #f0f0f0;
+	        background: var(--drakgrey-color);
 	    }
 	    .disabled{
 	        pointer-events: none;
@@ -392,18 +461,18 @@
 	        background: rgba(255, 0, 0, 0.5);/*#F09286*/
 	    }
 	    .code-editor-line.selected {
-            background: #e0f7e9;
+            background: var(--selected-color);
             transform: translateX(1.5em); /* Slight movement to the right */
 	        border-radius: 0;
         }
 	    /*.unsleeplines{*/
 	    .code-editor-btn{
-	        color: #000;
+	        color: var(--black-color);
 	        width: 6vh;
 	        height: 6vh;
 	        min-width: 40px;
 	        min-height: 40px;
-	        background: #fff;
+	        background: var(--white-color);
 	        text-align: center;
 	        border: none;
 	        border-radius: 50%;
@@ -414,7 +483,7 @@
 	    
 	    }
 	    .unsleeplines:hover{
-	        background: #f0f0f0;
+	        background: var(--drakgrey-color);
 	    }
 	    .hiddenlinesparent{
 	        transform: translateX(-1.5em);
@@ -432,13 +501,13 @@
         }
 	    .code-editor-btns{
 	        width: 90vw;
-	        background: #fff;
+	        background: var(--white-color);
 	        height: 8vh;
 	        padding: 10px;
 	    }
 		.filePathInput{
 			font-size: 1em;
-			color: rgba(0, 0, 0, 0.5);
+			color: var(--filepathinput-color);
 			font-weight: bold;
 			background: transparent;
 			border: none;
@@ -457,7 +526,7 @@
 		
         .viewcontainer {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: var(--background-color);
             margin: 0;
             display: flex;
             justify-content: center;
@@ -493,7 +562,7 @@
             max-height: 667px;
 			height: calc(100vh - 1em);
             border-radius: 35px;
-            background-color: #fff;
+            background-color: var(--white-color);
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
@@ -502,13 +571,13 @@
 
         /* Safari-like top bar */
         .safari-header {
-            background-color: #f7f7f8;
+            background-color: var(--safariheaderbackground-color);
             height: 44px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 10px;
-            border-bottom: 1px solid #dcdcdc;
+            border-bottom: 1px solid var(--safariheader-color);
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
@@ -521,7 +590,7 @@
         .safari-buttons .back-btn {
             width: 12px;
             height: 12px;
-            background-color: #333;
+            background-color: #007aff;/*333*/
             mask: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Chevron_left_font_awesome.svg') no-repeat center;
             -webkit-mask: url('https://upload.wikimedia.org/wikipedia/commons/2/26/Chevron_left_font_awesome.svg') no-repeat center;
             mask-size: 100%;
@@ -534,7 +603,7 @@
             margin-left: 10px;
             display: flex;
             align-items: center;
-            background-color: #e6e6e6;
+            background-color: var(--urlbarbackground-color);
             border-radius: 12px;
             padding: 0 10px;
             font-size: 14px;
@@ -546,7 +615,7 @@
             border: none;
             background: transparent;
             outline: none;
-            color: #333;
+            color: var(--urlbarcolor-color);
             font-size: 14px;
         }
 
@@ -565,7 +634,7 @@
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             overflow: hidden;
-            background-color: #fff;
+            background-color: var(--background-color);
         }
 
         iframe {
@@ -579,7 +648,7 @@
             height: 70vh;
             border-radius: 15px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-            background-color: #fff;
+            background-color: var(--browsercontainerbackground-color);
             display: flex;
             flex-direction: column;
 			border: 1em solid #333;/*alt option #BBBCBE*/
@@ -587,13 +656,13 @@
 
         /* Browser-like top bar */
         .browser-header {
-            background-color: #f0f0f0;
+            background-color: var(--drakgrey-color);
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--browserheaderborderbottom-color);
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
@@ -627,7 +696,7 @@
             margin: 0 10px;
             display: flex;
             align-items: center;
-            background-color: #e6e6e6;
+            background-color: var(--urlbarbackground-color);
             border-radius: 8px;
             padding: 0 10px;
             font-size: 14px;
@@ -639,7 +708,7 @@
             border: none;
             background: transparent;
             outline: none;
-            color: #333;
+            color: var(--urlbarcolor-color);
             font-size: 14px;
         }
 
@@ -649,7 +718,7 @@
         }
 
         .btn-group button {
-            background-color: #333;
+            background-color: #007aff;/*333*/
             color: #fff;
             padding: 6px 12px;
             border: none;
@@ -658,24 +727,24 @@
             transition: background-color 0.3s;
         }
 
-        .btn-group button:hover {
+        /*.btn-group button:hover {
             background-color: #555;
-        }
+        }*/
 
         .iframe-container {
             flex-grow: 1;
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             overflow: hidden;
-            background-color: #fff;
+            background-color: var(--background-color);
         }
 		.code-search-input{
-			color: #000;
+			color: var(--black-color);
 	        width: 6vh;
 	        height: 6vh;
 	        min-width: 40px;
 	        min-height: 40px;
-	        background: #fff;
+	        background: var(--white-color);
 	        text-align: left;
 	        border: none;
 	        border-radius: 50%;
@@ -733,15 +802,16 @@
 		#specialbtn{
 			transition: 1s;
 			justify-content: center;
-			background: #007aff;
+			background: var(--switchcheckedbackground-color);
+			color: #fff;
 		}
 		#specialbtn:active{
-			background: #ccc;
-			color: #000;
+			background: var(--spencialbtnbackground-color);
+			color: var(--spencialbtncolor-color);
 		}
 		#specialbtn:hover{
-			background: #ccc;
-			color: #000;
+			background: var(--spencialbtnbackground-color);
+			color: var(--spencialbtncolor-color);
 		}
 		@keyframes rotatesign {
 			100%{
@@ -789,7 +859,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5); /* Transparente schwarze Wand */
+            background-color: var(--overlaybackground-color); /* Transparente schwarze Wand */
             display: none;/*flex*/
             justify-content: center;
             align-items: center;
@@ -797,7 +867,7 @@
 			animation: swipein 0.5s;
         }
 		.content-container {
-            background-color: white;
+            background-color: var(--contentcontainer-color);
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box Shadow */
             border-radius: 10px;
@@ -815,7 +885,7 @@
         .top-bar {
             grid-column: 1 / -1; /* Macht die Top-Bar über die gesamte Breite des Containers */
             width: 100%;
-            background-color: #ffffff;
+            background-color: var(--contentcontainer-color);
             padding: 10px;
             display: flex;
             justify-content: space-between;
@@ -823,28 +893,30 @@
         }
         
         .overlay-back-btn, .upload-btn, .viewthisfile {
-            background-color: #fcfcfc;
-            border: 1px solid #999999;
-            color: #333;
+            background-color: var(--contentcontainer-color);/*--lightgrey-color*/
+            border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
+            color: var(--overlaycolor-color);
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
         }
         
         .rectangle {
-            background-color: #fcfcfc; /* Hintergrund der Rechtecke */
-            border: 1px solid #e0e0e0;
+            background-color: var(--contentcontainer-color); /* --lightgrey-color */
+            border: 1px solid var(--rectangleborder);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 150px;
             border-radius: 5px;
-            color: #999999; /* Textfarbe */
+            color: var(--rectangleborder); /* Textfarbe */
             font-size: 18px;
             position: relative;
             min-width: 200px;
-            transition: 0.5s;
-			overflow: hidden;
+            transition: background 0.5s;
+			white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         @keyframes easeinanimationfrb {
             0% {
@@ -874,16 +946,16 @@
         }
         
         .download-btn, .delete-btn, .close, .edit-btn {
-            background-color: #fcfcfc;
-            border: 1px solid #999999;
-            color: #333;
+            background-color: var(--contentcontainer-color);/*--lightgrey-color*/
+            border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
+            color: var(--overlaycolor-color);
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 3px;
             font-size: 14px;
             animation: easeinanimationfrb 0.3s;
         }
-        
+		
         .download-btn {
             display: none;
         }
@@ -914,6 +986,9 @@
 			text-align: center;
 			justify-content: center;
 			align-items: center;
+			white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
        
         .rectangle:hover .image-name {
@@ -961,6 +1036,9 @@
                 grid-template-columns: repeat(2, 1fr);
                 overflow-y: auto;
             }
+			.rectangle{
+				transition: 0.5s;
+			}
             .rectangle.enlarged {
                 position: fixed;
                 top: 0;
@@ -982,15 +1060,92 @@
                 grid-template-columns: repeat(1, 1fr);
                 overflow-y: auto;
             }
+			.rectangle{
+				transition: 0.5s;
+			}
         }
+		
+		.closeviewthisfilebtn {
+			height: 6vh;
+			width: 6vh;
+			background: var(--transparentshade-color);
+			border: none;
+			border-radius: 50%;
+			display: none;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			color: var(--black-color);
+			position: fixed;
+			top: 10px;
+			left: 10px;
+			font-size: 2vh;
+			z-index: 1112;
+		}
 
+		.codesearchresults{
+			font-size: 1em;
+			background: var(--seccontainerbackground-color);
+			width: 25vw;
+			border-radius: 5px;
+			border: none;var(--switchcheckedbackground-color);
+			position: absolute;
+			display: none;
+			color: var(--black-color);
+			flex-direction: column;
+			max-height: 50vh;
+			overflow-y: scroll;
+			word-break: break-word;
+		}
+		.codesearchresults .result{
+			padding: 10px;
+			margin-top: 2px;
+			background: var(--seccontainerlinebackground-color);
+			color: var(--black-color);
+			border-radius: 5px;
+			word-break: break-word;
+		}
+		.codesearchresults .result .highlight{
+			background: var(--switchcheckedbackground-color);
+			font-size: 0.8em;
+			padding: 0.1em;
+			border-radius: 5px;
+			display: inline-block;
+			color: #fff;
+		}
+		.lineoptions {
+			display: none;
+			padding: 0.1em;
+			background: var(--seccontainerbackground-color);
+			color: var(--black-color);
+			border-radius: 100px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+		}
+		.lineoptions button{
+			color: var(--black-color);
+	        width: 5vh;
+	        height: 5vh;
+	        min-width: 40px;
+	        min-height: 40px;
+	        background: var(--seccontainerbackground-color);
+	        text-align: center;
+	        border: none;
+	        border-radius: 50%;
+	        font-weight: bold;
+	        font-size: 0.70em;
+	        transition: 0.5s;
+		}
+		.lineoptions button:hover{
+			background: var(--seccontainerlinebackground-color);
+		}
     </style>
 </head>
 <body>
     <!-- Main content container with sections -->
+	<!-- ☼ -->
     <div class="container" id="container">
         <div class="section" id="section0">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
@@ -998,17 +1153,17 @@
 			
 		</div>
 		<div class="section" id="section1">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
-                <div id="1" class="code-editor-line" contenteditable="true"></div>
+                <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
 			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>
 			
 		</div>
 		<div class="section" id="section2">
-			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕"></div>
+			<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
-                <div id="1" class="code-editor-line" contenteditable="true"></div>
+                <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
 			<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>
 			
@@ -1024,7 +1179,12 @@
                         		<div class="back-btn"></div>
                     		</div>
                     		<div class="url-bar">
-                        		<input type="text" id="mobile-url-input" placeholder="file...">
+                        		<input type="text" id="mobile-url-input" placeholder="file..." list="filenameoptions">
+								<datalist id="filenameoptions">
+									<option id="option0" value="index.html"></option>
+									<option id="option1" value="script.js"></option>
+									<option id="option2" value="styles.css"></option>
+								</datalist>
                     		</div>
                     		<div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame')">⌕</div>
                 		</div>
@@ -1047,7 +1207,8 @@
                         		<div class="maximize-btn"></div>
                     		</div>
                     		<div class="url-bar">
-                        		<input type="text" id="computer-url-input" placeholder="file...">
+                        		<input type="text" id="computer-url-input" placeholder="file..." list="filenameoptions">
+								
                     		</div>
                     		<div class="btn-group">
                         		<button onclick="textCode('computer-url-input', 'computer-frame')">⌕</button>
@@ -1064,18 +1225,29 @@
 		</div>
     </div>
 
+	<div class="codesearchresults">
+		no results
+	</div>
+	
+	<div class="lineoptions">
+		<button onclick="swipethislineleft()">←</button>
+		<button onclick="closelineoptionscontainer()">×</button>
+		<button onclick="swipethislineright()">→</button>
+	</div>
+	
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
-        <div data-index="0" class="nav-dot filedot" onclick="dotonclick()">
+        <div data-index="0" class="nav-dot filedot navdot0" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="index.html">
         </div>
-		<div data-index="1" class="nav-dot filedot" onclick="dotonclick()">
+		<div data-index="1" class="nav-dot filedot navdot1" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="styles.css">
         </div>
-		<div data-index="2" class="nav-dot filedot" onclick="dotonclick()">
+		<div data-index="2" class="nav-dot filedot navdot2" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="script.js">
+			<!--oninput="handleFileNameInputChange(this)"-->
 		</div>
-		<div data-index="3" class="nav-dot" id="view-nav-dot" onclick="dotonclick()">
+		<div data-index="3" class="nav-dot navdot3" id="view-nav-dot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="view">
         </div>
     </div>
@@ -1138,22 +1310,29 @@
 		<div class="seccontainer-line" id="specialbtn" onclick="deleteAllLines()">
 		    clear
 		</div>
+		<div class="seccontainer-line" id="specialbtn" onclick="deleteAllEmptyLines()">
+		    delete empty lines
+		</div>
+		<div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
+		    delete comments
+		</div>
 	</div>
-	
-	<div class="overlay-container">
+	<div class="closeviewthisfilebtn" onclick="closeviewthisfile()">×</div>
+	<div class="overlay-container" onclick="hideelement('class', 'overlay-container', event)">
         <!-- Content Container (mit Top Bar drin) -->
         <div class="content-container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container')">close</button>
+                <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container', event)">close</button>
 				<input type="file" id="fileInput" style="display: none;" accept=".txt, .css, .js, .html, image/*" multiple>
                 <button onclick="clickthiselement('#fileInput')" class="upload-btn">Upload</button>
-				<button class="viewthisfile">view this file</button>
+				<button class="viewthisfile" onclick="viewthisfile()">view this file</button>
+				
             </div>
 
             <!-- Rechtecke (Inhalt) -->
 			
-            <div class="rectangle">
+            <div class="rectangle" id="rectangle0">
                 <span>index.html</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
@@ -1162,7 +1341,7 @@
                 </div>
                 <button class="close">×</button>
             </div>
-            <div class="rectangle" data-name="image1.jpg" style="background-image: url('image1.jpg'); background-size: cover; background-position: center;">
+            <div class="rectangle" id="rectangle1">
                 <span>styles.css</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
@@ -1171,7 +1350,7 @@
                 </div>
                 <button class="close">×</button>
             </div>
-            <div class="rectangle">
+            <div class="rectangle" id="rectangle2">
                 <span>script.js</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
@@ -1180,7 +1359,7 @@
                 </div>
                 <button class="close">×</button>
             </div>
-            <div class="rectangle" id="image-rectangle" data-name="image2.jpg" style="background-image: url(Plants_fm.jpg); background-size: cover; background-position: center;">
+            <div class="rectangle" id="image-rectangle" data-name="Image" data-type="png" style="background-image: url(Plants_fm.jpg); background-size: cover; background-position: center;">
                 <span class="image-name">Image.png</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
@@ -1192,6 +1371,15 @@
     </div>
 
     <script>
+		/*document.querySelectorAll('.filedot').forEach(rect => {
+			rect.querySelector('.filePathInput').addEventListener('input', () => {
+				handleFileNameInputChange(rect);
+			});
+		});*/
+		function hidecodesearchresults() {
+			const codesearchresults = document.querySelector('.codesearchresults');
+            codesearchresults.style.display = "none";
+		}
 		document.getElementById('fileInput').addEventListener('change', function(event) {
             const files = event.target.files;
             
@@ -1203,7 +1391,7 @@
                 if (file.type.startsWith('image/')) {
                     addNewImage(filePath, URL.createObjectURL(file), file); // Bild hinzufügen
                 } else if (file.type === 'text/plain' || file.type === 'text/css' || file.type === 'application/javascript' || file.type === 'text/html') {
-                    addNewFile(filePath); // Text oder Code-Datei hinzufügen
+                    addNewFile(filePath, file); // Text oder Code-Datei hinzufügen
                 }
             }
         });
@@ -1230,19 +1418,30 @@
             const contentContainer = document.querySelector('.content-container');
         
             // Neues Rectangle-Element erstellen
+			function getImageInfo(filePath) {
+
+    			const fileName = filePath.split('/').pop();
+
+    			const [name, format] = fileName.split(/\.(?=[^\.]+$)/);
+    
+   			    return {
+        			name: name,
+        			format: format
+    			};
+			}
             const newRectangle = document.createElement('div');
             newRectangle.classList.add('rectangle');
-            newRectangle.setAttribute('data-name', fileName);
+			let newfilenameinfo = getImageInfo(fileName);
+            newRectangle.setAttribute('data-name', newfilenameinfo.name);
+			newRectangle.setAttribute('data-type', newfilenameinfo.format);
             newRectangle.style.backgroundImage = `url('${imageUrl}')`;
             newRectangle.style.backgroundSize = 'cover';
             newRectangle.style.backgroundPosition = 'center';
         
             // Inhalt des Rectangles
-            newRectangle.innerHTML = `
-                <span class="image-name">${fileName}</span>
-                <div class="rectangle-buttons"><button class="download-btn">Download</button><button class="delete-btn" onclick="deleteImage(this)">Delete</button></div>
-                <button class="close">×</button>
-            `;
+            newRectangle.innerHTML = `<span class="image-name">${fileName}</span>
+<div class="rectangle-buttons"><button class="download-btn">Download</button><button class="delete-btn" onclick="deleteImage(this)">Delete</button></div>
+<button class="close">×</button>`;
         
             // Rectangle in den Content-Container einfügen
             contentContainer.appendChild(newRectangle);
@@ -1297,73 +1496,186 @@
          		a.click();
           		document.body.removeChild(a);
       		};
-      		reader.readAsDataURL(file);
+      		reader.readAsDataURL(file);g
         }
 		
-		function addNewFile(filename) {
-            // Container für die neuen Sektionen und Navigationselemente
+		
+		async function addNewFile(filename, file) {
             const container = document.getElementById('container');
             const navBar = document.getElementById('nav-bar');
-            
-            // Neue Section hinzufügen
+        
+            // Create a new section
             const newSection = document.createElement('div');
             newSection.classList.add('section');
-            const sectionID = `section${container.children.length + 1}`; // Dynamische ID basierend auf Anzahl der Sektionen
-            newSection.id = sectionID;
-            newSection.innerHTML = `
-                <div class="code-editor-btns">
-                    <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button>
-                    <button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button>
-                    <button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button>
-                    <button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button>
-                    <button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">☼</button>
-                    <button class="code-editor-btn" id="copybtn" onclick="copyalllinetexts()">□</button>
-                    <input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" placeholder="⌕">
-                </div>
-                <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
-                    <div id="1" class="code-editor-line" contenteditable="true"></div>
-                </div>
-                <div class="editor-selected-line-btns">
-                    <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button>
-                    <button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button>
-                    <button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button>
-                    <button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button>
-                    <button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button>
-                    <button class="eslbtn disabled" id="copybtn" onclick="copyselectedlinetexts()">□</button>
-                </div>
-            `;
+            newSection.id = `section${container.children.length}`;
+            newSection.innerHTML = `<div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
+        <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+            <div id="1" class="code-editor-line" contenteditable="true"></div>
+        </div>
+	    <div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button></div>`;
             container.appendChild(newSection);
+			
+			lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
         
-            // Neuer Nav-Dot hinzufügen
+            // Set up FileReader to read file and add each line to code-editor-container
+            const reader = new FileReader();
+			let body = document.querySelector('body');
+            reader.onload = (e) => {
+                const lines = body.innerHTML.split('\n');// e.target.result.split('\n');
+                const editorContainer = newSection.querySelector('.code-editor-container');
+                lines.forEach((lineText) => {
+                    const line = document.createElement('div');
+                    line.classList.add('code-editor-line');
+                    line.setAttribute('contenteditable', 'true');
+                    line.innerText = lineText;
+                    editorContainer.appendChild(line);
+                });
+            };
+            reader.readAsText(file);
+        
+            // Create and add new navigation dot
             const newNavDot = document.createElement('div');
             newNavDot.classList.add('nav-dot', 'filedot');
-            newNavDot.setAttribute('data-index', container.children.length + 1);
-            newNavDot.innerHTML = `<input class="filePathInput" type="text" value="${filename}">`;
-            newNavDot.onclick = function () {
-                scrollToSection(container.children.length + 1);
-                highlightDot(container.children.length + 1);
-            };
+			
+            newNavDot.setAttribute('data-index', container.children.length - 1);
+            newNavDot.innerHTML = `
+			<input class="filePathInput" type="text" value="${filename}">
+		`;
+			newNavDot.setAttribute('onclick', 'dotonclick()');
             navBar.appendChild(newNavDot);
+			
+			let filePathInputblablabla = newNavDot.querySelector('.filePathInput');
+            let timeout;
+			
+			filePathInputblablabla.addEventListener('input', () => {
+				handleFileNameInputChange(newNavDot);
+			});
+
+			
+            filePathInputblablabla.addEventListener('mousedown', startOverlayEnlarge);
+            filePathInputblablabla.addEventListener('touchstart', startOverlayEnlarge);
+        
+            filePathInputblablabla.addEventListener('mouseup', stopOverlayEnlarge);
+            filePathInputblablabla.addEventListener('mouseleave', stopOverlayEnlarge);
+            filePathInputblablabla.addEventListener('touchend', stopOverlayEnlarge);
+        
+            function startOverlayEnlarge(event) {
+                timeout = setTimeout(() => {
+                    document.querySelector('.overlay-container').style.display = "flex";
+					document.querySelector('.overlay-container').style.animation = "none";
+                    void document.querySelector('.overlay-container').offsetWidth; // Trigger reflow
+                    document.querySelector('.overlay-container').style.animation = "swipein 0.5s ease-out";
+                }, 700);
+            }
+        
+            function stopOverlayEnlarge() {
+                clearTimeout(timeout); // Timer stoppen, wenn das Bild nicht lange genug gehalten wird
+            }
         
-            // Rectangle hinzufügen (innerhalb der overlay-container)
+            // Add file path to datalist
+            const dataList = document.getElementById('filenameoptions');
+            const option = document.createElement('option');
+            option.value = filename;
+            option.id = `option${newNavDot.getAttribute('data-index')}`;
+            dataList.appendChild(option);
+        
+            // Add overlay rectangle with delete and download functionality
             const overlayContainer = document.querySelector('.overlay-container .content-container');
             const newRectangle = document.createElement('div');
             newRectangle.classList.add('rectangle');
-            newRectangle.innerHTML = `
-                <span>${filename}</span>
-                <div class="rectangle-buttons">
-                    <button class="download-btn">Download</button>
-                    <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
-                </div>
-                <button class="close">×</button>
-            `;
+            newRectangle.innerHTML = `<span>${filename}</span>
+<div class="rectangle-buttons">
+<button class="download-btn">Download</button>
+<button class="delete-btn">Delete</button>
+<button class="edit-btn">Edit</button>
+</div>
+<button class="close">×</button>`;
             overlayContainer.appendChild(newRectangle);
         
-            // Aktualisiere die Indizes und Nummerierung
-            updateDataIndex('nav-bar');
-        }
+            // Delete functionality
+            newRectangle.querySelector('.delete-btn').addEventListener('click', () => {
+                newRectangle.remove();
+                newNavDot.remove();
+                newSection.remove();
+                option.remove();
+            });
         
+            // Download functionality
+            newRectangle.querySelector('.download-btn').addEventListener('click', () => {
+                const a = document.createElement('a');
+                a.href = `path/to/files/${filename}`;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+			
+			newRectangle.querySelector('.close').addEventListener('click', () => {
+                newRectangle.classList.remove('enlarged');
+            });
+        
+            // Touch and mouse handling for enlarging effect
+            let timer;
+            newRectangle.addEventListener('mousedown', startEnlarge);
+            newRectangle.addEventListener('touchstart', startEnlarge);
+            newRectangle.addEventListener('mouseup', stopEnlarge);
+            newRectangle.addEventListener('mouseleave', stopEnlarge);
+            newRectangle.addEventListener('touchend', stopEnlarge);
+        
+            function startEnlarge() {
+                timer = setTimeout(() => {
+                    newRectangle.classList.add('enlarged');
+                }, 700);
+            }
+        
+            function stopEnlarge() {
+                clearTimeout(timer);
+            }
+        
+            // Update indices and numbering
+            await updateDataIndex('nav-bar');
+			newNavDot.classList.add('nav-dot', 'navdot' + newNavDot.getAttribute('data-index'));
+			newRectangle.id = "rectangle" + newNavDot.getAttribute('data-index');
+			navBarremoveeventlistenerscrollandadditagain();
+        }
+
+		
+		/*function handleFileNameInputChange(navDot) {
+    		const option = document.getElementById("option" + navDot.getAttribute('data-index'));
+			const rectangle = document.getElementById("rectangle" + navDot.getAttribute('data-index'));
+			let rectanglespan = rectangle.querySelector('span');
+    		const newValue = navDot.querySelector('.filePathInput').value;
+    
+    		option.value = newValue;
+    		option.textContent = newValue; // Update displayed text in dropdown
+			rectanglespan.innerText = newValue;
+		}*/
+		
+		function handleFileNameInputChange(navDot) {
+            const option = document.getElementById("option" + navDot.getAttribute('data-index'));
+            const rectangle = document.getElementById("rectangle" + navDot.getAttribute('data-index'));
+            if (option && rectangle) {
+                const rectanglespan = rectangle.querySelector('span');
+                const newValue = navDot.querySelector('.filePathInput').value;
+                option.value = newValue;
+                option.textContent = newValue; 
+                rectanglespan.innerText = newValue; 
+            }
+        }
+		
+		document.querySelectorAll('.filedot .filePathInput').forEach(rect => {
+    		rect.addEventListener('input', () => {
+        		handleFileNameInputChange(rect.parentElement);
+    		});
+		});
+        
+
+
+
+
+
+        
+		
 
 		document.querySelectorAll('.rectangle').forEach(rect => {
             let timer;
@@ -1402,6 +1714,7 @@
         
             function startEnlarge(event) {
                 timer = setTimeout(() => {
+					updateviewthisfilebtn();
                     document.querySelector('.overlay-container').style.display = "flex";
 					document.querySelector('.overlay-container').style.animation = "none";
                     void document.querySelector('.overlay-container').offsetWidth; // Trigger reflow
@@ -1413,7 +1726,10 @@
                 clearTimeout(timer); // Timer stoppen, wenn das Bild nicht lange genug gehalten wird
             }
         });
-		function hideelement(type, name){
+		function hideelement(type, name, event){
+			if (event.target !== event.currentTarget) {
+                return;
+            }
 			if (type == 'class'){
 				document.querySelector('.' + name).style.animation = "none";
                 void document.querySelector('.' + name).offsetWidth; // Trigger reflow
@@ -1434,9 +1750,220 @@
         let isDragging = false;
         let startY = 0;
         let currentHeight = 50; // Initial height
-	let section = document.getElementById('section0');
-	let sectionindex = 0;
-	let inputDiv = section.querySelector('.code-editor-container');
+	    let section = document.getElementById('section0');
+	    let sectionindex = 0;
+	    let inputDiv = section.querySelector('.code-editor-container');
+	    function updateviewthisfilebtn() {
+			if (!section || !section.id){
+				return;
+			}
+	    	if (section.id == document.querySelector('.viewcontainer').id){
+				document.querySelector('.viewthisfile').style.display = 'none';
+			}else {
+				document.querySelector('.viewthisfile').style.display = 'inline-block';
+			}
+	    }
+		function deleteAllEmptyLines() {
+    		const sectionlinecontainer = section.querySelector(".code-editor-container");
+    		const allsectionlines = sectionlinecontainer.querySelectorAll(".code-editor-line");
+    		allsectionlines.forEach(line => {
+        		// Korrigiere den Aufruf von `trim()`
+        		if (line.innerText.trim() === "") {
+            		line.remove();
+        		}
+    		});
+		}
+		function deleteAllCommentsInLines() {
+    		const sectionlinecontainer = section.querySelector(".code-editor-container");
+    		const allsectionlines = sectionlinecontainer.querySelectorAll(".code-editor-line");
+
+    		allsectionlines.forEach(line => {
+        		let text = line.innerText;
+        		text = text.replace(/\/\/.*/g, '');
+        		text = text.replace(/\/\*[\s\S]*?\*\//g, '');
+        		line.innerText = text;
+    		});
+		}
+		function positionElementAbove(elementToPosition, referenceElement) {
+            const referenceRect = referenceElement.getBoundingClientRect();
+            elementToPosition.style.position = 'absolute';
+            elementToPosition.style.top = `${referenceRect.top - window.innerHeight * 0.06}px`; // 3vh unterhalb
+            elementToPosition.style.right = `${referenceRect.left + (referenceRect.width - elementToPosition.offsetWidth) / 2}px`;
+        }
+		let targetElementv = null;
+		document.querySelectorAll('.code-editor-container').forEach(linecontainer => {
+			lineoptioncontainerupdate(linecontainer);
+		});
+		function lineoptioncontainerupdate(linecontainer){
+			
+			linecontainer.addEventListener('mousedown', function(event) {
+                const targetElement = event.target;
+                targetElementv = targetElement;
+                targetElement.holdTimer = setTimeout(() => {
+                    performLongPressAction(targetElement);
+                    document.querySelector('.lineoptions').style.display = 'block';
+                }, 700); // 700 ms halten, um Aktion auszulösen
+            });
+        
+            // Mouseup, um das lange Drücken abzubrechen, wenn die Maustaste losgelassen wird
+            linecontainer.addEventListener('mouseup', function(event) {
+                const targetElement = event.target;
+                clearTimeout(targetElement.holdTimer);
+            });
+        
+            // Abbrechen, wenn die Maus das Element verlässt
+            linecontainer.addEventListener('mouseleave', function(event) {
+                const targetElement = event.target;
+                clearTimeout(targetElement.holdTimer);
+            });
+        
+            // Einfacher Klick-Event
+            linecontainer.addEventListener('click', function(event) {
+                const targetElement = event.target;
+                performLongPressAction(targetElement);
+                targetElementv = targetElement;
+            });
+        
+            // Keydown für fokussierte Zeile
+            linecontainer.addEventListener('keydown', function() {
+                const focusedline = document.querySelector('.code-editor-line:focus');
+                if (!focusedline) {
+                    return;
+                }
+                const targetElement = focusedline;
+                performLongPressAction(targetElement);
+                targetElementv = targetElement;
+            });
+        
+            // Scroll-Event, um die Aktion für das zuletzt ausgewählte Element zu aktualisieren
+            linecontainer.addEventListener('scroll', function() {
+                if (targetElementv) {
+                    performLongPressAction(targetElementv);
+                }
+            });
+
+
+			linecontainer.addEventListener('touchstart', function(event) {
+                const targetElement = event.target;
+				targetElementv = targetElement;
+                targetElement.holdTimer = setTimeout(() => {
+                    performLongPressAction(targetElement);
+					document.querySelector('.lineoptions').style.display = 'block';
+                }, 700);
+            });
+			linecontainer.addEventListener('touchend', function(event) {
+                // Das berührte Element (event.target) erfassen
+                const targetElement = event.target;
+            
+				targetElementv = targetElement;
+                // Timer für das Ziel-Element abbrechen
+                clearTimeout(targetElement.holdTimer);
+            });
+			linecontainer.addEventListener('click', function(event) {
+				const targetElement = event.target;
+				performLongPressAction(targetElement);
+				targetElementv = targetElement;
+			});
+			linecontainer.addEventListener('keydown', function() {
+                const focusedline = document.querySelector('.code-editor-line:focus');
+				if (!focusedline){
+					return;
+				}
+				const targetElement = focusedline;
+				performLongPressAction(targetElement);
+				targetElementv = targetElement;
+            });
+                
+
+			linecontainer.addEventListener('scroll', function() {
+				if (targetElementv){
+					performLongPressAction(targetElementv);
+				}
+			});
+		
+		}
+        
+        function performLongPressAction(element) {
+			positionElementAbove(document.querySelector('.lineoptions'), element);
+        }
+		function closelineoptionscontainer() {
+			document.querySelector('.lineoptions').style.display = 'none';
+		}
+		function swipethislineleft() {
+			 if (!targetElementv){
+				 return;
+			 }
+			 if (targetElementv.classList.contains('selected')) {
+                targetElementv.classList.remove('selected');  // Linie abwählen bei links Swipe
+		        if (!section.querySelector('.code-editor-line.selected')){
+		            section.querySelectorAll('.eslbtn').forEach(dline => {
+		                dline.classList.add('disabled');
+		            });
+		        }
+                updateSelectedClasses();
+            } else if (!targetElementv.classList.contains('selected') && !targetElementv.classList.contains('hiddenlinesparent')) {
+                //startLine.classList.add('hiddenlinesparent');
+		        analyzeAndHideElements(targetElementv);
+                updateSelectedClasses();
+            } 
+		}
+		function swipethislineright() {
+			if (!targetElementv){
+				 return;
+			}
+			if (!targetElementv.classList.contains('selected') && !targetElementv.classList.contains('hiddenlinesparent')) {
+                targetElementv.classList.add('selected');  // Linie auswählen
+		        section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+		            dline.classList.remove('disabled');
+		        });
+                updateSelectedClasses();
+            } else if (targetElementv.classList.contains('hiddenlinesparent')) {
+                targetElementv.classList.remove('hiddenlinesparent');
+		        showHiddenElements(targetElementv);
+                updateSelectedClasses();
+            }
+		}
+		
+		const initialviewcontainerzindex = document.querySelector('.viewcontainer').style.zIndex;
+		const initialviewcontainertop = document.querySelector('.viewcontainer').style.top;
+		const initialviewcontainerleft = document.querySelector('.viewcontainer').style.left;
+		let initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
+		function viewthisfile() {
+			initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
+			document.querySelector('.viewcontainer').style.animation = "none";
+    		document.querySelector('.viewcontainer').style.position = "fixed";
+    		document.querySelector('.viewcontainer').style.top = "0";
+    		document.querySelector('.viewcontainer').style.left = "0"; /*`${sectionindex * 100}vh`;*/
+			document.querySelector('.viewcontainer').style.zIndex = "1111";
+			document.querySelector('.viewcontainer').style.display = "flex";
+			
+    
+    		// Hier wird die Klasse mit einem Punkt korrekt referenziert
+    		let filepathtext = document.querySelector('.navdot' + sectionindex + ' input[type="text"]').value;
+    
+    		// Setzt den Wert für die URL-Eingaben
+    		document.getElementById('computer-url-input').value = filepathtext;
+    		document.getElementById('mobile-url-input').value = filepathtext;
+			
+			document.querySelector('.closeviewthisfilebtn').style.display = "flex";
+		}
+		
+		function closeviewthisfile() {
+    		document.querySelector('.viewcontainer').style.position = "relative";
+    		document.querySelector('.viewcontainer').style.top = initialviewcontainertop;
+    		document.querySelector('.viewcontainer').style.left = initialviewcontainerleft;
+			document.querySelector('.viewcontainer').style.zIndex = initialviewcontainerzindex;
+			document.querySelector('.viewcontainer').style.display = initialviewcontainerdisplay;
+			
+			document.querySelector('.closeviewthisfilebtn').style.display = "none";
+		}
+
+		
+		
+		
+		
+		
+		
 	function checkiffile(filename) {
         	 let fileContent = "";
  	        document.querySelectorAll('.filedot').forEach(fd => {
@@ -1518,18 +2045,65 @@
                 swipeContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
             }
         }
+		let originalDisplayStatus = [];
+       
 		
-		function searchcode(thiselementhasthevalue){
-			const inputvalue = thiselementhasthevalue.value;
-			section.querySelectorAll(".code-editor-line").forEach(line => {
-				if (!line.textContent.includes(inputvalue)){
-					line.style.display = 'none';
-				}else {
-					line.style.display = 'flex';
-				}
-			});
-			
-		}
+       function searchcode(thiselementhasthevalue) {
+			closelineoptionscontainer();
+            const codesearchresults = document.querySelector('.codesearchresults');
+            const inputvalue = thiselementhasthevalue.value.trim();
+        
+            // Suchergebnis-Container anzeigen und positionieren
+            codesearchresults.style.display = inputvalue ? "flex" : "none";
+            positionElementBelow(codesearchresults, thiselementhasthevalue);
+            
+            // Inhalte des Suchergebnis-Containers leeren
+            codesearchresults.innerHTML = "";
+        
+            // Alle Codezeilen durchsuchen
+            const lines = section.querySelectorAll('.code-editor-line');
+            lines.forEach((line, index) => {
+                // Wenn ein Suchwert vorhanden ist, Zeilen filtern
+                if (inputvalue) {
+                    
+        
+                    if (line.textContent.includes(inputvalue)) {
+                        // Neues Span für das Suchergebnis erstellen
+                        const resultSpan = document.createElement('span');
+                        resultSpan.classList.add('result');
+                        resultSpan.innerText = line.textContent;
+        
+                        // Klick-Event, um zur Zeile zu scrollen
+                        resultSpan.addEventListener('click', () => {
+                            line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            codesearchresults.style.display = "none";
+                        });
+        
+                        codesearchresults.appendChild(resultSpan);
+                    }
+                }
+            });
+        }
+        
+        
+        // Helper function to position element
+        function positionElementBelow(elementToPosition, referenceElement) {
+            const referenceRect = referenceElement.getBoundingClientRect();
+            elementToPosition.style.position = 'absolute';
+            elementToPosition.style.top = `${referenceRect.bottom + window.scrollY + 20}px`; // Adjust spacing as needed
+            elementToPosition.style.left = `${referenceRect.left + window.scrollX}px`;
+        }
+        
+
+        // Funktion zur Positionierung des Suchergebnis-Containers
+        function positionElementBelow(elementToPosition, referenceElement) {
+            const referenceRect = referenceElement.getBoundingClientRect();
+            elementToPosition.style.position = 'absolute';
+            elementToPosition.style.top = `${referenceRect.bottom + window.innerHeight * 0.03}px`; // 3vh unterhalb
+            elementToPosition.style.left = `${referenceRect.left + (referenceRect.width - elementToPosition.offsetWidth) / 2}px`;
+        }
+        
+
 		
 		
 		
@@ -1661,25 +2235,28 @@
         let currentIndex = 0;
 
         // Function to scroll to specific section horizontally
-	let previoussectionfsts = section;
+	    let previoussectionfsts = section;
         function scrollToSection(index) {
+			const codesearchresults = document.querySelector('.codesearchresults');
+            codesearchresults.style.display = "none";
+			closelineoptionscontainer();
             const sectionWidth = window.innerWidth;
-	    document.querySelectorAll('.section').forEach(sec => {
-		    if (sec.id != `section${index}`){
-			sec.style.animation = "none";
+	        document.querySelectorAll('.section').forEach(sec => {
+		        if (sec.id != `section${index}`){
+			            sec.style.animation = "none";
                         void sec.offsetWidth; // Trigger reflow
                         sec.style.animation = "swipeout 0.5s ease-out";
                         setTimeout(() => {
                             sec.style.display = 'none';
                          }, 400);
-		    }
-	    });
-	    setTimeout(() => {
-		document.querySelector(`#section${index}`).style.display = 'flex';
-		document.querySelector(`#section${index}`).style.animation = "none";
+		        }
+	        });
+	        setTimeout(() => {
+		        document.querySelector(`#section${index}`).style.display = 'flex';
+	        	document.querySelector(`#section${index}`).style.animation = "none";
                 void document.querySelector(`#section${index}`).offsetWidth; // Trigger reflow
                 document.querySelector(`#section${index}`).style.animation = "swipein 0.5s ease-out";
-	    }, 400);
+	        }, 400);
             //container.style.transform = `translateX(-${sectionWidth * index}px)`;
         }
         // Highlight active dot
@@ -1696,6 +2273,7 @@
             if (index !== currentIndex) {
 		                previoussectionfsts = section;
 		                sectionindex = index;
+				
 				section = document.getElementById(`section${index}`);
 				inputDiv = section.querySelector('.code-editor-container');
 				checkboxupdatefunction();
@@ -1707,6 +2285,15 @@
         navBar.addEventListener('scroll', () => {
 			scrolleivs();
 		});
+		
+		function navBarremoveeventlistenerscrollandadditagain() {
+			navBar.removeEventListener('scroll', () => {
+			    scrolleivs();
+		    });
+			navBar.addEventListener('scroll', () => {
+			    scrolleivs();
+		    });
+		}
             
 		function updateDataIndex(divId) {
            // Hole das div-Element mit der übergebenen ID
@@ -1742,6 +2329,7 @@
         // Initialize first dot as active
         highlightDot(0);
 		let correntids = 2;
+
 	
 	    function checkifselectedlines() {
 	        const check = section.querySelector(".code-editor-line.selected");
@@ -2377,7 +2965,8 @@
                 }
             });
         }
-    </script>
+         
+	</script>
 
 </body>
 </html>
