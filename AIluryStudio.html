@@ -1521,7 +1521,7 @@ container.appendChild(newSection);
 const reader = new FileReader();
       let body = document.querySelector('body');
 reader.onload = (e) => {
-const lines = body.innerHTML.split('\n');// e.target.result.split('\n');
+const lines = e.target.result.split('\n');// e.target.result.split('\n'); body.innerHTML.split('\n');
 const editorContainer = newSection.querySelector('.code-editor-container');
 lines.forEach((lineText) => {
 const line = document.createElement('div');
@@ -1964,47 +1964,52 @@ function performLongPressAction(element) {
 
 
 
-  function checkiffile(filename) {
-           let fileContent = "";
-          document.querySelectorAll('.filedot').forEach(fd => {
-              if (fd.querySelector('input[type="text"]').value === filename) {
-                  fileContent = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
-              }
-          });
-          return fileContent;
-  }
+        function checkiffile(filename) {
+                   let fileContent = "";
+                  document.querySelectorAll('.filedot').forEach(fd => {
+                      if (fd.querySelector('input[type="text"]').value == filename) {
+                          fileContent = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
+                      }
+                  });
+                  return fileContent;
+        }
 
-  function replaceLinksAndScripts(values) {
-          let htmlString = checkiffile(values); // Der Dateiname wird als Eingabewert verwendet
 
-          // Ersetze <link> mit dem CSS-Inhalt aus der passenden Datei
-          htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
-            const fileContent = checkiffile(href);
-              if (fileContent) {
-                 return `<style>\n${fileContent}\n</style>`;
-          }
-                return match;
+        function replaceLinksAndScripts(values) {
+            let htmlString = checkiffile(values);
+            const fileCache = new Map();
+
+            // Hilfsfunktion, um Datei-Inhalte zu cachen
+            const getFileContent = (filename) => {
+                if (!fileCache.has(filename)) {
+                    fileCache.set(filename, checkiffile(filename));
+                }
+                return fileCache.get(filename);
+            };
+
+            // Ersetze <link> mit CSS-Inhalt
+            htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
+                const fileContent = getFileContent(href);
+                return fileContent ? `<style>\n${fileContent}\n</style>` : match;
             });
 
-            // Ersetze <script> mit dem JavaScript-Inhalt aus der passenden Datei
+            // Ersetze <script> mit JavaScript-Inhalt
             htmlString = htmlString.replace(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
-                const fileContent = checkiffile(src);
-                if (fileContent) {
-                    return `<script>\n${fileContent}\n<\/script>`;
-                }
-                return match;
+                const fileContent = getFileContent(src);
+                return fileContent ? `<script>\n${fileContent}\n<\/script>` : match;
             });
 
             return htmlString;
         }
 
+
         function textCode(textcontainerid, iframeid) {
             const code = replaceLinksAndScripts(document.getElementById(textcontainerid).value);
             document.getElementById(iframeid).srcdoc = code;
         }
+        
 
-
-  const swipeContainer = document.querySelector('.swipe-container');
+        const swipeContainer = document.querySelector('.swipe-container');
         let startXvvv;
 
         // Update iFrame function for both views
@@ -2045,14 +2050,14 @@ function performLongPressAction(element) {
                 swipeContainer.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
             }
         }
-    let originalDisplayStatus = [];
-
+        let originalDisplayStatus = [];
 
 
 
 
         function searchcode(thiselementhasthevalue) {
             closelineoptionscontainer(); // Schließt das Optionsmenü für Linien
+            
             const codesearchresults = document.querySelector('.codesearchresults');
 
             // Positioniere Suchergebnisse
@@ -2074,19 +2079,25 @@ function performLongPressAction(element) {
                         newspan.innerText = lineelement.textContent;
 
                         newspan.addEventListener('click', () => {
-                            // Verstecke die Suchergebnisse, wenn auf ein Ergebnis geklickt wird
-                            codesearchresults.style.display = "none";
+                            
+                            
 
                             // Vergewissere dich, dass die Linie im DOM sichtbar ist
                             if (lineelement) {
+                                document.querySelector('.lineoptions').disabled = true;
+                                // Verstecke die Suchergebnisse, wenn auf ein Ergebnis geklickt wird
+                                sectionlinecontainer.scrollTop = lineelement.offsetTop - sectionlinecontainer.offsetTop;
+                                codesearchresults.style.display = "none";
                                 // Scrolle zu der gefundenen Linie
-                                lineelement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                                // Optional: Nach einer kurzen Verzögerung eine Long-Press-Aktion ausführen
+                                //lineelement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                
                                 setTimeout(() => {
+                                    
                                     performLongPressAction(lineelement);
                                 }, 500);
+                                document.querySelector('.lineoptions').disabled = false;
                             }
+                            
                         });
 
                         codesearchresults.appendChild(newspan);  // Füge das Suchergebnis in die Liste der Ergebnisse ein
@@ -2109,6 +2120,12 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
 }
 
     function updatelinenumbercheckbox(checkbox){
+        if (!section){
+            return;
+        }
+        if (section.classList.contains('viewcontainer')){
+          return;
+        }
       const dataValue = checkbox.getAttribute('data-update-id');
       if (dataValue){
         if (checkbox.checked == false){
@@ -2120,6 +2137,12 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
     }
 
     function updatecheckboxed(checkbox){
+        if (!section){
+            return;
+        }
+        if (section.classList.contains('viewcontainer')){
+          return;
+        }
       const dataValue = checkbox.getAttribute('data-checked');
       if (dataValue){
         if (checkbox.checked == false){
@@ -2135,6 +2158,12 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
     }
 
     function checkboxupdatefunction() {
+        if (!section){
+            return;
+        }
+          if (section.classList.contains('viewcontainer')){
+            return;
+          }
           document.querySelectorAll('.switchbox').forEach(checkbox0 => {
               const dataValue = checkbox0.getAttribute('data-checked');
 
@@ -2237,6 +2266,13 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
         // Function to scroll to specific section horizontally
       let previoussectionfsts = section;
         function scrollToSection(index) {
+            if (section.classList.contains('viewcontainer')){
+                if (navBar.classList.contains('expanded')) {
+                    navBar.style.height = '50px';
+                    navBar.classList.remove('expanded');
+                    seccontainer.style.display = 'none';
+                }
+            }
       const codesearchresults = document.querySelector('.codesearchresults');
 codesearchresults.style.display = "none";
       closelineoptionscontainer();
@@ -2323,6 +2359,9 @@ codesearchresults.style.display = "none";
             const sectionWidth = window.innerWidth;
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
+            if (section.id == document.getElementById(`section${index}`).id){
+                return;
+            }
             //const index = parseInt(dot.getAttribute('data-index'));
             scrollToSection(index);
             highlightDot(index);
