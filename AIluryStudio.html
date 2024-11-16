@@ -36,6 +36,8 @@
       --switchcheckedbackground-color: #007aff;
       --filepathinput-color: rgba(0, 0, 0, 0.5);
       --transparentshade-color: rgba(255, 255, 255, 0.2);
+      --superselected-color: #28a745;
+      --leftarrow-color: #28a745;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -69,6 +71,8 @@
         --switchcheckedbackground-color: #0156CD;
         --filepathinput-color: rgba(255, 255, 255, 0.5);
         --transparentshade-color: rgba(0, 0, 0, 0.2);
+        --superselected-color: #28a745;
+        --leftarrow-color: #28a745;
       }
     }
         * {
@@ -425,6 +429,20 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px; /* Rundet alle Ecken */
         }
+        .code-editor-line.superselected {
+            border-radius: 5px;
+            background: var(--superselected-color);
+            transform: translateX(1.5em); /* Slight movement to the right */
+        }
+        .code-editor-line.superselected::after {
+            content: '→';
+            position: absolute;
+            left: -3.5em;
+            top: 0;
+            color: var(--leftarrow-color);
+            font-size: 1.2em;
+        }
+        
       .editor-selected-line-btns{
           width: 90vw;
           background: var(--white-color);
@@ -1138,7 +1156,9 @@
     .lineoptions button:hover{
       background: var(--seccontainerlinebackground-color);
     }
+        
     </style>
+    
 </head>
 <body>
     <!-- Main content container with sections -->
@@ -1336,8 +1356,8 @@
                 <span>index.html</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
-                    <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn" style="display: none;" onclick="deletethisfile('0')">Delete</button>
+                    <button class="edit-btn" onclick="editthisfile('0')">Edit</button>
                 </div>
                 <button class="close">×</button>
             </div>
@@ -1345,8 +1365,8 @@
                 <span>styles.css</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
-                    <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn" onclick="deletethisfile('1')">Delete</button>
+                    <button class="edit-btn" onclick="editthisfile('1')">Edit</button>
                 </div>
                 <button class="close">×</button>
             </div>
@@ -1354,8 +1374,8 @@
                 <span>script.js</span>
                 <div class="rectangle-buttons">
                     <button class="download-btn">Download</button>
-                    <button class="delete-btn">Delete</button>
-                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn" onclick="deletethisfile('2')">Delete</button>
+                    <button class="edit-btn" onclick="editthisfile('2')">Edit</button>
                 </div>
                 <button class="close">×</button>
             </div>
@@ -1586,19 +1606,19 @@ newRectangle.classList.add('rectangle');
 newRectangle.innerHTML = `<span>${filename}</span>
 <div class="rectangle-buttons">
 <button class="download-btn">Download</button>
-<button class="delete-btn">Delete</button>
-<button class="edit-btn">Edit</button>
+<button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
+<button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
 </div>
 <button class="close">×</button>`;
 overlayContainer.appendChild(newRectangle);
 
 // Delete functionality
-newRectangle.querySelector('.delete-btn').addEventListener('click', () => {
+/*newRectangle.querySelector('.delete-btn').addEventListener('click', () => {
 newRectangle.remove();
 newNavDot.remove();
 newSection.remove();
 option.remove();
-});
+});*/
 
 // Download functionality
 newRectangle.querySelector('.download-btn').addEventListener('click', () => {
@@ -1663,16 +1683,12 @@ rectanglespan.innerText = newValue;
 }
 }
 
-    document.querySelectorAll('.filedot .filePathInput').forEach(rect => {
-        rect.addEventListener('input', () => {
-            handleFileNameInputChange(rect.parentElement);
+
+        document.querySelectorAll('.filedot .filePathInput').forEach(rect => {
+            rect.addEventListener('input', () => {
+                handleFileNameInputChange(rect.parentElement);
+            });
         });
-    });
-
-
-
-
-
 
 
 
@@ -1753,6 +1769,81 @@ rectanglespan.innerText = newValue;
       let section = document.getElementById('section0');
       let sectionindex = 0;
       let inputDiv = section.querySelector('.code-editor-container');
+        function deletethisfile(number) {
+            // Delete rectangle
+            let rectangleToDelete = document.getElementById('rectangle' + number);
+            if (rectangleToDelete) {
+                rectangleToDelete.remove();
+                document.querySelectorAll('.rectangle').forEach((rect, index) => {
+                    if (rect.id != 'image-rectangle'){
+                        rect.id = "rectangle" + index;
+                        rect.querySelector('.rectangle-buttons .delete-btn').setAttribute('onclick', `deletethisfile(${index})`);
+                        rect.querySelector('.rectangle-buttons .edit-btn').setAttribute('onclick', `editthisfile(${index})`);
+                    }
+                });
+            }
+
+            // Delete nav-dot
+            let navBar = document.getElementById('nav-bar');
+            if (navBar) {
+                let deletethisnavdot = navBar.querySelector('.nav-dot[data-index="' + number + '"]');
+                if (deletethisnavdot) {
+                    let filePathInput = deletethisnavdot.querySelector('.filePathInput');
+                    let deletethisnavdotvalue = filePathInput ? filePathInput.value : null;
+                    deletethisnavdot.remove();
+
+                    document.querySelectorAll('.nav-dot').forEach((navdot, index) => {
+                        navdot.classList.remove('navdot' + navdot.getAttribute('data-index'));
+                        navdot.classList.add('navdot' + index);
+                        navdot.setAttribute('data-index', index);
+                    });
+
+                    // Delete option if applicable
+                    if (deletethisnavdotvalue) {
+                        let filenameOptions = document.getElementById('filenameoptions');
+                        if (filenameOptions) {
+                            let optionToDelete = document.getElementById("option" + number); //filenameOptions.querySelector('option[value="' + deletethisnavdotvalue + '"]');
+                            if (optionToDelete) {
+                                optionToDelete.remove();
+                            }
+                            
+                            document.getElementById('filenameoptions').querySelectorAll('option').forEach((option, index) => {
+                                option.id = "option" + index;
+                            });
+                        }
+                    }
+                }
+            }
+
+            // Delete section
+            let container = document.getElementById('container');
+            if (container) {
+                let deletethissection = container.querySelector('.section[id="section' + number + '"]');
+                if (deletethissection) {
+                    if (section.id == deletethissection.id){
+                        let scrolltothisnavdot = document.getElementById('view-nav-dot');
+                        if (scrolltothisnavdot){
+                            scrolltothisnavdot.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    deletethissection.remove();
+                    document.querySelectorAll('.section').forEach((sectionv, index) => {
+                        sectionv.id = "section" + index;
+                    });
+                }
+            }
+        }
+        function editthisfile(number){
+            /*let scrolltothissection = container.querySelector('.navdot' + number);
+            if(scrolltothissection){
+                scrolltothissection.scrollIntoView({ behavior: 'smooth' });
+            }*/
+            let navBar = document.getElementById('nav-bar');
+            let scrolltothissection = navBar.querySelector('.nav-dot[data-index="' + number + '"]');
+            if (scrolltothissection){
+                scrolltothissection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
       function updateviewthisfilebtn() {
       if (!section || !section.id){
         return;
@@ -1989,13 +2080,13 @@ function performLongPressAction(element) {
 
             // Ersetze <link> mit CSS-Inhalt
             htmlString = htmlString.replace(/<link\s+[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/g, (match, href) => {
-                const fileContent = getFileContent(href);
+                const fileContent = checkiffile(href);
                 return fileContent ? `<style>\n${fileContent}\n</style>` : match;
             });
 
             // Ersetze <script> mit JavaScript-Inhalt
             htmlString = htmlString.replace(/<script\s+[^>]*src=["']([^"']+)["'][^>]*><\/script>/g, (match, src) => {
-                const fileContent = getFileContent(src);
+                const fileContent = checkiffile(src);
                 return fileContent ? `<script>\n${fileContent}\n<\/script>` : match;
             });
 
@@ -2319,6 +2410,7 @@ codesearchresults.style.display = "none";
                 scrollToSection(index);
                 highlightDot(index);
                 currentIndex = index;
+                updateviewthisfilebtn();
             }
     }
         navBar.addEventListener('scroll', () => {
@@ -2626,6 +2718,31 @@ codesearchresults.style.display = "none";
                 startLine.classList.remove('hiddenlinesparent');  // Linie auswählen
             showHiddenElements(startLine);
                 updateSelectedClasses();
+            } else if (diffX > 50 && startLine.classList.contains('selected')) {
+                let anothersuperselectedline = false;
+                let superselectedline = section.querySelector('.code-editor-line.superselected');
+                if (superselectedline){
+                    anothersuperselectedline = true;
+                }
+                startLine.classList.remove('selected');
+                startLine.classList.add('superselected');  // Linie auswählen
+                if (!section.querySelector('.code-editor-line.selected')){
+                    section.querySelectorAll('.eslbtn').forEach(dline => {
+                        dline.classList.add('disabled');
+                    });
+                }
+                if (anothersuperselectedline == true){
+                    superselect(superselectedline, startLine);
+                    superselectedline.classList.remove('superselected');
+                    startLine.classList.remove('superselected');
+                    superselectedline.classList.add('selected');
+                    startLine.classList.add('selected');
+                    section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+                        dline.classList.remove('disabled');
+                    });
+                    
+                }
+                updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
                 startLine.classList.remove('selected');  // Linie abwählen bei links Swipe
             if (!section.querySelector('.code-editor-line.selected')){
@@ -2633,6 +2750,13 @@ codesearchresults.style.display = "none";
                     dline.classList.add('disabled');
                 });
             }
+                updateSelectedClasses();
+            } else if (diffX < -50 && startLine.classList.contains('superselected')) {
+                startLine.classList.remove('superselected');  // Linie abwählen bei links Swipe
+                startLine.classList.add('selected');  // Linie auswählen
+                section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+                    dline.classList.remove('disabled');
+                });
                 updateSelectedClasses();
             } else if (diffX < -50 && !startLine.classList.contains('selected') && !startLine.classList.contains('hiddenlinesparent')) {
                 //startLine.classList.add('hiddenlinesparent');
@@ -2644,6 +2768,43 @@ codesearchresults.style.display = "none";
         });
 
         //let inputDiv = section.querySelector('.code-editor-container');
+
+        function superselect(superselectedline, superselectedline2) {
+            // select every line inbetween superselectedline and superselectedline2
+            let allselectedlines = Array.from(section.querySelectorAll('.code-editor-line'));
+            let startindex = allselectedlines.indexOf(superselectedline);
+            let endindex = allselectedlines.indexOf(superselectedline2);
+
+            if (superselectedline.classList.contains('hidden') || superselectedline2.classList.contains('hidden')){
+                return;
+            }
+
+            // select the lines inbetween startindex and endindex
+            if (startindex < endindex) {
+                for (let i = startindex + 1; i < endindex; i++) {
+                    if (allselectedlines[i].classList.contains('hiddenlinesparent')) {
+                        allselectedlines[i].classList.remove('hiddenlinesparent');  // Linie auswählen
+                        showHiddenElements(allselectedlines[i]);
+                        updateSelectedClasses();
+                    }
+                    if (!allselectedlines[i].classList.contains('selected')){
+                        allselectedlines[i].classList.add('selected');
+                    }
+                }
+            } else if (startindex > endindex) {
+                for (let i = startindex - 1; i > endindex; i--) {
+                    if (allselectedlines[i].classList.contains('hiddenlinesparent')) {
+                        allselectedlines[i].classList.remove('hiddenlinesparent');  // Linie auswählen
+                        showHiddenElements(allselectedlines[i]);
+                        updateSelectedClasses();
+                    }
+                    if (!allselectedlines[i].classList.contains('selected')){
+                        allselectedlines[i].classList.add('selected');
+                    }
+                }
+            }
+            updateSelectedClasses();
+        }
 
         // Paste Event-Listener
         function handlePaste(event) {
