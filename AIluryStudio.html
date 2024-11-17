@@ -38,6 +38,9 @@
       --transparentshade-color: rgba(255, 255, 255, 0.2);
       --superselected-color: #28a745;
       --leftarrow-color: #28a745;
+      --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
+      --loadingbarloadedbackground-color: #007aff;
+      --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -73,6 +76,9 @@
         --transparentshade-color: rgba(0, 0, 0, 0.2);
         --superselected-color: #28a745;
         --leftarrow-color: #28a745;
+          --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
+            --loadingbarloadedbackground-color: #0156CD;
+            --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
       }
     }
         * {
@@ -442,7 +448,7 @@
             color: var(--leftarrow-color);
             font-size: 1.2em;
         }
-        
+
       .editor-selected-line-btns{
           width: 90vw;
           background: var(--white-color);
@@ -1156,9 +1162,74 @@
     .lineoptions button:hover{
       background: var(--seccontainerlinebackground-color);
     }
+
+
+
+
+
         
+
+
+        #overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--fileloadingoverlaybackground-color);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1500;
+          visibility: hidden;
+          opacity: 0;
+          transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #overlay.active {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        .progress-bar-container {
+          width: 80%;
+          max-width: 400px;
+          background: var(--loadingbarbackground-color);
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+
+        .progress-bar {
+          height: 20px;
+          width: 0;
+          background: var(--loadingbarloadedbackground-color);
+          transition: width 0.5s ease;
+        }
+
+        .progress-text {
+          color: #fff;
+          text-align: center;
+          margin-top: 10px;
+          font-size: 16px;
+        }
+
+        .checkmark {
+          font-size: 50px;
+          color: white;
+          display: none;
+          margin-bottom: 10px;
+        }
+
+        .checkmark.visible {
+          display: block;
+        }
+
+
+
     </style>
-    
+
 </head>
 <body>
     <!-- Main content container with sections -->
@@ -1390,7 +1461,62 @@
         </div>
     </div>
 
+    <div id="overlay">
+      <div class="progress-bar-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="checkmark" id="checkmark">✓</div>
+      <div class="progress-text" id="progress-text">Analyzing</div>
+    </div>
+
+
     <script>
+        function startLoading() {
+            const overlay = document.getElementById('overlay');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const checkmark = document.getElementById('checkmark');
+            const progressContainer = document.getElementById('progress-container');
+
+            // Reset to initial state
+            overlay.classList.add('active');
+            progressBar.style.width = '0%';
+            progressContainer.style.display = 'block';
+            checkmark.classList.remove('visible');
+            progressText.textContent = 'Analyzing';
+
+            const steps = [
+              { percent: 0, text: 'Reserving' },
+              { percent: 25, text: 'Creating environment' },
+              { percent: 50, text: 'Linking' },
+              { percent: 75, text: 'Formatting' },
+              { percent: 100, text: 'Loading complete' },
+            ];
+
+            let stepIndex = 0;
+
+            function updateStep() {
+              if (stepIndex < steps.length) {
+                const step = steps[stepIndex];
+                progressBar.style.width = `${step.percent}%`;
+                progressText.textContent = step.text;
+
+                if (step.percent === 100) {
+                  progressContainer.style.display = 'none'; // Hide progress bar
+                  checkmark.classList.add('visible');      // Show checkmark
+                }
+
+                stepIndex++;
+                setTimeout(updateStep, 1000); // Update every 1 second
+              } else {
+                setTimeout(() => {
+                  overlay.classList.remove('active');
+                }, 500); // Hide overlay after completion
+              }
+            }
+
+            updateStep();
+        }
     /*document.querySelectorAll('.filedot').forEach(rect => {
       rect.querySelector('.filePathInput').addEventListener('input', () => {
         handleFileNameInputChange(rect);
@@ -1521,6 +1647,7 @@ reader.readAsDataURL(file);g
 
 
     async function addNewFile(filename, file) {
+        startLoading();
 const container = document.getElementById('container');
 const navBar = document.getElementById('nav-bar');
 
@@ -1567,9 +1694,10 @@ navBar.appendChild(newNavDot);
       let filePathInputblablabla = newNavDot.querySelector('.filePathInput');
             let timeout;
 
-      filePathInputblablabla.addEventListener('input', () => {
-        handleFileNameInputChange(newNavDot);
-      });
+        filePathInputblablabla.addEventListener('input', (event) => {
+          handleFileNameInputChange(event.target.parentElement);
+        });
+
 
 
             filePathInputblablabla.addEventListener('mousedown', startOverlayEnlarge);
@@ -1621,14 +1749,17 @@ option.remove();
 });*/
 
 // Download functionality
-newRectangle.querySelector('.download-btn').addEventListener('click', () => {
+newRectangle.querySelector('.download-btn').onclick = () => {
+downloadFile(filename);
+}
+        /*.querySelector('.download-btn').addEventListener('click', () => {
 const a = document.createElement('a');
 a.href = `path/to/files/${filename}`;
 a.download = filename;
 document.body.appendChild(a);
 a.click();
 document.body.removeChild(a);
-});
+});*/
 
       newRectangle.querySelector('.close').addEventListener('click', () => {
                 newRectangle.classList.remove('enlarged');
@@ -1712,7 +1843,7 @@ await updateDataIndex('nav-bar');
             URL.revokeObjectURL(link.href);
         }
 
-          
+
 
         function handleFileNameInputChange(navDot) {
             // Find related elements
@@ -1874,7 +2005,7 @@ await updateDataIndex('nav-bar');
                             if (optionToDelete) {
                                 optionToDelete.remove();
                             }
-                            
+
                             document.getElementById('filenameoptions').querySelectorAll('option').forEach((option, index) => {
                                 option.id = "option" + index;
                             });
@@ -1969,6 +2100,7 @@ await updateDataIndex('nav-bar');
             let scrolltothissection = navBar.querySelector('.nav-dot[data-index="' + number + '"]');
             if (scrolltothissection){
                 scrolltothissection.scrollIntoView({ behavior: 'smooth' });
+                document.querySelector('.overlay-back-btn').click();
             }
         }
       function updateviewthisfilebtn() {
@@ -2191,7 +2323,7 @@ function performLongPressAction(element) {
     const initialviewcontainerleft = document.querySelector('.viewcontainer').style.left;
     let initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
     function viewthisfile() {
-        
+
       initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
       document.querySelector('.viewcontainer').style.animation = "none";
         document.querySelector('.viewcontainer').style.position = "fixed";
@@ -2282,7 +2414,7 @@ function performLongPressAction(element) {
             const code = replaceLinksAndScripts(document.getElementById(textcontainerid).value);
             document.getElementById(iframeid).srcdoc = code;
         }
-        
+
 
         const swipeContainer = document.querySelector('.swipe-container');
         let startXvvv;
@@ -2338,7 +2470,7 @@ function performLongPressAction(element) {
               return;
             }
             closelineoptionscontainer(); // Schließt das Optionsmenü für Linien
-            
+
             const codesearchresults = document.querySelector('.codesearchresults');
 
             // Positioniere Suchergebnisse
@@ -2360,8 +2492,8 @@ function performLongPressAction(element) {
                         newspan.innerText = lineelement.textContent;
 
                         newspan.addEventListener('click', () => {
-                            
-                            
+
+
 
                             // Vergewissere dich, dass die Linie im DOM sichtbar ist
                             if (lineelement) {
@@ -2371,14 +2503,14 @@ function performLongPressAction(element) {
                                 codesearchresults.style.display = "none";
                                 // Scrolle zu der gefundenen Linie
                                 //lineelement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                
+
                                 setTimeout(() => {
-                                    
+
                                     performLongPressAction(lineelement);
                                 }, 500);
                                 document.querySelector('.lineoptions').disabled = false;
                             }
-                            
+
                         });
 
                         codesearchresults.appendChild(newspan);  // Füge das Suchergebnis in die Liste der Ergebnisse ein
@@ -2556,7 +2688,7 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
                     }
                 }
             }
-            
+
       const codesearchresults = document.querySelector('.codesearchresults');
 codesearchresults.style.display = "none";
       closelineoptionscontainer();
@@ -2604,7 +2736,7 @@ codesearchresults.style.display = "none";
                 if (!section.classList.contains('viewcontainer')){
                     inputDiv = section.querySelector('.code-editor-container');
                 }
-                
+
         checkboxupdatefunction();
                 scrollToSection(index);
                 highlightDot(index);
@@ -2845,7 +2977,7 @@ codesearchresults.style.display = "none";
                 allselectedlines.forEach(selectedline => {
                     selectedline.classList.remove('selected');
                 });
-            
+
             checkifselectedlines();
                 // Verwende die Clipboard API
                 //navigator.clipboard.writeText(linetexts)
@@ -2944,7 +3076,7 @@ codesearchresults.style.display = "none";
                     section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
                         dline.classList.remove('disabled');
                     });
-                    
+
                 }
                 updateSelectedClasses();
             } else if (diffX < -50 && startLine.classList.contains('selected')) {
