@@ -1202,8 +1202,8 @@
                             <input type="text" id="mobile-url-input" placeholder="file..." list="filenameoptions">
                 <datalist id="filenameoptions">
                   <option id="option0" value="index.html"></option>
-                  <option id="option1" value="script.js"></option>
-                  <option id="option2" value="styles.css"></option>
+                  <option id="option1" value="styles.css"></option>
+                  <option id="option2" value="script.js"></option>
                 </datalist>
                         </div>
                         <div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame')">⌕</div>
@@ -1355,7 +1355,7 @@
             <div class="rectangle" id="rectangle0">
                 <span>index.html</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn">Download</button>
+                    <button class="download-btn" onclick="downloadFile('index.html')">Download</button>
                     <button class="delete-btn" style="display: none;" onclick="deletethisfile('0')">Delete</button>
                     <button class="edit-btn" onclick="editthisfile('0')">Edit</button>
                 </div>
@@ -1364,7 +1364,7 @@
             <div class="rectangle" id="rectangle1">
                 <span>styles.css</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn">Download</button>
+                    <button class="download-btn" onclick="downloadFile('styles.css')">Download</button>
                     <button class="delete-btn" onclick="deletethisfile('1')">Delete</button>
                     <button class="edit-btn" onclick="editthisfile('1')">Edit</button>
                 </div>
@@ -1373,7 +1373,7 @@
             <div class="rectangle" id="rectangle2">
                 <span>script.js</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn">Download</button>
+                    <button class="download-btn" onclick="downloadFile('script.js')">Download</button>
                     <button class="delete-btn" onclick="deletethisfile('2')">Delete</button>
                     <button class="edit-btn" onclick="editthisfile('2')">Edit</button>
                 </div>
@@ -1605,7 +1605,7 @@ const newRectangle = document.createElement('div');
 newRectangle.classList.add('rectangle');
 newRectangle.innerHTML = `<span>${filename}</span>
 <div class="rectangle-buttons">
-<button class="download-btn">Download</button>
+<button class="download-btn" onclick="downloadFile(${filename})">Download</button>
 <button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
 <button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
 </div>
@@ -1670,18 +1670,86 @@ await updateDataIndex('nav-bar');
         option.textContent = newValue; // Update displayed text in dropdown
       rectanglespan.innerText = newValue;
     }*/
+        function downloadFile(name) {
+            // Extract type and filename
+            let type = name.split('.').pop();
+            let filename = name.split('.').slice(0, -1).join('.');
 
-    function handleFileNameInputChange(navDot) {
-const option = document.getElementById("option" + navDot.getAttribute('data-index'));
-const rectangle = document.getElementById("rectangle" + navDot.getAttribute('data-index'));
-if (option && rectangle) {
-const rectanglespan = rectangle.querySelector('span');
-const newValue = navDot.querySelector('.filePathInput').value;
-option.value = newValue;
-option.textContent = newValue; 
-rectanglespan.innerText = newValue; 
-}
-}
+            // Check if file content exists
+            let content = checkiffile(name);
+            if (!content) {
+                return; // Abort if no content is found
+            }
+
+            // Map type to MIME type
+            const mimeTypes = {
+                html: 'text/html',
+                css: 'text/css',
+                js: 'application/javascript',
+                txt: 'text/plain'
+            };
+
+            // Check if the type is valid
+            const mimeType = mimeTypes[type];
+            if (!mimeType) {
+                return; // Abort for unknown types
+            }
+
+            // Create a Blob with the content and MIME type
+            const blob = new Blob([content], { type: mimeType });
+
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob); // Create a URL for the Blob
+            link.download = `${filename}.${type}`; // Set the correct filename
+
+            // Append the link to the document and trigger the download
+            document.body.appendChild(link);
+            link.click();
+
+            // Clean up
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+        }
+
+          
+
+        function handleFileNameInputChange(navDot) {
+            // Find related elements
+            const dataIndex = navDot.getAttribute('data-index');
+            const option = document.getElementById("option" + dataIndex);
+            const rectangle = document.getElementById("rectangle" + dataIndex);
+
+            // Ensure option and rectangle exist
+            if (!option || !rectangle) {
+                return;
+            }
+
+            const filePathInput = navDot.querySelector('.filePathInput');
+            const rectanglespan = rectangle.querySelector('span');
+            const downloadBtn = rectangle.querySelector('.download-btn');
+
+            // Ensure required child elements exist
+            if (!filePathInput || !rectanglespan || !downloadBtn) {
+                return;
+            }
+
+            // Get and sanitize new value
+            const newValue = filePathInput.value.trim();
+            if (!newValue) {
+                return; // Abort if the new value is empty
+            }
+            const safeValue = newValue.replace(/['"<>&]/g, '');
+
+            // Update option and rectangle
+            option.value = safeValue;
+            option.textContent = safeValue;
+            rectanglespan.innerText = safeValue;
+
+            // Update download button's action
+            downloadBtn.onclick = () => downloadFile(safeValue);
+        }
+
 
 
         document.querySelectorAll('.filedot .filePathInput').forEach(rect => {
@@ -1769,7 +1837,7 @@ rectanglespan.innerText = newValue;
       let section = document.getElementById('section0');
       let sectionindex = 0;
       let inputDiv = section.querySelector('.code-editor-container');
-        function deletethisfile(number) {
+        /*function deletethisfile(number) {
             // Delete rectangle
             let rectangleToDelete = document.getElementById('rectangle' + number);
             if (rectangleToDelete) {
@@ -1832,7 +1900,66 @@ rectanglespan.innerText = newValue;
                     });
                 }
             }
+        }*/
+        function deletethisfile(number) {
+            // Delete rectangle
+            let rectangleToDelete = document.getElementById('rectangle' + number);
+            if (rectangleToDelete) {
+                rectangleToDelete.remove();
+                document.querySelectorAll('.rectangle').forEach((rect, index) => {
+                    if (rect.id !== 'image-rectangle') {
+                        rect.id = "rectangle" + index;
+                        rect.querySelector('.rectangle-buttons .delete-btn').setAttribute('onclick', `deletethisfile(${index})`);
+                        rect.querySelector('.rectangle-buttons .edit-btn').setAttribute('onclick', `editthisfile(${index})`);
+                    }
+                });
+            }
+
+            // Delete nav-dot
+            let navBar = document.getElementById('nav-bar');
+            if (navBar) {
+                let deletethisnavdot = navBar.querySelector('.nav-dot[data-index="' + number + '"]');
+                if (deletethisnavdot) {
+                    let filePathInput = deletethisnavdot.querySelector('.filePathInput');
+                    let deletethisnavdotvalue = filePathInput ? filePathInput.value : null;
+                    deletethisnavdot.remove();
+
+                    document.querySelectorAll('.nav-dot').forEach((navdot, index) => {
+                        navdot.classList.remove('navdot' + navdot.getAttribute('data-index'));
+                        navdot.classList.add('navdot' + index);
+                        navdot.setAttribute('data-index', index);
+                    });
+
+                    // Delete option if applicable
+                    if (deletethisnavdotvalue) {
+                        let filenameOptions = document.getElementById('filenameoptions');
+                        if (filenameOptions) {
+                            let optionToDelete = filenameOptions.querySelector(`option[value="${deletethisnavdotvalue}"]`);
+                            if (optionToDelete) {
+                                optionToDelete.remove();
+                                document.querySelectorAll('#filenameoptions option').forEach((option, index) => {
+                                    option.id = "option" + index;
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Delete section
+            let container = document.getElementById('container');
+            if (container) {
+                let deletethissection = container.querySelector('.section[id="section' + number + '"]');
+                if (deletethissection) {
+                    deletethissection.remove();
+                    document.querySelectorAll('.section').forEach((sectionv, index) => {
+                        sectionv.id = "section" + index;
+                    });
+                }
+            }
         }
+
+
         function editthisfile(number){
             /*let scrolltothissection = container.querySelector('.navdot' + number);
             if(scrolltothissection){
@@ -1981,6 +2108,12 @@ function performLongPressAction(element) {
       document.querySelector('.lineoptions').style.display = 'none';
     }
     function swipethislineleft() {
+        if (!section){
+            return;
+        }
+        if (section.classList.contains('viewcontainer')){
+          return;
+        }
        if (!targetElementv){
          return;
        }
@@ -1992,13 +2125,26 @@ function performLongPressAction(element) {
                 });
             }
                 updateSelectedClasses();
-            } else if (!targetElementv.classList.contains('selected') && !targetElementv.classList.contains('hiddenlinesparent')) {
+            } else if (!targetElementv.classList.contains('selected') && !targetElementv.classList.contains('hiddenlinesparent') && !targetElementv.classList.contains('superselected')) {
                 //startLine.classList.add('hiddenlinesparent');
             analyzeAndHideElements(targetElementv);
                 updateSelectedClasses();
-            } 
+            } else if (targetElementv.classList.contains('superselected')) {
+                targetElementv.classList.remove('superselected');  // Linie abwählen bei links Swipe
+                targetElementv.classList.add('selected');  // Linie auswählen
+                targetElementv.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+                    dline.classList.remove('disabled');
+                });
+                updateSelectedClasses();
+        }
     }
     function swipethislineright() {
+        if (!section){
+            return;
+        }
+        if (section.classList.contains('viewcontainer')){
+          return;
+        }
       if (!targetElementv){
          return;
       }
@@ -2012,7 +2158,32 @@ function performLongPressAction(element) {
                 targetElementv.classList.remove('hiddenlinesparent');
             showHiddenElements(targetElementv);
                 updateSelectedClasses();
+            }else if (targetElementv.classList.contains('selected')) {
+            let anothersuperselectedline = false;
+            let superselectedline = section.querySelector('.code-editor-line.superselected');
+            if (superselectedline){
+                anothersuperselectedline = true;
             }
+            targetElementv.classList.remove('selected');
+            targetElementv.classList.add('superselected');  // Linie auswählen
+            if (!section.querySelector('.code-editor-line.selected')){
+                section.querySelectorAll('.eslbtn').forEach(dline => {
+                    dline.classList.add('disabled');
+                });
+            }
+            if (anothersuperselectedline == true){
+                superselect(superselectedline, targetElementv);
+                superselectedline.classList.remove('superselected');
+                targetElementv.classList.remove('superselected');
+                superselectedline.classList.add('selected');
+                targetElementv.classList.add('selected');
+                section.querySelectorAll('.eslbtn.disabled').forEach(dline => {
+                    dline.classList.remove('disabled');
+                });
+
+            }
+            updateSelectedClasses();
+        }
     }
 
     const initialviewcontainerzindex = document.querySelector('.viewcontainer').style.zIndex;
@@ -2020,6 +2191,7 @@ function performLongPressAction(element) {
     const initialviewcontainerleft = document.querySelector('.viewcontainer').style.left;
     let initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
     function viewthisfile() {
+        
       initialviewcontainerdisplay = document.querySelector('.viewcontainer').style.display;
       document.querySelector('.viewcontainer').style.animation = "none";
         document.querySelector('.viewcontainer').style.position = "fixed";
@@ -2056,14 +2228,26 @@ function performLongPressAction(element) {
 
 
         function checkiffile(filename) {
-                   let fileContent = "";
-                  document.querySelectorAll('.filedot').forEach(fd => {
-                      if (fd.querySelector('input[type="text"]').value == filename) {
-                          fileContent = document.getElementById(`section${fd.getAttribute('data-index')}`).querySelector('.code-editor-container').innerText;
-                      }
-                  });
-                  return fileContent;
+            let fileContent = "";
+            document.querySelectorAll('.filedot').forEach(fd => {
+                let filePathInputva = fd.querySelector('.filePathInput');
+                if (filePathInputva && filePathInputva.value == filename) {
+                    let sectionv = document.getElementById(`section${fd.getAttribute('data-index')}`);
+                    if (sectionv) {
+                        let container = sectionv.querySelector('.code-editor-container');
+                        if (container) {
+                            container.querySelectorAll('.code-editor-line').forEach(line => {
+                                fileContent += line.innerText + "\n";
+                            });
+                            /*fileContent = container.textContent; // Verwende textContent für konsistenteren Zugriff*/
+                            return; // Beendet die Schleife
+                        }
+                    }
+                }
+            });
+            return fileContent;
         }
+
 
 
         function replaceLinksAndScripts(values) {
@@ -2147,6 +2331,12 @@ function performLongPressAction(element) {
 
 
         function searchcode(thiselementhasthevalue) {
+            if (!section){
+                return;
+            }
+            if (section.classList.contains('viewcontainer')){
+              return;
+            }
             closelineoptionscontainer(); // Schließt das Optionsmenü für Linien
             
             const codesearchresults = document.querySelector('.codesearchresults');
@@ -2338,7 +2528,7 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
         window.addEventListener('touchend', () => {
             if (isDragging) {
                 isDragging = false;
-                if (parseInt(navBar.style.height) > 75 && !section.classList.contains('viewcontainer')) {
+                if (section && parseInt(navBar.style.height) > 75 && !section.classList.contains('viewcontainer')) {
                     navBar.style.height = '100vh';
                     navBar.classList.add('expanded');
           seccontainer.style.display = 'flex';
@@ -2357,13 +2547,16 @@ elementToPosition.style.display = "block"; // Sicherstellen, dass das Element si
         // Function to scroll to specific section horizontally
       let previoussectionfsts = section;
         function scrollToSection(index) {
-            if (section.classList.contains('viewcontainer')){
-                if (navBar.classList.contains('expanded')) {
-                    navBar.style.height = '50px';
-                    navBar.classList.remove('expanded');
-                    seccontainer.style.display = 'none';
+            if (section){
+                if (section.classList.contains('viewcontainer')){
+                    if (navBar.classList.contains('expanded')) {
+                        navBar.style.height = '50px';
+                        navBar.classList.remove('expanded');
+                        seccontainer.style.display = 'none';
+                    }
                 }
             }
+            
       const codesearchresults = document.querySelector('.codesearchresults');
 codesearchresults.style.display = "none";
       closelineoptionscontainer();
@@ -2396,6 +2589,9 @@ codesearchresults.style.display = "none";
 
         // Listen for scroll events on the navigation bar
     function scrolleivs() {
+           if (!section){
+               return;
+           }
             navDots = document.querySelectorAll('.nav-dot');
       const sectionWidth = window.innerWidth;
             const scrollPos = navBar.scrollLeft;
@@ -2405,7 +2601,10 @@ codesearchresults.style.display = "none";
                     sectionindex = index;
 
         section = document.getElementById(`section${index}`);
-        inputDiv = section.querySelector('.code-editor-container');
+                if (!section.classList.contains('viewcontainer')){
+                    inputDiv = section.querySelector('.code-editor-container');
+                }
+                
         checkboxupdatefunction();
                 scrollToSection(index);
                 highlightDot(index);
@@ -2459,7 +2658,9 @@ codesearchresults.style.display = "none";
             highlightDot(index);
             navBar.scrollLeft = index * window.innerWidth; // Scroll the bar
         section = document.getElementById(`section${index}`);
-        inputDiv = section.querySelector('.code-editor-container');
+            if (!section.classList.contains('viewcontainer')){
+                inputDiv = section.querySelector('.code-editor-container');
+            }
       checkboxupdatefunction();
             currentIndex = index;
         }
@@ -2470,6 +2671,9 @@ codesearchresults.style.display = "none";
 
 
       function checkifselectedlines() {
+          if (!section){
+              return;
+          }
           const check = section.querySelector(".code-editor-line.selected");
           if (!check) {
             section.querySelectorAll('.eslbtn').forEach(dline => {
