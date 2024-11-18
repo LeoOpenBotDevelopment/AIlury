@@ -65,7 +65,7 @@
         --overlaycolor-color: #666;
         --rectangleborder: #363736;/*0e0e0e*/
         --overlaybackground-color: rgba(0, 0, 0, 0.5);
-        --contentcontainer-color: #0c0c0c;
+        --contentcontainer-color: #000;/*0c0c0c*/
         --checkmark-color: #0E7F9E;
         --seccontainerbackground-color: #0c0c0c;
         --seccontainerlinebackground-color: rgba(50, 50, 50, 0.5);
@@ -891,6 +891,7 @@
       animation: swipein 0.5s;
         }
     .content-container {
+            border: 1px solid var(--rectangleborder);
             background-color: var(--contentcontainer-color);
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box Shadow */
