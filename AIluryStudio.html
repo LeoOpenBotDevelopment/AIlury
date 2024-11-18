@@ -454,6 +454,9 @@
           background: var(--white-color);
           height: 8vh;
           padding: 10px;
+          display: flex;
+          overflow-x: scroll;
+          overflow-y: hidden;
       }
       .eslbtn{
           color: var(--black-color);
@@ -528,6 +531,9 @@
           background: var(--white-color);
           height: 8vh;
           padding: 10px;
+          display: flex;
+          overflow-x: scroll;
+          overflow-y: hidden;
       }
     .filePathInput{
       font-size: 1em;
@@ -762,6 +768,28 @@
             overflow: hidden;
             background-color: var(--background-color);
         }
+        .line-number-input{
+          color: var(--black-color);
+              width: 6vh;
+              height: 6vh;
+              min-width: 40px;
+              min-height: 40px;
+              background: var(--white-color);
+              text-align: left;
+              border: none;
+              border-radius: 50%;
+              font-weight: bold;
+              font-size: 0.85em;
+              margin-left: 1%;
+              transition: 0.5s;
+          padding: 0 2.5vh;
+        }
+        .line-number-input:focus{
+          border-radius: 100px;
+          width: 25vw;
+          outline: none;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
     .code-search-input{
       color: var(--black-color);
           width: 6vh;
@@ -792,11 +820,31 @@
         padding: 0;
         height: 85vh;
       }
-      .code-search-input{
+      /*.code-search-input{
         display: none;
+      }*/
+      /*#search-check{
+        display: none;
+      }*/
+      .line-number-input:focus{
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 5px;
+        width: 100vw;
+        outline: none;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        background: var(--seccontainerbackground-color);
       }
-      #search-check{
-        display: none;
+      .code-search-input:focus{
+          position: fixed;
+          top: 0;
+          left: 0;
+          border-radius: 5px;
+          width: 100vw;
+          outline: none;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          background: var(--seccontainerbackground-color);
       }
     }
     #addFile{
@@ -1138,6 +1186,11 @@
       display: inline-block;
       color: #fff;
     }
+    @media(max-width: 700px){
+        .codesearchresults{
+            width: 100vw;
+        }
+    }
     .lineoptions {
       display: none;
       padding: 0.1em;
@@ -1243,7 +1296,7 @@
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
             <div class="code-editor-btns">
-                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button></div>
+                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section1">
@@ -1253,7 +1306,7 @@
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section2">
@@ -1263,7 +1316,7 @@
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section viewcontainer" id="section3">
@@ -1399,6 +1452,12 @@
                 <span class="slider"></span>
             </label> search
     </div>
+      <div class="seccontainer-line" id="search-check">
+            <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="line-number-input" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> go to line number 
+        </div>
     <div class="seccontainer-line">
         <label class="switch">
                 <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
@@ -1478,6 +1537,8 @@
 
 
     <script>
+        let isloadingfiles = false;
+        let isloadingimages = false;
         function startLoading() {
             const overlay = document.getElementById('overlay');
             const progressBar = document.getElementById('progress-bar');
@@ -1524,30 +1585,137 @@
 
             updateStep();
         }
+        function startLoadingImages() {
+            const overlay = document.getElementById('overlay');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const checkmark = document.getElementById('checkmark');
+            const progressContainer = document.getElementById('progress-container');
+
+            // Reset to initial state
+            overlay.classList.add('active');
+            progressBar.style.width = '0%';
+            progressContainer.style.display = 'block';
+            checkmark.classList.remove('visible');
+            progressText.textContent = 'Reserving';
+
+            const steps = [
+              { percent: 0, text: 'Processing' },
+              { percent: 50, text: 'Adding' },
+              { percent: 100, text: 'Loading complete' },
+            ];
+
+            let stepIndex = 0;
+
+            function updateStep() {
+              if (stepIndex < steps.length) {
+                const step = steps[stepIndex];
+                progressBar.style.width = `${step.percent}%`;
+                progressText.textContent = step.text;
+
+                if (step.percent === 100) {
+                  progressContainer.style.display = 'none'; // Hide progress bar
+                  checkmark.classList.add('visible');      // Show checkmark
+                }
+
+                stepIndex++;
+                setTimeout(updateStep, 1000); // Update every 1 second
+              } else {
+                setTimeout(() => {
+                  overlay.classList.remove('active');
+                }, 500); // Hide overlay after completion
+              }
+            }
+
+            updateStep();
+        }
+        function startLoadingImagesAndFiles() {
+            const overlay = document.getElementById('overlay');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const checkmark = document.getElementById('checkmark');
+            const progressContainer = document.getElementById('progress-container');
+
+            // Reset to initial state
+            overlay.classList.add('active');
+            progressBar.style.width = '0%';
+            progressContainer.style.display = 'block';
+            checkmark.classList.remove('visible');
+            progressText.textContent = 'Analyzing files';
+
+            const steps = [
+              { percent: 0, text: 'Reserving' },
+              { percent: 25, text: 'Creating environment' },
+              { percent: 50, text: 'Linking' },
+              { percent: 75, text: 'Formatting' },
+              { percent: 100, text: 'Loading complete' },
+            ];
+
+            let stepIndex = 0;
+
+            function updateStep() {
+              if (stepIndex < steps.length) {
+                const step = steps[stepIndex];
+                progressBar.style.width = `${step.percent}%`;
+                progressText.textContent = step.text;
+
+                if (step.percent === 100) {
+                  progressContainer.style.display = 'none'; // Hide progress bar
+                  checkmark.classList.add('visible');      // Show checkmark
+                }
+
+                stepIndex++;
+                setTimeout(updateStep, 1000); // Update every 1 second
+              } else {
+                setTimeout(() => {
+                  overlay.classList.remove('active');
+                }, 500); // Hide overlay after completion
+              }
+            }
+
+            updateStep();
+        }
     /*document.querySelectorAll('.filedot').forEach(rect => {
       rect.querySelector('.filePathInput').addEventListener('input', () => {
         handleFileNameInputChange(rect);
       });
     });*/
     function hidecodesearchresults() {
-      const codesearchresults = document.querySelector('.codesearchresults');
-codesearchresults.style.display = "none";
+      setTimeout(() => {
+          const codesearchresults = document.querySelector('.codesearchresults');
+          codesearchresults.style.display = "none";
+      }, 500);
     }
     document.getElementById('fileInput').addEventListener('change', function(event) {
-const files = event.target.files;
+        const files = event.target.files;
 
-// Iteriere durch die ausgewählten Dateien
-for (let i = 0; i < files.length; i++) {
-const file = files[i];
-const filePath = file.name;
-// Prüfen, ob die Datei ein Bild ist
-if (file.type.startsWith('image/')) {
-addNewImage(filePath, URL.createObjectURL(file), file); // Bild hinzufügen
-} else if (file.type === 'text/plain' || file.type === 'text/css' || file.type === 'application/javascript' || file.type === 'text/html') {
-addNewFile(filePath, file); // Text oder Code-Datei hinzufügen
-}
-}
-});
+        // Iteriere durch die ausgewählten Dateien
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const filePath = file.name;
+            // Prüfen, ob die Datei ein Bild ist
+            if (file.type.startsWith('image/')) {
+                isloadingimages = true;
+                addNewImage(filePath, URL.createObjectURL(file), file); // Bild hinzufügen
+            } else if (file.type === 'text/plain' || file.type === 'text/css' || file.type === 'application/javascript' || file.type === 'text/html') {
+                isloadingfiles = true;
+                addNewFile(filePath, file); // Text oder Code-Datei hinzufügen
+            }
+        }
+        if (isloadingfiles == true && isloadingimages == false) {
+            isloadingfiles = false;
+            isloadingimages = false;
+            startLoading();
+        }else if (isloadingfiles == false && isloadingimages == true) {
+            isloadingfiles = false;
+            isloadingimages = false;
+            startLoadingImages();
+        }else if (isloadingfiles == true && isloadingimages == true) {
+            isloadingfiles = false;
+            isloadingimages = false;
+            startLoadingImagesAndFiles();
+        }
+    });
 
     function clickthiselement(elementidorclass){
       document.querySelector(elementidorclass).click();
@@ -1654,7 +1822,6 @@ reader.readAsDataURL(file);g
 
 
     async function addNewFile(filename, file) {
-        startLoading();
 const container = document.getElementById('container');
 const navBar = document.getElementById('nav-bar');
 
@@ -1666,7 +1833,7 @@ newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="es
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
-        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button>`;
+        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
 container.appendChild(newSection);
 
       lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
@@ -1975,6 +2142,49 @@ await updateDataIndex('nav-bar');
       let section = document.getElementById('section0');
       let sectionindex = 0;
       let inputDiv = section.querySelector('.code-editor-container');
+        function checkiflinenumberinputkeydownisenter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Verhindert, dass Enter normale Aktionen ausführt
+                let input = event.target;
+                let value = input.value.trim();
+
+                if (value !== '') {
+                    // Überprüfen, ob es eine gültige Zahl ist
+                    if (isNaN(value)) {
+                        return;
+                    }
+
+                    // Holen der Zeilen im Abschnitt
+                    let lines = section.querySelectorAll('.code-editor-line');
+                    let lineIndex = parseInt(value, 10) - 1;
+
+                    if (lineIndex >= 0 && lineIndex < lines.length) {
+                        let line = lines[lineIndex];
+
+                        // Zeile in den sichtbaren Bereich scrollen
+                        line.scrollIntoView({
+                            behavior: 'smooth', // Sanftes Scrollen
+                            block: 'center',    // Zeile in der Mitte des sichtbaren Bereichs anzeigen
+                        });
+                    }
+                }
+            }
+        }
+        function scrolltolinenumber(linenum){
+            let lines = section.querySelectorAll('.code-editor-line');
+            let lineIndex = parseInt(linenum);
+
+            if (lineIndex >= 0 && lineIndex < lines.length) {
+                let line = lines[lineIndex];
+
+                // Zeile in den sichtbaren Bereich scrollen
+                line.scrollIntoView({
+                    behavior: 'smooth', // Sanftes Scrollen
+                    block: 'center',    // Zeile in der Mitte des sichtbaren Bereichs anzeigen
+                });
+            }
+        }
+
         /*function deletethisfile(number) {
             // Delete rectangle
             let rectangleToDelete = document.getElementById('rectangle' + number);
@@ -2126,7 +2336,9 @@ await updateDataIndex('nav-bar');
         allsectionlines.forEach(line => {
             // Korrigiere den Aufruf von `trim()`
             if (line.innerText.trim() === "") {
-                line.remove();
+                if (section.querySelectorAll(".code-editor-line").length > 1){
+                    line.remove();
+                }
             }
         });
     }
@@ -2476,55 +2688,53 @@ function performLongPressAction(element) {
             if (section.classList.contains('viewcontainer')){
               return;
             }
-            closelineoptionscontainer(); // Schließt das Optionsmenü für Linien
-
+            closelineoptionscontainer(); 
+            
             const codesearchresults = document.querySelector('.codesearchresults');
-
-            // Positioniere Suchergebnisse
+            
             positionElementBelow(codesearchresults, thiselementhasthevalue);
-
-            // Sucheingabe
+            
             const inputvalue = thiselementhasthevalue.value.trim().toLowerCase();
-            codesearchresults.style.display = inputvalue ? "flex" : "none";  // Suchergebnisse nur anzeigen, wenn Eingabe vorhanden
-            codesearchresults.innerHTML = "";  // Vorherige Ergebnisse löschen
-
+            
+            codesearchresults.style.display = inputvalue ? "flex" : "none";  
+            
+            codesearchresults.innerHTML = "";  
+            
             if (inputvalue) {
                 const parentSection = thiselementhasthevalue.closest(".section");
                 const sectionlinecontainer = parentSection.querySelector('.code-editor-container');
-
-                sectionlinecontainer.querySelectorAll(".code-editor-line").forEach((lineelement) => {
+                
+                sectionlinecontainer.querySelectorAll(".code-editor-line").forEach(lineelement => {
                     if (lineelement.textContent.toLowerCase().includes(inputvalue)) {
+                        
                         const newspan = document.createElement('span');
-                        newspan.classList.add('result');  // Füge die Klasse 'result' für die Styling-Zwecke hinzu
+                        newspan.classList.add('result');  
                         newspan.innerText = lineelement.textContent;
+                        codesearchresults.appendChild(newspan);  
 
+                        /*lineelement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center',
+                        });*/
+                        function scrollthislineintoviewnow(){
+                            lineelement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                            });
+                            setTimeout(() => {
+                                performLongPressAction(lineelement);
+                            }, 500);
+                        }
+                        
                         newspan.addEventListener('click', () => {
-
-
-
-                            // Vergewissere dich, dass die Linie im DOM sichtbar ist
-                            if (lineelement) {
-                                document.querySelector('.lineoptions').disabled = true;
-                                // Verstecke die Suchergebnisse, wenn auf ein Ergebnis geklickt wird
-                                sectionlinecontainer.scrollTop = lineelement.offsetTop - sectionlinecontainer.offsetTop;
-                                codesearchresults.style.display = "none";
-                                // Scrolle zu der gefundenen Linie
-                                //lineelement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                                setTimeout(() => {
-
-                                    performLongPressAction(lineelement);
-                                }, 500);
-                                document.querySelector('.lineoptions').disabled = false;
-                            }
-
+                            scrollthislineintoviewnow();
                         });
-
-                        codesearchresults.appendChild(newspan);  // Füge das Suchergebnis in die Liste der Ergebnisse ein
                     }
                 });
             }
         }
+
+
 
 
 
@@ -2742,9 +2952,8 @@ codesearchresults.style.display = "none";
         section = document.getElementById(`section${index}`);
                 if (!section.classList.contains('viewcontainer')){
                     inputDiv = section.querySelector('.code-editor-container');
+                    checkboxupdatefunction();
                 }
-
-        checkboxupdatefunction();
                 scrollToSection(index);
                 highlightDot(index);
                 currentIndex = index;
@@ -2786,6 +2995,9 @@ codesearchresults.style.display = "none";
         }
         // Event listeners for navigation dots
         function dotonclick() {
+            if (!section){
+                return;
+            }
             const sectionWidth = window.innerWidth;
             const scrollPos = navBar.scrollLeft;
             const index = Math.round(scrollPos / sectionWidth);
