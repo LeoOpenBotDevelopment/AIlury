@@ -3782,9 +3782,6 @@ codesearchresults.style.display = "none";
                 }
             }
         
-            // Anzahl der führenden Leerzeichen in der ersten Zeile speichern
-            const firstLineLeadingSpacesCount = spaces.length;
-        
             // Kopierten Text aus der Zwischenablage holen
             let pasteText = (event.clipboardData || window.clipboardData).getData('text');
         
@@ -3804,7 +3801,20 @@ codesearchresults.style.display = "none";
         
             // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
             celine.textContent += convertToNonBreakingSpaces(lines[0]);
-        
+
+	    let firstreferencespacesforspacecoun = convertToNonBreakingSpaces(lines[0]);
+
+	    let space2 = "";
+            let continueSpace2 = true;
+            for (let i = 0; i < firstreferencespacesforspacecoun.length; i++) {
+                let character = firstreferencespacesforspacecoun[i];
+                if ((character === " " || character === "\u00A0") && continueSpace2) {
+                    space2 += "\u00A0"; // Unicode für nicht-trennbares Leerzeichen
+                } else {
+                    continueSpace2 = false;
+                }
+            }
+	    const firstLineLeadingSpacesCount = space2.length;
             // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
@@ -3832,7 +3842,7 @@ codesearchresults.style.display = "none";
                     adjustedLine = lines[i].slice(firstLineLeadingSpacesCount);
                 }
         
-                newline.textContent = convertToNonBreakingSpaces(adjustedLine);
+                newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
                 celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
             }
