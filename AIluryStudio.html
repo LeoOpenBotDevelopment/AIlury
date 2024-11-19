@@ -3693,7 +3693,7 @@ codesearchresults.style.display = "none";
         }
 
         // Paste Event-Listener
-       function handlePaste(event) {
+       /*function handlePaste(event) {
             event.preventDefault(); // Verhindert das Standardverhalten des Einfügens
 
             let celine = section.querySelector('.code-editor-line:focus');
@@ -3761,10 +3761,12 @@ codesearchresults.style.display = "none";
             newRange.collapse(true);
             selection.removeAllRanges();
             selection.addRange(newRange);
-        }
+        }*/
 
 
-              /*function handlePaste(event) {
+              
+
+	function handlePaste(event) {
             event.preventDefault(); // Verhindert das Standardverhalten des Einfügens
         
             let celine = section.querySelector('.code-editor-line:focus');
@@ -3826,7 +3828,7 @@ codesearchresults.style.display = "none";
                 }
         
                 // Entfernen der führenden Leerzeichen, falls sie gleich oder größer als die der ersten Zeile sind
-            let adjustedLin2 = lines[i];
+            let adjustedLin2 = lines[0];
             if (lineSpacesCoun2 >= firstLineLeadingSpacesCount) {
                adjustedLin2 = lines[0].slice(firstLineLeadingSpacesCount);
             }
@@ -3881,9 +3883,7 @@ codesearchresults.style.display = "none";
             newRange.collapse(true);
             selection.removeAllRanges();
             selection.addRange(newRange);
-        }*/
-        
-
+        }
 
 
       function analyzeAndHideElements(element) {
