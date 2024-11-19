@@ -3800,8 +3800,6 @@ codesearchresults.style.display = "none";
             celine.textContent = currentText.substring(0, cursorOffset);
         
             // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
-            celine.textContent += convertToNonBreakingSpaces(lines[0]);
-
 	    let firstreferencespacesforspacecoun = convertToNonBreakingSpaces(lines[0]);
 
 	    let space2 = "";
@@ -3815,6 +3813,24 @@ codesearchresults.style.display = "none";
                 }
             }
 	    const firstLineLeadingSpacesCount = space2.length;
+	    let lineSpacesCoun2 = 0;
+                let continueLineSpac2 = true;
+        
+                for (let j = 0; j < lines[0].length; j++) {
+                    let character = lines[0][j];
+                    if ((character === " " || character === "\u00A0") && continueLineSpac2) {
+                        lineSpacesCoun2++;
+                    } else {
+                        continueLineSpac2 = false;
+                    }
+                }
+        
+                // Entfernen der führenden Leerzeichen, falls sie gleich oder größer als die der ersten Zeile sind
+            let adjustedLin2 = lines[i];
+            if (lineSpacesCoun2 >= firstLineLeadingSpacesCount) {
+               adjustedLin2 = lines[0].slice(firstLineLeadingSpacesCount);
+            }
+            celine.textContent += convertToNonBreakingSpaces(adjustedLin2);
             // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
