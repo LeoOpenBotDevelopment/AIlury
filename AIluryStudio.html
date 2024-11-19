@@ -3693,7 +3693,7 @@ codesearchresults.style.display = "none";
         }
 
         // Paste Event-Listener
-        function handlePaste(event) {
+        /*function handlePaste(event) {
             event.preventDefault(); // Verhindert das Standardverhalten des Einfügens
 
             let celine = section.querySelector('.code-editor-line:focus');
@@ -3761,8 +3761,102 @@ codesearchresults.style.display = "none";
             newRange.collapse(true);
             selection.removeAllRanges();
             selection.addRange(newRange);
-        }
+        }*/
 
+
+              function handlePaste(event) {
+            event.preventDefault(); // Verhindert das Standardverhalten des Einfügens
+        
+            let celine = section.querySelector('.code-editor-line:focus');
+            if (!celine) return; // Sicherstellen, dass celine existiert
+        
+            // Ermitteln der führenden Leerzeichen in der aktuellen Linie
+            let spaces = "";
+            let continueSpaces = true;
+            for (let i = 0; i < celine.textContent.length; i++) {
+                let character = celine.textContent[i];
+                if ((character === " " || character === "\u00A0") && continueSpaces) {
+                    spaces += "\u00A0"; // Unicode für nicht-trennbares Leerzeichen
+                } else {
+                    continueSpaces = false;
+                }
+            }
+        
+            // Anzahl der führenden Leerzeichen in der ersten Zeile speichern
+            const firstLineLeadingSpacesCount = spaces.length;
+        
+            // Kopierten Text aus der Zwischenablage holen
+            let pasteText = (event.clipboardData || window.clipboardData).getData('text');
+        
+            // Aufteilen des eingefügten Textes bei Zeilenumbrüchen
+            let lines = pasteText.split(/\r\n|\n|\r/);
+        
+            let selection = window.getSelection();
+            if (selection.rangeCount === 0) return; // Überprüfen, ob ein Range existiert
+        
+            let range = selection.getRangeAt(0);
+            let cursorOffset = range.startOffset;
+        
+            // Text vor dem Cursor behalten und Text nach dem Cursor extrahieren
+            let currentText = celine.textContent;
+            let textAfterCursor = currentText.substring(cursorOffset);
+            celine.textContent = currentText.substring(0, cursorOffset);
+        
+            // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
+            celine.textContent += convertToNonBreakingSpaces(lines[0]);
+        
+            // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
+            for (let i = 1; i < lines.length; i++) {
+                correntids += 1;
+                const newline = document.createElement('div');
+                newline.setAttribute('contenteditable', 'true');
+                newline.id = correntids;
+                newline.classList.add('code-editor-line');
+        
+                // Zählen der führenden Leerzeichen in der aktuellen Linie
+                let lineSpacesCount = 0;
+                let continueLineSpaces = true;
+        
+                for (let j = 0; j < lines[i].length; j++) {
+                    let character = lines[i][j];
+                    if ((character === " " || character === "\u00A0") && continueLineSpaces) {
+                        lineSpacesCount++;
+                    } else {
+                        continueLineSpaces = false;
+                    }
+                }
+        
+                // Entfernen der führenden Leerzeichen, falls sie gleich oder größer als die der ersten Zeile sind
+                let adjustedLine = lines[i];
+                if (lineSpacesCount >= firstLineLeadingSpacesCount) {
+                    adjustedLine = lines[i].slice(firstLineLeadingSpacesCount);
+                }
+        
+                newline.textContent = convertToNonBreakingSpaces(adjustedLine);
+                celine.insertAdjacentElement('afterend', newline);
+                celine = newline;
+            }
+        
+            // Text nach dem Cursor in die letzte Linie einfügen
+            celine.textContent += convertToNonBreakingSpaces(textAfterCursor);
+        
+            // Setze den Cursor ans Ende der letzten Linie
+            const newRange = document.createRange();
+        
+            // Sicherstellen, dass der neue Range korrekt auf das letzte Kind des celine-Elements gesetzt wird
+            let lastChild = celine.lastChild;
+            if (lastChild) {
+                newRange.setStart(lastChild, lastChild.length); // Cursor ans Ende des letzten Kindes setzen
+            } else {
+                // Falls kein Textknoten vorhanden ist, einfach auf das Ende des Elements setzen
+                newRange.setStart(celine, celine.textContent.length);
+            }
+        
+            newRange.collapse(true);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
+        
 
 
 
