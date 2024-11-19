@@ -964,8 +964,9 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .overlay-back-btn, .upload-btn, .viewthisfile {
+        
+     
+        .overlay-close-btn, .overlay-back-btn, .upload-btn, .viewthisfile, .create-file-btn {
             background-color: var(--contentcontainer-color);/*--lightgrey-color*/
             border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
             color: var(--overlaycolor-color);
@@ -973,6 +974,21 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        .overlay-close-btn {
+          display: inline-block;
+        }
+        .overlay-back-btn {
+          display: none;
+        }
+        @media(max-width: 700px){
+          .overlay-close-btn {
+            display: none;
+          }
+          .overlay-back-btn {
+            display: inline-block;
+          }
+        }
+
 
         .rectangle {
             background-color: var(--contentcontainer-color); /* --lightgrey-color */
@@ -1018,7 +1034,7 @@
             gap: 10px;
         }
 
-        .download-btn, .delete-btn, .close, .edit-btn {
+        .download-btn, .delete-btn, .close, .edit-btn{
             background-color: var(--contentcontainer-color);/*--lightgrey-color*/
             border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
             color: var(--overlaycolor-color);
@@ -1280,6 +1296,115 @@
           display: block;
         }
 
+        #custom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparentes Schwarz */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1400;
+            animation: fadeInOverlay 0.3s ease-in-out; /* Overlay fade-in Animation */
+        }
+
+        /* Dialog - Zentrale Box */
+        #custom-dialog {
+            background: var(--seccontainerbackground-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px; /* Max-Breite der Box */
+            text-align: center;
+            position: relative;
+            animation: fadeInDialog 0.4s ease-in-out; /* Box fade-in Animation */
+        }
+
+        /* Schließen-Button */
+        #close-dialog {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--spencialbtnbackground-color);
+            transition: color 0.2s;
+        }
+
+        /* Nachricht */
+        #custom-message {
+            font-size: 18px;
+            color: var(--black-color);
+            margin-bottom: 20px;
+            padding: 10px;
+            text-align: left;
+            max-height: 200px;
+            overflow: scroll;
+        }
+
+        /* Prompt Eingabe-Container */
+        #prompt-input-container {
+            margin-top: 15px;
+        }
+
+        /* Eingabefeld für prompt */
+        #custom-input {
+            width: 95%;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            margin-bottom: 15px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: var(--black-color);
+            background: transparent;
+        }
+        #custom-input:focus{
+            outline: none;
+        }
+
+        /* Button für Submit und OK */
+        #close-alert, #submit-prompt {
+            margin-top: 10px;
+            padding: 12px;
+            width: 100%;
+            background-color: var(--spencialbtnbackground-color); /*#007BFF;*/
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        /*#close-alert:hover, #submit-prompt:hover {
+            background-color: var(--button-disabled-background-color);
+            color: var(--text-color);
+        }*/
+
+        /* Animationen */
+        @keyframes fadeInOverlay {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDialog {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
 
     </style>
@@ -1389,13 +1514,13 @@
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
         <div data-index="0" class="nav-dot filedot navdot0" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="index.html">
+            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="index.html">
         </div>
     <div data-index="1" class="nav-dot filedot navdot1" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="styles.css">
+            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="styles.css">
         </div>
     <div data-index="2" class="nav-dot filedot navdot2" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="script.js">
+            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="script.js">
       <!--oninput="handleFileNameInputChange(this)"-->
     </div>
     <div data-index="3" class="nav-dot navdot3" id="view-nav-dot" onclick="dotonclick()">
@@ -1456,7 +1581,7 @@
             <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="line-number-input" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
-                </label> go to line number 
+                </label> teleport
         </div>
     <div class="seccontainer-line">
         <label class="switch">
@@ -1480,11 +1605,12 @@
         <div class="content-container">
             <!-- Top Bar -->
             <div class="top-bar">
-                <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container', event)">close</button>
+                <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container', event)">×</button>
+                <button class="overlay-close-btn" onclick="hideelement('class', 'overlay-container', event)">close</button>
         <input type="file" id="fileInput" style="display: none;" accept=".txt, .css, .js, .html, image/*" multiple>
-                <button onclick="clickthiselement('#fileInput')" class="upload-btn">Upload</button>
-        <button class="viewthisfile" onclick="viewthisfile()">view this file</button>
-
+                <button onclick="clickthiselement('#fileInput')" class="upload-btn">upload</button>
+        <button class="viewthisfile" onclick="viewthisfile()">view</button>
+				<button class="create-file-btn" onclick="requestcreatenewfile()">+</button>
             </div>
 
             <!-- Rechtecke (Inhalt) -->
@@ -1527,6 +1653,17 @@
         </div>
     </div>
 
+    <div id="custom-overlay" style="display: none;">
+        <div id="custom-dialog">
+            <span id="close-dialog">&times;</span>
+            <p id="custom-message"></p>
+            <div id="prompt-input-container" style="display: none;">
+                <input type="text" id="custom-input" placeholder="Enter a value">
+                <button id="submit-prompt">Submit</button>
+            </div>
+            <button id="close-alert">OK</button>
+        </div>
+    </div>
     <div id="overlay">
       <div class="progress-bar-container" id="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -1537,6 +1674,55 @@
 
 
     <script>
+        const overlay = document.getElementById('custom-overlay');
+        const messageBox = document.getElementById('custom-message');
+        const closeAlertButton = document.getElementById('close-alert');
+        const promptInputContainer = document.getElementById('prompt-input-container');
+        const promptInput = document.getElementById('custom-input');
+        const submitPromptButton = document.getElementById('submit-prompt');
+        const closeDialog = document.getElementById('close-dialog');
+
+        // Function to show a custom alert
+
+        function showAlert(message) {
+            messageBox.textContent = message;
+            promptInputContainer.style.display = 'none'; // Hide the input for alerts
+            closeAlertButton.style.display = 'block'; // Show the OK button
+            overlay.style.display = 'flex'; // Show the overlay
+        }
+
+        // Function to show a custom prompt
+        function showPrompt(message, callback) {
+            messageBox.textContent = message;
+            promptInputContainer.style.display = 'block'; // Show the input for prompts
+            closeAlertButton.style.display = 'none'; // Hide the OK button for prompts
+            overlay.style.display = 'flex'; // Show the overlay
+
+            submitPromptButton.onclick = () => {
+                const inputValue = promptInput.value;
+                callback(inputValue); // Return the input value to the callback function
+                closeCustomDialog();
+            };
+        }
+
+        // Function to close the custom dialog
+        function closeCustomDialog() {
+            overlay.style.display = 'none'; // Hide the overlay
+            promptInput.value = ''; // Clear the input value
+        }
+
+        // Event listeners for closing the dialog
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) { // Close if the background (overlay) is clicked
+                closeCustomDialog();
+            }
+        });
+
+        closeAlertButton.addEventListener('click', closeCustomDialog);
+        closeDialog.addEventListener('click', closeCustomDialog);
+
+
+        
         let isloadingfiles = false;
         let isloadingimages = false;
         function startLoading() {
@@ -1698,8 +1884,11 @@
                 isloadingimages = true;
                 addNewImage(filePath, URL.createObjectURL(file), file); // Bild hinzufügen
             } else if (file.type === 'text/plain' || file.type === 'text/css' || file.type === 'application/javascript' || file.type === 'text/html') {
-                isloadingfiles = true;
-                addNewFile(filePath, file); // Text oder Code-Datei hinzufügen
+                let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
+                if (!allfilenames.includes(filePath)) {
+                  isloadingfiles = true;
+                  addNewFile(filePath, file); // Text oder Code-Datei hinzufügen
+                }
             }
         }
         if (isloadingfiles == true && isloadingimages == false) {
@@ -1802,26 +1991,35 @@ rectangle.remove();
 }
 
 // Hilfsfunktion zum Herunterladen eines Bildes
-function downloadImage(file) {
-/*const a = document.createElement('a');
-a.href = imagePath.split('/').pop();
-a.download = url; // Dateiname für den Download
-a.click();*/
-      const reader = new FileReader();
-reader.onload = (e) => {
-const fileUrl = e.target.result;
-const a = document.createElement('a');
-a.href = fileUrl; // Direkt den Base64-URL-String verwenden
-a.download = file.name;
-document.body.appendChild(a);
-a.click();
-document.body.removeChild(a);
-};
-reader.readAsDataURL(file);g
-}
+        function downloadImage(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const fileUrl = e.target.result;
+                const a = document.createElement('a');
+                a.href = fileUrl; // Direkt den Base64-URL-String verwenden
+                a.download = file.name; // Der Name der Datei wird verwendet
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+            reader.readAsDataURL(file); // Der FileReader liest die Datei korrekt
+        }
 
 
-    async function addNewFile(filename, file) {
+
+        function requestcreatenewfile() {
+            showPrompt('file path:', (filename) => {
+                let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
+                if (!allfilenames.includes(filename)){
+                    createNewFile(filename);
+				        }
+            });
+        }
+        async function addNewFile(filename, file) {
+            let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
+            if (allfilenames.includes(filename)){
+                return;
+            }
 const container = document.getElementById('container');
 const navBar = document.getElementById('nav-bar');
 
@@ -1860,7 +2058,7 @@ newNavDot.classList.add('nav-dot', 'filedot');
 
 newNavDot.setAttribute('data-index', container.children.length - 1);
 newNavDot.innerHTML = `
-      <input class="filePathInput" type="text" value="${filename}">
+      <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">
     `;
       newNavDot.setAttribute('onclick', 'dotonclick()');
 navBar.appendChild(newNavDot);
@@ -1963,18 +2161,123 @@ await updateDataIndex('nav-bar');
       newRectangle.id = "rectangle" + newNavDot.getAttribute('data-index');
       navBarremoveeventlistenerscrollandadditagain();
 }
+        async function createNewFile(filename) {
+            const container = document.getElementById('container');
+            const navBar = document.getElementById('nav-bar');
+
+            // Create a new section
+            const newSection = document.createElement('div');
+            newSection.classList.add('section');
+            newSection.id = `section${container.children.length}`;
+            newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div></div>
+        <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+            <div id="1" class="code-editor-line" contenteditable="true"></div>
+        </div>
+        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
+            container.appendChild(newSection);
+
+            lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
+
+            // Create and add new navigation dot
+            const newNavDot = document.createElement('div');
+            newNavDot.classList.add('nav-dot', 'filedot');
+            newNavDot.setAttribute('data-index', container.children.length - 1);
+            newNavDot.innerHTML = `<input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">`;
+            newNavDot.setAttribute('onclick', 'dotonclick()');
+            navBar.appendChild(newNavDot);
+
+            let filePathInputblablabla = newNavDot.querySelector('.filePathInput');
+            let timeout;
+
+            filePathInputblablabla.addEventListener('input', (event) => {
+                handleFileNameInputChange(event.target.parentElement);
+            });
+
+            filePathInputblablabla.addEventListener('mousedown', startOverlayEnlarge);
+            filePathInputblablabla.addEventListener('touchstart', startOverlayEnlarge);
+
+            filePathInputblablabla.addEventListener('mouseup', stopOverlayEnlarge);
+            filePathInputblablabla.addEventListener('mouseleave', stopOverlayEnlarge);
+            filePathInputblablabla.addEventListener('touchend', stopOverlayEnlarge);
+
+            function startOverlayEnlarge(event) {
+                timeout = setTimeout(() => {
+                    document.querySelector('.overlay-container').style.display = "flex";
+                    document.querySelector('.overlay-container').style.animation = "none";
+                    void document.querySelector('.overlay-container').offsetWidth; // Trigger reflow
+                    document.querySelector('.overlay-container').style.animation = "swipein 0.5s ease-out";
+                }, 700);
+            }
+
+            function stopOverlayEnlarge() {
+                clearTimeout(timeout); // Stop timer if interaction is too short
+            }
+
+            // Add file path to datalist
+            const dataList = document.getElementById('filenameoptions');
+            const option = document.createElement('option');
+            option.value = filename;
+            option.id = `option${newNavDot.getAttribute('data-index')}`;
+            dataList.appendChild(option);
+
+            // Add overlay rectangle with delete and download functionality
+            const overlayContainer = document.querySelector('.overlay-container .content-container');
+            const newRectangle = document.createElement('div');
+            newRectangle.classList.add('rectangle');
+            newRectangle.innerHTML = `<span>${filename}</span>
+<div class="rectangle-buttons">
+    <button class="download-btn" onclick="downloadFile('${filename}')">Download</button>
+    <button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
+    <button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
+</div>
+<button class="close">×</button>`;
+            overlayContainer.appendChild(newRectangle);
+
+            newRectangle.querySelector('.download-btn').onclick = () => {
+                downloadFile(filename);
+            };
+
+            newRectangle.querySelector('.close').addEventListener('click', () => {
+                newRectangle.classList.remove('enlarged');
+            });
+
+            // Touch and mouse handling for enlarging effect
+            let timer;
+            newRectangle.addEventListener('mousedown', startEnlarge);
+            newRectangle.addEventListener('touchstart', startEnlarge);
+            newRectangle.addEventListener('mouseup', stopEnlarge);
+            newRectangle.addEventListener('mouseleave', stopEnlarge);
+            newRectangle.addEventListener('touchend', stopEnlarge);
+
+            function startEnlarge() {
+                timer = setTimeout(() => {
+                    newRectangle.classList.add('enlarged');
+                }, 700);
+            }
+
+            function stopEnlarge() {
+                clearTimeout(timer);
+            }
+
+            // Update indices and numbering
+            await updateDataIndex('nav-bar');
+            newNavDot.classList.add('nav-dot', 'navdot' + newNavDot.getAttribute('data-index'));
+            newRectangle.id = "rectangle" + newNavDot.getAttribute('data-index');
+            navBarremoveeventlistenerscrollandadditagain();
+        }
 
 
-    /*function handleFileNameInputChange(navDot) {
+
+        /*function handleFileNameInputChange(navDot) {
         const option = document.getElementById("option" + navDot.getAttribute('data-index'));
-      const rectangle = document.getElementById("rectangle" + navDot.getAttribute('data-index'));
-      let rectanglespan = rectangle.querySelector('span');
+        const rectangle = document.getElementById("rectangle" + navDot.getAttribute('data-index'));
+        let rectanglespan = rectangle.querySelector('span');
         const newValue = navDot.querySelector('.filePathInput').value;
 
         option.value = newValue;
         option.textContent = newValue; // Update displayed text in dropdown
-      rectanglespan.innerText = newValue;
-    }*/
+        rectanglespan.innerText = newValue;
+        }*/
         function downloadFile(name) {
             // Extract type and filename
             let type = name.split('.').pop();
@@ -2016,6 +2319,32 @@ await updateDataIndex('nav-bar');
             document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
         }
+        function onfilepathinputblur(inputField) {
+    // Erstelle ein Array aller Dateinamen außer dem aktuellen Eingabefeld
+    const allFileNames = Array.from(document.querySelectorAll('.filedot .filePathInput'))
+        .filter(input => input !== inputField) // Ignoriere das aktuelle Eingabefeld
+        .map(input => input.value);
+
+    // Überprüfe, ob der eingegebene Wert bereits existiert
+    if (allFileNames.includes(inputField.value)) {
+        let baseName = inputField.value;
+        let counter = 1;
+
+        // Finde einen einzigartigen Namen, indem eine Zahl angehängt wird
+        while (allFileNames.includes(`${counter}_${baseName}`)) {
+            counter++;
+        }
+
+        // Setze den neuen Namen im Eingabefeld
+        inputField.value = `${counter}_${baseName}`;
+
+        // Aktualisiere die Änderungen für das übergeordnete Element
+        if (inputField.parentElement){
+          handleFileNameInputChange(inputField.parentElement);
+        }
+    }
+}
+
 
 
 
@@ -2326,6 +2655,7 @@ await updateDataIndex('nav-bar');
       }
         if (section.id == document.querySelector('.viewcontainer').id){
         document.querySelector('.viewthisfile').style.display = 'none';
+        
       }else {
         document.querySelector('.viewthisfile').style.display = 'inline-block';
       }
@@ -2689,24 +3019,24 @@ function performLongPressAction(element) {
               return;
             }
             closelineoptionscontainer(); 
-            
+
             const codesearchresults = document.querySelector('.codesearchresults');
-            
+
             positionElementBelow(codesearchresults, thiselementhasthevalue);
-            
+
             const inputvalue = thiselementhasthevalue.value.trim().toLowerCase();
-            
+
             codesearchresults.style.display = inputvalue ? "flex" : "none";  
-            
+
             codesearchresults.innerHTML = "";  
-            
+
             if (inputvalue) {
                 const parentSection = thiselementhasthevalue.closest(".section");
                 const sectionlinecontainer = parentSection.querySelector('.code-editor-container');
-                
+
                 sectionlinecontainer.querySelectorAll(".code-editor-line").forEach(lineelement => {
                     if (lineelement.textContent.toLowerCase().includes(inputvalue)) {
-                        
+
                         const newspan = document.createElement('span');
                         newspan.classList.add('result');  
                         newspan.innerText = lineelement.textContent;
@@ -2725,7 +3055,7 @@ function performLongPressAction(element) {
                                 performLongPressAction(lineelement);
                             }, 500);
                         }
-                        
+
                         newspan.addEventListener('click', () => {
                             scrollthislineintoviewnow();
                         });
