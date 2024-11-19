@@ -2666,7 +2666,7 @@ await updateDataIndex('nav-bar');
         allsectionlines.forEach(line => {
             // Korrigiere den Aufruf von `trim()`
             if (line.innerText.trim() === "") {
-                if (section.querySelectorAll(".code-editor-line").length > 1){
+                if (section.querySelectorAll(".code-editor-line").length > 1 && !line.classList.contains('hiddenlinesparent')){
                     line.remove();
                 }
             }
