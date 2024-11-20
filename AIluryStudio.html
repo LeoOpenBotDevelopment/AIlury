@@ -4082,100 +4082,122 @@ codesearchresults.style.display = "none";
             return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
-	function handleKeyUpEvent(event){
-	    let celine = section.querySelector('.code-editor-line:focus');
-            function replaceCommandsWithSymbols(text) {
-                // Liste der Kommandos und ihrer Symbole
-                const commandToSymbol = {
-                    "/alert": "⚠",
-                    "/arrowbottomleft": "↙",
-                    "/arrowbottomright": "↘",
-                    "/arrowdown": "↓",
-                    "/arrowgoleft": "↤",
-                    "/arrowgoright": "↦",
-                    "/arrowleft": "←",
-                    "/arrowright": "→",
-                    "/arrowtopleft": "↖",
-                    "/arrowtopright": "↗",
-                    "/arrowup": "↑",
-                    "/bigcross": "✖",
-                    "/bigspark": "✶",
-                    "/bottomleftedge": "◣",
-                    "/bottomrightedge": "◢",
-                    "/bigcheckmark": "✔",
-                    "/smallcheckmark": "✓",
-                    "/emptycircle": "◯",
-                    "/copyright": "©",
-                    "/crossincirkle": "⊗",
-                    "/crossinsquare": "⌧",
-                    "/crossnotinsquare": "×",
-                    "/cutoutcircle": "◌",
-                    "/diamond": "◆",
-                    "/emptyspark": "✧",
-                    "/emptysquare": "□",
-                    "/emptystar": "☆",
-                    "/emptytriangleleft": "◁",
-                    "/emptytriangledown": "▽",
-                    "/emptytriangleright": "▷",
-                    "/emptytriangletop": "△",
-                    "/expand": "↕",
-                    "/filledcircle": "●",
-                    "/heart": "♥",
-                    "/infinite": "∞",
-                    "/magnifyingglass": "⌕",
-                    "/minus": "−",
-                    "/moonleft": "☽",
-                    "/moonright": "☾",
-                    "/movable": "✣",
-                    "/nameofthisnote": "♪", // Beachte: Weitere Musiknoten wie ♫, ♬, ♩ können hinzugefügt werden.
-                    "/paperplane": "➤",
-                    "/pencil": "✎",
-                    "/plus": "+",
-                    "/refreshright": "↻",
-                    "/refreshleft": "↺",
-                    "/registered": "®",
-                    "/sidebar": "≡",
-                    "/smallcross": "×",
-                    "/filledspark": "✦",
-                    "/filledsquare": "■",
-                    "/filledstar": "★",
-                    "/sun": "☼",
-                    "/toprightedge": "◥",
-                    "/topleftedge": "◤"
-                };
-            
-                // Für jedes Kommando im Text nachschauen und ersetzen
-                let returned = false;
-                
-                // Durchlaufe alle Befehle
-                for (const command in commandToSymbol) {
-                    const symbol = commandToSymbol[command];
-                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
-                
-                    // Prüfe, ob der Text das Kommando enthält
-                    if (regex.test(text)) {
-                        returned = true;
-                    }
-                
-                    // Ersetze alle Vorkommen des Kommandos mit dem Symbol
-                    text = text.replace(regex, symbol);
-                }
-                
-                // Wenn Änderungen vorgenommen wurden, gib den neuen Text zurück, andernfalls null
-                if (returned) {
-                    return text;
-                } else {
-                    return null;
-                }
+	function handleKeyUpEvent(event) {
+    let celine = section.querySelector('.code-editor-line:focus');  // Selektiere das fokussierte `contenteditable` Element
 
-            }
-	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
-	      let newtext = replaceCommandsWithSymbols(celine.textContent);
-	      if (newtext != null){
-		celine.textContent = newtext;
-	      }
-	    }
-	}
+    // Funktion zum Ersetzen der Kommandos
+    function replaceCommandsWithSymbols(text) {
+        // Liste der Kommandos und ihrer Symbole
+        const commandToSymbol = {
+            "/alert": "⚠",
+            "/arrowbottomleft": "↙",
+            "/arrowbottomright": "↘",
+            "/arrowdown": "↓",
+            "/arrowgoleft": "↤",
+            "/arrowgoright": "↦",
+            "/arrowleft": "←",
+            "/arrowright": "→",
+            "/arrowtopleft": "↖",
+            "/arrowtopright": "↗",
+            "/arrowup": "↑",
+            "/bigcross": "✖",
+            "/bigspark": "✶",
+            "/bottomleftedge": "◣",
+            "/bottomrightedge": "◢",
+            "/bigcheckmark": "✔",
+            "/smallcheckmark": "✓",
+            "/emptycircle": "◯",
+            "/copyright": "©",
+            "/crossincirkle": "⊗",
+            "/crossinsquare": "⌧",
+            "/crossnotinsquare": "×",
+            "/cutoutcircle": "◌",
+            "/diamond": "◆",
+            "/emptyspark": "✧",
+            "/emptysquare": "□",
+            "/emptystar": "☆",
+            "/emptytriangleleft": "◁",
+            "/emptytriangledown": "▽",
+            "/emptytriangleright": "▷",
+            "/emptytriangletop": "△",
+            "/expand": "↕",
+            "/filledcircle": "●",
+            "/heart": "♥",
+            "/infinite": "∞",
+            "/magnifyingglass": "⌕",
+            "/minus": "−",
+            "/moonleft": "☽",
+            "/moonright": "☾",
+            "/movable": "✣",
+            "/nameofthisnote": "♪",  // Weitere Musiknoten wie ♫, ♬, ♩ können hinzugefügt werden.
+            "/paperplane": "➤",
+            "/pencil": "✎",
+            "/plus": "+",
+            "/refreshright": "↻",
+            "/refreshleft": "↺",
+            "/registered": "®",
+            "/sidebar": "≡",
+            "/smallcross": "×",
+            "/filledspark": "✦",
+            "/filledsquare": "■",
+            "/filledstar": "★",
+            "/sun": "☼",
+            "/toprightedge": "◥",
+            "/topleftedge": "◤"
+        };
+
+        // Ersetze jedes Kommando durch das entsprechende Symbol
+        let returned = false;
+        for (const command in commandToSymbol) {
+            const symbol = commandToSymbol[command];
+            const regex = new RegExp(command, 'g');  // Erstelle Regex für globales Ersetzen
+
+            if (regex.test(text)) {
+                returned = true;
+            }
+
+            // Ersetze alle Vorkommen des Kommandos mit dem Symbol
+            text = text.replace(regex, symbol);
+        }
+
+        // Gib den neuen Text zurück, wenn Änderungen vorgenommen wurden
+        return returned ? text : null;
+    }
+
+    // Wenn der Text ein Kommando enthält und die Checkbox aktiviert ist
+    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked) {
+        // Speichere die aktuelle Cursor-Position
+        let savedSelection = null;
+
+        function saveCursorPosition() {
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) {
+                savedSelection = selection.getRangeAt(0);
+            }
+        }
+
+        function restoreCursorPosition() {
+            if (savedSelection) {
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(savedSelection);
+            }
+        }
+
+        // Speichere die Cursor-Position vor dem Ersetzen
+        saveCursorPosition();
+
+        // Ersetze die Kommandos im Text
+        let newText = replaceCommandsWithSymbols(celine.textContent);
+
+        // Wenn Änderungen vorgenommen wurden, setze den Text und stelle den Cursor zurück
+        if (newText !== null) {
+            celine.textContent = newText;  // Text mit den ersetzten Symbolen
+            restoreCursorPosition();  // Setze den Cursor an die ursprüngliche Position zurück
+        }
+    }
+}
+
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
             let celine = section.querySelector('.code-editor-line:focus');
