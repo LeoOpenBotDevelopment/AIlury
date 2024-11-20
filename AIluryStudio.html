@@ -41,6 +41,8 @@
       --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
       --loadingbarloadedbackground-color: #007aff;
       --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
+      --commandlistbackground-color: #f9f9f9;
+      --commandlistcolor-color: #555;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -76,9 +78,11 @@
         --transparentshade-color: rgba(0, 0, 0, 0.2);
         --superselected-color: #28a745;
         --leftarrow-color: #28a745;
-          --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
-            --loadingbarloadedbackground-color: #0156CD;
-            --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
+        --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
+        --loadingbarloadedbackground-color: #0156CD;
+        --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
+	--commandlistbackground-color: #010101;
+	--commandlistcolor-color: #A5A5A5;
       }
     }
         * {
@@ -1458,7 +1462,7 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            color: #333;
+            color: var(--overlaycolor-color);
             margin-bottom: 20px;
         }
         
@@ -1468,8 +1472,8 @@
             padding: 0;
             margin: 0 auto;
             max-width: 600px; /* Zentriere die Liste mit einer maximalen Breite */
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+            background-color: var(--commandlistbackground-color);
+            border: 1px solid var(--browserheaderborderbottom-color);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden; /* Für abgerundete Ecken */
@@ -1481,10 +1485,10 @@
             justify-content: space-between; /* Abstand zwischen Text und Button */
             align-items: center;
             padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--browserheaderborderbottom-color);
             font-family: 'Courier New', monospace;
             font-size: 16px;
-            color: #555;
+            color: var(--commandlistcolor-color);
         }
         
         /* Entferne den unteren Rand beim letzten Element */
@@ -1495,14 +1499,14 @@
         /* Styling für die Kommando-Texte */
         .command {
             font-weight: bold;
-            color: #007BFF;
+            color: var(--switchcheckedbackground-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
         
         /* Styling für die Buttons */
         .Symbol-Span {
-            background-color: #007BFF;
+            background-color: var(--switchcheckedbackground-color);
             color: white;
             font-size: 18px;
             font-weight: bold;
