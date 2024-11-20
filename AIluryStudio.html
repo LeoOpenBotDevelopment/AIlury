@@ -4160,7 +4160,34 @@ codesearchresults.style.display = "none";
                 return text;
             }
 	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
-		celine.textContent = replaceCommandsWithSymbols(celine.textContent);
+	      function saveCursorPosition() {
+                  const selection = window.getSelection();
+                  if (!selection.rangeCount) return null; // Keine Auswahl vorhanden
+                  const range = selection.getRangeAt(0); // Hole den ersten Range (falls mehrere existieren)
+                  
+                  // Speichern des Bereichs
+                  return range;
+              }
+              
+              // Funktion zum Wiederherstellen der Cursor-Position
+              function restoreCursorPosition(savedRange) {
+                  if (!savedRange) return; // Falls keine gespeicherte Position existiert, mach nichts
+              
+                  const selection = window.getSelection();
+                  selection.removeAllRanges(); // Entfernt alle bestehenden Selektionen
+                  selection.addRange(savedRange); // Setzt die gespeicherte Auswahl (Range) zurück
+              }
+              
+              // Beispiel: Speicher den Cursor und setze ihn nach einer Operation zurück
+              let savedRange = null;
+
+	      savedRange = saveCursorPosition();
+
+	      celine.textContent = replaceCommandsWithSymbols(celine.textContent);
+
+	      if (savedRange){
+		restoreCursorPosition(savedRange);
+	      }
 	    }
 
 
