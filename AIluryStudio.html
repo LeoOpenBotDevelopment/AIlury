@@ -1438,6 +1438,93 @@
                 opacity: 1;
             }
         }
+	.closecommandoverlaybtn {
+	    background-color: var(--contentcontainer-color);/*--lightgrey-color*/
+            border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
+            color: var(--overlaycolor-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 14px;
+            animation: easeinanimationfrb 0.3s;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            display: none;
+	}
+	        /* Styling für die Überschrift */
+        h2 {
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        /* Styling für die Liste */
+        .command-list {
+            list-style: none; /* Entferne Standard-Bullets */
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px; /* Zentriere die Liste mit einer maximalen Breite */
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Für abgerundete Ecken */
+        }
+        
+        /* Styling für die Listenelemente */
+        .command-list li {
+            display: flex;
+            justify-content: space-between; /* Abstand zwischen Text und Button */
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* Entferne den unteren Rand beim letzten Element */
+        .command-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Styling für die Kommando-Texte */
+        .command {
+            font-weight: bold;
+            color: #007BFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Styling für die Buttons */
+        .Symbol-Span {
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        /* Hover- und Klick-Effekte für Buttons */
+        .Symbol-Span:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        
+        .Symbol-Span:active {
+            transform: scale(1);
+            background-color: #004494;
+        }
+        
+
     </style>
 
 </head>
@@ -1638,6 +1725,7 @@
   </div>
   <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
 	 <div class="commandsdisplay-container">
+		       <button class="closecommandoverlaybtn" onclick="hidecommandoverlay()">×</button>
 	               <h2>commands</h2>
                         <ul class="command-list">
                             <li><span class="command">/alert</span> = <button class="Symbol-Span">⚠</button></li>
@@ -1681,10 +1769,10 @@
                             <li><span class="command">/moonleft</span> = <button class="Symbol-Span">☽</button></li>
                             <li><span class="command">/moonright</span> = <button class="Symbol-Span">☾</button></li>
                             <li><span class="command">/movable</span> = <button class="Symbol-Span">✣</button></li>
-                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♪</button></li>
-                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♫</button></li>
-                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♬</button></li>
-                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♩</button></li>
+                            <li><span class="command">/eighthnote</span> = <button class="Symbol-Span">♪</button></li>
+                            <li><span class="command">/beamednote</span> = <button class="Symbol-Span">♫</button></li>
+                            <li><span class="command">/chordsymbol</span> = <button class="Symbol-Span">♬</button></li>
+                            <li><span class="command">/quarter note</span> = <button class="Symbol-Span">♩</button></li>
                             <li><span class="command">/paperplane</span> = <button class="Symbol-Span">➤</button></li>
                             <li><span class="command">/pencil</span> = <button class="Symbol-Span">✎</button></li>
                             <li><span class="command">/plus</span> = <button class="Symbol-Span">+</button></li>
@@ -4082,121 +4170,112 @@ codesearchresults.style.display = "none";
             return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
-	function handleKeyUpEvent(event) {
-    let celine = section.querySelector('.code-editor-line:focus');  // Selektiere das fokussierte `contenteditable` Element
+	function handleKeyUpEvent(event){
+	    let celine = section.querySelector('.code-editor-line:focus');
+            function replaceCommandsWithSymbols(text) {
+                // Liste der Kommandos und ihrer Symbole
+	        const commandToSymbol = {
+                    "/alert": "⚠",
+                    "/arrowbottomleft": "↙",
+                    "/arrowbottomright": "↘",
+                    "/arrowdown": "↓",
+                    "/arrowgoleft": "↤",
+                    "/arrowgoright": "↦",
+                    "/arrowleft": "←",
+                    "/arrowright": "→",
+                    "/arrowtopleft": "↖",
+                    "/arrowtopright": "↗",
+                    "/arrowup": "↑",
+                    "/bigcross": "✖",
+                    "/bigspark": "✶",
+                    "/bottomleftedge": "◣",
+                    "/bottomrightedge": "◢",
+                    "/bigcheckmark": "✔",
+                    "/smallcheckmark": "✓",
+                    "/emptycircle": "◯",
+                    "/copyright": "©",
+                    "/bigcross": "✘",
+                    "/crossincirkle": "⊗",
+                    "/crossinsquare": "⌧",
+                    "/crossnotinsquare": "×",
+                    "/cutoutcircle": "◌",
+                    "/diamond": "◆",
+                    "/emptyspark": "✧",
+                    "/emptysquare": "□",
+                    "/emptystar": "☆",
+                    "/emptytriangleleft": "◁",
+                    "/emptytriangledown": "▽",
+                    "/emptytriangleright": "▷",
+                    "/emptytriangletop": "△",
+                    "/expand": "↕",
+                    "/filledcircle": "●",
+                    "/heart": "♥",
+                    "/infinite": "∞",
+                    "/magnifyingglass": "⌕",
+                    "/minus": "−",
+                    "/moonleft": "☽",
+                    "/moonright": "☾",
+                    "/movable": "✣",
+                    "/eighthnote": "♪",
+                    "/beamednote": "♫",
+                    "/chordsymbol": "♬",
+                    "/quarternote": "♩",
+                    "/paperplane": "➤",
+                    "/pencil": "✎",
+                    "/plus": "+",
+                    "/refreshright": "↻",
+                    "/refreshleft": "↺",
+                    "/registered": "®",
+                    "/sidebar": "≡",
+                    "/smallcross": "×",
+                    "/filledspark": "✦",
+                    "/filledsquare": "■",
+                    "/filledstar": "★",
+                    "/sun": "☼",
+                    "/toprightedge": "◥",
+                    "/topleftedge": "◤",
+                    "/trademark": "™",
+                    "/triangleleft": "◀",
+                    "/triangleright": "▶",
+                    "/triangledown": "▼",
+                    "/triangletop": "▲",
+                    "/updownleftarrow": "↵"
+                };
+                
 
-    // Funktion zum Ersetzen der Kommandos
-    function replaceCommandsWithSymbols(text) {
-        // Liste der Kommandos und ihrer Symbole
-        const commandToSymbol = {
-            "/alert": "⚠",
-            "/arrowbottomleft": "↙",
-            "/arrowbottomright": "↘",
-            "/arrowdown": "↓",
-            "/arrowgoleft": "↤",
-            "/arrowgoright": "↦",
-            "/arrowleft": "←",
-            "/arrowright": "→",
-            "/arrowtopleft": "↖",
-            "/arrowtopright": "↗",
-            "/arrowup": "↑",
-            "/bigcross": "✖",
-            "/bigspark": "✶",
-            "/bottomleftedge": "◣",
-            "/bottomrightedge": "◢",
-            "/bigcheckmark": "✔",
-            "/smallcheckmark": "✓",
-            "/emptycircle": "◯",
-            "/copyright": "©",
-            "/crossincirkle": "⊗",
-            "/crossinsquare": "⌧",
-            "/crossnotinsquare": "×",
-            "/cutoutcircle": "◌",
-            "/diamond": "◆",
-            "/emptyspark": "✧",
-            "/emptysquare": "□",
-            "/emptystar": "☆",
-            "/emptytriangleleft": "◁",
-            "/emptytriangledown": "▽",
-            "/emptytriangleright": "▷",
-            "/emptytriangletop": "△",
-            "/expand": "↕",
-            "/filledcircle": "●",
-            "/heart": "♥",
-            "/infinite": "∞",
-            "/magnifyingglass": "⌕",
-            "/minus": "−",
-            "/moonleft": "☽",
-            "/moonright": "☾",
-            "/movable": "✣",
-            "/nameofthisnote": "♪",  // Weitere Musiknoten wie ♫, ♬, ♩ können hinzugefügt werden.
-            "/paperplane": "➤",
-            "/pencil": "✎",
-            "/plus": "+",
-            "/refreshright": "↻",
-            "/refreshleft": "↺",
-            "/registered": "®",
-            "/sidebar": "≡",
-            "/smallcross": "×",
-            "/filledspark": "✦",
-            "/filledsquare": "■",
-            "/filledstar": "★",
-            "/sun": "☼",
-            "/toprightedge": "◥",
-            "/topleftedge": "◤"
-        };
+            
+                // Für jedes Kommando im Text nachschauen und ersetzen
+                let returned = false;
+                
+                // Durchlaufe alle Befehle
+                for (const command in commandToSymbol) {
+                    const symbol = commandToSymbol[command];
+                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
+                
+                    // Prüfe, ob der Text das Kommando enthält
+                    if (regex.test(text)) {
+                        returned = true;
+                    }
+                
+                    // Ersetze alle Vorkommen des Kommandos mit dem Symbol
+                    text = text.replace(regex, symbol);
+                }
+                
+                // Wenn Änderungen vorgenommen wurden, gib den neuen Text zurück, andernfalls null
+                if (returned) {
+                    return text;
+                } else {
+                    return null;
+                }
 
-        // Ersetze jedes Kommando durch das entsprechende Symbol
-        let returned = false;
-        for (const command in commandToSymbol) {
-            const symbol = commandToSymbol[command];
-            const regex = new RegExp(command, 'g');  // Erstelle Regex für globales Ersetzen
-
-            if (regex.test(text)) {
-                returned = true;
-            }
-
-            // Ersetze alle Vorkommen des Kommandos mit dem Symbol
-            text = text.replace(regex, symbol);
-        }
-
-        // Gib den neuen Text zurück, wenn Änderungen vorgenommen wurden
-        return returned ? text : null;
-    }
-
-    // Wenn der Text ein Kommando enthält und die Checkbox aktiviert ist
-    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked) {
-        // Speichere die aktuelle Cursor-Position
-        let savedSelection = null;
-
-        function saveCursorPosition() {
-            const selection = window.getSelection();
-            if (selection.rangeCount > 0) {
-                savedSelection = selection.getRangeAt(0);
-            }
-        }
-
-        function restoreCursorPosition() {
-            if (savedSelection) {
-                const selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(savedSelection);
-            }
-        }
-
-        // Speichere die Cursor-Position vor dem Ersetzen
-        saveCursorPosition();
-
-        // Ersetze die Kommandos im Text
-        let newText = replaceCommandsWithSymbols(celine.textContent);
-
-        // Wenn Änderungen vorgenommen wurden, setze den Text und stelle den Cursor zurück
-        if (newText !== null) {
-            celine.textContent = newText;  // Text mit den ersetzten Symbolen
-            restoreCursorPosition();  // Setze den Cursor an die ursprüngliche Position zurück
-        }
-    }
-}
+            }
+	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
+	      let newtext = replaceCommandsWithSymbols(celine.textContent);
+	      if (newtext != null){
+		celine.textContent = newtext;
+	      }
+	    }
+	}
 
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
