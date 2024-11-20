@@ -4151,21 +4151,29 @@ codesearchresults.style.display = "none";
                 };
             
                 // Für jedes Kommando im Text nachschauen und ersetzen
-		let returned = false;
-                for (const command in commandToSymbol) {
-                    const symbol = commandToSymbol[command];
-                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
-		    if (text.includes(regex)){
-			returned = true;
-		    }
-		    text = text.replaceAll(regex, symbol);
-                }
+                let returned = false;
+                
+                // Durchlaufe alle Befehle
+                for (const command in commandToSymbol) {
+                    const symbol = commandToSymbol[command];
+                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
+                
+                    // Prüfe, ob der Text das Kommando enthält
+                    if (regex.test(text)) {
+                        returned = true;
+                    }
+                
+                    // Ersetze alle Vorkommen des Kommandos mit dem Symbol
+                    text = text.replace(regex, symbol);
+                }
+                
+                // Wenn Änderungen vorgenommen wurden, gib den neuen Text zurück, andernfalls null
+                if (returned) {
+                    return text;
+                } else {
+                    return null;
+                }
 
-		if (returned == true){
-		    return text;
-		}else {
-		    return null;
-		}
             }
 	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
 	      let newtext = replaceCommandsWithSymbols(celine.textContent);
