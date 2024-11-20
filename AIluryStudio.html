@@ -4151,38 +4151,27 @@ codesearchresults.style.display = "none";
                 };
             
                 // Für jedes Kommando im Text nachschauen und ersetzen
+		let returned = false;
                 for (const command in commandToSymbol) {
                     const symbol = commandToSymbol[command];
                     const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
-                    text = text.replaceAll(regex, symbol);
+		    if (text.includes(regex)){
+			returned = true;
+		    }
+		    text = text.replaceAll(regex, symbol);
                 }
-            
-                return text;
+
+		if (returned == true){
+		    return text;
+		}else {
+		    return null;
+		}
             }
 	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
-	      let savedSelection = null;
-
-	      // Funktion zum Speichern der Cursor-Position
-	      function saveCursorPosition() {
-    	          const selection = window.getSelection();
-    	          if (selection.rangeCount > 0) {
-        	      savedSelection = selection.getRangeAt(0);
-    	          }
+	      let newtext = replaceCommandsWithSymbols(celine.textContent);
+	      if (newtext != null){
+		celine.textContent = newtext;
 	      }
-
-	      // Funktion zum Wiederherstellen der Cursor-Position
-	      function restoreCursorPosition() {
-    	          if (savedSelection) {
-        	      const selection = window.getSelection();
-        	      selection.removeAllRanges();
-        	      selection.addRange(savedSelection);
-    	          }
-	      }
-
-	      saveCursorPosition();
-	      celine.textContent = replaceCommandsWithSymbols(celine.textContent);
-	      restoreCursorPosition();
-	      
 	    }
 
 
