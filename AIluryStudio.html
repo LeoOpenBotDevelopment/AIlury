@@ -1438,11 +1438,6 @@
                 opacity: 1;
             }
         }
-
-	#showcommandlist-btn-element{
-	    display: none;
-	}
-
     </style>
 
 </head>
@@ -1453,7 +1448,7 @@
         <div class="section" id="section0">
             <div class="editor-selected-line-btns">
                   <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
-            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
             <div class="code-editor-btns">
@@ -1463,7 +1458,7 @@
     <div class="section" id="section1">
         <div class="editor-selected-line-btns">
               <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
-            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
@@ -1473,7 +1468,7 @@
     <div class="section" id="section2">
         <div class="editor-selected-line-btns">
               <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
-            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+            <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
@@ -1621,7 +1616,7 @@
     </div>
     <div class="seccontainer-line" id="search-check">
             <label class="switch">
-                    <input type="checkbox" class="switchbox commandsswitch" data-checked="showcommandlist-btn-element" onchange="updatecheckboxed(this)">
+                    <input type="checkbox" class="switchbox commandsswitch" data-checked="showcommandlist-btn-element" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
             </label> commands
     </div>
@@ -2156,7 +2151,7 @@ const newSection = document.createElement('div');
 newSection.classList.add('section');
 newSection.id = `section${container.children.length}`;
 newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div></div>
-        <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+        <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
         <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
@@ -4087,9 +4082,8 @@ codesearchresults.style.display = "none";
             return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
-        // Enter- und Backspace-Event-Listener
-        function handleKeyDown(event) {
-            let celine = section.querySelector('.code-editor-line:focus');
+	function handleKeyUpEvent(event){
+	    let celine = section.querySelector('.code-editor-line:focus');
             function replaceCommandsWithSymbols(text) {
                 // Liste der Kommandos und ihrer Symbole
                 const commandToSymbol = {
@@ -4181,6 +4175,10 @@ codesearchresults.style.display = "none";
 		celine.textContent = newtext;
 	      }
 	    }
+	}
+        // Enter- und Backspace-Event-Listener
+        function handleKeyDown(event) {
+            let celine = section.querySelector('.code-editor-line:focus');
 
 
             if (event.key === 'Enter') {
