@@ -956,6 +956,32 @@
       max-height: 100vh;
       overflow-y: scroll;
         }
+	.commandsoverlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--overlaybackground-color); /* Transparente schwarze Wand */
+            display: none;/*flex*/
+            justify-content: center;
+            align-items: center;
+      z-index: 1000;
+      animation: swipein 0.5s;
+        }
+	.commandsoverlay-container .commandsdisplay-container {
+            border: 1px solid var(--rectangleborder);
+            background-color: var(--contentcontainer-color);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box Shadow */
+            border-radius: 10px;
+            width: 80vw;
+            max-width: 1200px;
+            margin-top: 20px;
+            position: relative;
+      max-height: 100vh;
+      overflow-y: scroll;
+        }
 
         .top-bar {
             grid-column: 1 / -1; /* Macht die Top-Bar über die gesamte Breite des Containers */
@@ -1127,6 +1153,10 @@
                 grid-template-columns: repeat(2, 1fr);
                 overflow-y: auto;
             }
+	    .commandsdisplay-container {
+		width: 100vw;
+                height: 100vh;
+	    }
       .rectangle{
         transition: 0.5s;
       }
@@ -1409,6 +1439,9 @@
             }
         }
 
+	#showcommandlist-btn-element{
+	    display: none;
+	}
 
     </style>
 
@@ -1419,32 +1452,32 @@
     <div class="container" id="container">
         <div class="section" id="section0">
             <div class="editor-selected-line-btns">
-                  <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
+                  <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
             <div class="code-editor-btns">
-                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section1">
         <div class="editor-selected-line-btns">
-              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
+              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section2">
         <div class="editor-selected-line-btns">
-              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div>
+              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section viewcontainer" id="section3">
@@ -1580,12 +1613,18 @@
                 <span class="slider"></span>
             </label> search
     </div>
-      <div class="seccontainer-line" id="search-check">
+    <div class="seccontainer-line" id="search-check">
             <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="line-number-input" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
                 </label> teleport
-        </div>
+    </div>
+    <div class="seccontainer-line" id="search-check">
+            <label class="switch">
+                    <input type="checkbox" class="switchbox commandsswitch" data-checked="showcommandlist-btn-element" onchange="updatecheckboxed(this)">
+                    <span class="slider"></span>
+            </label> commands
+    </div>
     <div class="seccontainer-line">
         <label class="switch">
                 <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
@@ -1601,6 +1640,78 @@
     <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
         delete comments
     </div>
+  </div>
+  <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
+	 <div class="commandsdisplay-container">
+	               <h2>commands</h2>
+                        <ul class="command-list">
+                            <li><span class="command">/alert</span> = <button class="Symbol-Span">⚠</button></li>
+                            <li><span class="command">/arrowbottomleft</span> = <button class="Symbol-Span">↙</button></li>
+                            <li><span class="command">/arrowbottomright</span> = <button class="Symbol-Span">↘</button></li>
+                            <li><span class="command">/arrowdown</span> = <button class="Symbol-Span">↓</button></li>
+                            <li><span class="command">/arrowgoleft</span> = <button class="Symbol-Span">↤</button></li>
+                            <li><span class="command">/arrowgoright</span> = <button class="Symbol-Span">↦</button></li>
+                            <li><span class="command">/arrowleft</span> = <button class="Symbol-Span">←</button></li>
+                            <li><span class="command">/arrowright</span> = <button class="Symbol-Span">→</button></li>
+                            <li><span class="command">/arrowtopleft</span> = <button class="Symbol-Span">↖</button></li>
+                            <li><span class="command">/arrowtopright</span> = <button class="Symbol-Span">↗</button></li>
+                            <li><span class="command">/arrowup</span> = <button class="Symbol-Span">↑</button></li>
+                            <li><span class="command">/bigcross</span> = <button class="Symbol-Span">✖</button></li>
+                            <li><span class="command">/bigspark</span> = <button class="Symbol-Span">✶</button></li>
+                            <li><span class="command">/bottomleftedge</span> = <button class="Symbol-Span">◣</button></li>
+                            <li><span class="command">/bottomrightedge</span> = <button class="Symbol-Span">◢</button></li>
+                            <li><span class="command">/bigcheckmark</span> = <button class="Symbol-Span">✔</button></li>
+                            <li><span class="command">/smallcheckmark</span> = <button class="Symbol-Span">✓</button></li>
+                            <li><span class="command">/emptycircle</span> = <button class="Symbol-Span">◯</button></li>
+                            <li><span class="command">/copyright</span> = <button class="Symbol-Span">©</button></li>
+                            <li><span class="command">/bigcross</span> = <button class="Symbol-Span">✘</button></li>
+                            <li><span class="command">/crossincirkle</span> = <button class="Symbol-Span">⊗</button></li>
+                            <li><span class="command">/crossinsquare</span> = <button class="Symbol-Span">⌧</button></li>
+                            <li><span class="command">/crossnotinsquare</span> = <button class="Symbol-Span">×</button></li>
+                            <li><span class="command">/cutoutcircle</span> = <button class="Symbol-Span">◌</button></li>
+                            <li><span class="command">/diamond</span> = <button class="Symbol-Span">◆</button></li>
+                            <li><span class="command">/emptyspark</span> = <button class="Symbol-Span">✧</button></li>
+                            <li><span class="command">/emptysquare</span> = <button class="Symbol-Span">□</button></li>
+                            <li><span class="command">/emptystar</span> = <button class="Symbol-Span">☆</button></li>
+                            <li><span class="command">/emptytriangleleft</span> = <button class="Symbol-Span">◁</button></li>
+                            <li><span class="command">/emptytriangledown</span> = <button class="Symbol-Span">▽</button></li>
+                            <li><span class="command">/emptytriangleright</span> = <button class="Symbol-Span">▷</button></li>
+                            <li><span class="command">/emptytriangletop</span> = <button class="Symbol-Span">△</button></li>
+                            <li><span class="command">/expand</span> = <button class="Symbol-Span">↕</button></li>
+                            <li><span class="command">/filledcircle</span> = <button class="Symbol-Span">●</button></li>
+                            <li><span class="command">/heart</span> = <button class="Symbol-Span">♥</button></li>
+                            <li><span class="command">/infinite</span> = <button class="Symbol-Span">∞</button></li>
+                            <li><span class="command">/magnifyingglass</span> = <button class="Symbol-Span">⌕</button></li>
+                            <li><span class="command">/minus</span> = <button class="Symbol-Span">-</button></li>
+                            <li><span class="command">/moonleft</span> = <button class="Symbol-Span">☽</button></li>
+                            <li><span class="command">/moonright</span> = <button class="Symbol-Span">☾</button></li>
+                            <li><span class="command">/movable</span> = <button class="Symbol-Span">✣</button></li>
+                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♪</button></li>
+                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♫</button></li>
+                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♬</button></li>
+                            <li><span class="command">/nameofthisnote</span> = <button class="Symbol-Span">♩</button></li>
+                            <li><span class="command">/paperplane</span> = <button class="Symbol-Span">➤</button></li>
+                            <li><span class="command">/pencil</span> = <button class="Symbol-Span">✎</button></li>
+                            <li><span class="command">/plus</span> = <button class="Symbol-Span">+</button></li>
+                            <li><span class="command">/refreshright</span> = <button class="Symbol-Span">↻</button></li>
+                            <li><span class="command">/refreshleft</span> = <button class="Symbol-Span">↺</button></li>
+                            <li><span class="command">/registered</span> = <button class="Symbol-Span">®</button></li>
+                            <li><span class="command">/sidebar</span> = <button class="Symbol-Span">≡</button></li>
+                            <li><span class="command">/smallcross</span> = <button class="Symbol-Span">×</button></li>
+                            <li><span class="command">/filledspark</span> = <button class="Symbol-Span">✦</button></li>
+                            <li><span class="command">/filledsquare</span> = <button class="Symbol-Span">■</button></li>
+                            <li><span class="command">/filledstar</span> = <button class="Symbol-Span">★</button></li>
+                            <li><span class="command">/sun</span> = <button class="Symbol-Span">☼</button></li>
+                            <li><span class="command">/toprightedge</span> = <button class="Symbol-Span">◥</button></li>
+                            <li><span class="command">/topleftedge</span> = <button class="Symbol-Span">◤</button></li>
+                            <li><span class="command">/trademark</span> = <button class="Symbol-Span">™</button></li>
+                            <li><span class="command">/triangleleft</span> = <button class="Symbol-Span">◀</button></li>
+                            <li><span class="command">/triangleright</span> = <button class="Symbol-Span">▶</button></li>
+                            <li><span class="command">/triangledown</span> = <button class="Symbol-Span">▼</button></li>
+                            <li><span class="command">/triangletop</span> = <button class="Symbol-Span">▲</button></li>
+                            <li><span class="command">/updownleftarrow</span> = <button class="Symbol-Span">↵</button></li>
+                        </ul>
+	  </div>
   </div>
   <div class="closeviewthisfilebtn" onclick="closeviewthisfile()">×</div>
   <div class="overlay-container" onclick="hideelement('class', 'overlay-container', event)">
@@ -1677,6 +1788,20 @@
 
 
     <script>
+	function showcommandoverlay() {
+	    document.querySelector('.commandsoverlay-container').style.display = "flex";
+            document.querySelector('.commandsoverlay-container').style.animation = "none";
+            void document.querySelector('.commandsoverlay-container').offsetWidth;
+            document.querySelector('.commandsoverlay-container').style.animation = "swipein 0.5s ease-out";
+	}
+	function hidecommandoverlay() {
+            document.querySelector('.commandsoverlay-container').style.animation = "none";
+            void document.querySelector('.commandsoverlay-container').offsetWidth;
+            document.querySelector('.commandsoverlay-container').style.animation = "swipeout 0.5s ease-out";
+	    setTimeout(() => {
+		document.querySelector('.commandsoverlay-container').style.display = "none";
+	    }, 500);
+	}
         const overlay = document.getElementById('custom-overlay');
         const messageBox = document.getElementById('custom-message');
         const closeAlertButton = document.getElementById('close-alert');
@@ -2030,11 +2155,11 @@ const navBar = document.getElementById('nav-bar');
 const newSection = document.createElement('div');
 newSection.classList.add('section');
 newSection.id = `section${container.children.length}`;
-newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div></div>
+newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines(); changedeletebtn(this);">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts();">□</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div></div>
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
-        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
+        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines(); changedeletebtn(this);">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts();">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
 container.appendChild(newSection);
 
       lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
@@ -3965,6 +4090,79 @@ codesearchresults.style.display = "none";
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
             let celine = section.querySelector('.code-editor-line:focus');
+            function replaceCommandsWithSymbols(text) {
+                // Liste der Kommandos und ihrer Symbole
+                const commandToSymbol = {
+                    "/alert": "⚠",
+                    "/arrowbottomleft": "↙",
+                    "/arrowbottomright": "↘",
+                    "/arrowdown": "↓",
+                    "/arrowgoleft": "↤",
+                    "/arrowgoright": "↦",
+                    "/arrowleft": "←",
+                    "/arrowright": "→",
+                    "/arrowtopleft": "↖",
+                    "/arrowtopright": "↗",
+                    "/arrowup": "↑",
+                    "/bigcross": "✖",
+                    "/bigspark": "✶",
+                    "/bottomleftedge": "◣",
+                    "/bottomrightedge": "◢",
+                    "/bigcheckmark": "✔",
+                    "/smallcheckmark": "✓",
+                    "/emptycircle": "◯",
+                    "/copyright": "©",
+                    "/crossincirkle": "⊗",
+                    "/crossinsquare": "⌧",
+                    "/crossnotinsquare": "×",
+                    "/cutoutcircle": "◌",
+                    "/diamond": "◆",
+                    "/emptyspark": "✧",
+                    "/emptysquare": "□",
+                    "/emptystar": "☆",
+                    "/emptytriangleleft": "◁",
+                    "/emptytriangledown": "▽",
+                    "/emptytriangleright": "▷",
+                    "/emptytriangletop": "△",
+                    "/expand": "↕",
+                    "/filledcircle": "●",
+                    "/heart": "♥",
+                    "/infinite": "∞",
+                    "/magnifyingglass": "⌕",
+                    "/minus": "−",
+                    "/moonleft": "☽",
+                    "/moonright": "☾",
+                    "/movable": "✣",
+                    "/nameofthisnote": "♪", // Beachte: Weitere Musiknoten wie ♫, ♬, ♩ können hinzugefügt werden.
+                    "/paperplane": "➤",
+                    "/pencil": "✎",
+                    "/plus": "+",
+                    "/refreshright": "↻",
+                    "/refreshleft": "↺",
+                    "/registered": "®",
+                    "/sidebar": "≡",
+                    "/smallcross": "×",
+                    "/filledspark": "✦",
+                    "/filledsquare": "■",
+                    "/filledstar": "★",
+                    "/sun": "☼",
+                    "/toprightedge": "◥",
+                    "/topleftedge": "◤"
+                };
+            
+                // Für jedes Kommando im Text nachschauen und ersetzen
+                for (const command in commandToSymbol) {
+                    const symbol = commandToSymbol[command];
+                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
+                    text = text.replaceAll(regex, symbol);
+                }
+            
+                return text;
+            }
+	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
+		celine.textContent = replaceCommandsWithSymbols(celine.textContent);
+	    }
+
 
             if (event.key === 'Enter') {
                 event.preventDefault(); // Verhindert das Standardverhalten der Enter-Taste
@@ -4158,7 +4356,18 @@ codesearchresults.style.display = "none";
                 insertClosingCharacter('\'', '\'');
             }
 
-          if (event.key === '"') {
+	  if (event.key === '“') {
+                event.preventDefault();
+                insertClosingCharacter('"', '"');
+            }
+
+            // Automatisches Schließen von '‚'
+            if (event.key === "‘") {
+                event.preventDefault();
+                insertClosingCharacter('\'', '\'');
+            }
+
+            if (event.key === '"') {
                 event.preventDefault();
                 insertClosingCharacter('"', '"');
             }
@@ -4198,6 +4407,18 @@ codesearchresults.style.display = "none";
           }
           if (event.key === ';') {
             checkAndSkipClosingCharacter(';');
+          }
+	  if (event.key === '„') {
+            checkAndSkipClosingCharacter('"');
+          }
+	  if (event.key === '“') {
+            checkAndSkipClosingCharacter('"');
+          }
+	  if (event.key === "‘") {
+            checkAndSkipClosingCharacter('\'');
+          }
+	  if (event.key === "‚") {
+            checkAndSkipClosingCharacter('\'');
           }
       }
         function updateSelectedClasses() {
