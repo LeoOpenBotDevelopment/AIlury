@@ -989,7 +989,34 @@
       max-height: 100vh;
       overflow-y: scroll;
         }
+	 
 
+	.singsoverlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--overlaybackground-color); /* Transparente schwarze Wand */
+            display: none;/*flex*/
+            justify-content: center;
+            align-items: center;
+      z-index: 1000;
+      animation: swipein 0.5s;
+        }
+	.singsoverlay-container .topandbottomsignsdisplay-container {
+            border: 1px solid var(--rectangleborder);
+            background-color: var(--contentcontainer-color);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box Shadow */
+            border-radius: 5px;
+            width: 80vw;
+            max-width: 1200px;
+            margin-top: 20px;
+            position: relative;
+      max-height: 100vh;
+      overflow-y: scroll;
+        }
         .top-bar {
             grid-column: 1 / -1; /* Macht die Top-Bar über die gesamte Breite des Containers */
             width: 100%;
@@ -1162,6 +1189,10 @@
             }
 	    .commandsdisplay-container {
 		width: 100vw;
+                height: 100vh;
+	    }
+	    .topandbottomsignsdisplay-container {
+	        width: 100vw;
                 height: 100vh;
 	    }
       .rectangle{
@@ -1504,6 +1535,13 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
+.symbolsignspan{
+    font-weight: bold;
+    color: var(--switchcheckedbackground-color);
+    /*text-transform: uppercase;*/
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+}
 
 .Symbol-Span {
     background-color: var(--switchcheckedbackground-color);
@@ -1740,6 +1778,9 @@ h2 {
     <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
         delete comments
     </div>
+    <div class="seccontainer-line" id="specialbtn" onclick="showsignexplenationoverlay()">
+        ?
+    </div>
   </div>
   <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
       <div class="commandsdisplay-container">
@@ -1808,6 +1849,33 @@ h2 {
 <li><span class="command">/triangledown</span>  <button class="Symbol-Span">▼</button></li>
 <li><span class="command">/triangletop</span>  <button class="Symbol-Span">▲</button></li>
 <li><span class="command">/updownleftarrow</span>  <button class="Symbol-Span">↵</button></li>
+          </ul>
+      </div>
+  </div>
+<div class="singsoverlay-container"onclick="hideelement('class', 'singsoverlay-container', event)">
+      <div class="topandbottomsignsdisplay-container">
+          <button class="closecommandoverlaybtn" onclick="hidesignexplenationoverlay()">×</button>
+	   <h2>top - (selected)</h2>
+           <ul class="command-list">
+<li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
+<li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Pin</span></li>
+<li><button class="Symbol-Span">↑</button><span class="symbolsignspan">Move up</span></li>
+<li><button class="Symbol-Span">↓</button><span class="symbolsignspan">Move down</span></li>
+<li><button class="Symbol-Span">☾</button><span class="symbolsignspan">Disable</span></li>
+<li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
+<li><button class="Symbol-Span">●</button><span class="symbolsignspan">trim</span></li>
+<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Code Search</span></li>
+          </ul>
+	  <h2>bottom - (all)</h2>
+	  <ul class="command-list">
+<li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
+<li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Unpin</span></li>
+<li><button class="Symbol-Span">←</button><span class="symbolsignspan">Unselect</span></li>
+<li><button class="Symbol-Span">→</button><span class="symbolsignspan">Unfold</span></li>
+<li><button class="Symbol-Span">○</button><span class="symbolsignspan">Enable</span></li>
+<li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
+<li><button class="Symbol-Span">⌘</button><span class="symbolsignspan">Commands</span></li>
+<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Teleport</span></li>
           </ul>
       </div>
   </div>
@@ -1896,6 +1964,20 @@ h2 {
             document.querySelector('.commandsoverlay-container').style.animation = "none";
             void document.querySelector('.commandsoverlay-container').offsetWidth;
             document.querySelector('.commandsoverlay-container').style.animation = "swipeout 0.5s ease-out";
+	    setTimeout(() => {
+		document.querySelector('.commandsoverlay-container').style.display = "none";
+	    }, 500);
+	}
+	function showsignexplenationoverlay() {
+	    document.querySelector('.singsoverlay-container').style.display = "flex";
+            document.querySelector('.singsoverlay-container').style.animation = "none";
+            void document.querySelector('.singsoverlay-container').offsetWidth;
+            document.querySelector('.singsoverlay-container').style.animation = "swipein 0.5s ease-out";
+	}
+	function hidesignexplenationoverlay() {
+            document.querySelector('.singsoverlay-container').style.animation = "none";
+            void document.querySelector('.singsoverlay-container').offsetWidth;
+            document.querySelector('.singsoverlay-container').style.animation = "swipeout 0.5s ease-out";
 	    setTimeout(() => {
 		document.querySelector('.commandsoverlay-container').style.display = "none";
 	    }, 500);
