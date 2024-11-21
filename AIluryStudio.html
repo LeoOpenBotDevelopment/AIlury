@@ -4241,7 +4241,7 @@ codesearchresults.style.display = "none";
                 // Durchlaufe alle Befehle
                 for (const command in commandToSymbol) {
                     const symbol = commandToSymbol[command];
-                    const regex = new RegExp(command, 'g'); // Erstelle Regex für globales Ersetzen
+                    const regex = new RegExp(command.toUpperCase(), 'g'); // Erstelle Regex für globales Ersetzen
                 
                     // Prüfe, ob der Text das Kommando enthält
                     if (regex.test(text)) {
