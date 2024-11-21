@@ -1585,7 +1585,7 @@ h2 {
     animation: easeinanimationfrb 0.3s;
     position: absolute;
     bottom: 5px;
-    left: 5px;
+    right: 5px;
 }
 
     </style>
@@ -1710,8 +1710,6 @@ h2 {
     </div>
   <!--<span id="addFile" onclick="createCodeEditorSection()">+</span>-->
   <div class="seccontainer">
-    <button id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
-    <br><br>
     <div class="seccontainer-line">
       <label class="switch">
                 <input type="checkbox" class="switchbox" data-checked="copybtn" onchange="updatecheckboxed(this)" checked>
@@ -1793,6 +1791,7 @@ h2 {
     <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
         delete comments
     </div>
+    <button id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
   </div>
   <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
       <div class="commandsdisplay-container">
