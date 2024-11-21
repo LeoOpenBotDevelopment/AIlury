@@ -1442,80 +1442,85 @@
                 opacity: 1;
             }
         }
-	.closecommandoverlaybtn {
-	    background-color: var(--contentcontainer-color);/*--lightgrey-color*/
-            border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
-            color: var(--overlaycolor-color);
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 3px;
-            font-size: 14px;
-            animation: easeinanimationfrb 0.3s;
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            display: none;
-	}
-        h2 {
-            font-family: Arial, sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: var(--overlaycolor-color);
-            margin-bottom: 20px;
-        }
-        .command-list {
-            list-style: none; /* Entferne Standard-Bullets */
-            padding: 0;
-            margin: 0 auto;
-            max-width: 600px; /* Zentriere die Liste mit einer maximalen Breite */
-            background-color: var(--commandlistbackground-color);
-            border: 1px solid var(--browserheaderborderbottom-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Für abgerundete Ecken */
-        }
-        .command-list li {
-            display: flex;
-            justify-content: space-between; /* Abstand zwischen Text und Button */
-            align-items: center;
-            padding: 10px 15px;
-            border-bottom: 1px solid var(--browserheaderborderbottom-color);
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            color: var(--commandlistcolor-color);
-        }
-        .command-list li:last-child {
-            border-bottom: none;
-        }
-        .command {
-            font-weight: bold;
-            color: var(--switchcheckedbackground-color);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .Symbol-Span {
-            background-color: var(--switchcheckedbackground-color);
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .Symbol-Span:hover {
-            background-color: #0056b3;
-            transform: scale(1.1);
-        }
-        
-        .Symbol-Span:active {
-            transform: scale(1);
-            background-color: #004494;
-        }
-        
+        .closecommandoverlaybtn {
+    background-color: var(--contentcontainer-color); /* --lightgrey-color */
+    border: 1px solid var(--rectangleborder); /* --overlayborder-color */
+    color: var(--overlaycolor-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    animation: easeinanimationfrb 0.3s;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+h2 {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--overlaycolor-color);
+    margin-bottom: 20px;
+}
+
+.command-list {
+    list-style: none; /* Entferne Standard-Bullets */
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px; /* Zentriere die Liste mit einer maximalen Breite */
+    background-color: var(--commandlistbackground-color);
+    border: 1px solid var(--browserheaderborderbottom-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Für abgerundete Ecken */
+}
+
+.command-list li {
+    display: flex;
+    justify-content: space-between; /* Abstand zwischen Text und Button */
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--browserheaderborderbottom-color);
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    color: var(--commandlistcolor-color);
+}
+
+.command-list li:last-child {
+    border-bottom: none;
+}
+
+.command {
+    font-weight: bold;
+    color: var(--switchcheckedbackground-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.Symbol-Span {
+    background-color: var(--switchcheckedbackground-color);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.Symbol-Span:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.Symbol-Span:active {
+    transform: scale(1);
+    background-color: #004494;
+}
+
     </style>
 
 </head>
@@ -1719,71 +1724,68 @@
 		       <button class="closecommandoverlaybtn" onclick="hidecommandoverlay()">×</button>
 	               <h2>commands</h2>
                         <ul class="command-list">
-                            <li><span class="command">/alert</span> = <button class="Symbol-Span">⚠</button></li>
-                            <li><span class="command">/arrowbottomleft</span> = <button class="Symbol-Span">↙</button></li>
-                            <li><span class="command">/arrowbottomright</span> = <button class="Symbol-Span">↘</button></li>
-                            <li><span class="command">/arrowdown</span> = <button class="Symbol-Span">↓</button></li>
-                            <li><span class="command">/arrowgoleft</span> = <button class="Symbol-Span">↤</button></li>
-                            <li><span class="command">/arrowgoright</span> = <button class="Symbol-Span">↦</button></li>
-                            <li><span class="command">/arrowleft</span> = <button class="Symbol-Span">←</button></li>
-                            <li><span class="command">/arrowright</span> = <button class="Symbol-Span">→</button></li>
-                            <li><span class="command">/arrowtopleft</span> = <button class="Symbol-Span">↖</button></li>
-                            <li><span class="command">/arrowtopright</span> = <button class="Symbol-Span">↗</button></li>
-                            <li><span class="command">/arrowup</span> = <button class="Symbol-Span">↑</button></li>
-                            <li><span class="command">/bigcross</span> = <button class="Symbol-Span">✖</button></li>
-                            <li><span class="command">/bigspark</span> = <button class="Symbol-Span">✶</button></li>
-                            <li><span class="command">/bottomleftedge</span> = <button class="Symbol-Span">◣</button></li>
-                            <li><span class="command">/bottomrightedge</span> = <button class="Symbol-Span">◢</button></li>
-                            <li><span class="command">/bigcheckmark</span> = <button class="Symbol-Span">✔</button></li>
-                            <li><span class="command">/smallcheckmark</span> = <button class="Symbol-Span">✓</button></li>
-                            <li><span class="command">/emptycircle</span> = <button class="Symbol-Span">◯</button></li>
-                            <li><span class="command">/copyright</span> = <button class="Symbol-Span">©</button></li>
-                            <li><span class="command">/bigcross</span> = <button class="Symbol-Span">✘</button></li>
-                            <li><span class="command">/crossincirkle</span> = <button class="Symbol-Span">⊗</button></li>
-                            <li><span class="command">/crossinsquare</span> = <button class="Symbol-Span">⌧</button></li>
+                            <li><span class="command">/alert</span>  <button class="Symbol-Span">⚠</button></li>
+                            <li><span class="command">/arrowbottomleft</span>  <button class="Symbol-Span">↙</button></li>
+                            <li><span class="command">/arrowbottomright</span>  <button class="Symbol-Span">↘</button></li>
+                            <li><span class="command">/arrowdown</span>  <button class="Symbol-Span">↓</button></li>
+                            <li><span class="command">/arrowgoleft</span>  <button class="Symbol-Span">↤</button></li>
+                            <li><span class="command">/arrowgoright</span>  <button class="Symbol-Span">↦</button></li>
+                            <li><span class="command">/arrowleft</span>  <button class="Symbol-Span">←</button></li>
+                            <li><span class="command">/arrowright</span>  <button class="Symbol-Span">→</button></li>
+                            <li><span class="command">/arrowtopleft</span>  <button class="Symbol-Span">↖</button></li>
+                            <li><span class="command">/arrowtopright</span>  <button class="Symbol-Span">↗</button></li>
+                            <li><span class="command">/arrowup</span>  <button class="Symbol-Span">↑</button></li>
+                            <li><span class="command">/bigspark</span>  <button class="Symbol-Span">✶</button></li>
+                            <li><span class="command">/bottomleftedge</span>  <button class="Symbol-Span">◣</button></li>
+                            <li><span class="command">/bottomrightedge</span>  <button class="Symbol-Span">◢</button></li>
+                            <li><span class="command">/smallcheckmark</span>  <button class="Symbol-Span">✓</button></li>
+                            <li><span class="command">/emptycircle</span>  <button class="Symbol-Span">◯</button></li>
+                            <li><span class="command">/copyright</span>  <button class="Symbol-Span">©</button></li>
+                            <li><span class="command">/bigcross</span>  <button class="Symbol-Span">✘</button></li>
+                            <li><span class="command">/crossincirkle</span>  <button class="Symbol-Span">⊗</button></li>
+                            <li><span class="command">/crossinsquare</span>  <button class="Symbol-Span">⌧</button></li>
                             <li><span class="command">/crossnotinsquare</span> = <button class="Symbol-Span">×</button></li>
-                            <li><span class="command">/cutoutcircle</span> = <button class="Symbol-Span">◌</button></li>
-                            <li><span class="command">/diamond</span> = <button class="Symbol-Span">◆</button></li>
-                            <li><span class="command">/emptyspark</span> = <button class="Symbol-Span">✧</button></li>
-                            <li><span class="command">/emptysquare</span> = <button class="Symbol-Span">□</button></li>
-                            <li><span class="command">/emptystar</span> = <button class="Symbol-Span">☆</button></li>
-                            <li><span class="command">/emptytriangleleft</span> = <button class="Symbol-Span">◁</button></li>
-                            <li><span class="command">/emptytriangledown</span> = <button class="Symbol-Span">▽</button></li>
-                            <li><span class="command">/emptytriangleright</span> = <button class="Symbol-Span">▷</button></li>
-                            <li><span class="command">/emptytriangletop</span> = <button class="Symbol-Span">△</button></li>
-                            <li><span class="command">/expand</span> = <button class="Symbol-Span">↕</button></li>
-                            <li><span class="command">/filledcircle</span> = <button class="Symbol-Span">●</button></li>
-                            <li><span class="command">/heart</span> = <button class="Symbol-Span">♥</button></li>
-                            <li><span class="command">/infinite</span> = <button class="Symbol-Span">∞</button></li>
-                            <li><span class="command">/magnifyingglass</span> = <button class="Symbol-Span">⌕</button></li>
-                            <li><span class="command">/minus</span> = <button class="Symbol-Span">-</button></li>
-                            <li><span class="command">/moonleft</span> = <button class="Symbol-Span">☽</button></li>
-                            <li><span class="command">/moonright</span> = <button class="Symbol-Span">☾</button></li>
-                            <li><span class="command">/movable</span> = <button class="Symbol-Span">✣</button></li>
-                            <li><span class="command">/eighthnote</span> = <button class="Symbol-Span">♪</button></li>
-                            <li><span class="command">/beamednote</span> = <button class="Symbol-Span">♫</button></li>
-                            <li><span class="command">/chordsymbol</span> = <button class="Symbol-Span">♬</button></li>
-                            <li><span class="command">/quarter note</span> = <button class="Symbol-Span">♩</button></li>
-                            <li><span class="command">/paperplane</span> = <button class="Symbol-Span">➤</button></li>
-                            <li><span class="command">/pencil</span> = <button class="Symbol-Span">✎</button></li>
-                            <li><span class="command">/plus</span> = <button class="Symbol-Span">+</button></li>
-                            <li><span class="command">/refreshright</span> = <button class="Symbol-Span">↻</button></li>
-                            <li><span class="command">/refreshleft</span> = <button class="Symbol-Span">↺</button></li>
-                            <li><span class="command">/registered</span> = <button class="Symbol-Span">®</button></li>
-                            <li><span class="command">/sidebar</span> = <button class="Symbol-Span">≡</button></li>
-                            <li><span class="command">/smallcross</span> = <button class="Symbol-Span">×</button></li>
-                            <li><span class="command">/filledspark</span> = <button class="Symbol-Span">✦</button></li>
-                            <li><span class="command">/filledsquare</span> = <button class="Symbol-Span">■</button></li>
-                            <li><span class="command">/filledstar</span> = <button class="Symbol-Span">★</button></li>
-                            <li><span class="command">/sun</span> = <button class="Symbol-Span">☼</button></li>
-                            <li><span class="command">/toprightedge</span> = <button class="Symbol-Span">◥</button></li>
-                            <li><span class="command">/topleftedge</span> = <button class="Symbol-Span">◤</button></li>
-                            <li><span class="command">/trademark</span> = <button class="Symbol-Span">™</button></li>
-                            <li><span class="command">/triangleleft</span> = <button class="Symbol-Span">◀</button></li>
-                            <li><span class="command">/triangleright</span> = <button class="Symbol-Span">▶</button></li>
-                            <li><span class="command">/triangledown</span> = <button class="Symbol-Span">▼</button></li>
-                            <li><span class="command">/triangletop</span> = <button class="Symbol-Span">▲</button></li>
-                            <li><span class="command">/updownleftarrow</span> = <button class="Symbol-Span">↵</button></li>
+                            <li><span class="command">/cutoutcircle</span>  <button class="Symbol-Span">◌</button></li>
+                            <li><span class="command">/diamond</span>  <button class="Symbol-Span">◆</button></li>
+                            <li><span class="command">/emptyspark</span>  <button class="Symbol-Span">✧</button></li>
+                            <li><span class="command">/emptysquare</span>  <button class="Symbol-Span">□</button></li>
+                            <li><span class="command">/emptystar</span>  <button class="Symbol-Span">☆</button></li>
+                            <li><span class="command">/emptytriangleleft</span>  <button class="Symbol-Span">◁</button></li>
+                            <li><span class="command">/emptytriangledown</span>  <button class="Symbol-Span">▽</button></li>
+                            <li><span class="command">/emptytriangleright</span>  <button class="Symbol-Span">▷</button></li>
+                            <li><span class="command">/emptytriangletop</span>  <button class="Symbol-Span">△</button></li>
+                            <li><span class="command">/filledcircle</span>  <button class="Symbol-Span">●</button></li>
+                            <li><span class="command">/heart</span>  <button class="Symbol-Span">♥</button></li>
+                            <li><span class="command">/infinite</span>  <button class="Symbol-Span">∞</button></li>
+                            <li><span class="command">/magnifyingglass</span>  <button class="Symbol-Span">⌕</button></li>
+                            <li><span class="command">/minus</span>  <button class="Symbol-Span">-</button></li>
+                            <li><span class="command">/moonleft</span>  <button class="Symbol-Span">☽</button></li>
+                            <li><span class="command">/moonright</span>  <button class="Symbol-Span">☾</button></li>
+                            <li><span class="command">/movable</span>  <button class="Symbol-Span">✣</button></li>
+                            <li><span class="command">/eighthnote</span>  <button class="Symbol-Span">♪</button></li>
+                            <li><span class="command">/beamednote</span>  <button class="Symbol-Span">♫</button></li>
+                            <li><span class="command">/chordsymbol</span>  <button class="Symbol-Span">♬</button></li>
+                            <li><span class="command">/quarter note</span>  <button class="Symbol-Span">♩</button></li>
+                            <li><span class="command">/paperplane</span>  <button class="Symbol-Span">➤</button></li>
+                            <li><span class="command">/pencil</span>  <button class="Symbol-Span">✎</button></li>
+                            <li><span class="command">/plus</span>  <button class="Symbol-Span">+</button></li>
+                            <li><span class="command">/refreshright</span>  <button class="Symbol-Span">↻</button></li>
+                            <li><span class="command">/refreshleft</span>  <button class="Symbol-Span">↺</button></li>
+                            <li><span class="command">/registered</span>  <button class="Symbol-Span">®</button></li>
+                            <li><span class="command">/sidebar</span>  <button class="Symbol-Span">≡</button></li>
+                            <li><span class="command">/smallcross</span>  <button class="Symbol-Span">×</button></li>
+                            <li><span class="command">/filledspark</span>  <button class="Symbol-Span">✦</button></li>
+                            <li><span class="command">/filledsquare</span>  <button class="Symbol-Span">■</button></li>
+                            <li><span class="command">/filledstar</span>  <button class="Symbol-Span">★</button></li>
+                            <li><span class="command">/sun</span>  <button class="Symbol-Span">☼</button></li>
+                            <li><span class="command">/toprightedge</span>  <button class="Symbol-Span">◥</button></li>
+                            <li><span class="command">/topleftedge</span>  <button class="Symbol-Span">◤</button></li>
+                            <li><span class="command">/trademark</span>  <button class="Symbol-Span">™</button></li>
+                            <li><span class="command">/triangleleft</span>  <button class="Symbol-Span">◀</button></li>
+                            <li><span class="command">/triangleright</span>  <button class="Symbol-Span">▶</button></li>
+                            <li><span class="command">/triangledown</span>  <button class="Symbol-Span">▼</button></li>
+                            <li><span class="command">/triangletop</span>  <button class="Symbol-Span">▲</button></li>
+                            <li><span class="command">/updownleftarrow</span>  <button class="Symbol-Span">↵</button></li>
                         </ul>
 	  </div>
   </div>
@@ -4177,11 +4179,9 @@ codesearchresults.style.display = "none";
                     "/arrowtopleft": "↖",
                     "/arrowtopright": "↗",
                     "/arrowup": "↑",
-                    "/bigcross": "✖",
                     "/bigspark": "✶",
                     "/bottomleftedge": "◣",
                     "/bottomrightedge": "◢",
-                    "/bigcheckmark": "✔",
                     "/smallcheckmark": "✓",
                     "/emptycircle": "◯",
                     "/copyright": "©",
@@ -4198,7 +4198,6 @@ codesearchresults.style.display = "none";
                     "/emptytriangledown": "▽",
                     "/emptytriangleright": "▷",
                     "/emptytriangletop": "△",
-                    "/expand": "↕",
                     "/filledcircle": "●",
                     "/heart": "♥",
                     "/infinite": "∞",
