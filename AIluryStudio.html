@@ -1574,6 +1574,11 @@ h2 {
     transform: scale(1);
     background-color: #004494;
 }
+#questionmarkbtn{
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}
 
     </style>
 
@@ -1697,7 +1702,7 @@ h2 {
     </div>
   <!--<span id="addFile" onclick="createCodeEditorSection()">+</span>-->
   <div class="seccontainer">
-    <button class="closecommandoverlaybtn" onclick="showsignexplenationoverlay()">?</button>
+    <button class="closecommandoverlaybtn" id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
     <br><br>
     <div class="seccontainer-line">
       <label class="switch">
@@ -1855,7 +1860,8 @@ h2 {
       <div class="topandbottomsignsdisplay-container">
           <button class="closecommandoverlaybtn" onclick="hidesignexplenationoverlay()">×</button>
 	   <h2>top - (selected)</h2>
-           <ul class="command-list">
+	   <br>
+<ul class="command-list">
 <li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
 <li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Pin</span></li>
 <li><button class="Symbol-Span">↑</button><span class="symbolsignspan">Move up</span></li>
@@ -1863,19 +1869,18 @@ h2 {
 <li><button class="Symbol-Span">☾</button><span class="symbolsignspan">Disable</span></li>
 <li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
 <li><button class="Symbol-Span">●</button><span class="symbolsignspan">trim</span></li>
-<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Code Search</span></li>
-          </ul>
+<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Code Search</span></li></ul>
+	  <br>
 	  <h2>bottom - (all)</h2>
-	  <ul class="command-list">
-<li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
+	  <br>
+<ul class="command-list"><li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
 <li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Unpin</span></li>
 <li><button class="Symbol-Span">←</button><span class="symbolsignspan">Unselect</span></li>
 <li><button class="Symbol-Span">→</button><span class="symbolsignspan">Unfold</span></li>
 <li><button class="Symbol-Span">○</button><span class="symbolsignspan">Enable</span></li>
 <li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
 <li><button class="Symbol-Span">⌘</button><span class="symbolsignspan">Commands</span></li>
-<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Teleport</span></li>
-          </ul>
+<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Teleport</span></li></ul>
       </div>
   </div>
   <div class="closeviewthisfilebtn" onclick="closeviewthisfile()">×</div>
