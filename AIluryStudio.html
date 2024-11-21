@@ -1575,10 +1575,17 @@ h2 {
     background-color: #004494;
 }
 #questionmarkbtn{
-    position: fixed;
+    background-color: var(--contentcontainer-color); /* --lightgrey-color */
+    border: 1px solid var(--rectangleborder); /* --overlayborder-color */
+    color: var(--overlaycolor-color);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    animation: easeinanimationfrb 0.3s;
+    position: absolute;
     bottom: 5px;
     left: 5px;
-    top: none;
 }
 
     </style>
@@ -1703,7 +1710,7 @@ h2 {
     </div>
   <!--<span id="addFile" onclick="createCodeEditorSection()">+</span>-->
   <div class="seccontainer">
-    <button class="closecommandoverlaybtn" id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
+    <button id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
     <br><br>
     <div class="seccontainer-line">
       <label class="switch">
