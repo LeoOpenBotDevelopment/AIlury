@@ -4588,7 +4588,7 @@ codesearchresults.style.display = "none";
                         const newRange = document.createRange();
                         const textLength = previousLine.textContent.length;
 
-                        newRange.setStart(previousLine.firstChild || previousLine, textLength);
+                        newRange.setStart(previousLine.firstChild || previousLine, textLength - currentLineText.length);
                         newRange.collapse(true);
 
                         selection.removeAllRanges();
