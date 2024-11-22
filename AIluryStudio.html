@@ -4266,10 +4266,10 @@ codesearchresults.style.display = "none";
             // Sicherstellen, dass der neue Range korrekt auf das letzte Kind des celine-Elements gesetzt wird
             let lastChild = celine.lastChild;
             if (lastChild) {
-                newRange.setStart(lastChild, lastChild.length); // Cursor ans Ende des letzten Kindes setzen
+                newRange.setStart(lastChild, lastChild.length - textAfterCursor.length); // Cursor ans Ende des letzten Kindes setzen
             } else {
                 // Falls kein Textknoten vorhanden ist, einfach auf das Ende des Elements setzen
-                newRange.setStart(celine, celine.textContent.length);
+                newRange.setStart(celine, celine.textContent.length - textAfterCursor.length);
             }
         
             newRange.collapse(true);
