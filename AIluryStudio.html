@@ -4349,10 +4349,10 @@ codesearchresults.style.display = "none";
             function insertClosingCharacter(replacetext, openingChar, closingChar) {
                 let text = celine.textContent;
                 let textAfterCursor = text.substring(cursorOffset);
-                celine.textContent = text.substring(0, cursorOffset).replaceAll(replacetext) + openingChar + closingChar + textAfterCursor;
+                celine.textContent = text.substring(0, cursorOffset).replaceAll(replacetext, '') + openingChar + closingChar + textAfterCursor;
 
                 // Cursor zwischen den Zeichen platzieren
-                range.setStart(celine.firstChild, cursorOffset + openingChar.length);
+                range.setStart(celine.firstChild, cursorOffset + (openingChar.length - replacetext.length));
                 range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
