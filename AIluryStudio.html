@@ -1901,8 +1901,11 @@ h2 {
 <li><span class="command">/:func</span>  <button class="Symbol-Span">function</button></li>
 <li><span class="command">/:if</span>  <button class="Symbol-Span">if statement</button></li>
 <li><span class="command">/:for</span>  <button class="Symbol-Span">for loop</button></li>
-<li><span class="command">/:div</span>  <button class="Symbol-Span">division</button></li>
-<li><span class="command">/:btn</span>  <button class="Symbol-Span">button</button></li></ul>
+<li><span class="command">/:try</span>  <button class="Symbol-Span">try catch</button></li>
+<li><span class="command">/:div</span>  <button class="Symbol-Span">division tag</button></li>
+<li><span class="command">/:btn</span>  <button class="Symbol-Span">button tag</button></li>
+<li><span class="command">/:span</span>  <button class="Symbol-Span">span tag</button></li>
+<li><span class="command">/:image</span>  <button class="Symbol-Span">image tag</button></li></ul>
       </div>
   </div>
 <div class="singsoverlay-container"onclick="hideelement('class', 'singsoverlay-container', event)">
@@ -4459,6 +4462,10 @@ codesearchresults.style.display = "none";
 		firstpart: "for (let i = 0; i < array.length; i++) {",
 		seccondpart: "}"
 	    },
+	    "/:try": {
+		firstpart: 'try {',
+		seccondpart: "} catch (error) { console.error(error); }"
+	    },
 	    "/:div": {
 		firstpart: '<div class="className">',
 		seccondpart: "</div>"
@@ -4466,6 +4473,14 @@ codesearchresults.style.display = "none";
 	    "/:btn": {
 		firstpart: '<button id="buttonId">',
 		seccondpart: "</button>"
+	    },
+	    "/:span": {
+		firstpart: '<span id="spanId">',
+		seccondpart: "</span>"
+	    },
+	    "/:img": {
+		firstpart: '<image src="',
+		seccondpart: '">'
 	    }
 	}
         // Iteriere durch alle Kommandos und ersetze sie
