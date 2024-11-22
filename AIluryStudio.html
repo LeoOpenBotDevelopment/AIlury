@@ -4338,129 +4338,116 @@ codesearchresults.style.display = "none";
             return text.replace(/ /g, ' ').replace(/\t/g, '    '); // Konvertiert Leerzeichen und Tabs in nicht-brechende Leerzeichen
         }
 
-	function handleKeyUpEvent(event){
-	    let celine = section.querySelector('.code-editor-line:focus');
-	    let selection = window.getSelection();
+	function handleKeyUpEvent(event) {
+    let celine = document.activeElement?.closest('.code-editor-line');
+    if (!celine) return; // Keine aktive Code-Editor-Zeile gefunden
 
-          let range = selection.getRangeAt(0);
-          let cursorOffset = range.startOffset;
+    let selection = window.getSelection();
+    if (!selection.rangeCount) return; // Kein Range vorhanden
 
-            // Erstellen einer Funktion, die das aktuelle Zeichen schließt
-            function insertClosingCharacter(replacetext, openingChar, closingChar) {
-                let text = celine.textContent;
-                let textAfterCursor = text.substring(cursorOffset);
-                celine.textContent = text.substring(0, cursorOffset).replaceAll(replacetext, '') + openingChar + closingChar + textAfterCursor;
+    let range = selection.getRangeAt(0);
+    let cursorOffset = range.startOffset;
 
-                // Cursor zwischen den Zeichen platzieren
-                range.setStart(celine.firstChild, cursorOffset + (openingChar.length - replacetext.length));
-                range.collapse(true);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-            function replaceCommandsWithSymbols(textelement) {
-                // Liste der Kommandos und ihrer Symbole
-	        const commandToSymbol = {
-                    "/alert": "⚠",
-                    "/arrowbottomleft": "↙",
-                    "/arrowbottomright": "↘",
-                    "/arrowdown": "↓",
-                    "/arrowgoleft": "↤",
-                    "/arrowgoright": "↦",
-                    "/arrowleft": "←",
-                    "/arrowright": "→",
-                    "/arrowtopleft": "↖",
-                    "/arrowtopright": "↗",
-                    "/arrowup": "↑",
-                    "/bigspark": "✶",
-                    "/bottomleftedge": "◣",
-                    "/bottomrightedge": "◢",
-                    "/smallcheckmark": "✓",
-                    "/emptycircle": "◯",
-                    "/copyright": "©",
-                    "/bigcross": "✘",
-                    "/crossincirkle": "⊗",
-                    "/crossinsquare": "⌧",
-                    "/crossnotinsquare": "×",
-                    "/cutoutcircle": "◌",
-                    "/diamond": "◆",
-                    "/emptyspark": "✧",
-                    "/emptysquare": "□",
-                    "/emptystar": "☆",
-                    "/emptytriangleleft": "◁",
-                    "/emptytriangledown": "▽",
-                    "/emptytriangleright": "▷",
-                    "/emptytriangletop": "△",
-                    "/filledcircle": "●",
-                    "/heart": "♥",
-                    "/infinite": "∞",
-                    "/magnifyingglass": "⌕",
-                    "/minus": "−",
-                    "/moonleft": "☽",
-                    "/moonright": "☾",
-                    "/movable": "✣",
-                    "/eighthnote": "♪",
-                    "/beamednote": "♫",
-                    "/chordsymbol": "♬",
-                    "/quarternote": "♩",
-                    "/paperplane": "➤",
-                    "/pencil": "✎",
-                    "/plus": "+",
-                    "/refreshright": "↻",
-                    "/refreshleft": "↺",
-                    "/registered": "®",
-                    "/sidebar": "≡",
-                    "/smallcross": "×",
-                    "/filledspark": "✦",
-                    "/filledsquare": "■",
-                    "/filledstar": "★",
-                    "/sun": "☼",
-                    "/toprightedge": "◥",
-                    "/topleftedge": "◤",
-                    "/trademark": "™",
-                    "/triangleleft": "◀",
-                    "/triangleright": "▶",
-                    "/triangledown": "▼",
-                    "/triangletop": "▲",
-                    "/updownleftarrow": "↵"
-                };
-                
+    // Funktion zum Einfügen eines Ersetzungszeichens
+    function insertClosingCharacter(replacetext, openingChar, closingChar) {
+        let text = celine.textContent;
+        if (!text.includes(replacetext)) return; // Nur ersetzen, wenn das Kommando vorhanden ist
 
-            
-                // Für jedes Kommando im Text nachschauen und ersetzen
-                /*let returned = false;*/
-                
-                // Durchlaufe alle Befehle
-                for (const command in commandToSymbol) {
-                    const symbol = commandToSymbol[command];
-                    /*const regex = new RegExp(command.toUpperCase(), 'g'); // Erstelle Regex für globales Ersetzen
-                
-                    // Prüfe, ob der Text das Kommando enthält
-                    if (regex.test(textelement.textContent)) {
-                        returned = true;
-                    }*/
+        let textAfterCursor = text.substring(cursorOffset);
+        celine.textContent =
+            text.substring(0, cursorOffset).replace(replacetext, '') +
+            openingChar +
+            closingChar +
+            textAfterCursor;
 
-		    insertClosingCharacter(command, symbol, ''); 
-                    // Ersetze alle Vorkommen des Kommandos mit dem Symbol
-                    /*text = text.replace(regex, symbol);*/
-		    
-                }
-                
-                // Wenn Änderungen vorgenommen wurden, gib den neuen Text zurück, andernfalls null
-                /*if (returned) {
-                    return text;
-                } else {
-                    return null;
-                }*/
+        // Cursor zwischen den Zeichen positionieren
+        const newCursorOffset = cursorOffset + (openingChar.length - replacetext.length);
+        range.setStart(celine.firstChild, newCursorOffset);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 
-            }
-	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
-	      /*let newtext = replaceCommandsWithSymbols(celine.textContent);
-	      if (newtext != null){
-		celine.textContent = newtext;
-	      }*/
-	      replaceCommandsWithSymbols(celine);
-	    }
-	}
+    function replaceCommandsWithSymbols(textelement) {
+        // Liste der Kommandos und ihrer Symbole
+        const commandToSymbol = {
+            "/alert": "⚠",
+            "/arrowbottomleft": "↙",
+            "/arrowbottomright": "↘",
+            "/arrowdown": "↓",
+            "/arrowgoleft": "↤",
+            "/arrowgoright": "↦",
+            "/arrowleft": "←",
+            "/arrowright": "→",
+            "/arrowtopleft": "↖",
+            "/arrowtopright": "↗",
+            "/arrowup": "↑",
+            "/bigspark": "✶",
+            "/bottomleftedge": "◣",
+            "/bottomrightedge": "◢",
+            "/smallcheckmark": "✓",
+            "/emptycircle": "◯",
+            "/copyright": "©",
+            "/bigcross": "✘",
+            "/crossincirkle": "⊗",
+            "/crossinsquare": "⌧",
+            "/crossnotinsquare": "×",
+            "/cutoutcircle": "◌",
+            "/diamond": "◆",
+            "/emptyspark": "✧",
+            "/emptysquare": "□",
+            "/emptystar": "☆",
+            "/emptytriangleleft": "◁",
+            "/emptytriangledown": "▽",
+            "/emptytriangleright": "▷",
+            "/emptytriangletop": "△",
+            "/filledcircle": "●",
+            "/heart": "♥",
+            "/infinite": "∞",
+            "/magnifyingglass": "⌕",
+            "/minus": "−",
+            "/moonleft": "☽",
+            "/moonright": "☾",
+            "/movable": "✣",
+            "/eighthnote": "♪",
+            "/beamednote": "♫",
+            "/chordsymbol": "♬",
+            "/quarternote": "♩",
+            "/paperplane": "➤",
+            "/pencil": "✎",
+            "/plus": "+",
+            "/refreshright": "↻",
+            "/refreshleft": "↺",
+            "/registered": "®",
+            "/sidebar": "≡",
+            "/smallcross": "×",
+            "/filledspark": "✦",
+            "/filledsquare": "■",
+            "/filledstar": "★",
+            "/sun": "☼",
+            "/toprightedge": "◥",
+            "/topleftedge": "◤",
+            "/trademark": "™",
+            "/triangleleft": "◀",
+            "/triangleright": "▶",
+            "/triangledown": "▼",
+            "/triangletop": "▲",
+            "/updownleftarrow": "↵",
+        };
+
+        // Iteriere durch alle Kommandos und ersetze sie
+        for (const command in commandToSymbol) {
+            const symbol = commandToSymbol[command];
+            insertClosingCharacter(command, symbol, '');
+        }
+    }
+
+    // Ersetzen nur, wenn ein '/' und der Schalter aktiviert ist
+    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch')?.checked) {
+        replaceCommandsWithSymbols(celine);
+    }
+}
+
 
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
