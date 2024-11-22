@@ -4267,7 +4267,7 @@ codesearchresults.style.display = "none";
                 newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
                 celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
-		if (i == lines.length){
+		if (i == lines.length - 1){
 		    celine.scrollIntoView({
                         behavior: 'smooth',
                         block: 'center', // Aligns the element in the middle vertically
