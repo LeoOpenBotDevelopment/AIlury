@@ -4471,10 +4471,15 @@ codesearchresults.style.display = "none";
             insertClosingCharacter(command.toUpperCase(), symbol, '');
         }
 	for (const command in shortCutCommands) {
-    const firstpart = shortCutCommands[command].firstpart;
-    const seccondpart = shortCutCommands[command].seccondpart;
-    insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
-}
+            const firstpart = shortCutCommands[command].firstpart;
+            const seccondpart = shortCutCommands[command].seccondpart;
+            insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
+        }
+	for (const command in shortCutCommands) {
+            const firstpart = shortCutCommands[command].firstpart;
+            const seccondpart = shortCutCommands[command].seccondpart;
+            insertClosingCharacter(command, firstpart, seccondpart);
+        }
 
     }
 
