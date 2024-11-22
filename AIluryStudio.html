@@ -4340,7 +4340,24 @@ codesearchresults.style.display = "none";
 
 	function handleKeyUpEvent(event){
 	    let celine = section.querySelector('.code-editor-line:focus');
-            function replaceCommandsWithSymbols(text) {
+	    let selection = window.getSelection();
+
+          let range = selection.getRangeAt(0);
+          let cursorOffset = range.startOffset;
+
+            // Erstellen einer Funktion, die das aktuelle Zeichen schließt
+            function insertClosingCharacter(replacetext, openingChar, closingChar) {
+                let text = celine.textContent;
+                let textAfterCursor = text.substring(cursorOffset);
+                celine.textContent = text.substring(0, cursorOffset).replaceAll(replacetext) + openingChar + closingChar + textAfterCursor;
+
+                // Cursor zwischen den Zeichen platzieren
+                range.setStart(celine.firstChild, cursorOffset + openingChar.length);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+            function replaceCommandsWithSymbols(textelement) {
                 // Liste der Kommandos und ihrer Symbole
 	        const commandToSymbol = {
                     "/alert": "⚠",
@@ -4410,35 +4427,38 @@ codesearchresults.style.display = "none";
 
             
                 // Für jedes Kommando im Text nachschauen und ersetzen
-                let returned = false;
+                /*let returned = false;*/
                 
                 // Durchlaufe alle Befehle
                 for (const command in commandToSymbol) {
                     const symbol = commandToSymbol[command];
-                    const regex = new RegExp(command.toUpperCase(), 'g'); // Erstelle Regex für globales Ersetzen
+                    /*const regex = new RegExp(command.toUpperCase(), 'g'); // Erstelle Regex für globales Ersetzen
                 
                     // Prüfe, ob der Text das Kommando enthält
-                    if (regex.test(text)) {
+                    if (regex.test(textelement.textContent)) {
                         returned = true;
-                    }
-                
+                    }*/
+
+		    insertClosingCharacter(command, symbol, ''); 
                     // Ersetze alle Vorkommen des Kommandos mit dem Symbol
-                    text = text.replace(regex, symbol);
+                    /*text = text.replace(regex, symbol);*/
+		    
                 }
                 
                 // Wenn Änderungen vorgenommen wurden, gib den neuen Text zurück, andernfalls null
-                if (returned) {
+                /*if (returned) {
                     return text;
                 } else {
                     return null;
-                }
+                }*/
 
             }
 	    if (celine.textContent.includes('/') && document.querySelector('.commandsswitch').checked == true){
-	      let newtext = replaceCommandsWithSymbols(celine.textContent);
+	      /*let newtext = replaceCommandsWithSymbols(celine.textContent);
 	      if (newtext != null){
 		celine.textContent = newtext;
-	      }
+	      }*/
+	      replaceCommandsWithSymbols(celine);
 	    }
 	}
 
