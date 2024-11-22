@@ -4267,6 +4267,13 @@ codesearchresults.style.display = "none";
                 newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
                 celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
+		if (i == lines.length){
+		    celine.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center', // Aligns the element in the middle vertically
+                        inline: 'center' // Aligns the element in the middle horizontally (optional)
+                    });
+		}
             }
         
             // Text nach dem Cursor in die letzte Linie einfügen
