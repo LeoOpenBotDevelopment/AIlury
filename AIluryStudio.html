@@ -1574,20 +1574,6 @@ h2 {
     transform: scale(1);
     background-color: #004494;
 }
-#questionmarkbtn{
-    background-color: var(--contentcontainer-color); /* --lightgrey-color */
-    border: 1px solid var(--rectangleborder); /* --overlayborder-color */
-    color: var(--overlaycolor-color);
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 14px;
-    animation: easeinanimationfrb 0.3s;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-
     </style>
 
 </head>
@@ -1602,7 +1588,7 @@ h2 {
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
             <div class="code-editor-btns">
-                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section1">
@@ -1612,7 +1598,7 @@ h2 {
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section" id="section2">
@@ -1622,7 +1608,7 @@ h2 {
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
         <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
 
     </div>
     <div class="section viewcontainer" id="section3">
@@ -1791,7 +1777,6 @@ h2 {
     <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
         delete comments
     </div>
-    <button id="questionmarkbtn" onclick="showsignexplenationoverlay()">?</button>
   </div>
   <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
       <div class="commandsdisplay-container">
@@ -2350,7 +2335,7 @@ newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="es
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
-        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
+        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
 container.appendChild(newSection);
 
       lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
@@ -2492,7 +2477,7 @@ await updateDataIndex('nav-bar');
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
-        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
+        <div class="code-editor-btns"><button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>`;
             container.appendChild(newSection);
 
             lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
