@@ -4435,10 +4435,37 @@ codesearchresults.style.display = "none";
             "/updownleftarrow": "↵",
         };
 
+	const shortCutCommands = {
+	    "/:func": {
+		firstpart: "function definition() {",
+		seccondpart: "}";
+	    },
+	    "/:if": {
+		firstpart: "if (condition) ",
+		seccondpart: "}";
+	    },
+	    "/:for": {
+		firstpart: "for (let i = 0; i < array.length; i++) {",
+		seccondpart: "}";
+	    },
+	    "/:div": {
+		firstpart: '<div class="className">',
+		seccondpart: "</div>";
+	    },
+	    "/:btn": {
+		firstpart: '<button id="buttonId">',
+		seccondpart: "</button>";
+	    }
+	}
         // Iteriere durch alle Kommandos und ersetze sie
         for (const command in commandToSymbol) {
             const symbol = commandToSymbol[command];
             insertClosingCharacter(command, symbol, '');
+        }
+	for (const command in shortCutCommands) {
+            const firstpart = commandToSymbol[command].firstpart;
+	    const seccondpart = commandToSymbol[command].seccondpart;
+            insertClosingCharacter(command, firstpart, seccondpart);
         }
     }
 
