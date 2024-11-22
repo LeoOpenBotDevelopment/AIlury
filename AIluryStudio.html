@@ -1893,6 +1893,14 @@ h2 {
 <li><span class="command">/triangletop</span>  <button class="Symbol-Span">▲</button></li>
 <li><span class="command">/updownleftarrow</span>  <button class="Symbol-Span">↵</button></li>
           </ul>
+	  <h2>short-cuts</h2>
+           <ul class="command-list">
+<li><span class="command">/:func</span>  <button class="Symbol-Span">function</button></li>
+<li><span class="command">/:if</span>  <button class="Symbol-Span">if statement</button></li>
+<li><span class="command">/:for</span>  <button class="Symbol-Span">for loop</button></li>
+<li><span class="command">/:div</span>  <button class="Symbol-Span">division</button></li>
+<li><span class="command">/:btn</span>  <button class="Symbol-Span">button</button></li>
+          </ul>
       </div>
   </div>
 <div class="singsoverlay-container"onclick="hideelement('class', 'singsoverlay-container', event)">
@@ -4460,12 +4468,12 @@ codesearchresults.style.display = "none";
         // Iteriere durch alle Kommandos und ersetze sie
         for (const command in commandToSymbol) {
             const symbol = commandToSymbol[command];
-            insertClosingCharacter(command, symbol, '');
+            insertClosingCharacter(command.toUpperCase(), symbol, '');
         }
 	for (const command in shortCutCommands) {
     const firstpart = shortCutCommands[command].firstpart;
     const seccondpart = shortCutCommands[command].seccondpart;
-    insertClosingCharacter(command, firstpart, seccondpart);
+    insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
 }
 
     }
