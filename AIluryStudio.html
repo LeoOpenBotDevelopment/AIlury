@@ -43,6 +43,7 @@
       --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
       --commandlistbackground-color: #f9f9f9;
       --commandlistcolor-color: #555;
+      --codeeditoreditbtn-color: #000;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -83,6 +84,7 @@
         --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
 	--commandlistbackground-color: #010101;
 	--commandlistcolor-color: #A5A5A5;
+	--codeeditoreditbtn-color: #fff;
       }
     }
         * {
@@ -463,7 +465,7 @@
           overflow-y: hidden;
       }
       .eslbtn{
-          color: var(--black-color);
+          color: var(--codeeditoreditbtn-color);
           width: 6vh;
           height: 6vh;
           min-width: 40px;
@@ -498,7 +500,7 @@
         }
       /*.unsleeplines{*/
       .code-editor-btn{
-          color: var(--black-color);
+          color: var(--codeeditoreditbtn-color);
           width: 6vh;
           height: 6vh;
           min-width: 40px;
