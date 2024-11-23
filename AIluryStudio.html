@@ -3168,7 +3168,11 @@ const focusedline = document.querySelector('.code-editor-line:focus');
     }
 
 function performLongPressAction(element) {
-      positionElementAbove(document.querySelector('.lineoptions'), element);
+      if (element.classList.contains('code-editor-line')) {
+          positionElementAbove(document.querySelector('.lineoptions'), element);
+      } else {
+          closelineoptionscontainer();
+      }
 }
     function closelineoptionscontainer() {
       document.querySelector('.lineoptions').style.display = 'none';
