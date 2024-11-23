@@ -45,6 +45,7 @@
       --commandlistcolor-color: #555;
       --codeeditoreditbtn-color: #000;
       --codeeditoreditbtnbackground-color: #fff;
+      --browseriframebackgroundcolor-color: #fff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -87,6 +88,7 @@
 	--commandlistcolor-color: #A5A5A5;
 	--codeeditoreditbtn-color: #fff;
 	--codeeditoreditbtnbackground-color: #000;
+	--browseriframebackgroundcolor-color: #000;
       }
     }
         * {
@@ -672,7 +674,7 @@
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             overflow: hidden;
-            background-color: var(--background-color);
+            background-color: var(--browseriframebackgroundcolor-color);
         }
 
         iframe {
@@ -774,7 +776,7 @@
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             overflow: hidden;
-            background-color: var(--background-color);
+            background-color: var(--browseriframebackgroundcolor-color);
         }
         .line-number-input{
           color: var(--black-color);
