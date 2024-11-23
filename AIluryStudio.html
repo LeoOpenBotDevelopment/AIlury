@@ -43,7 +43,8 @@
       --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
       --commandlistbackground-color: #f9f9f9;
       --commandlistcolor-color: #555;
-      --codeeditoreditbtn-color: #007aff;
+      --codeeditoreditbtn-color: #000;
+      --codeeditoreditbtnbackground-color: #fff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -84,7 +85,8 @@
         --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
 	--commandlistbackground-color: #010101;
 	--commandlistcolor-color: #A5A5A5;
-	--codeeditoreditbtn-color: #0156CD;
+	--codeeditoreditbtn-color: #fff;
+	--codeeditoreditbtnbackground-color: #000;
       }
     }
         * {
@@ -470,7 +472,7 @@
           height: 6vh;
           min-width: 40px;
           min-height: 40px;
-          background: var(--white-color);
+          background: var(--codeeditoreditbtnbackground-color);
           text-align: center;
           border: none;
           border-radius: 50%;
@@ -505,7 +507,7 @@
           height: 6vh;
           min-width: 40px;
           min-height: 40px;
-          background: var(--white-color);
+          background: var(--codeeditoreditbtnbackground-color);
           text-align: center;
           border: none;
           border-radius: 50%;
