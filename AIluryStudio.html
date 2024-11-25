@@ -2023,7 +2023,7 @@ display: none;
             <button id="scrollviewintoviewbtn" onclick="scrollviewintoview()">view</button>
         </div>
         <h3>files</h3>
-        <div class="sidebarbardivbuttondiv">
+        <div class="sidebarbardivbuttondiv sidebarbardivbuttondiv1">
             <button id="sidebarfilelinklink0" class="sidebarfilelinklink" onclick="editthisfile('0')">index.html</button>
             <button id="sidebarfilelinklink1" class="sidebarfilelinklink" onclick="editthisfile('1')">styles.css</button>
             <button id="sidebarfilelinklink2" class="sidebarfilelinklink" onclick="editthisfile('2')">script.js</button>
@@ -3013,7 +3013,7 @@ sidebarfilelink.textContent = filename;
 sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
 sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
 
-document.querySelector('.sidebarbardivbuttondiv').appendChild(sidebarfilelink);
+document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
 // Update indices and numbering
 await updateDataIndex('nav-bar');
       newNavDot.classList.add('nav-dot', 'navdot' + newNavDot.getAttribute('data-index'));
@@ -3123,7 +3123,7 @@ await updateDataIndex('nav-bar');
             sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
             sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
 
-            document.querySelector('.sidebarbardivbuttondiv').appendChild(sidebarfilelink);
+            document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
 
             // Update indices and numbering
             await updateDataIndex('nav-bar');
