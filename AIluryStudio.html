@@ -2299,6 +2299,11 @@ display: none;
         height: 1.2em;
         border-radius: 50%;
     }
+    .switchtothememaincolorspan{
+        width: 1.7em;
+        height: 1.7em;
+        border-radius: 50%;
+    }
     .switchtothemetitlespan{
         color: var(--black-color);
         font-size: 1em;
@@ -2331,7 +2336,7 @@ flex-direction: column;
 
 
 
-    input[type="range"] {
+    input[type="range"]{
   -webkit-appearance: none;
   appearance: none;
 
@@ -2341,6 +2346,11 @@ flex-direction: column;
   outline: none;
   transition: background 0.3s ease;
   border: 1px solid var(--white-color);
+}
+@media(max-width: 700px){
+    input[type="range"]{
+        width: 30%;
+    }
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -2853,49 +2863,49 @@ input[type="range"]::-ms-thumb {
         <br>
         <!-- Eingabefelder für jede Farbe -->
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="selectedColor" value="#ff1493" onchange="updateSelectedColor()">
+<input class="switchtothememaincolorspan2" type="color" id="selectedColor" value="#ff1493" onchange="updateSelectedColor()">
 <span class="switchtothemetitlespan">selected line</span>
 <input type="range" id="selectedAlpha" min="0" max="100" value="100" onchange="updateSelectedColor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="safariHeaderColor" value="#f1f8e9" onchange="updateSafariHeaderColor()">
+<input class="switchtothememaincolorspan2" type="color" id="safariHeaderColor" value="#f1f8e9" onchange="updateSafariHeaderColor()">
 <span class="switchtothemetitlespan">mobile search btn</span>
 <input type="range" id="safariHeaderAlpha" min="0" max="100" value="100" onchange="updateSafariHeaderColor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="rectangleBorderColor" value="#ff1493" onchange="updateRectangleBorderColor()">
+<input class="switchtothememaincolorspan2" type="color" id="rectangleBorderColor" value="#ff1493" onchange="updateRectangleBorderColor()">
 <span class="switchtothemetitlespan">borders</span>
 <input type="range" id="rectangleBorderAlpha" min="0" max="100" value="100" onchange="updateRectangleBorderColor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="checkmarkColor" value="#ff69b4" onchange="updateCheckmarkColor()">
+<input class="switchtothememaincolorspan2" type="color" id="checkmarkColor" value="#ff69b4" onchange="updateCheckmarkColor()">
 <span class="switchtothemetitlespan">selected line check mark</span>
 <input type="range" id="checkmarkAlpha" min="0" max="100" value="100" onchange="updateCheckmarkColor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="switchCheckedBackgroundColor" value="#ff69b4" onchange="updateSwitchCheckedBackgroundColor()">
+<input class="switchtothememaincolorspan2" type="color" id="switchCheckedBackgroundColor" value="#ff69b4" onchange="updateSwitchCheckedBackgroundColor()">
 <span class="switchtothemetitlespan">secondary color</span>
 <input type="range" id="switchCheckedAlpha" min="0" max="100" value="100" onchange="updateSwitchCheckedBackgroundColor()">
 </div>
 <br>
 <div class="themeoption">
-    <input class="switchtothememaincolorspan" type="color" id="codeeditoreditbtncolor" value="#ff69b4" onchange="updatecodeeditoreditbtncolor()">
+    <input class="switchtothememaincolorspan2" type="color" id="codeeditoreditbtncolor" value="#ff69b4" onchange="updatecodeeditoreditbtncolor()">
     <span class="switchtothemetitlespan">functions</span>
     <input type="range" id="codeeditoreditbtncolorAlpha" min="0" max="100" value="100" onchange="updatecodeeditoreditbtncolor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="loadingBarLoadedBackgroundColor" value="#ff1493" onchange="updateLoadingBarLoadedBackgroundColor()">
+<input class="switchtothememaincolorspan2" type="color" id="loadingBarLoadedBackgroundColor" value="#ff1493" onchange="updateLoadingBarLoadedBackgroundColor()">
 <span class="switchtothemetitlespan">progress bar</span>
 <input type="range" id="loadingBarLoadedAlpha" min="0" max="100" value="100" onchange="updateLoadingBarLoadedBackgroundColor()">
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan" type="color" id="rectangleColorColor" value="#ff1493" onchange="updateRectangleColorColor()">
+<input class="switchtothememaincolorspan2" type="color" id="rectangleColorColor" value="#ff1493" onchange="updateRectangleColorColor()">
 <span class="switchtothemetitlespan">file container path</span>
 <input type="range" id="rectangleColorAlpha" min="0" max="100" value="100" onchange="updateRectangleColorColor()">
 </div>
