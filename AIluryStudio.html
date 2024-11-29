@@ -51,7 +51,6 @@
     }
     .helloween-theme {
       --selected-color: rgba(255, 109, 0, 0.5);
-      --safariheader-color: #dcdcdc;
       --rectangleborder: rgba(255, 109, 0, 0.5);
       --checkmark-color: rgba(255, 109, 0, 0.5);
       --switchcheckedbackground-color: #FF6D00;
@@ -61,7 +60,6 @@
     }
     .winter-theme {
   --selected-color: rgba(173, 216, 230, 0.5);
-  --safariheader-color: #e0f7fa;
   --rectangleborder: rgba(173, 216, 230, 0.5);
   --checkmark-color: rgba(173, 216, 230, 0.7);
   --switchcheckedbackground-color: #00bcd4;
@@ -71,7 +69,6 @@
 }
 .spring-theme {
   --selected-color: rgba(144, 238, 144, 0.5);
-  --safariheader-color: #e8f5e9;
   --rectangleborder: rgba(144, 238, 144, 0.5);
   --checkmark-color: rgba(102, 187, 106, 0.7);
   --switchcheckedbackground-color: #4caf50;
@@ -81,7 +78,6 @@
 }
 .ocean-theme {
   --selected-color: rgba(0, 123, 255, 0.5);
-  --safariheader-color: #e3f2fd;
   --rectangleborder: rgba(0, 123, 255, 0.5);
   --checkmark-color: rgba(33, 150, 243, 0.7);
   --switchcheckedbackground-color: #2196f3;
@@ -91,7 +87,6 @@
 }
 .autumn-theme {
   --selected-color: rgba(255, 165, 0, 0.5);
-  --safariheader-color: #fff3e0;
   --rectangleborder: rgba(255, 165, 0, 0.5);
   --checkmark-color: rgba(255, 152, 0, 0.7);
   --switchcheckedbackground-color: #ff9800;
@@ -101,7 +96,6 @@
 }
 .nightsky-theme {
   --selected-color: rgba(48, 63, 159, 0.5);
-  --safariheader-color: #303f9f;
   --rectangleborder: rgba(48, 63, 159, 0.5);
   --checkmark-color: rgba(63, 81, 181, 0.7);
   --switchcheckedbackground-color: #3f51b5;
@@ -112,7 +106,6 @@
 }
 .desert-theme {
   --selected-color: rgba(237, 201, 175, 0.5);
-  --safariheader-color: #fff8e1;
   --rectangleborder: rgba(237, 201, 175, 0.5);
   --checkmark-color: rgba(255, 183, 77, 0.7);
   --switchcheckedbackground-color: #ffcc80;
@@ -122,7 +115,6 @@
 }
 .galaxy-theme {
   --selected-color: rgba(138, 43, 226, 0.5);
-  --safariheader-color: #f3e5f5;
   --rectangleborder: rgba(138, 43, 226, 0.5);
   --checkmark-color: rgba(103, 58, 183, 0.7);
   --switchcheckedbackground-color: #673ab7;
@@ -132,7 +124,6 @@
 }
 .forest-theme {
   --selected-color: rgba(34, 139, 34, 0.5);
-  --safariheader-color: #e8f5e9;
   --rectangleborder: rgba(34, 139, 34, 0.5);
   --checkmark-color: rgba(76, 175, 80, 0.7);
   --switchcheckedbackground-color: #4caf50;
@@ -142,7 +133,6 @@
 }
 .neon-theme {
   --selected-color: rgba(57, 255, 20, 0.5);
-  --safariheader-color: #f1f8e9;
   --rectangleborder: rgba(57, 255, 20, 0.5);
   --checkmark-color: rgba(124, 252, 0, 0.7);
   --switchcheckedbackground-color: #76ff03;
@@ -152,7 +142,6 @@
 }
 .sunset-theme {
   --selected-color: rgba(255, 87, 34, 0.5);
-  --safariheader-color: #ffebee;
   --rectangleborder: rgba(255, 87, 34, 0.5);
   --checkmark-color: rgba(244, 67, 54, 0.7);
   --switchcheckedbackground-color: #f44336;
@@ -162,7 +151,6 @@
 }
 .custom-theme {
   --selected-color: rgba(255, 20, 147, 0.5); /* Deep Pink */
-  --safariheader-color: #f1f8e9; /* Hellgrün */
   --rectangleborder: rgba(255, 20, 147, 0.5); /* Deep Pink */
   --checkmark-color: rgba(255, 105, 180, 0.7); /* Hot Pink */
   --switchcheckedbackground-color: #ff69b4; /* Hot Pink */
@@ -918,7 +906,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 10px;
-            border-bottom: 1px solid var(--safariheader-color);
+            border-bottom: 1px solid var(--browserheaderborderbottom-color);
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             transition: 0.3s;
@@ -2864,12 +2852,6 @@ input[type="range"]::-ms-thumb {
 </div>
 <br>
 <div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="safariHeaderColor" value="#f1f8e9" onchange="updateSafariHeaderColor()">
-<span class="switchtothemetitlespan">mobile search btn</span>
-<input type="range" id="safariHeaderAlpha" min="0" max="100" value="100" onchange="updateSafariHeaderColor()">
-</div>
-<br>
-<div class="themeoption">
 <input class="switchtothememaincolorspan2" type="color" id="rectangleBorderColor" value="#ff1493" onchange="updateRectangleBorderColor()">
 <span class="switchtothemetitlespan">borders</span>
 <input type="range" id="rectangleBorderAlpha" min="0" max="100" value="100" onchange="updateRectangleBorderColor()">
@@ -3925,7 +3907,6 @@ input[type="range"]::-ms-thumb {
 
   // Entferne die spezifischen CSS-Variablen
   themetoedit.style.removeProperty('--selected-color');
-  themetoedit.style.removeProperty('--safariheader-color');
   themetoedit.style.removeProperty('--rectangleborder');
   themetoedit.style.removeProperty('--checkmark-color');
   themetoedit.style.removeProperty('--switchcheckedbackground-color');
@@ -3943,18 +3924,6 @@ function updateSelectedColor() {
   const alpha = document.getElementById('selectedAlpha').value / 100;
   const rgba = hexToRgba(selectedColor, alpha);
   themetoedit.style.setProperty('--selected-color', rgba);
-}
-
-// Funktion zur Aktualisierung der 'safariheader-color' CSS-Variable (inkl. Alpha)
-function updateSafariHeaderColor() {
-    themetoedit = document.querySelector(`.custom-theme`);
-if (!themetoedit) {
-    return;
-}
-  const safariHeaderColor = document.getElementById('safariHeaderColor').value;
-  const alpha = document.getElementById('safariHeaderAlpha').value / 100;
-  const rgba = hexToRgba(safariHeaderColor, alpha);
-  themetoedit.style.setProperty('--safariheader-color', rgba);
 }
 
 // Funktion zur Aktualisierung der 'rectangleborder' CSS-Variable (inkl. Alpha)
