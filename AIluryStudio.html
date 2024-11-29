@@ -2357,9 +2357,9 @@ input[type="range"]::-ms-thumb {
         </div>
         <h3>files</h3>
         <div class="sidebarbardivbuttondiv sidebarbardivbuttondiv1">
-            <button id="sidebarfilelinklink0" class="sidebarfilelinklink" onclick="editthisfile('0')">index.html</button>
-            <button id="sidebarfilelinklink1" class="sidebarfilelinklink" onclick="editthisfile('1')">styles.css</button>
-            <button id="sidebarfilelinklink2" class="sidebarfilelinklink" onclick="editthisfile('2')">script.js</button>
+            <button id="sidebarfilelinklink0" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('0')">index.html</button>
+            <button id="sidebarfilelinklink1" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('1')">styles.css</button>
+            <button id="sidebarfilelinklink2" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('2')">script.js</button>
         </div>
     </div>
     <div class="allcontainer">
@@ -4071,6 +4071,14 @@ function removeallthemes() {
     }
     closesidebaronsmallscreensizes();
 }
+    function hidealltemplatecontainer() {
+            document.querySelector('.overlay5-container').style.animation = "none";
+            void document.querySelector('.overlay5-container').offsetWidth;
+            document.querySelector('.overlay5-container').style.animation = "swipeout 0.5s ease-out";
+        setTimeout(() => {
+        document.querySelector('.overlay5-container').style.display = "none";
+        }, 500);
+    }
     function closesidebaronsmallscreensizes() {
         if (document.querySelector('.divcodeeditor-container').classList.contains('smallsidebarenabled')){
             document.querySelector('.divcodeeditor-container').classList.remove('smallsidebarenabled');
@@ -4083,6 +4091,7 @@ closeviewthisfile();
 hidethemeoverlay();
 document.querySelector('.overlay-close-btn').click();
 closesidebaronsmallscreensizes();
+hidealltemplatecontainer();
     }
     function scrollviewintoview() {
         const view = document.getElementById('view-nav-dot');
