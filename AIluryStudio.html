@@ -3788,9 +3788,13 @@ input[type="range"]::-ms-thumb {
         const closeTemplate = newRectangle.querySelector('.closetemplate');
         const enlargeTemplateBtn = newRectangle.querySelector('.halfrectagle-buttons .enlargetemplatebtn');
 
-        if (closeTemplate) {
+        if (closeTemplate && enlargeTemplateBtn) {
             closeTemplate.addEventListener('click', () => {
                 newRectangle.classList.remove('enlarged');
+                enlargeTemplateBtn.disabled = true;
+                typeEffect(enlargeTemplateBtn, "enlarge", () => {
+                    enlargeTemplateBtn.disabled = false;
+                });
             });
         }
 
