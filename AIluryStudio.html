@@ -1638,7 +1638,7 @@ width: 70vw;
                 height: 100vh;
                 max-width: none;
              }
-            .content-container {
+            .content-container, .content5-container {
                 width: 100vw;
                 height: 100vh;
                 max-width: none;
@@ -1668,7 +1668,7 @@ width: 70vw;
         }
 
         @media (max-width: 500px) {
-        .content-container {
+        .content-container, .content5-container {
         width: 100vw;
         height: 100vh;
         grid-template-columns: repeat(1, 1fr);
@@ -2766,6 +2766,36 @@ input[type="range"]::-ms-thumb {
               </div>
               <button class="closetemplate">×</button>
           </div>
+            <div class="halfrectagle">
+              <iframe frameborder="0" id="greeniframe" srcdoc="<button>hi</button>"></iframe>
+              <span>green</span>
+              <div class="halfrectagle-buttons">
+                  <button class="use-btn enlargetemplatebtn" id="enlargetemplatebtn">enlarge</button>
+                  <button class="use-btn" onclick="usethistemplate('green')">add</button>
+                  <button class="use-btn" onclick="copythistemplatecode('green', this)">copy</button>
+              </div>
+              <button class="closetemplate">×</button>
+          </div>
+            <div class="halfrectagle">
+              <iframe frameborder="0" id="blueiframe" srcdoc="<button>hi</button>"></iframe>
+              <span>blue</span>
+              <div class="halfrectagle-buttons">
+                  <button class="use-btn enlargetemplatebtn" id="enlargetemplatebtn">enlarge</button>
+                  <button class="use-btn" onclick="usethistemplate('blue')">add</button>
+                  <button class="use-btn" onclick="copythistemplatecode('blue', this)">copy</button>
+              </div>
+              <button class="closetemplate">×</button>
+          </div>
+             <div class="halfrectagle">
+     <iframe frameborder="0" id="darkbubbleiframe" srcdoc="<button>hi</button>"></iframe>
+     <span>dark bubble</span>
+     <div class="halfrectagle-buttons">
+         <button class="use-btn enlargetemplatebtn" id="enlargetemplatebtn">enlarge</button>
+         <button class="use-btn" onclick="usethistemplate('darkbubble')">add</button>
+         <button class="use-btn" onclick="copythistemplatecode('darkbubble', this)">copy</button>
+     </div>
+     <button class="closetemplate">×</button>
+ </div>
       </div>
   </div>
     <div id="theme-overlay" class="theme-overlay" onclick="hideelement('class', 'theme-overlay', event)">
@@ -2906,7 +2936,7 @@ input[type="range"]::-ms-thumb {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIlury Studio - Dein Code Editor</title>
+    <title>AIlury Studio - bubble Template</title>
     <style>
         :root {
             --color-titel: #fff;
@@ -3040,7 +3070,7 @@ input[type="range"]::-ms-thumb {
 
     <header>
         <div class="header-content">
-            <h1 class="title">AIlury Studio</h1>
+            <h1 class="title">AIlury Studio Template</h1>
             <p class="subtitle">A Bubble Template from AIlury Studio</p>
             <a class="cta-btn">Explore</a>
         </div>
@@ -3066,6 +3096,693 @@ input[type="range"]::-ms-thumb {
     </footer>
 </body>
 </html>`;
+    const greensrcdoccontentcode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIlury Studio - Green Template</title>
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #4CAF50; /* Main Green */
+            --secondary-color: #2c3e50; /* Darker background */
+            --text-color: #555;
+            --text-light: #f9f9f9;
+            --background-gradient: linear-gradient(to right, #4CAF50, #81C784);
+            --section-padding: 50px;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: var(--font-family);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--background-gradient);
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero .cta:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--section-padding);
+            background: white;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .features .feature {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            padding: 20px;
+            background: var(--background-gradient);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .features .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .features .feature h3 {
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: var(--section-padding);
+            background: var(--background-gradient);
+            color: white;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .testimonials .testimonial {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            color: var(--secondary-color);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Section */
+        footer {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .features .feature {
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Welcome to AIlury Studio</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</p>
+            <button class="cta">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div>
+            <h2>Our Features</h2>
+            <div class="feature">
+                <h3>Fast Performance</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis lorem eu libero placerat, id dictum magna consectetur.</p>
+            </div>
+            <div class="feature">
+                <h3>Responsive Design</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis lorem eu libero placerat, id dictum magna consectetur.</p>
+            </div>
+            <div class="feature">
+                <h3>Secure Platform</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis lorem eu libero placerat, id dictum magna consectetur.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div>
+            <h2>What Our Users Say</h2>
+            <div class="testimonial">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula ipsum ut quam elementum, ut tristique purus convallis."</p>
+                <strong>- user 1</strong>
+            </div>
+            <div class="testimonial">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula ipsum ut quam elementum, ut tristique purus convallis."</p>
+                <strong>- user 2</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Lorem ipsum dolor.</p>
+    </footer>
+</body>
+</html>
+`;
+    const bluesrcdoccontent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIlury Studio - Blue Template</title>
+    <style>
+        /* Root Variables for Colors and Fonts */
+        :root {
+            --primary-color: #3498db; /* Main accent color */
+            --secondary-color: #2c3e50; /* Darker background */
+            --text-color: #ecf0f1; /* Light text */
+            --bg-gradient: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+            --font-family: 'Roboto', sans-serif;
+            --section-padding: 80px;
+        }
+
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family);
+            background: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #72c0ff;
+        }
+
+        h1, h2, h3 {
+            margin-top: 0;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            color: white;
+            background: var(--primary-color);
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #72c0ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--secondary-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--section-padding);
+            background: var(--secondary-color);
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .features .feature {
+            display: inline-block;
+            width: 30%;
+            margin: 0 1.5%;
+            padding: 20px;
+            background: white;
+            color: var(--secondary-color);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .features .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: var(--section-padding);
+            background: var(--bg-gradient);
+            color: var(--secondary-color);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .testimonials .testimonial {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            color: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials .testimonial strong {
+            display: block;
+            margin-top: 10px;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .features .feature {
+                width: 48%;
+                margin: 1% 1%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features .feature {
+                width: 100%;
+                margin: 20px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            footer p {
+                font-size: 0.8rem;
+            }
+
+            .features .feature {
+                width: 100%;
+                margin: 10px 0;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>AIlury Studio Template</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum sapien vel risus commodo, at ultricies nisl fringilla.</p>
+        <a class="btn">Learn More</a>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Our Features</h2>
+            <div class="feature">
+                <h3>Responsive Design</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula ipsum ut quam elementum, ut tristique purus convallis.</p>
+            </div>
+            <div class="feature">
+                <h3>Fast Performance</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula ipsum ut quam elementum, ut tristique purus convallis.</p>
+            </div>
+            <div class="feature">
+                <h3>Secure Platform</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula ipsum ut quam elementum, ut tristique purus convallis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at tincidunt nunc. Nullam vel neque nec eros tincidunt mollis."</p>
+                <strong>- John Doe</strong>
+            </div>
+            <div class="testimonial">
+                <p>"Proin a ligula nec augue aliquet viverra. Suspendisse potenti. Nam et elit a enim vehicula aliquet."</p>
+                <strong>- Jane Smith</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Lorem ipsum dolor.</p>
+    </footer>
+</body>
+</html>
+`;
+    const darkbubblesrcdoccontent = `<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIlury Studio - Dark Bubble Template</title>
+    <style>
+        :root {
+            --color-1: #ED70C0;
+            --color-2: #561DE2;
+            --color-3: #56BC6C;
+            --color-4: #82DEE4;
+            --color-5: #B56CD5;
+            --color-6: #EDD46A;
+            --color-7: #B5D7E3;
+            --color-8: #F1A0BA;
+            --color-9: #F1ABEF;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-1), var(--color-4));
+        }
+
+        header, main, footer {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 700px;
+            padding: 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3rem;
+            background: var(--color-2);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: textAnimation 2s ease-in-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem;
+            color: var(--color-6);
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--color-3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            padding: 5rem 1rem;
+        }
+
+        .feature {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-5);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: var(--color-7);
+        }
+
+        footer {
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        /* Shapes */
+        .abstract-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .shape-1 { width: 300px; height: 300px; background: var(--color-6); top: 10%; left: 5%; }
+        .shape-2 { width: 200px; height: 200px; background: var(--color-7); top: 50%; left: 80%; animation-delay: 2s; }
+        .shape-3 { width: 400px; height: 400px; background: var(--color-8); top: 70%; left: 30%; animation-delay: 4s; }
+        .shape-4 { width: 250px; height: 250px; background: var(--color-9); bottom: 15%; right: 10%; animation-delay: 6s; }
+        .shape-5 { width: 350px; height: 350px; background: var(--color-2); top: 5%; right: 15%; animation-delay: 8s; }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes textAnimation {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollEffect {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature {
+            animation: scrollEffect 1s ease-out;
+        }
+
+        /* Scrolling effect */
+        body {
+            animation: scrollEffect 2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="abstract-shapes">
+        <!-- Shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1 class="title">AIlury Studio Template </h1>
+            <p class="subtitle">A website with colorful motion effects and unique designs</p>
+            <a class="cta-btn">Explore More</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="feature">
+            <h2>Creative Section 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+        </section>
+        <section class="feature">
+            <h2>Innovative Section 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+        </section>
+        <section class="feature">
+            <h2>Modern Section 3</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Lorem ipsum dolor.</p>
+    </footer>
+</body>
+</html>`;
     function enlargehalfrectangleeventlistener() {
     document.querySelectorAll('.halfrectagle').forEach((newRectangle) => {
         const closeTemplate = newRectangle.querySelector('.closetemplate');
@@ -3079,7 +3796,19 @@ input[type="range"]::-ms-thumb {
 
         if (enlargeTemplateBtn) {
             enlargeTemplateBtn.addEventListener('click', () => {
+                if (!newRectangle.classList.contains('enlarged')){
+                enlargeTemplateBtn.disabled = true;
                 newRectangle.classList.add('enlarged');
+                typeEffect(enlargeTemplateBtn, "reduce", () => {
+                    enlargeTemplateBtn.disabled = false;
+                });
+                }else if (newRectangle.classList.contains('enlarged')){
+                    enlargeTemplateBtn.disabled = true;
+                    newRectangle.classList.remove('enlarged');
+                    typeEffect(enlargeTemplateBtn, "enlarge", () => {
+                        enlargeTemplateBtn.disabled = false;
+                    });
+                }
             });
         }
     });
@@ -3090,6 +3819,24 @@ input[type="range"]::-ms-thumb {
         const bubbleiframe = document.getElementById('bubbleiframe');
         bubbleiframe.srcdoc = bubblesrcdoccontentcode;
     }
+    
+    function givegreeniframeansrcdoccontent() {
+        const greenifeame = document.getElementById('greeniframe');
+        greenifeame.srcdoc = greensrcdoccontentcode;
+    }
+    
+    function giveblueiframeansrcdoccontent() {
+        const blueiframe = document.getElementById('blueiframe');
+        blueiframe.srcdoc = bluesrcdoccontent;
+    }
+    
+    function givedarkbubbleiframeansrcdoccontent() {
+        const darkbubbleiframe = document.getElementById('darkbubbleiframe');
+        darkbubbleiframe.srcdoc = darkbubblesrcdoccontent;
+    }
+    givegreeniframeansrcdoccontent();
+    giveblueiframeansrcdoccontent();
+    givedarkbubbleiframeansrcdoccontent();
     function typeEffect(element, newText, callback) {
     // Holen des aktuellen Textes vom Element
     const originalText = element.textContent || ""; // Sicherstellen, dass kein Nullwert verarbeitet wird
@@ -3128,12 +3875,24 @@ input[type="range"]::-ms-thumb {
     function usethistemplate(type){
        if (type == "bubble") {
            requestcreatenewfilefortemplatecode(bubblesrcdoccontentcode);
+       }else if (type == "green") {
+           requestcreatenewfilefortemplatecode(greensrcdoccontentcode);
+       }else if (type == "blue") {
+           requestcreatenewfilefortemplatecode(bluesrcdoccontent);
+       }else if (type == "darkbubble"){
+           requestcreatenewfilefortemplatecode(darkbubblesrcdoccontent);
        }
     }
     function copythistemplatecode(type, targetElement){
         let typecode = "";
         if (type == "bubble"){
             typecode = bubblesrcdoccontentcode;
+        }else if (type == "green"){
+            typecode = greensrcdoccontentcode;
+        }else if (type == "blue"){
+            typecode = bluesrcdoccontent;
+        }else if (type == "darkbubble"){
+            typecode = darkbubblesrcdoccontent;
         }
         try {
     const newtextarea = document.createElement('textarea');
@@ -6091,6 +6850,10 @@ codesearchresults.style.display = "none";
         "/:img": {
         firstpart: '<image src="',
         seccondpart: '">'
+        },
+        "/* ": {
+           firstpart: '/*',
+           seccondpart: '*/'
         }
     }
         // Iteriere durch alle Kommandos und ersetze sie
