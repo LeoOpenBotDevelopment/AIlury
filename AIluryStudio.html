@@ -1280,7 +1280,7 @@
     transform: translateX(0);
   }
 }
-    .overlay-container {
+    .overlay-container, .overlay5-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -1294,12 +1294,12 @@
       animation: swipein 0.5s;
            transition: 0.3s;
         }
-        .sidebarenabled .overlay-container {
+        .sidebarenabled .overlay-container, .sidebarenabled .overlay5-container {
             width: 70vw;
             left: 30vw;
             right: 0;
         }
-    .content-container {
+    .content-container, .content5-container {
             border: 1px solid var(--rectangleborder);
             background-color: var(--contentcontainer-color);
             padding: 20px;
@@ -1316,7 +1316,7 @@
       overflow-y: scroll;
       transition: 0.3s;
         }
-        .sidebarenabled .content-container {
+        .sidebarenabled .content-container, .sidebarenabled .content5-container{
            width: 70vw;
            height: 100vh;
            grid-template-columns: repeat(2, 1fr);
@@ -1332,7 +1332,7 @@
            /*left: 30vw;*/
         }
         @media(max-width: 800px){
-            .sidebarenabled .content-container {
+            .sidebarenabled .content-container, .sidebarenabled .content5-container {
     width: 70vw;
     height: 100vh;
     grid-template-columns: repeat(2, 1fr);
@@ -1343,43 +1343,6 @@
     transition: 0.3s;
     border-radius: 0;
             }
-        }
-    .commandsoverlay-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--overlaybackground-color); /* Transparente schwarze Wand */
-            display: none;/*flex*/
-            justify-content: center;
-            align-items: center;
-      z-index: 1000;
-      animation: swipein 0.5s;
-      transition: 0.3s;
-        }
-        .sidebarenabled .commandsoverlay-container {
-            width: 70vw;
-            height: 100vh;
-            grid-template-columns: repeat(2, 1fr);
-            overflow-y: auto;
-            right: 0;
-            left: 30vw;
-            transition: 0.3s;
-    }
-    .commandsoverlay-container .commandsdisplay-container {
-            border: 1px solid var(--rectangleborder);
-            background-color: var(--contentcontainer-color);
-            padding: 20px;
-            /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);*/ /* Box Shadow */
-            border-radius: 5px;
-            width: 80vw;
-            max-width: 1200px;
-            margin-top: 20px;
-            position: relative;
-      max-height: 95vh;
-      overflow-y: scroll;
-      transition: 0.3s;
         }
 
         .sidebarenabled .commandsdisplay-container {
@@ -1396,7 +1359,7 @@
             border-radius: 0;
             transition: 0.3s;
         }
-        .theme-overlay{
+        .theme-overlay, .commandsoverlay-container, .singsoverlay-container{
             position: fixed;
             top: 0;
             left: 0;
@@ -1410,16 +1373,15 @@
             animation: swipein 0.5s;
             transition: 0.3s;
         }
-        .sidebarenabled .theme-overlay {
+        .sidebarenabled .theme-overlay, .sidebarenabled .commandsoverlay-container, .sidebarenabled .topandbottomsignsdisplay-container {
             width: 70vw;
             height: 100vh;
-            grid-template-columns: repeat(2, 1fr);
             overflow-y: auto;
             right: 0;
             left: 30vw;
             transition: 0.3s;
         }
-       .theme-option-container {
+       .theme-option-container, .topandbottomsignsdisplay-container, .commandsdisplay-container {
             border: 1px solid var(--rectangleborder);
             background-color: var(--contentcontainer-color);
             padding: 20px;
@@ -1434,10 +1396,9 @@
             transition: 0.3s;
        }
 
-       .sidebarenabled .theme-option-container {
+       .sidebarenabled .theme-option-container, .sidebarenabled .topandbottomsignsdisplay-container, .sidebarenabled .commandsdisplay-container{
             width: 70vw;
 height: 100vh;
-grid-template-columns: repeat(2, 1fr);
 overflow-y: auto;
 right: 0;
 left: 0;
@@ -1451,56 +1412,13 @@ border-left: none;
 transition: 0.3s;
 }
 
-    .singsoverlay-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--overlaybackground-color); /* Transparente schwarze Wand */
-            display: none;/*flex*/
-            justify-content: center;
-            align-items: center;
-      z-index: 1000;
-      animation: swipein 0.5s;
-      transition: 0.3s;
-        }
         .sidebarenabled .singsoverlay-container {
     width: 70vw;
     left: 30vw;
     right: 0;
 }
-    .singsoverlay-container .topandbottomsignsdisplay-container {
-            border: 1px solid var(--rectangleborder);
-            background-color: var(--contentcontainer-color);
-            padding: 20px;
-            /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);*/ /* Box Shadow */
-            border-radius: 5px;
-            width: 80vw;
-            max-width: 1200px;
-            margin-top: 20px;
-            position: relative;
-      max-height: 95vh;
-      overflow-y: scroll;
-      transition: 0.3s;
-        }
-        .sidebarenabled .topandbottomsignsdisplay-container {
-            width: 70vw;
-            height: 100vh;
-            grid-template-columns: repeat(2, 1fr);
-            overflow-y: auto;
-            right: 0;
-            left: 0;
-            margin-top: 0;
-            border: none;
-            max-height: 100vh;
-            max-width: none;
-            border-radius: 0;
-            border: 1px solid var(--rectangleborder);
-            border-left: none;
-            transition: 0.3s;
-        }
-        .top-bar {
+
+        .top-bar, .top5-bar {
             grid-column: 1 / -1; /* Macht die Top-Bar über die gesamte Breite des Containers */
             width: 100%;
             background-color: var(--contentcontainer-color);
@@ -1512,7 +1430,7 @@ transition: 0.3s;
         }
 
 
-        .overlay-close-btn, .overlay-back-btn, .upload-btn, .viewthisfile, .create-file-btn {
+        .overlay-close-btn, .overlay-back-btn, .upload-btn, .viewthisfile, .create-file-btn, .overlay5-close-btn, .overlay5-back-btn {
             /*background-color: var(--contentcontainer-color);
             border: 1px solid var(--rectangleborder);
             color: var(--overlaycolor-color);*/
@@ -1524,10 +1442,10 @@ transition: 0.3s;
             border-radius: 5px;
             transition: 0.3s;
         }
-        .overlay-close-btn {
+        .overlay-close-btn, .overlay5-close-btn{
           display: inline-block;
         }
-        .overlay-back-btn {
+        .overlay-back-btn, .overlay5-back-btn {
           display: none;
         }
         @media(max-width: 700px){
@@ -1540,7 +1458,7 @@ transition: 0.3s;
         }
 
 
-        .rectangle {
+        .rectangle, .halfrectagle {
             background-color: var(--contentcontainer-color); /* --lightgrey-color */
             border: 1px solid var(--rectangleborder);
             display: flex;
@@ -1558,6 +1476,16 @@ transition: 0.3s;
             text-overflow: ellipsis;
             transition: 0.3s;
         }
+        .halfrectagle span {
+            z-index: 2;
+        }
+        .halfrectagle iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 200px;
+            height: 150px;
+        }
         @keyframes easeinanimationfrb {
             0% {
                 transform: translateY(-100%);
@@ -1568,7 +1496,7 @@ transition: 0.3s;
                 opacity: 1;
             }
         }
-        .rectangle-buttons {
+        .rectangle-buttons, .halfrectagle-buttons {
             position: absolute;
             top: 5px;
             right: 5px;
@@ -1576,17 +1504,17 @@ transition: 0.3s;
             transition: 0.3s;
         }
 
-        .rectangle:hover .rectangle-buttons {
+        .rectangle:hover .rectangle-buttons, .halfrectagle:hover .halfrectagle-buttons {
             display: flex;
             gap: 10px;
         }
 
-        .rectangle.enlarged .rectangle-buttons {
+        .rectangle.enlarged .rectangle-buttons, .halfrectagle.enlarged .halfrectagle-buttons{
             display: flex;
             gap: 10px;
         }
 
-        .download-btn, .delete-btn, .close, .edit-btn{
+        .download-btn, .delete-btn, .close, .edit-btn, .use-btn, .closetemplate{
             background-color: var(--contentcontainer-color);/*--lightgrey-color*/
             border: 1px solid var(--rectangleborder);/*--overlayborder-color*/
             color: var(--overlaycolor-color);
@@ -1645,7 +1573,7 @@ transition: 0.3s;
             display: inline-block;
         }
 
-        .rectangle.enlarged {
+        .rectangle.enlarged, .halfrectagle.enlarged {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -1659,8 +1587,13 @@ transition: 0.3s;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
             transition: 0.3s;
         }
+        
+        .halfrectagle.enlarged iframe {
+    height: 80vh;
+    width: 80vw;
+}
 
-        .sidebarenabled .rectangle.enlarged {
+        .sidebarenabled .rectangle.enlarged, .sidebarenabled .halfrectagle.enlarged {
             transform: none;
             top: 0;
             right: 0;
@@ -1672,8 +1605,12 @@ transition: 0.3s;
             border-left: none;
             transition: 0.3s;
         }
+        .sidebarenabled .halfrectagle.enlarged iframe{
+            height: 100vh;
+width: 70vw;
+        }
 
-        .close {
+        .close, .closetemplate {
             position: absolute;
             top: 5px;
             left: 5px;
@@ -1681,7 +1618,7 @@ transition: 0.3s;
             transition: 0.3s;
         }
 
-        .rectangle.enlarged .close {
+        .rectangle.enlarged .close,  .halfrectagle.enlarged .closetemplate{
             display: block;
         }
 
@@ -1708,10 +1645,10 @@ transition: 0.3s;
                 grid-template-columns: repeat(2, 1fr);
                 overflow-y: auto;
             }
-            .rectangle{
+            .rectangle, .halfrectagle{
                transition: 0.5s;
             }
-            .rectangle.enlarged {
+            .rectangle.enlarged, .halfrectagle.enlarged{
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -1724,6 +1661,10 @@ transition: 0.3s;
                 background-position: center;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
             }
+            .halfrectagle.enlarged iframe {
+    height: 100vh;
+    width: 100vw;
+}
         }
 
         @media (max-width: 500px) {
@@ -2277,7 +2218,7 @@ font-weight: bold;
 border: none;
 display: none;
     }
-    .smallsidebarenabled #closemenuforsmallscreen {
+        .smallsidebarenabled #closemenuforsmallscreen {
         display: flex;
     }
     .themeoption{
@@ -2398,7 +2339,6 @@ input[type="range"]::-ms-thumb {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
     </style>
 
 </head>
@@ -2413,6 +2353,7 @@ input[type="range"]::-ms-thumb {
             <button onclick="showallfilescontainer()">files</button>
             <button id="scrollviewintoviewbtn" onclick="scrollviewintoview()">view</button>
             <button onclick="showthemeoverlay()">theme</button>
+            <button onclick="showalltemplatecontainer()">templates</button>
         </div>
         <h3>files</h3>
         <div class="sidebarbardivbuttondiv sidebarbardivbuttondiv1">
@@ -2639,7 +2580,7 @@ input[type="range"]::-ms-thumb {
         delete comments
     </div>
   </div>
-  <div class="commandsoverlay-container"onclick="hideelement('class', 'commandsoverlay-container', event)">
+  <div class="commandsoverlay-container" onclick="hideelement('class', 'commandsoverlay-container', event)">
       <div class="commandsdisplay-container">
           <button class="closecommandoverlaybtn" onclick="hidecommandoverlay()">×</button>
        <br>
@@ -2722,7 +2663,7 @@ input[type="range"]::-ms-thumb {
 <li><span class="command">/:image</span>  <button class="Symbol-Span">image tag</button></li></ul>
       </div>
   </div>
-<div class="singsoverlay-container"onclick="hideelement('class', 'singsoverlay-container', event)">
+<div class="singsoverlay-container" onclick="hideelement('class', 'singsoverlay-container', event)">
       <div class="topandbottomsignsdisplay-container">
           <button class="closecommandoverlaybtn" onclick="hidesignexplenationoverlay()">×</button>
        <br>
@@ -2803,7 +2744,30 @@ input[type="range"]::-ms-thumb {
             </div>
         </div>
     </div>
+  <div class="overlay5-container" onclick="hideelement('class', 'overlay5-container', event)">
+      <!-- Content Container (mit Top Bar drin) -->
+      <div class="content5-container">
+          <!-- Top Bar -->
+          <div class="top5-bar">
+              <button class="overlay5-back-btn" onclick="hideelement('class', 'overlay5-container', event)">×</button>
+              <button class="overlay5-close-btn" onclick="hideelement('class', 'overlay5-container', event)">close</button>
+              <button class="create-file-btn" onclick="requestcreatenewfile()">add file</button>
+          </div>
 
+          <!-- Rechtecke (Inhalt) -->
+
+          <div class="halfrectagle">
+              <iframe frameborder="0" id="bubbleiframe" srcdoc="<button>hi</button>"></iframe>
+              <span>bubble</span>
+              <div class="halfrectagle-buttons">
+                  <button class="use-btn enlargetemplatebtn" id="enlargetemplatebtn">enlarge</button>
+                  <button class="use-btn" onclick="usethistemplate('bubble')">add</button>
+                  <button class="use-btn" onclick="copythistemplatecode('bubble', this)">copy</button>
+              </div>
+              <button class="closetemplate">×</button>
+          </div>
+      </div>
+  </div>
     <div id="theme-overlay" class="theme-overlay" onclick="hideelement('class', 'theme-overlay', event)">
         <div class="theme-option-container">
             <button class="closecommandoverlaybtn" onclick="hidethemeoverlay()">×</button>
@@ -2937,6 +2901,259 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+    const bubblesrcdoccontentcode = `<!DOCTYPE html>
+<lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIlury Studio - Dein Code Editor</title>
+    <style>
+        :root {
+            --color-titel: #fff;
+            --color-bg-light: #f8f9fa;
+            --color-bg-dark: #1a1a1a;
+            --color-text-dark: #f5f5f5;
+            --color-accent: #ff6f61;
+            --color-gradient-1: linear-gradient(135deg, #ff6f61, #ffa07a);
+            --color-gradient-2: linear-gradient(135deg, #6a5acd, #9370db);
+            --color-gradient-3: linear-gradient(135deg, #20b2aa, #48d1cc);
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header, main, footer {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 700px;
+            padding: 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3rem;
+            background: var(--color-titel);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--color-gradient-2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            padding: 5rem 1rem;
+        }
+
+        .feature {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--color-gradient-1);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+        }
+
+        .feature:nth-child(odd) {
+            background: var(--color-gradient-2);
+        }
+
+        .feature:nth-child(even) {
+            background: var(--color-gradient-3);
+        }
+
+        footer {
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        /* Shapes */
+        .abstract-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .shape-1 { width: 300px; height: 300px; background: var(--color-gradient-1); top: 10%; left: 5%; }
+        .shape-2 { width: 200px; height: 200px; background: var(--color-gradient-2); top: 50%; left: 80%; animation-delay: 2s; }
+        .shape-3 { width: 400px; height: 400px; background: var(--color-gradient-3); top: 70%; left: 30%; animation-delay: 4s; }
+        .shape-4 { width: 250px; height: 250px; background: var(--color-gradient-2); bottom: 15%; right: 10%; animation-delay: 6s; }
+        .shape-5 { width: 350px; height: 350px; background: var(--color-gradient-1); top: 5%; right: 15%; animation-delay: 8s; }
+
+        /* Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="abstract-shapes">
+        <!-- Shapes -->
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1 class="title">AIlury Studio</h1>
+            <p class="subtitle">A Bubble Template from AIlury Studio</p>
+            <a class="cta-btn">Explore</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="feature">
+            <h2>section 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+        <section class="feature">
+            <h2>section 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+        <section class="feature">
+            <h2>section 3</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Lorem ipsum dolor.</p>
+    </footer>
+</body>
+</html>`;
+    function enlargehalfrectangleeventlistener() {
+    document.querySelectorAll('.halfrectagle').forEach((newRectangle) => {
+        const closeTemplate = newRectangle.querySelector('.closetemplate');
+        const enlargeTemplateBtn = newRectangle.querySelector('.halfrectagle-buttons .enlargetemplatebtn');
+
+        if (closeTemplate) {
+            closeTemplate.addEventListener('click', () => {
+                newRectangle.classList.remove('enlarged');
+            });
+        }
+
+        if (enlargeTemplateBtn) {
+            enlargeTemplateBtn.addEventListener('click', () => {
+                newRectangle.classList.add('enlarged');
+            });
+        }
+    });
+}
+
+
+    function givebubbleiframeansrcdoccontent() {
+        const bubbleiframe = document.getElementById('bubbleiframe');
+        bubbleiframe.srcdoc = bubblesrcdoccontentcode;
+    }
+    function typeEffect(element, newText, callback) {
+    // Holen des aktuellen Textes vom Element
+    const originalText = element.textContent || ""; // Sicherstellen, dass kein Nullwert verarbeitet wird
+
+    let index = originalText.length;
+
+    // Schritt 1: Zeichen für Zeichen abbauen
+    function removeText() {
+        if (index > 0) {
+            element.textContent = originalText.slice(0, --index);
+            setTimeout(removeText, 100); // Geschwindigkeit anpassen
+        } else {
+            // Wenn der Text leer ist, Schritt 2 starten
+            buildText();
+        }
+    }
+
+    let buildIndex = 0;
+
+    // Schritt 2: Zeichen für Zeichen aufbauen
+    function buildText() {
+        if (buildIndex < newText.length) {
+            element.textContent += newText.charAt(buildIndex++);
+            setTimeout(buildText, 100); // Geschwindigkeit anpassen
+        } else if (callback) {
+            // Callback ausführen, wenn der neue Text vollständig ist
+            callback();
+        }
+    }
+
+    // Tipp-Effekt starten
+    removeText();
+}
+    enlargehalfrectangleeventlistener();
+
+    function usethistemplate(type){
+       if (type == "bubble") {
+           requestcreatenewfilefortemplatecode(bubblesrcdoccontentcode);
+       }
+    }
+    function copythistemplatecode(type, targetElement){
+        let typecode = "";
+        if (type == "bubble"){
+            typecode = bubblesrcdoccontentcode;
+        }
+        try {
+    const newtextarea = document.createElement('textarea');
+    newtextarea.value = typecode;
+    document.body.appendChild(newtextarea);
+    newtextarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(newtextarea);
+    typeEffect(targetElement, "copied", () => {
+        setTimeout(() => {
+            typeEffect(targetElement, "copy", () => {
+                typecode = "";
+            });
+        }, 1000);
+    });
+} catch (error) {
+    const thiserrorwascatched = error;
+}
+    }
+    givebubbleiframeansrcdoccontent();
     let themetoedit = document.querySelector(`.custom-theme`);
     function removeThemeProperties() {
   if (!themetoedit) {
@@ -3086,6 +3303,15 @@ function removeallthemes() {
         }
         closesidebaronsmallscreensizes();
     }
+    function showalltemplatecontainer() {
+    if (document.querySelector('.overlay5-container').style.display != "flex") {
+        document.querySelector('.overlay5-container').style.display = "flex";
+        document.querySelector('.overlay5-container').style.animation = "none";
+        void document.querySelector('.overlay5-container').offsetWidth; // Trigger reflow
+        document.querySelector('.overlay5-container').style.animation = "swipein 0.5s ease-out";
+    }
+    closesidebaronsmallscreensizes();
+}
     function closesidebaronsmallscreensizes() {
         if (document.querySelector('.divcodeeditor-container').classList.contains('smallsidebarenabled')){
             document.querySelector('.divcodeeditor-container').classList.remove('smallsidebarenabled');
@@ -3531,6 +3757,14 @@ rectangle.remove();
                         }
             });
         }
+        function requestcreatenewfilefortemplatecode(codetext) {
+    showPrompt('file path:', (filename) => {
+        let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
+        if (!allfilenames.includes(filename)) {
+            createNewFilefortemplatecode(filename, codetext);
+        }
+    });
+}
         async function addNewFile(filename, file) {
             let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
             if (allfilenames.includes(filename)){
@@ -3794,6 +4028,146 @@ await updateDataIndex('nav-bar');
             newRectangle.id = "rectangle" + newNavDot.getAttribute('data-index');
             navBarremoveeventlistenerscrollandadditagain();
         }
+async function createNewFilefortemplatecode(filename, optionalText = '') {
+    const container = document.getElementById('container');
+    const navBar = document.getElementById('nav-bar');
+
+    // Create a new section
+    const newSection = document.createElement('div');
+    newSection.classList.add('section');
+    newSection.id = `section${container.children.length}`;
+    newSection.innerHTML = `
+        <div class="editor-selected-line-btns">
+            <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button>
+            <button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button>
+            <button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button>
+            <button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button>
+            <button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button>
+            <button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button>
+            <button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button>
+            <input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕">
+        </div>
+        <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
+        </div>
+        <div class="code-editor-btns">
+            <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button>
+            <button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button>
+            <button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button>
+            <button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button>
+            <button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button>
+            <button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button>
+            <button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button>
+            <button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button>
+            <input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number">
+        </div>`;
+    container.appendChild(newSection);
+
+    lineoptioncontainerupdate(newSection.querySelector('.code-editor-container'));
+
+    // Create and add new navigation dot
+    const newNavDot = document.createElement('div');
+    newNavDot.classList.add('nav-dot', 'filedot');
+    newNavDot.setAttribute('data-index', container.children.length - 1);
+    newNavDot.innerHTML = `<input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">`;
+    newNavDot.setAttribute('onclick', 'dotonclick()');
+    navBar.appendChild(newNavDot);
+
+    let filePathInput = newNavDot.querySelector('.filePathInput');
+    let timeout;
+
+    filePathInput.addEventListener('input', (event) => {
+        handleFileNameInputChange(event.target.parentElement);
+    });
+
+    filePathInput.addEventListener('mousedown', startOverlayEnlarge);
+    filePathInput.addEventListener('touchstart', startOverlayEnlarge);
+    filePathInput.addEventListener('mouseup', stopOverlayEnlarge);
+    filePathInput.addEventListener('mouseleave', stopOverlayEnlarge);
+    filePathInput.addEventListener('touchend', stopOverlayEnlarge);
+
+    function startOverlayEnlarge() {
+        timeout = setTimeout(() => {
+            document.querySelector('.overlay-container').style.display = "flex";
+            document.querySelector('.overlay-container').style.animation = "none";
+            void document.querySelector('.overlay-container').offsetWidth; // Trigger reflow
+            document.querySelector('.overlay-container').style.animation = "swipein 0.5s ease-out";
+        }, 700);
+    }
+
+    function stopOverlayEnlarge() {
+        clearTimeout(timeout); // Stop timer if interaction is too short
+    }
+
+    // Add file path to datalist
+    const dataList = document.getElementById('filenameoptions');
+    const option = document.createElement('option');
+    option.value = filename;
+    option.id = `option${newNavDot.getAttribute('data-index')}`;
+    dataList.appendChild(option);
+
+    // Add overlay rectangle with delete and download functionality
+    const overlayContainer = document.querySelector('.overlay-container .content-container');
+    const newRectangle = document.createElement('div');
+    newRectangle.classList.add('rectangle');
+    newRectangle.innerHTML = `<span>${filename}</span>
+<div class="rectangle-buttons">
+    <button class="download-btn" onclick="downloadFile('${filename}')">Download</button>
+    <button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
+    <button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
+</div>
+<button class="close">×</button>`;
+    overlayContainer.appendChild(newRectangle);
+
+    newRectangle.querySelector('.download-btn').onclick = () => {
+        downloadFile(filename);
+    };
+
+    newRectangle.querySelector('.close').addEventListener('click', () => {
+        newRectangle.classList.remove('enlarged');
+    });
+
+    // Touch and mouse handling for enlarging effect
+    let timer;
+    newRectangle.addEventListener('mousedown', startEnlarge);
+    newRectangle.addEventListener('touchstart', startEnlarge);
+    newRectangle.addEventListener('mouseup', stopEnlarge);
+    newRectangle.addEventListener('mouseleave', stopEnlarge);
+    newRectangle.addEventListener('touchend', stopEnlarge);
+
+    function startEnlarge() {
+        timer = setTimeout(() => {
+            newRectangle.classList.add('enlarged');
+        }, 700);
+    }
+
+    function stopEnlarge() {
+        clearTimeout(timer);
+    }
+
+    let sidebarfilelink = document.createElement('button');
+    sidebarfilelink.textContent = filename;
+    sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
+    sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
+
+    document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
+
+    // Optional: Add text content as individual lines
+    const lines = optionalText.split('\n');
+    const editorContainer = newSection.querySelector('.code-editor-container');
+    lines.forEach((lineText) => {
+        const line = document.createElement('div');
+        line.classList.add('code-editor-line');
+        line.setAttribute('contenteditable', 'true');
+        line.innerText = lineText;
+        editorContainer.appendChild(line);
+    });
+
+    // Update indices and numbering
+    await updateDataIndex('nav-bar');
+    newNavDot.classList.add('nav-dot', 'navdot' + newNavDot.getAttribute('data-index'));
+    newRectangle.id = "rectangle" + newNavDot.getAttribute('data-index');
+    navBarremoveeventlistenerscrollandadditagain();
+}
 
 
 
