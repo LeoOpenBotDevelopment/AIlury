@@ -6833,8 +6833,8 @@ codesearchresults.style.display = "none";
         firstpart: '<image src="',
         seccondpart: '">'
         },
-        "/* ": {
-           firstpart: '/*',
+        "/*": {
+           firstpart: '',
            seccondpart: '*/'
         }
     }
@@ -6846,12 +6846,20 @@ codesearchresults.style.display = "none";
     for (const command in shortCutCommands) {
             const firstpart = shortCutCommands[command].firstpart;
             const seccondpart = shortCutCommands[command].seccondpart;
-            insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
+            if (command == "/*"{
+                insertClosingCharacter("", firstpart, seccondpart);
+            }else {
+                insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
+            }
         }
     for (const command in shortCutCommands) {
             const firstpart = shortCutCommands[command].firstpart;
             const seccondpart = shortCutCommands[command].seccondpart;
-            insertClosingCharacter(command, firstpart, seccondpart);
+            if (command == "/*"{
+                insertClosingCharacter("", firstpart, seccondpart);
+            }else {
+                insertClosingCharacter(command, firstpart, seccondpart);
+            }
         }
 
     }
