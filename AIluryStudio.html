@@ -6719,11 +6719,7 @@ codesearchresults.style.display = "none";
         if (!text.includes(replacetext)) return; // Nur ersetzen, wenn das Kommando vorhanden ist
 
         let textAfterCursor = text.substring(cursorOffset);
-        if (replacetext == "/*") {
-            celine.textContent = text.substring(0, cursorOffset) + openingChar + closingChar + textAfterCursor;
-        }else {
-            celine.textContent = text.substring(0, cursorOffset).replace(replacetext, '') + openingChar + closingChar + textAfterCursor;
-        }
+        celine.textContent = text.substring(0, cursorOffset).replace(replacetext, '') + openingChar + closingChar + textAfterCursor;
 
         // Cursor zwischen den Zeichen positionieren
         const newCursorOffset = cursorOffset + (openingChar.length - replacetext.length);
@@ -6832,10 +6828,6 @@ codesearchresults.style.display = "none";
         "/:img": {
         firstpart: '<image src="',
         seccondpart: '">'
-        },
-        "/*": {
-           firstpart: '',
-           seccondpart: '*/'
         }
     }
         // Iteriere durch alle Kommandos und ersetze sie
