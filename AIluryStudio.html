@@ -6872,6 +6872,16 @@ codesearchresults.style.display = "none";
     }
     return null;  // Falls nur Leerzeichen vorhanden sind
 }
+function getFirstNonSpaceCharInTextaftercursor(text) {
+    // Den Text nach vorn durchlaufen und das letzte Zeichen finden, das kein Leerzeichen ist
+    for (let i = text.length - 1; i >= 0; i++) {
+        if (text[i] !== ' ') {
+            return text[i];
+        }
+    }
+    return null; // Falls nur Leerzeichen vorhanden sind
+}
+
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
             let celine = section.querySelector('.code-editor-line:focus');
@@ -6880,7 +6890,6 @@ codesearchresults.style.display = "none";
                 event.preventDefault(); // Verhindert das Standardverhalten der Enter-Taste
 
                 if (celine) {
-                    let lastsignincelineelement = getLastNonSpaceCharInText(celine.textContent);
                     correntids += 1;
                     const newid = correntids;
 
@@ -6893,6 +6902,8 @@ codesearchresults.style.display = "none";
                     const textBehindCursor = text.substring(cursorOffset);
                     celine.textContent = text.substring(0, cursorOffset);
 
+                    let lastsignincelineelement = getLastNonSpaceCharInText(celine.textContent);
+                    let firstsignintextbehindcursor = getFirstNonSpaceCharInTextaftercursor(textBehindCursor);
                     // Berechne führende Leerzeichen oder Tabs
                     let spaces = "";
                     for (let i = 0; i < celine.textContent.length; i++) {
@@ -6903,22 +6914,36 @@ codesearchresults.style.display = "none";
                             break;
                         }
                     }
-
+                    let firstspaces = spaces;
+                    const openingsignsincssandjavascript = ["{", "[", "(", ":"];
+                    const clisingsignsincssandjavascript = ["}", "]", ")", "\""];
+if (openingsignsincssandjavascript.includes(lastsignincelineelement)) {
+    spaces += "\u00A0\u00A0\u00A0\u00A0";
+}
                     // Neue Zeile erstellen
                     const newline = document.createElement('div');
                     newline.setAttribute('contenteditable', 'true');
                     newline.id = newid;
                     newline.classList.add('code-editor-line');
-                    const openingsignsincssandjavascript = ["{", "[", "(", ":"];
-                    let extraspacesfornewlineifoil = "";
-                    if (openingsignsincssandjavascript.includes(lastsignincelineelement)){
-                        extraspacesfornewlineifoil = "/u00A0/u00A0/u00A0/u00A0";
+                    
+                    if (clisingsignsincssandjavascript.includes(firstsignintextbehindcursor)){
+                        newline.textContent = spaces;
+                    }else {
+                        newline.textContent = spaces + textBehindCursor;
                     }
-                    newline.textContent = spaces + extraspacesfornewlineifoil + textBehindCursor;
+                    
 
                     // Neue Zeile einfügen
                     celine.insertAdjacentElement('afterend', newline);
-
+                    
+                    if (clisingsignsincssandjavascript.includes(firstsignintextbehindcursor)){
+                        const newline2 = document.createElement('div');
+newline2.setAttribute('contenteditable', 'true');
+newline2.id = parseInt(newid);
+newline2.classList.add('code-editor-line');
+newline2.textContent = firstspaces + textBehindCursor;
+newline.insertAdjacentElement('afterend', newline2);
+                    }
                     // Fokus und Cursor in die neue Zeile setzen
                     newline.focus();
                     const newRange = document.createRange();
@@ -7072,12 +7097,13 @@ handleBackspaceWithMatchingCharacters(event);
              let openTagMatch = text.match(/<(\w+)([^>]*)$/);
 
              if (openTagMatch) {
-                 event.preventDefault(); // Verhindert das Standardverhalten
 
                  // Tag automatisch schließen
                  let tagName = openTagMatch[1];
                  if (selfClosingTags.includes(tagName)){
                      return;
+                 }else {
+                     event.preventDefault();
                  }
                  let tagEnd = `</${tagName}>`;
                  // Fügen Sie den schließenden Tag direkt nach dem Cursor ein
