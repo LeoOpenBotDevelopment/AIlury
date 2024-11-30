@@ -6863,15 +6863,24 @@ codesearchresults.style.display = "none";
 }
 
 
+        function getLastNonSpaceCharInText(text) {
+    // Den Text nach vorn durchlaufen und das letzte Zeichen finden, das kein Leerzeichen ist
+    for (let i = text.length - 1; i >= 0; i--) {
+        if (text[i] !== ' ') {
+            return text[i];
+        }
+    }
+    return null;  // Falls nur Leerzeichen vorhanden sind
+}
         // Enter- und Backspace-Event-Listener
         function handleKeyDown(event) {
             let celine = section.querySelector('.code-editor-line:focus');
-
 
             if (event.key === 'Enter') {
                 event.preventDefault(); // Verhindert das Standardverhalten der Enter-Taste
 
                 if (celine) {
+                    let lastsignincelineelement = getLastNonSpaceCharInText(celine.textContent);
                     correntids += 1;
                     const newid = correntids;
 
@@ -6900,7 +6909,12 @@ codesearchresults.style.display = "none";
                     newline.setAttribute('contenteditable', 'true');
                     newline.id = newid;
                     newline.classList.add('code-editor-line');
-                    newline.textContent = spaces + textBehindCursor;
+                    const openingsignsincssandjavascript = ["{", "[", "(", ":"];
+                    let extraspacesfornewlineifoil = "";
+                    if (openingsignsincssandjavascript.includes(lastsignincelineelement)){
+                        extraspacesfornewlineifoil = "/u00A0/u00A0/u00A0/u00A0";
+                    }
+                    newline.textContent = spaces + extraspacesfornewlineifoil + textBehindCursor;
 
                     // Neue Zeile einfügen
                     celine.insertAdjacentElement('afterend', newline);
@@ -7030,6 +7044,24 @@ handleBackspaceWithMatchingCharacters(event);
             }*/
 
           if (event.key === '>') {
+             const selfClosingTags = [
+    "br",
+    "img",
+    "input",
+    "hr",
+    "meta",
+    "link",
+    "area",
+    "base",
+    "source",
+    "track",
+    "col",
+    "wbr",
+    "command",
+    "basefont",
+    "frame"
+];
+
              let selection = window.getSelection();
              let range = selection.getRangeAt(0);
              let cursorOffset = range.startOffset;
@@ -7044,6 +7076,9 @@ handleBackspaceWithMatchingCharacters(event);
 
                  // Tag automatisch schließen
                  let tagName = openTagMatch[1];
+                 if (selfClosingTags.includes(tagName)){
+                     return;
+                 }
                  let tagEnd = `</${tagName}>`;
                  // Fügen Sie den schließenden Tag direkt nach dem Cursor ein
                  let textAfterCursor = celine.textContent.substring(cursorOffset);
