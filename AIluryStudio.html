@@ -6719,11 +6719,11 @@ codesearchresults.style.display = "none";
         if (!text.includes(replacetext)) return; // Nur ersetzen, wenn das Kommando vorhanden ist
 
         let textAfterCursor = text.substring(cursorOffset);
-        celine.textContent =
-            text.substring(0, cursorOffset).replace(replacetext, '') +
-            openingChar +
-            closingChar +
-            textAfterCursor;
+        if (replacetext == "/*") {
+            celine.textContent = text.substring(0, cursorOffset) + openingChar + closingChar + textAfterCursor;
+        }else {
+            celine.textContent = text.substring(0, cursorOffset).replace(replacetext, '') + openingChar + closingChar + textAfterCursor;
+        }
 
         // Cursor zwischen den Zeichen positionieren
         const newCursorOffset = cursorOffset + (openingChar.length - replacetext.length);
@@ -6846,20 +6846,12 @@ codesearchresults.style.display = "none";
     for (const command in shortCutCommands) {
             const firstpart = shortCutCommands[command].firstpart;
             const seccondpart = shortCutCommands[command].seccondpart;
-            if (command == "/*"){
-                insertClosingCharacter("", firstpart, seccondpart);
-            }else {
-                insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
-            }
+            insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
         }
     for (const command in shortCutCommands) {
             const firstpart = shortCutCommands[command].firstpart;
             const seccondpart = shortCutCommands[command].seccondpart;
-            if (command == "/*"){
-                insertClosingCharacter("", firstpart, seccondpart);
-            }else {
-                insertClosingCharacter(command, firstpart, seccondpart);
-            }
+            insertClosingCharacter(command, firstpart, seccondpart);
         }
 
     }
