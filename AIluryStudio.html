@@ -765,6 +765,9 @@
       .importantpin{
           background: rgba(255, 0, 0, 0.5);/*#F09286*/
       }
+      .importantsearchresult{
+          background: rgba(255, 0, 0, 0.5);
+      }
       .code-editor-line.selected {
             background: var(--selected-color);
             transform: translateX(1.5em); /* Slight movement to the right */
@@ -5727,11 +5730,18 @@ function performLongPressAction(element) {
                 const parentSection = thiselementhasthevalue.closest(".section");
                 const sectionlinecontainer = parentSection.querySelector('.code-editor-container');
 
-                sectionlinecontainer.querySelectorAll(".code-editor-line").forEach(lineelement => {
+                const importantElements = sectionlinecontainer.querySelectorAll('.code-editor-line.importantpin');
+                const nonImportantElements = sectionlinecontainer.querySelectorAll('.code-editor-line:not(.importantpin)');
+                const combinedList = [...importantElements, ...nonImportantElements];
+
+                combinedList.forEach(lineelement => {
                     if (lineelement.textContent.toLowerCase().includes(inputvalue)) {
 
                         const newspan = document.createElement('span');
-                        newspan.classList.add('result');  
+                        newspan.classList.add('result');
+                        if (lineelement.classList.contains('importantpin')){
+                            newspan.classList.add('importantsearchresult');
+                        }
                         newspan.innerText = lineelement.textContent;
                         codesearchresults.appendChild(newspan);  
 
