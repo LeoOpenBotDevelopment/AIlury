@@ -2317,6 +2317,70 @@ input[type="range"]::-ms-thumb {
 .result.importantsearchresult{
     background: rgba(255, 0, 0, 0.5);
 }
+.sidebarfilelinklink {
+  display: flex; /* Macht den Button zu einem flexbox Container */
+  justify-content: space-between; /* Erstes Element links, letztes Element rechts */
+  align-items: center; /* Zentriert Inhalte vertikal */
+}
+
+.threedots {
+  margin-left: auto; /* Schiebt die Punkte ganz nach rechts */
+  padding: 0 10px;
+}
+
+
+
+
+
+
+
+/* Vollbild-Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0); /* Halbtransparentes Overlay */
+  display: flex;
+  justify-content: center; /* Zentrierung horizontal */
+  align-items: flex-start; /* Zentrierung vertikal starten */
+  z-index: 2000;
+}
+
+/* Options-Container */
+.options-container {
+  position: absolute;
+  background-color: var(--white-color);
+  border-radius: 8px;
+  border: 1px solid var(--rectangleborder);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 200px;
+  color: var(--black-color);
+}
+
+/* Option-Item */
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option-icon {
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  color: var(--black-color);
+}
+
+.option-text {
+  font-size: 14px;
+}
     </style>
 
 </head>
@@ -2334,9 +2398,9 @@ input[type="range"]::-ms-thumb {
         </div>
         <h3>files</h3>
         <div class="sidebarbardivbuttondiv sidebarbardivbuttondiv1">
-            <button id="sidebarfilelinklink0" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('0')">index.html</button>
-            <button id="sidebarfilelinklink1" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('1')">styles.css</button>
-            <button id="sidebarfilelinklink2" class="sidebarfilelinklink" onclick="closeeverything();editthisfile('2')">script.js</button>
+            <button id="sidebarfilelinklink0" class="sidebarfilelinklink" onclick="editthisfile('0', event)">index.html<div class="threedots">⋮</div></button>
+            <button id="sidebarfilelinklink1" class="sidebarfilelinklink" onclick="editthisfile('1', event)">styles.css<div class="threedots">⋮</div></button>
+            <button id="sidebarfilelinklink2" class="sidebarfilelinklink" onclick="editthisfile('2', event)">script.js<div class="threedots">⋮</div></button>
         </div>
     </div>
     <div class="allcontainer">
@@ -2848,6 +2912,97 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+    function createOptionsContainer(targetElement, number) {
+  console.log('done');
+  const options = [
+    { icon: "□", text: "Copy Code" },
+    { icon: "⚠", text: "Delete" },
+    { icon: "□", text: "Copy Path" },
+    { icon: "↓", text: "Download" }
+  ];
+
+  // Overlay erstellen
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  document.body.appendChild(overlay);
+
+  // Options-Container erstellen
+  const container = document.createElement("div");
+  container.className = "options-container";
+  overlay.appendChild(container); // Füge den Container hinzu, bevor die Position berechnet wird
+
+  // Optionen hinzufügen
+  options.forEach((option) => {
+    const optionItem = document.createElement("div");
+    optionItem.className = "option-item";
+
+    const icon = document.createElement("button");
+    icon.className = "option-icon";
+    icon.textContent = option.icon;
+
+    const text = document.createElement("span");
+    text.className = "option-text";
+    text.textContent = option.text;
+
+    function copytext(text) {
+        try {
+    const newtextarea = document.createElement('textarea');
+    newtextarea.value = text.trim();
+    document.body.appendChild(newtextarea);
+    newtextarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(newtextarea);
+} catch (error) {
+    const thiserrorwascatched = error;
+}
+    }
+    if (option.text == "Delete") {
+      optionItem.onclick = () => {
+          overlay.remove();
+          deletethisfile(number);
+      };
+    } else if (option.text == "Download" && targetElement.parentElement) {
+      optionItem.onclick = () => {
+          overlay.remove();
+          downloadFile(targetElement.parentElement.textContent.replace("⋮", ''));
+      };
+    } else if (option.text == "Copy Path" && targetElement.parentElement) {
+        optionItem.onclick = () => {
+            overlay.remove();
+            copytext(targetElement.parentElement.textContent.replace("⋮", ''));
+        };
+    } else if (option.text == "Copy Code" && document.querySelector('#section' + number + ' .code-editor-container')) {
+        const texttocopy = document.querySelector('#section' + number + ' .code-editor-container').textContent;
+        optionItem.onclick = () => {
+            overlay.remove();
+            copytext(texttocopy);
+        };
+    }
+    optionItem.appendChild(icon);
+    optionItem.appendChild(text);
+    container.appendChild(optionItem);
+    if (number == "0" && option.text == "Delete") {
+        container.removeChild(optionItem);
+    }
+  });
+
+  // Position des Options-Containers relativ zum Ziel-Element
+  const targetRect = targetElement.getBoundingClientRect();
+  setTimeout(() => {
+    container.style.position = "absolute";
+    container.style.top = `${targetRect.bottom + 5}px`;
+    container.style.left = `${targetRect.left + targetRect.width / 2 - container.offsetWidth / 2}px`;
+  }, 0); // Timeout, um sicherzustellen, dass das DOM das Element rendert
+
+  // Overlay bei Klick entfernen
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      overlay.remove();
+    }
+  });
+}
+
+
     function typeEffect(element, newText, callback) {
     // Holen des aktuellen Textes vom Element
     const originalText = element.textContent || ""; // Sicherstellen, dass kein Nullwert verarbeitet wird
@@ -3459,7 +3614,7 @@ rectangle.remove();
         function requestcreatenewfile() {
             showPrompt('file path:', (filename) => {
                 let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
-                if (!allfilenames.includes(filename)){
+                if (!allfilenames.includes(filename) && filename != ''){
                     createNewFile(filename);
                         }
             });
@@ -3614,8 +3769,9 @@ clearTimeout(timer);
 
 let sidebarfilelink = document.createElement('button');
 sidebarfilelink.textContent = filename;
+sidebarfilelink.innerHTML += `<div class="threedots">⋮</div>`;
 sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
-sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
+sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')}, event)`);
 
 document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
 // Update indices and numbering
@@ -3724,8 +3880,9 @@ await updateDataIndex('nav-bar');
 
             let sidebarfilelink = document.createElement('button');
             sidebarfilelink.textContent = filename;
+            sidebarfilelink.innerHTML += `<div class="threedots">⋮</div>`;
             sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
-            sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
+            sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')}, event)`);
 
             document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
 
@@ -3853,8 +4010,9 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
 
     let sidebarfilelink = document.createElement('button');
     sidebarfilelink.textContent = filename;
+    sidebarfilelink.innerHTML += `<div class="threedots">⋮</div>`;
     sidebarfilelink.id = 'sidebarfilelinklink' + newNavDot.getAttribute('data-index');
-    sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')})`);
+    sidebarfilelink.setAttribute('onclick', `editthisfile(${newNavDot.getAttribute('data-index')}, event)`);
 
     document.querySelector('.sidebarbardivbuttondiv1').appendChild(sidebarfilelink);
 
@@ -3995,6 +4153,7 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
 
             // Update download button's action
             sidebarfilelinklink.textContent = safeValue;
+            sidebarfilelinklink.innerHTML += `<div class="threedots">⋮</div>`;
             downloadBtn.onclick = () => downloadFile(safeValue);
         }
 
@@ -4231,7 +4390,7 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
                 sidebarfilelinklink.remove();
                 document.querySelectorAll(".sidebarfilelinklink").forEach((sidebarfilelink, index) => {
                     sidebarfilelink.id = 'sidebarfilelinklink' + index;
-                    sidebarfilelink.setAttribute('onclick', `editthisfile(${index})`);
+                    sidebarfilelink.setAttribute('onclick', `editthisfile(${index}, event)`);
                 });
             }
 
@@ -4280,7 +4439,11 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
         }
 
 
-        function editthisfile(number){
+        function editthisfile(number, event = null){
+            if (event && event.target !== event.currentTarget) {
+                createOptionsContainer(event.target, number);
+                return;
+            }
             /*let scrolltothissection = container.querySelector('.navdot' + number);
             if(scrolltothissection){
                 scrolltothissection.scrollIntoView({ behavior: 'smooth' });
