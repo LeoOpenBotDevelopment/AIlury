@@ -3028,8 +3028,8 @@ input[type="range"]::-ms-thumb {
     container.style.position = "absolute";
     container.style.top = `${targetRect.bottom + 5}px`;
     if (isElementBottomNegative(container)){
-        container.style.bottom = "0";
         container.style.top = "auto";
+        container.style.bottom = "0";
     }
     if (window.innerWidth <= 768){
         container.style.right = "0";
