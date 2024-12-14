@@ -2916,10 +2916,20 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
-    function isElementBottomNegative(element) {
+    function adjustElementPosition(element) {
     const rect = element.getBoundingClientRect();
-    return rect.bottom < 0;  // Prüft, ob der bottom-Wert negativ ist
+    const screenHeight = window.innerHeight;
+
+    // Berechne, wie viel das Element unter dem sichtbaren Bereich ist
+    const distanceToBottom = rect.bottom - screenHeight;
+
+    // Wenn das Element unter dem sichtbaren Bereich ist, passen wir seine Position an
+    if (distanceToBottom > 0) {
+        // Setze die top Position des Elements so, dass es im sichtbaren Bereich bleibt
+        element.style.top = `${rect.top - distanceToBottom}px`;
+    }
 }
+
     function createOptionsContainer(targetElement, number) {
   const options = [
     { icon: "⚠", text: "Delete" },
@@ -3027,10 +3037,7 @@ input[type="range"]::-ms-thumb {
   setTimeout(() => {
     container.style.position = "absolute";
     container.style.top = `${targetRect.bottom + 5}px`;
-    if (isElementBottomNegative(container)){
-        container.style.top = "auto";
-        container.style.bottom = "0";
-    }
+    adjustElementPosition(container);
     if (window.innerWidth <= 768){
         container.style.right = "0";
     }else {
