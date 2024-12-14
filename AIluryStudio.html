@@ -2321,6 +2321,10 @@ input[type="range"]::-ms-thumb {
   display: flex; /* Macht den Button zu einem flexbox Container */
   justify-content: space-between; /* Erstes Element links, letztes Element rechts */
   align-items: center; /* Zentriert Inhalte vertikal */
+  overflow-wrap: break-word; /* Bricht Wörter */
+  word-break: break-word; /* Zusätzliche Unterstützung */
+  hyphens: auto; /* Bindestriche, falls unterstützt */
+  overflow-x: hidden;
 }
 
 .threedots {
@@ -2507,17 +2511,17 @@ input[type="range"]::-ms-thumb {
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
         <div data-index="0" class="nav-dot filedot navdot0" onclick="dotonclick()">
-            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="index.html">
+            <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="index.html">
         </div>
     <div data-index="1" class="nav-dot filedot navdot1" onclick="dotonclick()">
-            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="styles.css">
+            <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="styles.css">
         </div>
     <div data-index="2" class="nav-dot filedot navdot2" onclick="dotonclick()">
-            <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="script.js">
+            <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="script.js">
       <!--oninput="handleFileNameInputChange(this)"-->
     </div>
     <div data-index="3" class="nav-dot navdot3" id="view-nav-dot" onclick="dotonclick()">
-            <input class="filePathInput" type="text" value="view" oninput="viewbottominputoninput(this)">
+            <input class="filePathInput" type="text" value="view" maxlength="20" oninput="viewbottominputoninput(this)">
         </div>
     </div>
     <button id="scrolltopreviousfile" onclick="gotonextorpreviousfile('back')">←</button>
@@ -2894,7 +2898,7 @@ input[type="range"]::-ms-thumb {
             <span id="close-dialog">&times;</span>
             <p id="custom-message"></p>
             <div id="prompt-input-container" style="display: none;">
-                <input type="text" id="custom-input" placeholder="Enter a value">
+                <input type="text" id="custom-input" maxlength="250" placeholder="Enter a value">
                 <button id="submit-prompt">Submit</button>
             </div>
             <button id="close-alert">OK</button>
@@ -2913,12 +2917,11 @@ input[type="range"]::-ms-thumb {
 
     <script>
     function createOptionsContainer(targetElement, number) {
-  console.log('done');
   const options = [
     { icon: "□", text: "Copy Code" },
     { icon: "⚠", text: "Delete" },
     { icon: "□", text: "Copy Path" },
-    { icon: "↓", text: "Download" }
+    { icon: "↓", text: "Download" },
   ];
 
   // Overlay erstellen
@@ -2944,46 +2947,75 @@ input[type="range"]::-ms-thumb {
     text.className = "option-text";
     text.textContent = option.text;
 
-    function copytext(text) {
-        try {
-    const newtextarea = document.createElement('textarea');
-    newtextarea.value = text.trim();
-    document.body.appendChild(newtextarea);
-    newtextarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(newtextarea);
-} catch (error) {
-    const thiserrorwascatched = error;
-}
-    }
-    if (option.text == "Delete") {
+    // Funktionen definieren
+    const copyText = (text) => {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      } catch (error) {
+        const catchederror = error;
+      }
+    };
+
+    const copyCode = (element) => {
+      let text = "";
+      element.querySelectorAll(".code-editor-line").forEach((line) => {
+        text += line.textContent + "\n";
+      });
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text.trim();
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      } catch (error) {
+        const catchederror = error;
+      }
+    };
+
+    // Event-Handler für Optionen
+    if (option.text === "Delete") {
       optionItem.onclick = () => {
-          overlay.remove();
-          deletethisfile(number);
+        overlay.remove();
+        deletethisfile(number);
       };
-    } else if (option.text == "Download" && targetElement.parentElement) {
+    } else if (option.text === "Download" && targetElement.parentElement) {
       optionItem.onclick = () => {
-          overlay.remove();
-          downloadFile(targetElement.parentElement.textContent.replace("⋮", ''));
+        overlay.remove();
+        downloadFile(targetElement.parentElement.textContent.replace("⋮", ""));
       };
-    } else if (option.text == "Copy Path" && targetElement.parentElement) {
-        optionItem.onclick = () => {
-            overlay.remove();
-            copytext(targetElement.parentElement.textContent.replace("⋮", ''));
-        };
-    } else if (option.text == "Copy Code" && document.querySelector('#section' + number + ' .code-editor-container')) {
-        const texttocopy = document.querySelector('#section' + number + ' .code-editor-container').textContent;
-        optionItem.onclick = () => {
-            overlay.remove();
-            copytext(texttocopy);
-        };
+    } else if (option.text === "Copy Path" && targetElement.parentElement) {
+      optionItem.onclick = () => {
+        overlay.remove();
+        copyText(targetElement.parentElement.textContent.replace("⋮", ""));
+      };
+    } else if (
+      option.text === "Copy Code" &&
+      document.querySelector(`#section${number} .code-editor-container`)
+    ) {
+      const textToCopy = document.querySelector(
+        `#section${number} .code-editor-container`
+      );
+      optionItem.onclick = () => {
+        overlay.remove();
+        copyCode(textToCopy);
+      };
     }
+
+    // Option entfernen, falls nicht erlaubt
+    if (number === "0" && option.text === "Delete") {
+      return;
+    }
+
+    // Elemente anhängen
     optionItem.appendChild(icon);
     optionItem.appendChild(text);
     container.appendChild(optionItem);
-    if (number == "0" && option.text == "Delete") {
-        container.removeChild(optionItem);
-    }
   });
 
   // Position des Options-Containers relativ zum Ziel-Element
@@ -2991,8 +3023,10 @@ input[type="range"]::-ms-thumb {
   setTimeout(() => {
     container.style.position = "absolute";
     container.style.top = `${targetRect.bottom + 5}px`;
-    container.style.left = `${targetRect.left + targetRect.width / 2 - container.offsetWidth / 2}px`;
-  }, 0); // Timeout, um sicherzustellen, dass das DOM das Element rendert
+    container.style.left = `${
+      targetRect.left + targetRect.width / 2 - container.offsetWidth / 2
+    }px`;
+  }, 0);
 
   // Overlay bei Klick entfernen
   overlay.addEventListener("click", (event) => {
@@ -3001,6 +3035,7 @@ input[type="range"]::-ms-thumb {
     }
   });
 }
+
 
 
     function typeEffect(element, newText, callback) {
@@ -3614,7 +3649,7 @@ rectangle.remove();
         function requestcreatenewfile() {
             showPrompt('file path:', (filename) => {
                 let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
-                if (!allfilenames.includes(filename) && filename != ''){
+                if (!allfilenames.includes(filename) && filename != '' && filename.length < 251){
                     createNewFile(filename);
                         }
             });
@@ -3622,7 +3657,7 @@ rectangle.remove();
         function requestcreatenewfilefortemplatecode(codetext) {
     showPrompt('file path:', (filename) => {
         let allfilenames = Array.from(document.querySelectorAll('.filedot .filePathInput')).map(input => input.value);
-        if (!allfilenames.includes(filename)) {
+        if (!allfilenames.includes(filename) && filename.length < 251) {
             createNewFilefortemplatecode(filename, codetext);
         }
     });
@@ -3670,7 +3705,7 @@ newNavDot.classList.add('nav-dot', 'filedot');
 
 newNavDot.setAttribute('data-index', container.children.length - 1);
 newNavDot.innerHTML = `
-      <input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">
+      <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="${filename}">
     `;
       newNavDot.setAttribute('onclick', 'dotonclick()');
 navBar.appendChild(newNavDot);
@@ -3801,7 +3836,7 @@ await updateDataIndex('nav-bar');
             const newNavDot = document.createElement('div');
             newNavDot.classList.add('nav-dot', 'filedot');
             newNavDot.setAttribute('data-index', container.children.length - 1);
-            newNavDot.innerHTML = `<input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">`;
+            newNavDot.innerHTML = `<input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="${filename}">`;
             newNavDot.setAttribute('onclick', 'dotonclick()');
             navBar.appendChild(newNavDot);
 
@@ -3932,7 +3967,7 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
     const newNavDot = document.createElement('div');
     newNavDot.classList.add('nav-dot', 'filedot');
     newNavDot.setAttribute('data-index', container.children.length - 1);
-    newNavDot.innerHTML = `<input class="filePathInput" type="text" onblur="onfilepathinputblur(this)" value="${filename}">`;
+    newNavDot.innerHTML = `<input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="${filename}">`;
     newNavDot.setAttribute('onclick', 'dotonclick()');
     navBar.appendChild(newNavDot);
 
@@ -4098,21 +4133,39 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
         let baseName = inputField.value;
         let counter = 1;
 
+        // Kürze den Basisnamen, wenn er zu lang ist
+        if (baseName.length > 240 - String(counter).length - 1) {
+            baseName = baseName.slice(0, 240 - String(counter).length - 1);
+        }
+
         // Finde einen einzigartigen Namen, indem eine Zahl angehängt wird
         while (allFileNames.includes(`${counter}_${baseName}`)) {
             counter++;
         }
 
         // Setze den neuen Namen im Eingabefeld
-        inputField.value = `${counter}_${baseName}`;
+        let newvalue = `${counter}_${baseName}`;
+        if (newvalue.length >= 250) {
+            newvalue = truncateText(newvalue, 250);
+        }
+
+        inputField.value = newvalue;
 
         // Aktualisiere die Änderungen für das übergeordnete Element
-        if (inputField.parentElement){
-          handleFileNameInputChange(inputField.parentElement);
+        if (inputField.parentElement) {
+            handleFileNameInputChange(inputField.parentElement);
         }
     }
 }
 
+function truncateText(text, maxLength) {
+    if (typeof text !== "string" || typeof maxLength !== "number") {
+        throw new Error("Ungültige Argumente: text muss ein String und maxLength eine Zahl sein.");
+    }
+
+    // Schneide den Text auf die maximale Länge zu
+    return text.slice(0, maxLength);
+}
 
 
 
