@@ -2916,6 +2916,10 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+    function isElementBottomNegative(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.bottom < 0;  // Prüft, ob der bottom-Wert negativ ist
+}
     function createOptionsContainer(targetElement, number) {
   const options = [
     { icon: "⚠", text: "Delete" },
@@ -3023,6 +3027,10 @@ input[type="range"]::-ms-thumb {
   setTimeout(() => {
     container.style.position = "absolute";
     container.style.top = `${targetRect.bottom + 5}px`;
+    if (isElementBottomNegative(container)){
+        container.style.bottom = "0";
+        container.style.top = "auto";
+    }
     if (window.innerWidth <= 768){
         container.style.right = "0";
     }else {
