@@ -1295,23 +1295,25 @@
             right: 0;
         }
     .content-container {
-            border: 1px solid var(--rectangleborder);
-            background-color: var(--contentcontainer-color);
-            padding: 20px;
-            /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); *//* Box Shadow */
-            border-radius: 5px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); /* Flexible Spalten */
-            gap: 20px;
-            width: 80vw;
-            max-width: 1200px;
-            margin-top: 20px;
-            position: relative;
-      max-height: 95vh;
-      overflow: hidden;
-      overflow-y: scroll;
-      transition: 0.3s;
-        }
+    border: 1px solid var(--rectangleborder);
+    background-color: var(--contentcontainer-color);
+    padding: 20px;
+    border-radius: 5px;
+    display: grid;
+    align-items: start; /* Elemente vertikal oben ausrichten */
+    justify-content: start; /* Elemente horizontal oben ausrichten */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 200px)); /* Flexible Spalten */
+    gap: 20px;
+    width: 80vw;
+    max-width: 1200px;
+    margin-top: 20px;
+    position: relative;
+    max-height: 95vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    transition: 0.3s;
+}
+
         .sidebarenabled .content-container{
            width: 70vw;
            height: 100vh;
@@ -2752,30 +2754,24 @@ input[type="range"]::-ms-thumb {
 
             <!-- Rechtecke (Inhalt) -->
 
-            <div class="rectangle" id="rectangle0">
-                <span>index.html</span>
+            <div class="rectangle" id="rectangle0" onclick="editthisfile('0', event)">
+                <span class="notclickable">index.html</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn" onclick="downloadFile('index.html')">Download</button>
-                    <button class="delete-btn" style="display: none;" onclick="deletethisfile('0')">Delete</button>
-                    <button class="edit-btn" onclick="editthisfile('0')">Edit</button>
+                    <button class="edit-btn">…</button>
                 </div>
                 <button class="close">×</button>
             </div>
-            <div class="rectangle" id="rectangle1">
-                <span>styles.css</span>
+            <div class="rectangle" id="rectangle1" onclick="editthisfile('1', event)">
+                <span class="notclickable">styles.css</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn" onclick="downloadFile('styles.css')">Download</button>
-                    <button class="delete-btn" onclick="deletethisfile('1')">Delete</button>
-                    <button class="edit-btn" onclick="editthisfile('1')">Edit</button>
+                    <button class="edit-btn">…</button>
                 </div>
                 <button class="close">×</button>
             </div>
-            <div class="rectangle" id="rectangle2">
-                <span>script.js</span>
+            <div class="rectangle" id="rectangle2" onclick="editthisfile('2', event)">
+                <span class="notclickable">script.js</span>
                 <div class="rectangle-buttons">
-                    <button class="download-btn" onclick="downloadFile('script.js')">Download</button>
-                    <button class="delete-btn" onclick="deletethisfile('2')">Delete</button>
-                    <button class="edit-btn" onclick="editthisfile('2')">Edit</button>
+                    <button class="edit-btn">…</button>
                 </div>
                 <button class="close">×</button>
             </div>
@@ -2916,6 +2912,202 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+    function mergecode(htmlCodeComtainer, additionalCode, tofinde) {
+    closesidebaronsmallscreensizes();
+closeeverything();
+let navBar = document.getElementById('nav-bar');
+let scrolltothissection = navBar.querySelector('.nav-dot[data-index="' + htmlCodeComtainer.parentElement.id.replace('section', '') + '"]');
+if (scrolltothissection) {
+    scrolltothissection.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.overlay-back-btn').click();
+}
+const allselectedlines = htmlCodeComtainer.querySelectorAll(".hiddenlinesparent");
+if (allselectedlines.length) { // Überprüfe, ob es ausgewählte Linien gibt
+    allselectedlines.forEach(selectedline => {
+        selectedline.classList.remove('hiddenlinesparent'); // Linie auswählen
+        showHiddenElements(selectedline);
+        updateSelectedClasses();
+    });
+}
+    //unfoldalllines();
+    let celines = htmlCodeComtainer.querySelectorAll('.code-editor-line');
+    relevantlines = [];
+    celines.forEach((line, index) => {
+        if (line.innerText.includes(tofinde)){
+            relevantlines.push(index);
+        }
+    });
+    let celine = null;
+    if (tofinde == "</head>"){
+    if (relevantlines == [] || !celines[relevantlines[0] - 1]){
+        showAlert('Merge Failed');
+        return;
+    }
+    
+    celine = celines[relevantlines[0] - 1];
+    }else {
+        if (relevantlines == [] || !celines[relevantlines[relevantlines.length - 1] - 1]) {
+    showAlert('Merge Failed');
+    return;
+}
+
+celine = celines[relevantlines[relevantlines.length - 1] - 1];
+    }
+    if (!celine) {
+        showAlert('the merge failed');
+        return;
+    } // Sicherstellen, dass celine existiert
+    startLoadingMerge();
+
+    // Ermitteln der führenden Leerzeichen in der aktuellen Linie
+    let spaces = "";
+    let extraspacesadded = false;
+    let continueSpaces = true;
+    for (let i = 0; i < celine.textContent.length; i++) {
+        let character = celine.textContent[i];
+        if ((character === " " || character === "\u00A0") && continueSpaces) {
+            spaces += "\u00A0"; // Unicode für nicht-trennbares Leerzeichen
+        } else {
+            continueSpaces = false;
+        }
+    }
+    if (celine.textContent.trim().endsWith('<style>') || celine.textContent.trim().startsWith('<style>')) {
+    extraspacesadded = true;
+    spaces += "\u00A0\u00A0\u00A0\u00A0";
+}else if (celine.textContent.trim().endsWith('<body>') || celine.textContent.trim().startsWith('<body>')){
+    spaces += "\u00A0\u00A0\u00A0\u00A0";
+}
+
+    // Kopierten Text aus der Zwischenablage holen
+    let pasteText = additionalCode;
+
+    // Aufteilen des eingefügten Textes bei Zeilenumbrüchen
+    let lines = pasteText.split(/\r\n|\n|\r/);
+
+    // Verarbeite die erste Linie: Der Text wird in die aktuelle Linie eingefügt
+    let firstreferencespacesforspacecoun = convertToNonBreakingSpaces(lines[0]);
+
+    let space2 = "";
+    let continueSpace2 = true;
+    for (let i = 0; i < firstreferencespacesforspacecoun.length; i++) {
+        let character = firstreferencespacesforspacecoun[i];
+        if ((character === " " || character === "\u00A0") && continueSpace2) {
+            space2 += "\u00A0"; // Unicode für nicht-trennbares Leerzeichen
+        } else {
+            continueSpace2 = false;
+        }
+    }
+    const firstLineLeadingSpacesCount = space2.length;
+    let lineSpacesCoun2 = 0;
+    let continueLineSpac2 = true;
+
+    for (let j = 0; j < lines[0].length; j++) {
+        let character = lines[0][j];
+        if ((character === " " || character === "\u00A0") && continueLineSpac2) {
+            lineSpacesCoun2++;
+        } else {
+            continueLineSpac2 = false;
+        }
+    }
+
+    // Entfernen der führenden Leerzeichen, falls sie gleich oder größer als die der ersten Zeile sind
+    let adjustedLin2 = lines[0];
+    if (lineSpacesCoun2 >= firstLineLeadingSpacesCount) {
+        adjustedLin2 = lines[0].slice(firstLineLeadingSpacesCount);
+    }
+    celine.textContent += convertToNonBreakingSpaces(adjustedLin2);
+    let longspaces = spaces + "\u00A0\u00A0\u00A0\u00A0";
+    // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
+    let startwithscriptorstyle = additionalCode.trim().startsWith('<style>') || additionalCode.trim().startsWith('<script>');
+    for (let i = 1; i < lines.length; i++) {
+        correntids += 1;
+        const newline = document.createElement('div');
+        newline.setAttribute('contenteditable', 'true');
+        newline.id = correntids;
+        newline.classList.add('code-editor-line');
+
+        // Zählen der führenden Leerzeichen in der aktuellen Linie
+        let lineSpacesCount = 0;
+        let continueLineSpaces = true;
+
+        for (let j = 0; j < lines[i].length; j++) {
+            let character = lines[i][j];
+            if ((character === " " || character === "\u00A0") && continueLineSpaces) {
+                lineSpacesCount++;
+            } else {
+                continueLineSpaces = false;
+            }
+        }
+
+        // Entfernen der führenden Leerzeichen, falls sie gleich oder größer als die der ersten Zeile sind
+        let adjustedLine = lines[i];
+        if (lineSpacesCount >= firstLineLeadingSpacesCount) {
+            adjustedLine = lines[i].slice(firstLineLeadingSpacesCount);
+        }
+        if (i != lines.length - 1 && startwithscriptorstyle && i != 1 && !extraspacesadded) {
+            newline.textContent = longspaces + convertToNonBreakingSpaces(adjustedLine);
+        } else {
+            newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
+        }
+        celine.insertAdjacentElement('afterend', newline);
+        celine = newline;
+        if (i == lines.length - 1 && htmlCodeComtainer.parentElement && htmlCodeComtainer.parentElement.style.display != "none") {
+            celine.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center', // Aligns the element in the middle vertically
+                inline: 'center' // Aligns the element in the middle horizontally (optional)
+            });
+        }
+        if (allselectedlines.length) { // Überprüfe, ob es ausgewählte Linien gibt
+    allselectedlines.forEach(selectedline => {
+        analyzeAndHideElements(selectedline);
+        updateSelectedClasses();
+    });
+}
+    }
+}
+
+    function modifyHTML(htmlCode, additionalCode, type, htmlCodeComtainer) {
+    if (typeof htmlCode !== 'string' || typeof additionalCode !== 'string' || !['css', 'js'].includes(type)) {
+        showAlert('Merge Failed');
+        return "";
+    }
+
+    // Regex für die entsprechenden Bereiche
+    const bodyRegex = /<body[^>]*>([\s\S]*?)<\/body>/i;
+    const headRegex = /<head[^>]*>([\s\S]*?)<\/head>/i;
+    const styleTagRegex = /<style[^>]*>([\s\S]*?)<\/style>/i;
+
+    if (type == 'js') {
+        // Füge den JavaScript-Code zum Inhalt des Body-Tags hinzu.
+        if (bodyRegex.test(htmlCode)){
+            mergecode(htmlCodeComtainer, '\n<script>\n' + additionalCode + '\n<\/script>', '</body>');
+        }else {
+            showAlert('make sure that you have a body tag in your html code');
+        }
+        /*const scriptTag = `<script>\n${additionalCode}\n<\/script>`;
+        htmlCode = htmlCode.replace(bodyRegex, (match, bodyContent) => {
+            return `<body>\n${bodyContent}\n${scriptTag}\n</body>`;
+        });*/
+    } else if (type == 'css') {
+        if (styleTagRegex.test(htmlCode)) {
+            mergecode(htmlCodeComtainer, '\n' + additionalCode, '</style>')
+            // Wenn kein Style-Tag existiert, füge es zum Head hinzu
+            /*const styleTag = `<style>${additionalCode}</style>`;
+            htmlCode = htmlCode.replace(headRegex, (match, headContent) => {
+                return `<head>\n${headContent}\n${styleTag}\n</head>`;
+            });*/
+        }else if (headRegex.test(htmlCode)) {
+            mergecode(htmlCodeComtainer, '\n<style>\n' + additionalCode + '\n<\/style>', '</head>')
+        }else {
+            showAlert('make sure that you have a head or a style tag in your html code');
+        }
+    }else {
+        showAlert('you can only merge css, javascript and html, with eachother');
+    }
+
+    return htmlCode;
+}
     function adjustElementPosition(element) {
     const rect = element.getBoundingClientRect();
     const screenHeight = window.innerHeight;
@@ -2930,11 +3122,32 @@ input[type="range"]::-ms-thumb {
     }
 }
 
+
+function adjustElementPositionleft(element) {
+    const rect = element.getBoundingClientRect();
+    const screenWidth = window.innerWidth;
+
+    // Berechne, wie viel das Element rechts aus dem sichtbaren Bereich herausragt
+    const distanceToRight = rect.right - screenWidth;
+
+    // Wenn das Element rechts außerhalb des sichtbaren Bereichs ist, passe die Position an
+    if (distanceToRight > 0) {
+        element.style.left = `${rect.left - distanceToRight}px`;
+    }
+
+    // Überprüfe, ob das Element links aus dem sichtbaren Bereich herausragt
+    if (rect.left < 0) {
+        element.style.left = "0px"; // Stelle sicher, dass es am linken Rand bleibt
+    }
+}
+
+
     function createOptionsContainer(targetElement, number) {
   const options = [
     { icon: "⚠", text: "Delete" },
     { icon: "□", text: "Copy Code" },
     { icon: "□", text: "Copy Path" },
+    { icon: "-", text: "Merge" },
     { icon: "↓", text: "Download" },
   ];
 
@@ -2992,24 +3205,142 @@ input[type="range"]::-ms-thumb {
       }
     };
 
+    function getalllinestext(element) {
+        let text = "";
+element.querySelectorAll(".code-editor-line").forEach((line) => {
+    text += line.textContent + "\n";
+});
+return text;
+    }
+    function MergeFiles() {
+    showPrompt('merge with file:', (filename) => {
+        let allfilenames = document.querySelectorAll('.filedot .filePathInput');
+        let allfilenamesarray = Array.from(allfilenames).map(input => input.value);
+        if (!allfilenamesarray.includes(filename)) {
+            showAlert('you have no html, css or javascript file with the name: ' + filename);
+            return;
+        }
+        allfilenames.forEach(file => {
+            if (file.value == filename) {
+                let mergedcode = "";
+                let htmlfile = "";
+                if (targetElement.classList.contains('edit-btn') && targetElement.parentElement.parentElement.querySelector('.notclickable')) {
+                    if (targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.html') && file.value.trim().endsWith('.css') && !file.value.trim().endsWith('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            'css',
+                            document.querySelector(`#section${number} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${number} .code-editor-container`);
+                    } else if (targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.html') && !file.value.trim().endsWith('.css') && file.value.trim().endsWith('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            'js',
+                            document.querySelector(`#section${number} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${number} .code-editor-container`);
+                    } else if (targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.css') && file.value.trim().endsWith('.html') && !file.value.trim().endsWith('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            'css',
+                            document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)
+                        );
+                        
+                        htmlfile = document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`);
+                    } else if (targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.js') && file.value.trim().endsWith('.html') && !file.value.trim().endsWith('.css')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            'js',
+                            document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`);
+                    }else {
+    showAlert('you can only merge javascript and css with html code');
+}
+                } else {
+                    if (targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.html') && file.value.trim().endsWith('.css') && !file.value.trim().includes('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            'css',
+                            document.querySelector(`#section${number} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${number} .code-editor-container`);
+                    } else if (targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.html') && !file.value.trim().endsWith('.css') && file.value.trim().endsWith('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            'js',
+                            document.querySelector(`#section${number} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${number} .code-editor-container`);
+                    } else if (targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.css') && file.value.trim().endsWith('.html') && !file.value.trim().endsWith('.js')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            'css',
+                            document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`);
+                    } else if (targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.js') && file.value.trim().endsWith('.html') && !file.value.trim().endsWith('.css')) {
+                        mergedcode = modifyHTML(
+                            getalllinestext(document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)),
+                            getalllinestext(document.querySelector(`#section${number} .code-editor-container`)),
+                            'js',
+                            document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`)
+                        );
+                        htmlfile = document.querySelector(`#section${file.parentElement.getAttribute('data-index')} .code-editor-container`);
+                    }else {
+    showAlert('you can only merge javascript and css with html code');
+}
+                }
+                /*if (htmlfile != "" && mergedcode != ""){
+                    const lines = mergedcode.split('\n');
+htmlfile.innerHTML = "";
+lines.forEach((lineText) => {
+    const line = document.createElement('div');
+    line.classList.add('code-editor-line');
+    line.setAttribute('contenteditable', 'true');
+    line.innerText = lineText;
+    htmlfile.appendChild(line);
+});
+                }*/
+            }
+        });
+    });
+}
+
     // Event-Handler für Optionen
-    if (option.text === "Delete") {
+    if (option.text == "Delete") {
       optionItem.onclick = () => {
         overlay.remove();
         deletethisfile(number);
       };
-    } else if (option.text === "Download" && targetElement.parentElement) {
+    } else if (option.text == "Download" && targetElement.parentElement) {
       optionItem.onclick = () => {
         overlay.remove();
-        downloadFile(targetElement.parentElement.textContent.replace("⋮", ""));
+        //downloadFile(targetElement.parentElement.textContent.replace("⋮", ""));
+        if (targetElement.classList.contains('edit-btn') && targetElement.parentElement.parentElement.querySelector('.notclickable')) {
+    downloadFile(targetElement.parentElement.parentElement.querySelector('.notclickable').textContent);
+} else {
+    downloadFile(targetElement.parentElement.textContent.replace("⋮", ""));
+}
       };
-    } else if (option.text === "Copy Path" && targetElement.parentElement) {
+    } else if (option.text == "Copy Path" && targetElement.parentElement) {
       optionItem.onclick = () => {
         overlay.remove();
-        copyText(targetElement.parentElement.textContent.replace("⋮", ""));
+        if (targetElement.classList.contains('edit-btn') && targetElement.parentElement.parentElement.querySelector('.notclickable')){
+            copyText(targetElement.parentElement.parentElement.querySelector('.notclickable').textContent);
+        }else {
+            copyText(targetElement.parentElement.textContent.replace("⋮", ""));
+        }
       };
     } else if (
-      option.text === "Copy Code" &&
+      option.text == "Copy Code" &&
       document.querySelector(`#section${number} .code-editor-container`)
     ) {
       const textToCopy = document.querySelector(
@@ -3019,12 +3350,27 @@ input[type="range"]::-ms-thumb {
         overlay.remove();
         copyCode(textToCopy);
       };
+    }else if (option.text == 'Merge' && targetElement.parentElement && document.querySelector(`#section${number} .code-editor-container`)){
+        optionItem.onclick = () => {
+    overlay.remove();
+    MergeFiles();
+};
     }
 
     // Option entfernen, falls nicht erlaubt
     if (number == "0" && option.text == "Delete") {
       return;
     }
+    
+    if (targetElement.classList.contains('edit-btn') && targetElement.parentElement.parentElement.querySelector('.notclickable')) {
+    if (option.text == "Merge" && !targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.html') && !targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.css') && !targetElement.parentElement.parentElement.querySelector('.notclickable').textContent.trim().endsWith('.js')){
+        return;
+    }
+} else {
+    if (option.text == "Merge" && !targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.html') && !targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.js') && !targetElement.parentElement.textContent.replace("⋮", "").trim().endsWith('.css')){
+        return;
+    }
+}
 
     // Elemente anhängen
     optionItem.appendChild(icon);
@@ -3038,13 +3384,17 @@ input[type="range"]::-ms-thumb {
     container.style.position = "absolute";
     container.style.top = `${targetRect.bottom + 5}px`;
     adjustElementPosition(container);
-    if (window.innerWidth <= 768){
+    container.style.left = `${
+            targetRect.left + targetRect.width / 2 - container.offsetWidth / 2
+        }px`;
+    adjustElementPositionleft(container);
+    /*if (window.innerWidth <= 768){
         container.style.right = "0";
     }else {
         container.style.left = `${
             targetRect.left + targetRect.width / 2 - container.offsetWidth / 2
         }px`;
-    }
+    }*/
   }, 0);
 
   // Overlay bei Klick entfernen
@@ -3343,10 +3693,12 @@ closesidebaronsmallscreensizes();
         // Function to show a custom alert
 
         function showAlert(message) {
-            messageBox.textContent = message;
-            promptInputContainer.style.display = 'none'; // Hide the input for alerts
-            closeAlertButton.style.display = 'block'; // Show the OK button
-            overlay.style.display = 'flex'; // Show the overlay
+            setTimeout(() => {
+                messageBox.textContent = message;
+promptInputContainer.style.display = 'none'; // Hide the input for alerts
+closeAlertButton.style.display = 'block'; // Show the OK button
+overlay.style.display = 'flex'; // Show the overlay
+            }, 100);
         }
 
         // Function to show a custom prompt
@@ -3429,6 +3781,50 @@ closesidebaronsmallscreensizes();
 
             updateStep();
         }
+        function startLoadingMerge() {
+    const overlay = document.getElementById('overlay');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const checkmark = document.getElementById('checkmark');
+    const progressContainer = document.getElementById('progress-container');
+
+    // Reset to initial state
+    overlay.classList.add('active');
+    progressBar.style.width = '0%';
+    progressContainer.style.display = 'block';
+    checkmark.classList.remove('visible');
+    progressText.textContent = 'Reserving';
+
+    const steps = [
+        { percent: 0, text: 'Processing' },
+        { percent: 50, text: 'Adding' },
+        { percent: 100, text: 'Merge complete' },
+            ];
+
+    let stepIndex = 0;
+
+    function updateStep() {
+        if (stepIndex < steps.length) {
+            const step = steps[stepIndex];
+            progressBar.style.width = `${step.percent}%`;
+            progressText.textContent = step.text;
+
+            if (step.percent === 100) {
+                progressContainer.style.display = 'none'; // Hide progress bar
+                checkmark.classList.add('visible'); // Show checkmark
+            }
+
+            stepIndex++;
+            setTimeout(updateStep, 1000); // Update every 1 second
+        } else {
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 500); // Hide overlay after completion
+        }
+    }
+
+    updateStep();
+}
         function startLoadingImages() {
             const overlay = document.getElementById('overlay');
             const progressBar = document.getElementById('progress-bar');
@@ -3769,13 +4165,12 @@ dataList.appendChild(option);
 const overlayContainer = document.querySelector('.overlay-container .content-container');
 const newRectangle = document.createElement('div');
 newRectangle.classList.add('rectangle');
-newRectangle.innerHTML = `<span>${filename}</span>
+newRectangle.innerHTML = `<span class="notclickable">${filename}</span>
 <div class="rectangle-buttons">
-<button class="download-btn" onclick="downloadFile(${filename})">Download</button>
-<button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
-<button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
+    <button class="edit-btn">…</button>
 </div>
 <button class="close">×</button>`;
+newRectangle.setAttribute('onclick', `editthisfile(${container.children.length - 1}, event)`);
 overlayContainer.appendChild(newRectangle);
 
 // Delete functionality
@@ -3787,8 +4182,10 @@ option.remove();
 });*/
 
 // Download functionality
+if (newRectangle.querySelector('.download-btn')){
 newRectangle.querySelector('.download-btn').onclick = () => {
 downloadFile(filename);
+}
 }
         /*.querySelector('.download-btn').addEventListener('click', () => {
 const a = document.createElement('a');
@@ -3897,19 +4294,19 @@ await updateDataIndex('nav-bar');
             const overlayContainer = document.querySelector('.overlay-container .content-container');
             const newRectangle = document.createElement('div');
             newRectangle.classList.add('rectangle');
-            newRectangle.innerHTML = `<span>${filename}</span>
+            newRectangle.innerHTML = `<span class="notclickable">${filename}</span>
 <div class="rectangle-buttons">
-    <button class="download-btn" onclick="downloadFile('${filename}')">Download</button>
-    <button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
-    <button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
+    <button class="edit-btn">…</button>
 </div>
 <button class="close">×</button>`;
+newRectangle.setAttribute('onclick', `editthisfile(${container.children.length - 1}, event)`);
             overlayContainer.appendChild(newRectangle);
 
+            if (newRectangle.querySelector('.download-btn')){
             newRectangle.querySelector('.download-btn').onclick = () => {
                 downloadFile(filename);
             };
-
+            }
             newRectangle.querySelector('.close').addEventListener('click', () => {
                 newRectangle.classList.remove('enlarged');
             });
@@ -4027,18 +4424,19 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
     const overlayContainer = document.querySelector('.overlay-container .content-container');
     const newRectangle = document.createElement('div');
     newRectangle.classList.add('rectangle');
-    newRectangle.innerHTML = `<span>${filename}</span>
+    newRectangle.innerHTML = `<span class="notclickable">${filename}</span>
 <div class="rectangle-buttons">
-    <button class="download-btn" onclick="downloadFile('${filename}')">Download</button>
-    <button class="delete-btn" onclick="deletethisfile('${container.children.length - 1}')">Delete</button>
-    <button class="edit-btn" onclick="editthisfile('${container.children.length - 1}')">Edit</button>
+    <button class="edit-btn">…</button>
 </div>
 <button class="close">×</button>`;
+newRectangle.setAttribute('onclick', `editthisfile(${container.children.length - 1}, event)`);
     overlayContainer.appendChild(newRectangle);
 
+    if (newRectangle.querySelector('.download-btn')){
     newRectangle.querySelector('.download-btn').onclick = () => {
         downloadFile(filename);
     };
+    }
 
     newRectangle.querySelector('.close').addEventListener('click', () => {
         newRectangle.classList.remove('enlarged');
@@ -4207,7 +4605,7 @@ function truncateText(text, maxLength) {
             const downloadBtn = rectangle.querySelector('.download-btn');
 
             // Ensure required child elements exist
-            if (!filePathInput || !rectanglespan || !downloadBtn) {
+            if (!filePathInput || !rectanglespan) {
                 return;
             }
 
@@ -4226,7 +4624,9 @@ function truncateText(text, maxLength) {
             // Update download button's action
             sidebarfilelinklink.textContent = safeValue;
             sidebarfilelinklink.innerHTML += `<div class="threedots">⋮</div>`;
+            if (downloadBtn){
             downloadBtn.onclick = () => downloadFile(safeValue);
+            }
         }
 
 
@@ -4452,8 +4852,11 @@ function truncateText(text, maxLength) {
                 document.querySelectorAll('.rectangle').forEach((rect, index) => {
                     if (rect.id !== 'image-rectangle') {
                         rect.id = "rectangle" + index;
+                        if (rect.querySelector('.rectangle-buttons .delete-btn') && rect.querySelector('.rectangle-buttons .edit-btn')){
                         rect.querySelector('.rectangle-buttons .delete-btn').setAttribute('onclick', `deletethisfile(${index})`);
                         rect.querySelector('.rectangle-buttons .edit-btn').setAttribute('onclick', `editthisfile(${index})`);
+                        }
+                        rect.setAttribute('onclick', `editthisfile(${index}, event)`);
                     }
                 });
             }
@@ -4512,8 +4915,10 @@ function truncateText(text, maxLength) {
 
 
         function editthisfile(number, event = null){
-            if (event && event.target !== event.currentTarget) {
+            if (event && event.target !== event.currentTarget && !event.target.classList.contains('notclickable') && !event.target.classList.contains('close')) {
                 createOptionsContainer(event.target, number);
+                return;
+            }else if (event && event.target.classList.contains('close') || event.target.classList.contains('enlarged')){
                 return;
             }
             /*let scrolltothissection = container.querySelector('.navdot' + number);
@@ -5859,7 +6264,7 @@ codesearchresults.style.display = "none";
 
           // Nächstes Element in der DOM-Hierarchie bekommen
           let nextElement = element.nextElementSibling;
-
+          let nextElementValid = false;
         if (nextElement){
             element.classList.add('hiddenlinesparent');
         }else {
@@ -5875,6 +6280,7 @@ codesearchresults.style.display = "none";
                   // Element in die Liste der versteckten Elemente aufnehmen
                   hiddenElements.push(nextElement);
                   nextElement.classList.add('hidden');  // Element verstecken
+                  nextElementValid = true;
               } else {
                   break;  // Schleife beenden, wenn weniger oder gleich viele Leerzeichen
               }
@@ -5882,6 +6288,9 @@ codesearchresults.style.display = "none";
               // Zum nächsten Geschwister-Element wechseln
               nextElement = nextElement.nextElementSibling;
           }
+          if (!nextElementValid) {
+    element.classList.remove('hiddenlinesparent');
+}
 
           // JSON-Struktur erstellen
           result[element.id] = hiddenElements;
