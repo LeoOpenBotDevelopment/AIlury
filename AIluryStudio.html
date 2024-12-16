@@ -2387,6 +2387,27 @@ input[type="range"]::-ms-thumb {
 .option-text {
   font-size: 14px;
 }
+        .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: red;
+      border-radius: 50%;
+      animation: fall 4s ease-out forwards;
+      pointer-events: none;
+      z-index: 2500;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(calc(100vh + 100px)) rotate(360deg);
+        opacity: 0;
+      }
+    }
     </style>
 
 </head>
@@ -2461,7 +2482,7 @@ input[type="range"]::-ms-thumb {
                   <option id="option2" value="script.js"></option>
                 </datalist>
                         </div>
-                        <div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame')">⌕</div>
+                        <div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame');createConfetti()">⌕</div>
                     </div>
 
 
@@ -2486,7 +2507,7 @@ input[type="range"]::-ms-thumb {
 
                         </div>
                         <div class="btn-group">
-                            <button onclick="textCode('computer-url-input', 'computer-frame')">⌕</button>
+                            <button onclick="textCode('computer-url-input', 'computer-frame');createConfetti()">⌕</button>
                         </div>
                     </div>
 
@@ -2912,6 +2933,26 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+        let createkonfetti = true;
+        function createConfetti() {
+            if (!createkonfetti){
+                return;
+            }
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.top = `${-100}px`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = `${Math.random() * 2 + 3}s`;
+        confetti.style.animationDelay = `${Math.random() * 2}s`;  /* Versatz für den Abstand */
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+
+      }
+      createkonfetti = false;
+    }
+
     function mergecode(htmlCodeComtainer, additionalCode, tofinde) {
     closesidebaronsmallscreensizes();
 closeeverything();
