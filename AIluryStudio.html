@@ -788,6 +788,9 @@
           transition: 0.3s;
 
       }
+      .code-editor-btn:hover {
+    background: var(--drakgrey-color);
+}
       .unsleeplines:hover{
           background: var(--drakgrey-color);
       }
@@ -1240,6 +1243,14 @@
         transform: rotate(360deg);
       }
     }
+    @keyframes rotatesignleft {
+    0%{
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
       @keyframes swipeOutLeft {
                 0% {
                     transform: translateX(0);
@@ -2436,7 +2447,7 @@ input[type="range"]::-ms-thumb {
         <div class="container" id="container">
         <div class="section" id="section0">
             <div class="editor-selected-line-btns">
-                  <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
+                  <button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
@@ -2446,7 +2457,7 @@ input[type="range"]::-ms-thumb {
     </div>
     <div class="section" id="section1">
         <div class="editor-selected-line-btns">
-              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
+              <button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
@@ -2456,7 +2467,7 @@ input[type="range"]::-ms-thumb {
     </div>
     <div class="section" id="section2">
         <div class="editor-selected-line-btns">
-              <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
+              <button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
@@ -2933,6 +2944,142 @@ input[type="range"]::-ms-thumb {
 
 
     <script>
+    function gobackrotateanimation(deletebtnnnn) {
+    const initialsign = deletebtnnnn.textContent;
+    deletebtnnnn.style.animation = "none";
+    void deletebtnnnn.offsetWidth; // Trigger reflow
+    deletebtnnnn.style.animation = "rotatesignleft 0.5s ease-out";
+    deletebtnnnn.disabled = true;
+    setTimeout(() => {
+        deletebtnnnn.disabled = false;
+    }, 500);
+}
+        let lasteventsparentsection = document.getElementById('section0');
+        let pastevents = {};
+        let futureevents = {};
+        function gobacktolastpastevent() {
+            if (!lasteventsparentsection){
+                return;
+            }
+            if (!pastevents[lasteventsparentsection.id]){
+                return;
+            }
+            const lastevent = pastevents[lasteventsparentsection.id].pop();
+            
+            if (!lastevent){
+                return;
+            }
+            lastevent.reverse();
+            let newfuture = [];
+    lastevent.forEach(element => {
+        if (element.type == "delete") {
+            if (lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index - 1]) {
+                lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index - 1].insertAdjacentElement("afterend", element.element);
+                let futureelement = {
+    element: element.element,
+    type: "create",
+    index: getElementIndexInParent(element.element) // Speichere den ursprünglichen Text
+};
+newfuture.push(futureelement);
+            } else if (lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index]) {
+                lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index].insertAdjacentElement("beforebegin", element.element);
+                let futureelement = {
+    element: element.element,
+    type: "create",
+    index: getElementIndexInParent(element.element) // Speichere den ursprünglichen Text
+};
+newfuture.push(futureelement);
+            } else {
+                lasteventsparentsection.querySelector('.code-editor-container').appendChild(element.element);
+                let futureelement = {
+    element: element.element,
+    type: "create",
+    index: getElementIndexInParent(element.element) // Speichere den ursprünglichen Text
+};
+newfuture.push(futureelement);
+            }
+        }else if (element.type == "text"){
+    let futureelement = {
+        element: element.element,
+        type: "text",
+        text: element.element.textContent // Speichere den ursprünglichen Text
+    };
+    newfuture.push(futureelement);
+            element.element.textContent = element.text;
+        }else if (element.type == "create"){
+    let futureelement = {
+        element: element.element,
+        type: "delete",
+        index: element.index // Speichere den ursprünglichen Text
+    };
+    newfuture.push(futureelement);
+            element.element.remove();
+        }
+    });
+if (newfuture.length > 0) {
+    if (!futureevents[lasteventsparentsection.id]) {
+        futureevents[lasteventsparentsection.id] = [];
+    }
+    futureevents[lasteventsparentsection.id].push(newfuture); // Speichere das Event
+}
+        }
+        function gobacktofutureevent() {
+    if (!lasteventsparentsection) {
+        return;
+    }
+    if (!futureevents[lasteventsparentsection.id]) {
+        return;
+    }
+    const futureevent = futureevents[lasteventsparentsection.id].pop();
+    
+    if (!futureevent) {
+        return;
+    }
+    futureevent.reverse();
+    let newpast = [];
+    
+    futureevent.forEach(element => {
+        if (element.type == "create") {
+            if (lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index - 1]) {
+                lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index - 1].insertAdjacentElement("afterend", element.element);
+            } else if (lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index]) {
+                lasteventsparentsection.querySelectorAll('.code-editor-container .code-editor-line')[element.index].insertAdjacentElement("beforebegin", element.element);
+            } else {
+                lasteventsparentsection.querySelector('.code-editor-container').appendChild(element.element);
+            }
+            let pastelement = {
+                element: element.element,
+                type: "delete",
+                index: element.index // Speichere den ursprünglichen Text
+            };
+            newpast.push(pastelement);
+        } else if (element.type == "text") {
+            let pastelement = {
+                element: element.element,
+                type: "text",
+                text: element.element.textContent // Speichere den ursprünglichen Text
+            };
+            newpast.push(pastelement);
+            element.element.textContent = element.text;
+        } else if (element.type == "delete") {
+            let pastelement = {
+                element: element.element,
+                type: "create",
+                index: element.index // Speichere den ursprünglichen Text
+            };
+            newpast.push(pastelement);
+            element.element.remove();
+        }
+    });
+
+    if (newpast.length > 0) {
+        if (!pastevents[lasteventsparentsection.id]) {
+            pastevents[lasteventsparentsection.id] = [];
+        }
+        pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+    }
+}
+
         let createkonfetti = true;
         function createConfetti() {
             if (!createkonfetti){
@@ -2999,6 +3146,14 @@ celine = celines[relevantlines[relevantlines.length - 1] - 1];
         return;
     } // Sicherstellen, dass celine existiert
     startLoadingMerge();
+    let newpast = [];
+lasteventsparentsection = section;
+let pastelement = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
 
     // Ermitteln der führenden Leerzeichen in der aktuellen Linie
     let spaces = "";
@@ -3091,6 +3246,12 @@ celine = celines[relevantlines[relevantlines.length - 1] - 1];
             newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
         }
         celine.insertAdjacentElement('afterend', newline);
+let pastelement2 = {
+    element: newline,
+    type: "create",
+    index: getElementIndexInParent(newline) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement2);
         celine = newline;
         if (i == lines.length - 1 && htmlCodeComtainer.parentElement && htmlCodeComtainer.parentElement.style.display != "none") {
             celine.scrollIntoView({
@@ -3106,6 +3267,13 @@ celine = celines[relevantlines[relevantlines.length - 1] - 1];
     });
 }
     }
+    if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
 }
 
     function modifyHTML(htmlCode, additionalCode, type, htmlCodeComtainer) {
@@ -4130,7 +4298,7 @@ const navBar = document.getElementById('nav-bar');
 const newSection = document.createElement('div');
 newSection.classList.add('section');
 newSection.id = `section${container.children.length}`;
-newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div></div>
+newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕ search"></div></div>
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
@@ -4280,7 +4448,7 @@ await updateDataIndex('nav-bar');
             const newSection = document.createElement('div');
             newSection.classList.add('section');
             newSection.id = `section${container.children.length}`;
-            newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div></div>
+            newSection.innerHTML = `<div class="editor-selected-line-btns"><button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onblur="hidecodesearchresults()" onfocus="searchcode(this)" placeholder="⌕"></div></div>
         <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onpaste="handlePaste(event)">
             <div id="1" class="code-editor-line" contenteditable="true"></div>
         </div>
@@ -4393,7 +4561,7 @@ async function createNewFilefortemplatecode(filename, optionalText = '') {
     newSection.classList.add('section');
     newSection.id = `section${container.children.length}`;
     newSection.innerHTML = `
-        <div class="editor-selected-line-btns">
+        <div class="editor-selected-line-btns"><button class="code-editor-btn" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button>
             <button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button>
             <button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button>
             <button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button>
@@ -4891,6 +5059,17 @@ function truncateText(text, maxLength) {
             if (rectangleToDelete) {
                 rectangleToDelete.remove();
                 document.querySelectorAll('.rectangle').forEach((rect, index) => {
+                    const sectionKey = rect.id.replace('rectangle', 'section');
+
+// Überprüfe, ob der Key in pastevents existiert
+if (pastevents[sectionKey]) {
+    pastevents["section" + index] = pastevents[sectionKey];
+}
+
+// Überprüfe, ob der Key in futureevents existiert
+if (futureevents[sectionKey]) {
+    futureevents["section" + index] = futureevents[sectionKey];
+}
                     if (rect.id !== 'image-rectangle') {
                         rect.id = "rectangle" + index;
                         if (rect.querySelector('.rectangle-buttons .delete-btn') && rect.querySelector('.rectangle-buttons .edit-btn')){
@@ -4949,6 +5128,7 @@ function truncateText(text, maxLength) {
                     deletethissection.remove();
                     document.querySelectorAll('.section').forEach((sectionv, index) => {
                         sectionv.id = "section" + index;
+                        
                     });
                 }
             }
@@ -4989,7 +5169,15 @@ function truncateText(text, maxLength) {
     function deleteAllEmptyLines() {
         const sectionlinecontainer = section.querySelector(".code-editor-container");
         const allsectionlines = sectionlinecontainer.querySelectorAll(".code-editor-line");
-        allsectionlines.forEach(line => {
+        let newpast = [];
+lasteventsparentsection = section;
+        allsectionlines.forEach((line, index) => {
+            let pastelement = {
+    element: line,
+    type: "delete",
+    index: index // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
             // Korrigiere den Aufruf von `trim()`
             if (line.innerText.trim() === "") {
                 if (section.querySelectorAll(".code-editor-line").length > 1 && !line.classList.contains('hiddenlinesparent')){
@@ -4997,18 +5185,46 @@ function truncateText(text, maxLength) {
                 }
             }
         });
+        if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    futureevents[lasteventsparentsection.id] = [];
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
     }
     function deleteAllCommentsInLines() {
-        const sectionlinecontainer = section.querySelector(".code-editor-container");
-        const allsectionlines = sectionlinecontainer.querySelectorAll(".code-editor-line");
+    const sectionlinecontainer = section.querySelector(".code-editor-container");
+    if (!sectionlinecontainer) return;
 
-        allsectionlines.forEach(line => {
-            let text = line.innerText;
-            text = text.replace(/\/\/.*/g, '');
-            text = text.replace(/\/\*[\s\S]*?\*\//g, '');
-            line.innerText = text;
-        });
+    const allsectionlines = sectionlinecontainer.querySelectorAll(".code-editor-line");
+    let newpast = [];
+    lasteventsparentsection = section;
+
+    allsectionlines.forEach(line => {
+        let pastelement = {
+            element: line,
+            type: "text",
+            text: line.textContent // Speichere den ursprünglichen Text
+        };
+        newpast.push(pastelement);
+
+        let text = line.textContent;
+        text = text.replace(/\/\/.*/g, '').replace(/\/\*[\s\S]*?\*\//g, '');
+        line.textContent = text; // Aktualisiere den Text
+    });
+
+    if (newpast.length > 0) {
+        // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+        if (!pastevents[lasteventsparentsection.id]) {
+            pastevents[lasteventsparentsection.id] = [];
+        }
+        futureevents[lasteventsparentsection.id] = [];
+        pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
     }
+}
+
     function positionElementAbove(elementToPosition, referenceElement) {
 const referenceRect = referenceElement.getBoundingClientRect();
 elementToPosition.style.position = 'absolute';
@@ -5702,6 +5918,7 @@ codesearchresults.style.display = "none";
             highlightDot(index);
             navBar.scrollLeft = index * window.innerWidth; // Scroll the bar
         section = document.getElementById(`section${index}`);
+        lasteventsparentsection = section;
             if (!section.classList.contains('viewcontainer')){
                 inputDiv = section.querySelector('.code-editor-container');
             }
@@ -5725,10 +5942,28 @@ codesearchresults.style.display = "none";
             });
           }
       }
+      function getElementIndexInParent(element) {
+    if (!element || !element.parentElement) {
+        return -1; // Gibt -1 zurück, wenn das Element oder sein Elternteil nicht existiert
+    }
+    const parent = element.parentElement;
+    return Array.from(parent.children).indexOf(element);
+}
+
       function deleteSelectedLines() {
             const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
+            let newpast = [];
+lasteventsparentsection = section;
+
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
+                    let pastelement = {
+    element: selectedline,
+    type: "delete",
+    index: getElementIndexInParent(selectedline) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
+
                 if (selectedline.previousElementSibling || selectedline.nextElementSibling){
                   selectedline.remove();
                 }else {
@@ -5738,12 +5973,28 @@ codesearchresults.style.display = "none";
                 checkifselectedlines();
                 });
             }
+            if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    futureevents[lasteventsparentsection.id] = [];
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
         }
 
       function deleteAllLines() {
             const allselectedlines = section.querySelectorAll(".code-editor-line");
+            let newpast = [];
+lasteventsparentsection = section;
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                 allselectedlines.forEach(selectedline => {
+                    let pastelement = {
+    element: selectedline,
+    type: "delete",
+    index: getElementIndexInParent(selectedline) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
                 if (selectedline.previousElementSibling || selectedline.nextElementSibling){
                   selectedline.remove();
                 }else {
@@ -5752,6 +6003,14 @@ codesearchresults.style.display = "none";
                 checkifselectedlines();
                 });
             }
+            if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    futureevents[lasteventsparentsection.id] = [];
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
         }
 
         function importantselectedlines() {
@@ -5886,13 +6145,27 @@ codesearchresults.style.display = "none";
       }, 1000);
       }
       function trimAllselectedlinetexts(){
+        let newpast = [];
+lasteventsparentsection = section;
         const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
             if (allselectedlines.length) {  // Überprüfe, ob es ausgewählte Linien gibt
                     allselectedlines.forEach(selectedline => {
+                        let pastelement = {
+    element: selectedline,
+    type: "text",
+    text: selectedline.textContent // Speichere den ursprünglichen Text
+};
                     selectedline.textContent = selectedline.textContent.trim();
                     checkifselectedlines();
                 }); // Korrekte Klammerung hier
             }
+            if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
       }
 
         function copyselectedlinetexts() {
@@ -6161,6 +6434,14 @@ codesearchresults.style.display = "none";
         
             let celine = section.querySelector('.code-editor-line:focus');
             if (!celine) return; // Sicherstellen, dass celine existiert
+            let newpast2 = [];
+lasteventsparentsection = section;
+let pastelement2 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement2);
         
             // Ermitteln der führenden Leerzeichen in der aktuellen Linie
             let spaces = "";
@@ -6253,6 +6534,12 @@ codesearchresults.style.display = "none";
                 newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
                 celine.insertAdjacentElement('afterend', newline);
                 celine = newline;
+                let pastelement = {
+    element: celine,
+    type: "create",
+    index: getElementIndexInParent(celine) // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement);
         if (i == lines.length - 1){
             celine.scrollIntoView({
                         behavior: 'smooth',
@@ -6276,6 +6563,14 @@ codesearchresults.style.display = "none";
                 // Falls kein Textknoten vorhanden ist, einfach auf das Ende des Elements setzen
                 newRange.setStart(celine, celine.textContent.length - textAfterCursor.length);
             }
+            
+            if (newpast2.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+}
         
             newRange.collapse(true);
             selection.removeAllRanges();
@@ -6375,6 +6670,21 @@ codesearchresults.style.display = "none";
     function insertClosingCharacter(replacetext, openingChar, closingChar) {
         let text = celine.textContent;
         if (!text.includes(replacetext)) return; // Nur ersetzen, wenn das Kommando vorhanden ist
+        let newpast2 = [];
+lasteventsparentsection = section;
+let pastelement2 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement2);
+if (newpast2.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+}
 
         let textAfterCursor = text.substring(cursorOffset);
         celine.textContent = text.substring(0, cursorOffset).replace(replacetext, '') + openingChar + closingChar + textAfterCursor;
@@ -6542,7 +6852,14 @@ function getFirstNonSpaceCharInTextaftercursor(text) {
                 if (celine) {
                     correntids += 1;
                     const newid = correntids;
-
+                    let newpast = [];
+lasteventsparentsection = section;
+let pastelement = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
                     // Teile den Text basierend auf der Cursorposition
                     const text = celine.textContent;
                     const selection = window.getSelection();
@@ -6585,6 +6902,12 @@ if (openingsignsincssandjavascript.includes(lastsignincelineelement)) {
 
                     // Neue Zeile einfügen
                     celine.insertAdjacentElement('afterend', newline);
+                    let pastelemen4 = {
+    element: newline,
+    type: "create",
+    index: getElementIndexInParent(newline) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelemen4);
                     
                     if (clisingsignsincssandjavascript.includes(firstsignintextbehindcursor)){
                         const newline2 = document.createElement('div');
@@ -6593,6 +6916,12 @@ newline2.id = parseInt(newid);
 newline2.classList.add('code-editor-line');
 newline2.textContent = firstspaces + textBehindCursor;
 newline.insertAdjacentElement('afterend', newline2);
+let pastelement = {
+    element: newline2,
+    type: "create",
+    index: getElementIndexInParent(newline2) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
                     }
                     // Fokus und Cursor in die neue Zeile setzen
                     newline.focus();
@@ -6601,6 +6930,14 @@ newline.insertAdjacentElement('afterend', newline2);
                     newRange.collapse(true);
                     selection.removeAllRanges();
                     selection.addRange(newRange);
+                    
+                    if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
 
                     updateSelectedClasses();
                 }
@@ -6608,6 +6945,8 @@ newline.insertAdjacentElement('afterend', newline2);
 
 
             if (event.key === 'Backspace') {
+                let newpast = [];
+lasteventsparentsection = section;
                 function handleBackspaceWithMatchingCharacters(event) {
     if (event.key !== 'Backspace') return;
 
@@ -6619,6 +6958,13 @@ newline.insertAdjacentElement('afterend', newline2);
     const celine = range.startContainer;
 
     if (!celine || celine.nodeType !== Node.TEXT_NODE) return;
+    
+    let pastelemen3 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast.push(pastelemen3);
 
     const text = celine.textContent;
 
@@ -6666,13 +7012,20 @@ handleBackspaceWithMatchingCharacters(event);
 
                     const previousLine = celine.previousElementSibling;
                     if (previousLine) {
+                        newpast = [];
                         updateSelectedClasses();
 
                         // Hole den aktuellen Text der aktuellen Zeile und der vorherigen Zeile
                         const currentLineText = celine.textContent;
                         const previousLineText = previousLine.textContent;
 
-                        // Entferne die aktuelle Zeile
+                        // Entferne die aktuelle Zeil
+                        let pastelement2 = {
+    element: celine,
+    type: "delete",
+    index: getElementIndexInParent(celine) // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement2);
                         celine.remove();
 
                         // Füge den Text der aktuellen Zeile zur vorherigen Zeile hinzu
@@ -6689,6 +7042,13 @@ handleBackspaceWithMatchingCharacters(event);
                         selection.addRange(newRange);
                     }
                 }
+                if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
             }
 
 
@@ -6719,6 +7079,21 @@ handleBackspaceWithMatchingCharacters(event);
             }*/
 
           if (event.key === '>') {
+              let newpast = [];
+lasteventsparentsection = section;
+let pastelement = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast.push(pastelement);
+if (newpast.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast); // Speichere das Event
+}
              const selfClosingTags = [
     "br",
     "img",
@@ -6775,6 +7150,21 @@ handleBackspaceWithMatchingCharacters(event);
 
             // Erstellen einer Funktion, die das aktuelle Zeichen schließt
             function insertClosingCharacter(openingChar, closingChar) {
+                let newpast2 = [];
+lasteventsparentsection = section;
+let pastelement2 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement2);
+if (newpast2.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+}
                 let text = celine.textContent;
                 let textAfterCursor = text.substring(cursorOffset);
                 celine.textContent = text.substring(0, cursorOffset) + openingChar + closingChar + textAfterCursor;
@@ -6804,7 +7194,7 @@ handleBackspaceWithMatchingCharacters(event);
             }
 
             // Automatisches Schließen von '`'
-            if (event.key === '`') {
+            /*if (event.key === '`') {
                 event.preventDefault();
                 insertClosingCharacter('`', '`');
             }
@@ -6841,6 +7231,24 @@ handleBackspaceWithMatchingCharacters(event);
             if (event.key === "'") {
                 event.preventDefault();
                 insertClosingCharacter('\'', '\'');
+            }*/
+            
+            if (event.key != "'" && event.key != "\"" && event.key != "`" && event.key != "(" && event.key != "{" && event.key != "[" && event.key != "“" && event.key != "‚" && event.key != ">" && event.key != "„" && event.key != "Backspace" && event.key != "‘" && event.key != "Enter" && event.key != "}" && event.key != "]" && event.key != ")" && event.key != ";"){
+                let newpast2 = [];
+lasteventsparentsection = section;
+let pastelement2 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement2);
+if (newpast2.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+}
             }
 
           function checkAndSkipClosingCharacter(closingChar) {
@@ -6852,9 +7260,54 @@ handleBackspaceWithMatchingCharacters(event);
                 range.collapse(true);
                 selection.removeAllRanges();
                 selection.addRange(range);
+              }else {
+                  let newpast2 = [];
+lasteventsparentsection = section;
+let pastelement2 = {
+    element: celine,
+    type: "text",
+    text: celine.textContent // Speichere den ursprünglichen Text
+};
+newpast2.push(pastelement2);
+if (newpast2.length > 0) {
+    // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+    if (!pastevents[lasteventsparentsection.id]) {
+        pastevents[lasteventsparentsection.id] = [];
+    }
+    pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+}
               }
           }
 
+          function checkAndSkipornotClosingCharacter(closingChar) {
+    let text = celine.textContent;
+    let nextChar = text.charAt(cursorOffset);
+    if (nextChar === closingChar) {
+        event.preventDefault();
+        range.setStart(celine.firstChild, cursorOffset + 1);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    } else {
+        let newpast2 = [];
+        lasteventsparentsection = section;
+        let pastelement2 = {
+            element: celine,
+            type: "text",
+            text: celine.textContent // Speichere den ursprünglichen Text
+        };
+        newpast2.push(pastelement2);
+        if (newpast2.length > 0) {
+            // Stelle sicher, dass pastevents[lasteventsparentsection.id] ein Array ist
+            if (!pastevents[lasteventsparentsection.id]) {
+                pastevents[lasteventsparentsection.id] = [];
+            }
+            pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
+        }
+        event.preventDefault();
+        insertClosingCharacter(closingChar, closingChar);
+    }
+}
           if (event.key === ']') {
               checkAndSkipClosingCharacter(']');
           }
@@ -6862,10 +7315,10 @@ handleBackspaceWithMatchingCharacters(event);
             checkAndSkipClosingCharacter('}');
           }
           if (event.key === '"') {
-              checkAndSkipClosingCharacter('"');
+              checkAndSkipornotClosingCharacter('"');
           }
           if (event.key === "'") {
-            checkAndSkipClosingCharacter("'");
+            checkAndSkipornotClosingCharacter("'");
           }
           if (event.key === ')') {
             checkAndSkipClosingCharacter(')');
@@ -6874,16 +7327,16 @@ handleBackspaceWithMatchingCharacters(event);
             checkAndSkipClosingCharacter(';');
           }
       if (event.key === '„') {
-            checkAndSkipClosingCharacter('"');
+            checkAndSkipornotClosingCharacter('"');
           }
       if (event.key === '“') {
-            checkAndSkipClosingCharacter('"');
+            checkAndSkipornotClosingCharacter('"');
           }
       if (event.key === "‘") {
-            checkAndSkipClosingCharacter('\'');
+            checkAndSkipornotClosingCharacter('\'');
           }
       if (event.key === "‚") {
-            checkAndSkipClosingCharacter('\'');
+            checkAndSkipornotClosingCharacter('\'');
           }
       }
         function updateSelectedClasses() {
