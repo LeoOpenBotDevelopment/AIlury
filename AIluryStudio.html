@@ -5194,6 +5194,7 @@ if (futureevents[sectionKey]) {
                 scrolltothissection.scrollIntoView({ behavior: 'smooth' });
                 document.querySelector('.overlay-back-btn').click();
             }
+            lasteventsparentsection = document.getElementById('section' + number);
         }
       function updateviewthisfilebtn() {
       if (!section || !section.id){
@@ -5847,6 +5848,7 @@ if (newHeight < 50) {
         // Function to scroll to specific section horizontally
       let previoussectionfsts = section;
         function scrollToSection(index) {
+            lasteventsparentsection = document.getElementById('section' + index);
             if (section){
                 if (section.classList.contains('viewcontainer')){
                     if (navBar.classList.contains('expanded')) {
