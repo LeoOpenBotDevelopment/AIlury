@@ -10,7 +10,7 @@
       --background-color: #fff;
       --white-color: #fff;
       --grey-color: #ccc;
-      --lightgrey-color: #fcfcfc;
+      --lightgrey-color: #f0f0f0;/*fcfcfc*/
       --lightdarkgrey-color: #f4f4f4;
       --black-color: #000;
       --linenumber-color: #999999;
@@ -48,6 +48,7 @@
       --codeeditoreditbtnbackground-color: #fff;
       --browseriframebackgroundcolor-color: #fff;
       --rectanglecolorcolor-color: #e0e0e0;
+      --deviceborder-color: #333;
     }
     .helloween-theme {
       --selected-color: rgba(255, 109, 0, 0.5);
@@ -205,14 +206,14 @@
 }*/
     @media (prefers-color-scheme: dark) {
       :root {
-        --background-color: #000;
-        --white-color: #000;
+        --background-color: #0d1117;
+        --white-color: #0d1117;
           --grey-color: #2E2E2E;
-          --lightgrey-color: #0c0c0c;/*fcfcfc*/
+          --lightgrey-color: #161b22;/*fcfcfc*/
           --lightdarkgrey-color: #4f4f4f;/*f4f4f4*/
           --black-color: #fff;
         --linenumber-color: #555555;
-        --drakgrey-color: #0f0f0f;
+        --drakgrey-color: #161b22;/*0f0f0f*/
         --selected-color: #0E7F9E;
         --safariheader-color: #0c0c0c;
         --safariheaderbackground-color: #0E0F0E;
@@ -220,19 +221,19 @@
         --urlbarcolor-color: #fff;
         --browsercontainerbackground-color: #000;
         --browserheaderborderbottom-color: #121212;
-        --spencialbtnbackground-color: #121212;
+        --spencialbtnbackground-color: #161b22;/*121212*/
         --spencialbtncolor-color: #fff;
         --overlayborder-color: #121212;
         --overlaycolor-color: #666;
-        --rectangleborder: #121212;/*0e0e0e*/
+        --rectangleborder: #161b22;/*0e0e0e*/
         --overlaybackground-color: rgba(0, 0, 0, 0.5);
-        --contentcontainer-color: #000;/*0c0c0c*/
+        --contentcontainer-color: #0d1117;/*0c0c0c*/
         --checkmark-color: #0E7F9E;
-        --seccontainerbackground-color: #0c0c0c;
+        --seccontainerbackground-color: #0c0c0c;/*0c0c0c*/
         --seccontainerlinebackground-color: rgba(50, 50, 50, 0.5);
-        --navdotcolor-color: #999999;
+        --navdotcolor-color: #161b22;/*999999*/
         --seccontainerlinecolor-color: #666;
-        --switchcheckedbackground-color: #0156CD;
+        --switchcheckedbackground-color: #0156CD;/*0156CD*/
         --filepathinput-color: rgba(255, 255, 255, 0.5);
         --transparentshade-color: rgba(0, 0, 0, 0.2);
         --superselected-color: #28a745;
@@ -240,12 +241,13 @@
         --loadingbarbackground-color: rgba(0, 0, 0, 0.2);
         --loadingbarloadedbackground-color: #0156CD;
         --fileloadingoverlaybackground-color: rgba(0, 0, 0, 0.5);
-    --commandlistbackground-color: #010101;
+    --commandlistbackground-color: #0d1117;/*010101*/
     --commandlistcolor-color: #A5A5A5;
     --codeeditoreditbtn-color: #fff;
-    --codeeditoreditbtnbackground-color: #000;
+    --codeeditoreditbtnbackground-color: #0d1117;/*000*/
     --browseriframebackgroundcolor-color: #000;
     --rectanglecolorcolor-color: #363736;
+    --deviceborder-color: #161b22;
       }
       /*.helloween-theme {
         --background-color: #000;
@@ -366,7 +368,7 @@
             width: 100vw;
             display: flex;
             height: 50px;
-            background-color: var(--seccontainerbackground-color);/*--lightgrey-color*/
+            background-color: var(--background-color);/*--seccontainerbackground-color*/
             /*box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);*/
             border-radius: 10px 10px 0 0;
             overflow-x: auto;
@@ -393,7 +395,7 @@
 
         .nav-bar.expanded {
             /*box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);*/
-        background: var(--commandlistbackground-color);
+        background: var(--background-color);
         transition: 0.3s;
         }
 
@@ -488,7 +490,7 @@
     .seccontainer {
             width: 100vw;
             height: 85vh;
-            background-color: var(--commandlistbackground-color); /*var(--seccontainerbackground-color);*/
+            background-color: var(--background-color); /*var(--seccontainerbackground-color);*/
             color: var(--black-color);
             /*transition: background-color 0.3s, box-shadow 0.3s ease-in-out;*/
             scroll-snap-align: center;
@@ -897,7 +899,7 @@
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            border: 1em solid #333;
+            border: 1em solid var(--deviceborder-color);
             transition: 0.3s;
         }
 
@@ -991,7 +993,7 @@
             background-color: var(--browsercontainerbackground-color);
             display: flex;
             flex-direction: column;
-      border: 1em solid #333;/*alt option #BBBCBE*/
+      border: 1em solid var(--deviceborder-color);/*alt option #BBBCBE*/
             transition: 0.3s;
         }
 
@@ -1836,7 +1838,7 @@ transition: 0.3s;
 
         /* Dialog - Zentrale Box */
         #custom-dialog {
-            background: var(--seccontainerbackground-color);
+            background: var(--background-color);/*--seccontainerbackground-color*/
             padding: 30px;
         border: 1px solid var(--rectangleborder);
             border-radius: 5px;
@@ -1896,7 +1898,7 @@ transition: 0.3s;
             margin-top: 10px;
             padding: 12px;
             width: 100%;
-            background-color: var(--spencialbtnbackground-color); /*#007BFF;*/
+            background: var(--spencialbtnbackground-color); /*#007BFF;*/
             color: #fff;
             border: none;
             border-radius: 6px;
@@ -2418,6 +2420,17 @@ input[type="range"]::-ms-thumb {
         transform: translateY(calc(100vh + 100px)) rotate(360deg);
         opacity: 0;
       }
+    }
+    .sidebarbardivbuttondiv button{
+        background: var(--lightgrey-color);/*rgba(150, 150, 150, 0.1);*/
+        border: none;
+    }
+    #closemenuforsmallscreen h3{
+        font-weight: 600;
+        color: #333;
+    }
+    .code-editor-line:focus{
+        background: rgba(150, 150, 150, 0.1);
     }
     </style>
 
