@@ -2470,6 +2470,24 @@ input[type="range"]::-ms-thumb {
     .code-editor-line:focus{
         background: rgba(150, 150, 150, 0.1);
     }
+    .customthemecodeinput{
+        background: var(--contentcontainer-color);
+border: 1px solid var(--rectangleborder);
+color: var(--black-color);
+display: flex;
+padding: 10px;
+text-align: left;
+font-size: 1em;
+border-radius: 5px;
+margin-bottom: 5px;
+transition: 0.3s;
+width: 100%;
+overflow: hidden;
+    }
+    .customthemecodeinput:focus{
+        /*outline-color: var(--checkmark-color);*/
+        outline: none;
+    }
     </style>
 
 </head>
@@ -2974,6 +2992,10 @@ input[type="range"]::-ms-thumb {
 <input class="switchtothememaincolorspan2" type="color" id="rectangleColorColor" value="#363736" onchange="updateRectangleColorColor()">
 <span class="switchtothemetitlespan">file container path</span>
 <input type="range" id="rectangleColorAlpha" min="0" max="100" value="100" onchange="updateRectangleColorColor()">
+</div>
+<br>
+<div class="themeoption">
+    <input class="customthemecodeinput" type="text" id="customthemecodeinput" onchange="updatecustomtheme(this)" placeholder="enter your theme code...">
 </div>
     </div>
 </div>
@@ -3794,6 +3816,7 @@ function updateSelectedColor() {
   themetoedit.style.setProperty('--urlbarbackground-color', rgba);
   themetoedit.style.setProperty('--spencialbtnbackground-color', rgba);
   themetoedit.style.setProperty('--checkmark-color', rgba);
+  generateCustomThemeCode();
 }
 
 //--commandlistcolor-color: #A5A5A5;
@@ -3826,6 +3849,7 @@ function updateColorColor() {
     const rgba = hexToRgba(selectedColor, alpha);
     themetoedit.style.setProperty('--urlbarcolor-color', rgba);
     themetoedit.style.setProperty('--black-color', rgba);
+    generateCustomThemeCode();
 }
 function updateBackgroundColor() {
     themetoedit = document.querySelector(`.custom-theme`);
@@ -3849,6 +3873,7 @@ themetoedit.style.setProperty('--browsercontainerbackground-color', '#f7f7f7');
 themetoedit.style.setProperty('--browseriframebackgroundcolor-color', '#000');
 themetoedit.style.setProperty('--browsercontainerbackground-color', '#0E0F0E');
     }
+    generateCustomThemeCode();
 }
 
 // Funktion zur Aktualisierung der 'rectangleborder' CSS-Variable (inkl. Alpha)
@@ -3863,6 +3888,7 @@ if (!themetoedit) {
   themetoedit.style.setProperty('--rectangleborder', rgba);
   themetoedit.style.setProperty('--deviceborder-color', rgba);
   themetoedit.style.setProperty('--browserheaderborderbottom-color', rgba);
+  generateCustomThemeCode();
 }
 
 // Funktion zur Aktualisierung der 'switchcheckedbackground-color' CSS-Variable (inkl. Alpha)
@@ -3875,6 +3901,7 @@ if (!themetoedit) {
   const alpha = document.getElementById('switchCheckedAlpha').value / 100;
   const rgba = hexToRgba(switchCheckedBackgroundColor, alpha);
   themetoedit.style.setProperty('--switchcheckedbackground-color', rgba);
+  generateCustomThemeCode();
 }
 
 // Funktion zur Aktualisierung der 'loadingbarloadedbackground-color' CSS-Variable (inkl. Alpha)
@@ -3887,6 +3914,7 @@ if (!themetoedit) {
   const alpha = document.getElementById('loadingBarLoadedAlpha').value / 100;
   const rgba = hexToRgba(loadingBarLoadedBackgroundColor, alpha);
   themetoedit.style.setProperty('--loadingbarloadedbackground-color', rgba);
+  generateCustomThemeCode();
 }
 
 // Funktion zur Aktualisierung der 'rectanglecolorcolor-color' CSS-Variable (inkl. Alpha)
@@ -3899,6 +3927,7 @@ if (!themetoedit) {
   const alpha = document.getElementById('rectangleColorAlpha').value / 100;
   const rgba = hexToRgba(rectangleColorColor, alpha);
   themetoedit.style.setProperty('--rectanglecolorcolor-color', rgba);
+  generateCustomThemeCode();
 }
 
 function updatecodeeditoreditbtncolor() {
@@ -3910,7 +3939,68 @@ const codeeditoreditbtncolor = document.getElementById('codeeditoreditbtncolor')
 const alpha = document.getElementById('codeeditoreditbtncolorAlpha').value / 100;
 const rgba = hexToRgba(codeeditoreditbtncolor, alpha);
 themetoedit.style.setProperty('--codeeditoreditbtn-color', rgba);
+generateCustomThemeCode();
 }
+
+function updatecustomtheme(codeInputField) {
+    const themeCode = codeInputField.value.trim(); // Eingabe bereinigen
+    const everyValue = themeCode.split('.'); // Aufteilung nach "."
+    const everyColorInput = document.querySelectorAll('.switchtothememaincolorspan2');
+    const everyRangeInput = document.querySelectorAll('.themeoption input[type="range"]');
+
+    everyValue.forEach((value, index) => {
+        const [valueHex, valueRange] = value.split(','); // Aufteilen in Hex-Wert und Range-Wert
+
+        if (isValidHex(valueHex) && isValidNumber(valueRange)) {
+            if (everyColorInput[index]) {
+                everyColorInput[index].value = valueHex.trim();
+            }
+            if (everyRangeInput[index]) {
+                everyRangeInput[index].value = parseFloat(valueRange.trim());
+            }
+            updateSelectedColor();
+            updateColorColor();
+            updateBackgroundColor();
+            updateRectangleBorderColor();
+            updateSwitchCheckedBackgroundColor();
+            updateLoadingBarLoadedBackgroundColor();
+            updateRectangleColorColor();
+            updatecodeeditoreditbtncolor();
+        }
+    });
+}
+
+function generateCustomThemeCode() {
+    const everyColorInput = document.querySelectorAll('.switchtothememaincolorspan2');
+    const everyRangeInput = document.querySelectorAll('.themeoption input[type="range"]');
+    
+    let themeCode = [];
+
+    everyColorInput.forEach((colorInput, index) => {
+        const colorValue = colorInput.value.trim(); // Hex-Wert auslesen
+        const rangeValue = everyRangeInput[index]?.value.trim(); // Range-Wert auslesen
+
+        if (isValidHex(colorValue) && isValidNumber(rangeValue)) {
+            themeCode.push(`${colorValue},${rangeValue}`);
+        }
+    });
+
+    const codeInput = document.querySelector('.customthemecodeinput');
+    if (codeInput) {
+        codeInput.value = themeCode.join('.'); // Alle Werte verbinden und einfügen
+    }
+}
+
+function isValidNumber(value) {
+    const number = parseFloat(value.trim()); // Trim zur Sicherheit
+    return !isNaN(number) && number >= 0 && number <= 100; // Gültigkeitsbereich angepasst
+}
+
+function isValidHex(hex) {
+    const hexPattern = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/; // Hex-Pattern für 3 oder 6 Zeichen
+    return hexPattern.test(hex.trim());
+}
+
 
 // Hilfsfunktion zur Umwandlung von Hex-Farben in RGBA
 function hexToRgba(hex, alpha) {
