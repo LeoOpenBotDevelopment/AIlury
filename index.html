@@ -75,7 +75,7 @@
         --overlaybackground-color: rgba(0, 0, 0, 0.3);
         --contentcontainer-color: #0d1117;/*0c0c0c*/
         --checkmark-color: #0E7F9E;
-        --seccontainerbackground-color: #0c0c0c;/*0c0c0c*/
+        --seccontainerbackground-color: #161b22;/*0c0c0c*/
         --seccontainerlinebackground-color: rgba(50, 50, 50, 0.5);
         --navdotcolor-color: #161b22;/*999999*/
         --seccontainerlinecolor-color: #666;
@@ -3800,6 +3800,7 @@ themetoedit.style.removeProperty('--spencialbtnbackground-color');
 themetoedit.style.removeProperty('--browsercontainerbackground-color');
 themetoedit.style.removeProperty('--browseriframebackgroundcolor-color');
 themetoedit.style.removeProperty('--browsercontainerbackground-color');
+themetoedit.style.removeProperty('--seccontainerbackground-color');
 }
 
 function updateSelectedColor() {
@@ -3816,6 +3817,7 @@ function updateSelectedColor() {
   themetoedit.style.setProperty('--urlbarbackground-color', rgba);
   themetoedit.style.setProperty('--spencialbtnbackground-color', rgba);
   themetoedit.style.setProperty('--checkmark-color', rgba);
+  themetoedit.style.setProperty('--seccontainerbackground-color', rgba);
   generateCustomThemeCode();
 }
 
