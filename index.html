@@ -3262,6 +3262,7 @@ if (allselectedlines.length) { // Überprüfe, ob es ausgewählte Linien gibt
     };
     newfuture.push(futureelement);
             element.element.textContent = element.text;
+            addJsSyntaxHighlighting(element.element);
         }else if (element.type == "create"){
     let futureelement = {
         element: element.element,
