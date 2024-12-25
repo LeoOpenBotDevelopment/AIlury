@@ -8124,7 +8124,10 @@ if (cursorPosition !== null) {
                 event.preventDefault(); // Verhindert das Standardverhalten der Enter-Taste
 
                 if (celine) {
-
+                    if (celine.classList.contains('hiddenlinesparent')){
+    celine.classList.remove('hiddenlinesparent'); // Linie auswählen
+showHiddenElements(celine);
+}
                     correntids += 1;
                     const newid = correntids;
                     let newpast = [];
@@ -8324,6 +8327,10 @@ handleBackspaceWithMatchingCharacters(event);
     index: getElementIndexInParent(celine) // Speichere den ursprünglichen Text
 };
 newpast.push(pastelement2);
+                        if (celine.classList.contains('hiddenlinesparent')){
+    celine.classList.remove('hiddenlinesparent'); // Linie auswählen
+showHiddenElements(celine);
+}
                         celine.remove();
                         if (!section.querySelector('.code-editor-line.selected')) {
     section.querySelectorAll('.eslbtn').forEach(dline => {
