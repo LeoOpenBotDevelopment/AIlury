@@ -6762,6 +6762,9 @@ lasteventsparentsection = section;
     text: selectedline.textContent // Speichere den ursprünglichen Text
 };
                     selectedline.textContent = selectedline.textContent.trim();
+                    if (!selectedline.classList.contains('syntaxhtmlcomment') && !selectedline.classList.contains('syntaxcomment') && !selectedline.classList.contains('syntaxstring')) {
+    addJsSyntaxHighlighting(selectedline);
+}
                     checkifselectedlines();
                 }); // Korrekte Klammerung hier
             }
@@ -7088,11 +7091,17 @@ function preserveCursorAndHighlight(celine) {
   const cursorPosition = getCursorPosition(celine);
 
   // Syntax-Highlighting anwenden
+  const dubbleminusregex = /—/g; // Das `g` sorgt für die globale Suche (alle Vorkommen)
+  const matches = celine.textContent.match(dubbleminusregex); // Gibt ein Array aller Treffer zurück oder `null`, wenn keine Treffer vorhanden sind
+  const count = matches ? matches.length : 0;
+  if (count > 0){
+      celine.textContent = celine.textContent.replaceAll('—', '--');
+  }
   addJsSyntaxHighlighting(celine);
 
   // Cursor-Position wiederherstellen
   if (cursorPosition !== null) {
-    setCursorPosition(celine, cursorPosition);
+    setCursorPosition(celine, cursorPosition + count);
   }
 }
 
@@ -7177,6 +7186,7 @@ newpast2.push(pastelement2);
                adjustedLin2 = lines[0].slice(firstLineLeadingSpacesCount);
             }
             celine.textContent += convertToNonBreakingSpaces(adjustedLin2);
+            addJsSyntaxHighlighting(celine);
             // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
             for (let i = 1; i < lines.length; i++) {
                 correntids += 1;
@@ -7222,6 +7232,28 @@ newpast2.push(pastelement);
                     });
         }
             }
+            
+            function filterCodeLines() {
+    // Alle Elemente mit der Klasse 'code-editor-line' auswählen
+    const lines = section.querySelectorAll('.code-editor-line');
+
+    // Gefilterte Elemente sammeln
+    const filteredLines = Array.from(lines).filter(line => {
+        const text = line.textContent;
+
+        // Bedingungen prüfen
+        const hasCommentSyntax = text.includes('<!--') || text.includes('/*');
+        const hasCommentClass = line.classList.contains('syntaxcomment') || line.classList.contains('syntaxstring') || line.classList.contains('syntaxhtmlcomment');
+        const withinQuotes = /["'`].*?(<!--|\/\*).*?["'`]/.test(text);
+
+        // Filterbedingungen anwenden
+        return hasCommentSyntax && !hasCommentClass && !withinQuotes;
+    });
+
+    filteredLines.forEach(line => {
+        addJsSyntaxHighlighting(line);
+    });
+}
         
             // Text nach dem Cursor in die letzte Linie einfügen
             celine.textContent += convertToNonBreakingSpaces(textAfterCursor);
@@ -7246,6 +7278,7 @@ newpast2.push(pastelement);
     pastevents[lasteventsparentsection.id].push(newpast2); // Speichere das Event
     enablepastbtn();
 }
+filterCodeLines();
         
             newRange.collapse(true);
             selection.removeAllRanges();
@@ -7496,8 +7529,9 @@ if (newpast2.length > 0) {
     if (celine.textContent.includes('/') && document.querySelector('.commandsswitch')?.checked) {
         replaceCommandsWithSymbols(celine);
     }
-    
-    preserveCursorAndHighlight(celine);
+    if (celine.textContent.trim() != ""){
+        preserveCursorAndHighlight(celine);
+    }
 }
 
 
@@ -8101,7 +8135,7 @@ function setCursorPosition(element, position) {
 // Cursor-Position merken
 const cursorPosition = getCursorPosition(celine);
             const ctext = celine.textContent;
-            if (ctext != ""){
+            if (ctext.trim() != ""){
 celine.innerHTML = "";
 celine.textContent = ctext;
 if (cursorPosition !== null) {
