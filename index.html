@@ -4331,9 +4331,32 @@ function hexToRgba(hex, alpha) {
     if (theme != "custom-theme"){
         removeThemeProperties();
     }
+    if (theme == "custom-theme"){
+        updateSelectedColor();
+updateColorColor();
+updateBackgroundColor();
+updateRectangleBorderColor();
+updateSwitchCheckedBackgroundColor();
+updateLoadingBarLoadedBackgroundColor();
+updateRectangleColorColor();
+updatecodeeditoreditbtncolor();
+updatesyntaxblockcolor();
+updatesyntaxoperatorcolor();
+updatesyntaxbracketcolor();
+updatesyntaxsigncolor();
+updatesyntaxstringcolor();
+updatesyntaxnumbercolor();
+updatesyntaxcommentcolor();
+updatesyntaxvariablecolor();
+updatesyntaxcommandcolor();
+updatesyntaxkeywordcolor();
+updatesyntaxhtmlcommentcolor();
+updatesyntaxregexcolor();
+    }
     document.body.classList.remove('helloween-theme', "winter-theme", "spring-theme", "summer-theme", "autumn-theme", "vintage-theme", "futuristic-theme", "nature-theme", "mystic-theme", "candy-theme", "space-theme", "custom-theme");
     document.body.className = "";
     document.body.classList.add(theme);
+    themetoedit = document.querySelector(`.${theme}`);
 }
 function removeallthemes() {
     // Entferne nur Theme-Klassen, z. B. "dark" oder "light"
