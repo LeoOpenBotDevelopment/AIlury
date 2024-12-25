@@ -2201,7 +2201,7 @@ h2 {
         color: var(--overlaycolor-color);
         transition: 0.3s;
     }
-    .themeoption2 h3 {
+    .theme-option-container h3 {
     font-family: Arial, sans-serif;
     font-size: 1.5em;
     font-weight: bold;
@@ -2950,8 +2950,7 @@ overflow: hidden;
     <div id="theme-overlay" class="theme-overlay" onclick="hideelement('class', 'theme-overlay', event)">
         <div class="theme-option-container">
             <button class="closecommandoverlaybtn" onclick="hidethemeoverlay()">×</button>
-<br>
-<br>
+<h3>theme</h3>
 <br>
 <div class="themeoption" onclick="removeallthemes()">
 <span class="switchtothememaincolorspan" style="background: linear-gradient(to right, var(--rectanglecolorcolor-color), var(--background-color));"></span>
@@ -3127,12 +3126,6 @@ overflow: hidden;
   <input class="switchtothememaincolorspan2" type="color" id="syntaxregexcolor" value="#E06C75" onchange="updatesyntaxregexcolor()">
   <span class="switchtothemetitlespan">regex</span>
   <input type="range" id="syntaxregexcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxregexcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxhtmltagcontentcolor" value="#ABB2BF" onchange="updatesyntaxhtmltagcontentcolor()">
-  <span class="switchtothemetitlespan">html tag content</span>
-  <input type="range" id="syntaxhtmltagcontentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxhtmltagcontentcolor()">
 </div>
 <br>
 <div class="themeoption">
@@ -3958,8 +3951,6 @@ themetoedit.style.removeProperty('--syntaxcommand-color');
 themetoedit.style.removeProperty('--syntaxkeyword-color');
 themetoedit.style.removeProperty('--syntaxhtmlcomment-color');
 themetoedit.style.removeProperty('--syntaxregex-color');
-themetoedit.style.removeProperty('--syntaxhtmltagcontent-color');
-
 }
 
 function updateSelectedColor() {
@@ -4139,7 +4130,6 @@ updatesyntaxcommandcolor();
 updatesyntaxkeywordcolor();
 updatesyntaxhtmlcommentcolor();
 updatesyntaxregexcolor();
-updatesyntaxhtmltagcontentcolor();
 
         }
     });
@@ -4285,18 +4275,6 @@ function updatesyntaxregexcolor() {
     const alpha = document.getElementById('syntaxregexcolorAlpha').value / 100;
     const rgba = hexToRgba(selectedColor, alpha);
     themetoedit.style.setProperty('--syntaxregex-color', rgba);
-    generateCustomThemeCode();
-}
-
-function updatesyntaxhtmltagcontentcolor() {
-    themetoedit = document.querySelector('.custom-theme');
-    if (!themetoedit) {
-        return;
-    }
-    const selectedColor = document.getElementById('syntaxhtmltagcontentcolor').value;
-    const alpha = document.getElementById('syntaxhtmltagcontentcolorAlpha').value / 100;
-    const rgba = hexToRgba(selectedColor, alpha);
-    themetoedit.style.setProperty('--syntaxhtmltagcontent-color', rgba);
     generateCustomThemeCode();
 }
 
