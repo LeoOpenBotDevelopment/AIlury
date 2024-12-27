@@ -3548,10 +3548,10 @@ newpast.push(pastelement2);
 }
 
     function modifyHTML(htmlCode, additionalCode, type, htmlCodeComtainer) {
-    if (typeof htmlCode !== 'string' || typeof additionalCode !== 'string' || !['css', 'js'].includes(type)) {
+    /*if (typeof htmlCode !== 'string' || typeof additionalCode !== 'string' || !['css', 'js'].includes(type)) {
         showAlert('Merge Failed');
         return "";
-    }
+    }*/
 
     // Regex für die entsprechenden Bereiche
     const bodyRegex = /<body[^>]*>([\s\S]*?)<\/body>/i;
