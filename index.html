@@ -6803,6 +6803,7 @@ lasteventsparentsection = section;
     type: "text",
     text: selectedline.textContent // Speichere den ursprünglichen Text
 };
+newpast.push(pastelement);
                     selectedline.textContent = selectedline.textContent.trim();
                     if (!selectedline.classList.contains('syntaxhtmlcomment') && !selectedline.classList.contains('syntaxcomment') && !selectedline.classList.contains('syntaxstring')) {
     addJsSyntaxHighlighting(selectedline);
