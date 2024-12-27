@@ -3480,6 +3480,7 @@ newpast.push(pastelement);
         adjustedLin2 = lines[0].slice(firstLineLeadingSpacesCount);
     }
     celine.textContent += convertToNonBreakingSpaces(adjustedLin2);
+    addJsSyntaxHighlighting(celine);
     let longspaces = spaces + "\u00A0\u00A0\u00A0\u00A0";
     // Für die folgenden Zeilen, füge sie als neue Linien (divs) hinzu
     let startwithscriptorstyle = additionalCode.trim().startsWith('<style>') || additionalCode.trim().startsWith('<script>');
@@ -3514,6 +3515,7 @@ newpast.push(pastelement);
             newline.textContent = spaces + convertToNonBreakingSpaces(adjustedLine);
         }
         celine.insertAdjacentElement('afterend', newline);
+        addJsSyntaxHighlighting(newline);
 let pastelement2 = {
     element: newline,
     type: "create",
