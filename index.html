@@ -3371,6 +3371,12 @@ if (newfuture.length > 0) {
     function mergecode(htmlCodeComtainer, additionalCode, tofinde) {
     closesidebaronsmallscreensizes();
 closeeverything();
+if (htmlCodeComtainer.parentElement){
+lasteventsparentsection = htmlCodeComtainer.parentElement;
+}else {
+    showAlert('Merge Failed');
+    return;
+}
 let navBar = document.getElementById('nav-bar');
 let scrolltothissection = navBar.querySelector('.nav-dot[data-index="' + htmlCodeComtainer.parentElement.id.replace('section', '') + '"]');
 if (scrolltothissection) {
@@ -3415,7 +3421,7 @@ celine = celines[relevantlines[relevantlines.length - 1] - 1];
     } // Sicherstellen, dass celine existiert
     startLoadingMerge();
     let newpast = [];
-lasteventsparentsection = section;
+
 let pastelement = {
     element: celine,
     type: "text",
