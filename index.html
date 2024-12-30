@@ -4017,6 +4017,7 @@ themetoedit.style.removeProperty('--syntaxregex-color');
 themetoedit.style.removeProperty('--filepathinput-color');
 themetoedit.style.removeProperty('--syntaxhtmltagcontent-color');
 themetoedit.style.removeProperty('--griddot-color');
+themetoedit.style.removeProperty('--drakgrey-color');
 }
 
 function updateaccentColor() {
@@ -4027,7 +4028,7 @@ function updateaccentColor() {
   const selectedColor = document.getElementById('accentColor').value;
   const alpha = document.getElementById('accentAlpha').value / 100;
   const rgba = hexToRgba(selectedColor, alpha);
-  themetoedit.style.setProperty('--darkgrey-color', rgba);
+  themetoedit.style.setProperty('--drakgrey-color', rgba);
   themetoedit.style.setProperty('--lightgrey-color', rgba);
   themetoedit.style.setProperty('--urlbarbackground-color', rgba);
   themetoedit.style.setProperty('--spencialbtnbackground-color', rgba);
