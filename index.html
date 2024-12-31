@@ -9197,28 +9197,29 @@ function extractUniqueValues(code) {
 
     // Definiere reguläre Ausdrücke für jedes Muster
     const patterns = [
-        /class="([^"]+)"/g, // class="{dieswirdgematched}"
-        /id="([^"]+)"/g, // id="{dieswirdauchgematched}"
-        /function\s+([a-zA-Z0-9_$]+)\s*\(/g, // function {dieswirdauchgematched}()
-        /const\s+([a-zA-Z0-9_$]+)\s*=/g, // const {dieswirdauchgematched} =
-        /var\s+([a-zA-Z0-9_$]+)\s*=/g, // var {dieswirdauchgematched} =
-        /let\s+([a-zA-Z0-9_$]+)\s*=/g, // let {dieswirdauchgematched} =
-        /\.classList\.add\(\s*['"]([^'"]+)['"]\s*\)/g, // .classList.add({dieserwertwirdauchgematched})
-        /\.className\s*=\s*['"]([^'"]+)['"]/g, // .className = {dieserwertwirdauchgematched}
-        /\.id\s*=\s*['"]([^'"]+)['"]/g // .id = {dieserwertwirdauchgematched}
+        { regex: /class="([^"]+)"/g, prefix: '.' }, // class="{dieswirdgematched}" -> Punkt davor
+        { regex: /id="([^"]+)"/g, prefix: '#' }, // id="{dieswirdauchgematched}" -> Hash davor
+        { regex: /function\s+([a-zA-Z0-9_$]+)\s*\(/g, prefix: '' }, // function {dieswirdauchgematched}()
+        { regex: /const\s+([a-zA-Z0-9_$]+)\s*=/g, prefix: '' }, // const {dieswirdauchgematched} =
+        { regex: /var\s+([a-zA-Z0-9_$]+)\s*=/g, prefix: '' }, // var {dieswirdauchgematched} =
+        { regex: /let\s+([a-zA-Z0-9_$]+)\s*=/g, prefix: '' }, // let {dieswirdauchgematched} =
+        { regex: /\.classList\.add\(\s*['"]([^'"]+)['"]\s*\)/g, prefix: '.' }, // .classList.add({dieserwertwirdauchgematched}) -> Punkt davor
+        { regex: /\.className\s*=\s*['"]([^'"]+)['"]/g, prefix: '.' }, // .className = {dieserwertwirdauchgematched} -> Punkt davor
+        { regex: /\.id\s*=\s*['"]([^'"]+)['"]/g, prefix: '#' } // .id = {dieserwertwirdauchgematched} -> Hash davor
     ];
 
     // Iteriere über die Muster und suche im Code
-    patterns.forEach(pattern => {
+    patterns.forEach(({ regex, prefix }) => {
         let match;
-        while ((match = pattern.exec(code)) !== null) {
-            matches.add(match[1]); // Füge das erste Capturing Group-Ergebnis hinzu
+        while ((match = regex.exec(code)) !== null) {
+            matches.add(prefix + match[1]); // Füge Präfix + das erste Capturing Group-Ergebnis hinzu
         }
     });
 
     // Konvertiere das Set in ein Array und gib es zurück
     return Array.from(matches);
 }
+
 const uniquevalues = extractUniqueValues(inputElement.parentElement.textContent);
 
 
