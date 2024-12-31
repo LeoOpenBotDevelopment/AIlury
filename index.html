@@ -9166,17 +9166,18 @@ if (ctext.trim() != "") {
     "addEventListener", "removeEventListener", "dispatchEvent", "setInterval", "setTimeout", "clearInterval", "clearTimeout",
     // CSS Style Methods
     "style", "cssText", "getComputedStyle", "setProperty", "getPropertyValue", "removeProperty", "getBoundingClientRect",
-   "style.visibility", "style.display", "style.position", "style.width", "style.height", "style.margin", "style.padding", 
-    "style.border", "style.backgroundColor", "style.color", 
-    "style.fontSize", "style.fontWeight", "style.fontFamily", "style.textAlign", "style.textDecoration", 
-    "style.lineHeight", "style.textTransform", "style.borderRadius", "style.overflow", "style.zIndex", 
-    "style.boxShadow", "style.opacity", "style.cursor", "style.clipPath", "style.transition", 
-    "style.animation", "style.transform", "style.backgroundImage", "style.backgroundSize", 
-    "style.backgroundRepeat", "style.backgroundPosition", "style.borderWidth", "style.borderStyle", 
-    "style.borderColor", "style.outline", "style.outlineWidth", "style.outlineColor", "style.flex", 
-    "style.flexDirection", "style.alignItems", "style.justifyContent", "style.gap", "style.gridTemplateColumns", 
-    "style.gridTemplateRows", "style.gridGap", "style.order", "style.alignSelf", "style.overflowX", 
-    "style.overflowY", "style.whiteSpace", "style.wordBreak", "style.wordSpacing", "style.letterSpacing"
+   "visibility", "display", "position", "width", "height", "margin", "padding", 
+"border", "backgroundColor", "color", 
+"fontSize", "fontWeight", "fontFamily", "textAlign", "textDecoration", 
+"lineHeight", "textTransform", "borderRadius", "overflow", "zIndex", 
+"boxShadow", "opacity", "cursor", "clipPath", "transition", 
+"animation", "transform", "backgroundImage", "backgroundSize", 
+"backgroundRepeat", "backgroundPosition", "borderWidth", "borderStyle", 
+"borderColor", "outline", "outlineWidth", "outlineColor", "flex", 
+"flexDirection", "alignItems", "justifyContent", "gap", "gridTemplateColumns", 
+"gridTemplateRows", "gridGap", "order", "alignSelf", "overflowX", 
+"overflowY", "whiteSpace", "wordBreak", "wordSpacing", "letterSpacing"
+
 ];
 
     const htmlTags = [
@@ -9232,11 +9233,15 @@ const uniquevalues = extractUniqueValues(inputElement.parentElement.textContent)
     }
 
     function getLastWordBeforeCursor() {
-        const cursorPos = getCursorPosition();
-        const textBeforeCursor = inputElement.innerText.slice(0, cursorPos);
-        const words = textBeforeCursor.split(/\s+/);
-        return words.pop();
-    }
+    const cursorPos = getCursorPosition();
+    const textBeforeCursor = inputElement.innerText.slice(0, cursorPos).trimEnd();
+    const words = textBeforeCursor.split(/\s+/);
+    const lastWord = words.pop();
+    if (!lastWord) return ""; // Falls keine Wörter vorhanden sind
+    const fragments = lastWord.split(/[,.]/);
+    return fragments.pop() || ""; // Sicherstellen, dass ein Wert zurückgegeben wird
+}
+
 
     function filterSuggestions(word) {
         if (!word) return [];
