@@ -9063,6 +9063,9 @@ function setupAutocomplete(inputElement) {
     if (!inputElement) {
         return;
     }
+    if (!inputElement.parentElement) {
+        return;
+    }
     if (inputElement.textContent == ""){
         return;
     }
@@ -9188,8 +9191,37 @@ if (ctext.trim() != "") {
     "<canvas>", "<iframe>", "<iframe>", "<svg>", "<use>", "<iframe>", "<style>", "<link>", "<input>", "<form>"
 ];
 
+function extractUniqueValues(code) {
+    const matches = new Set(); // Verwendet Set, um Duplikate zu vermeiden
 
-    const suggestionsList = [...cssKeywordsAndProperties, ...jsKeywords, ...htmlTags];
+    // Definiere reguläre Ausdrücke für jedes Muster
+    const patterns = [
+        /class="([^"]+)"/g, // class="{dieswirdgematched}"
+        /id="([^"]+)"/g, // id="{dieswirdauchgematched}"
+        /function\s+([a-zA-Z0-9_$]+)\s*\(/g, // function {dieswirdauchgematched}()
+        /const\s+([a-zA-Z0-9_$]+)\s*=/g, // const {dieswirdauchgematched} =
+        /var\s+([a-zA-Z0-9_$]+)\s*=/g, // var {dieswirdauchgematched} =
+        /let\s+([a-zA-Z0-9_$]+)\s*=/g, // let {dieswirdauchgematched} =
+        /\.classList\.add\(\s*['"]([^'"]+)['"]\s*\)/g, // .classList.add({dieserwertwirdauchgematched})
+        /\.className\s*=\s*['"]([^'"]+)['"]/g, // .className = {dieserwertwirdauchgematched}
+        /\.id\s*=\s*['"]([^'"]+)['"]/g // .id = {dieserwertwirdauchgematched}
+    ];
+
+    // Iteriere über die Muster und suche im Code
+    patterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(code)) !== null) {
+            matches.add(match[1]); // Füge das erste Capturing Group-Ergebnis hinzu
+        }
+    });
+
+    // Konvertiere das Set in ein Array und gib es zurück
+    return Array.from(matches);
+}
+const uniquevalues = extractUniqueValues(inputElement.parentElement.textContent);
+
+
+    const suggestionsList = [...cssKeywordsAndProperties, ...jsKeywords, ...htmlTags, ...uniquevalues];
 
     function getCursorPosition() {
         const range = window.getSelection().getRangeAt(0);
