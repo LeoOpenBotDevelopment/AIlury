@@ -9222,7 +9222,7 @@ function extractUniqueValues(code) {
 const uniquevalues = extractUniqueValues(inputElement.parentElement.textContent);
 
 
-    const suggestionsList = [...cssKeywordsAndProperties, ...jsKeywords, ...htmlTags, ...uniquevalues];
+    const suggestionsList = [...uniquevalues, ...cssKeywordsAndProperties, ...jsKeywords, ...htmlTags];
 
     function getCursorPosition() {
         const range = window.getSelection().getRangeAt(0);
@@ -9233,14 +9233,11 @@ const uniquevalues = extractUniqueValues(inputElement.parentElement.textContent)
     }
 
     function getLastWordBeforeCursor() {
-    const cursorPos = getCursorPosition();
-    const textBeforeCursor = inputElement.innerText.slice(0, cursorPos).trimEnd();
-    const words = textBeforeCursor.split(/\s+/);
-    const lastWord = words.pop();
-    if (!lastWord) return ""; // Falls keine Wörter vorhanden sind
-    const fragments = lastWord.split(/[,.]/);
-    return fragments.pop() || ""; // Sicherstellen, dass ein Wert zurückgegeben wird
-}
+        const cursorPos = getCursorPosition();
+        const textBeforeCursor = inputElement.innerText.slice(0, cursorPos);
+        const words = textBeforeCursor.split(/\s+/);
+        return words.pop();
+    }
 
 
     function filterSuggestions(word) {
