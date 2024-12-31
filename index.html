@@ -9134,7 +9134,18 @@ if (ctext.trim() != "") {
     "justify-self", "align-items", "align-content", "object-fit", "object-position", "clip-path", "filter", 
     "transform", "transform-origin", "perspective", "backface-visibility", "z-index", "box-sizing", "border-box", 
     "content", "counter-reset", "counter-increment", "quotes", "writing-mode", "direction", "text-orientation", 
-    "scroll-behavior", "resize", "user-select", "contain", "will-change", "pointer-events", "clip-path", "object-fit"
+    "scroll-behavior", "resize", "user-select", "contain", "will-change", "pointer-events", "clip-path", "object-fit",
+
+    "@import", "@media", "@font-face", "@keyframes", "@supports", "@page", 
+    "@charset", "@namespace", "@document", "@viewport", "@counter-style",
+
+    // CSS Pseudo-Classes
+    ":hover", ":focus", ":active", ":visited", ":link", ":checked", ":disabled", 
+    ":first-child", ":last-child", ":nth-child()", ":not()", ":root", ":before", ":after",
+
+    // CSS Pseudo-Elements
+    "::before", "::after", "::first-letter", "::first-line", "::selection", 
+    "::placeholder",
 ];
 
     const jsKeywords = [
@@ -9152,9 +9163,17 @@ if (ctext.trim() != "") {
     "addEventListener", "removeEventListener", "dispatchEvent", "setInterval", "setTimeout", "clearInterval", "clearTimeout",
     // CSS Style Methods
     "style", "cssText", "getComputedStyle", "setProperty", "getPropertyValue", "removeProperty", "getBoundingClientRect",
-    "style.visibility", "style.display", "style.position", "style.width", "style.height", "style.margin", "style.padding",
-    "style.border", "style.backgroundColor", "style.color", "style.fontSize", "style.fontWeight", "style.fontFamily", 
-    "style.textAlign", "style.textDecoration", "style.lineHeight", "style.textTransform", "style.borderRadius"
+   "style.visibility", "style.display", "style.position", "style.width", "style.height", "style.margin", "style.padding", 
+    "style.border", "style.backgroundColor", "style.color", 
+    "style.fontSize", "style.fontWeight", "style.fontFamily", "style.textAlign", "style.textDecoration", 
+    "style.lineHeight", "style.textTransform", "style.borderRadius", "style.overflow", "style.zIndex", 
+    "style.boxShadow", "style.opacity", "style.cursor", "style.clipPath", "style.transition", 
+    "style.animation", "style.transform", "style.backgroundImage", "style.backgroundSize", 
+    "style.backgroundRepeat", "style.backgroundPosition", "style.borderWidth", "style.borderStyle", 
+    "style.borderColor", "style.outline", "style.outlineWidth", "style.outlineColor", "style.flex", 
+    "style.flexDirection", "style.alignItems", "style.justifyContent", "style.gap", "style.gridTemplateColumns", 
+    "style.gridTemplateRows", "style.gridGap", "style.order", "style.alignSelf", "style.overflowX", 
+    "style.overflowY", "style.whiteSpace", "style.wordBreak", "style.wordSpacing", "style.letterSpacing"
 ];
 
     const htmlTags = [
