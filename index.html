@@ -2406,8 +2406,8 @@
     </div>
     <div class="allcontainer">
 
-        <button class="togglesidebarbutton" onclick="togglesidebarbuttonfunction()">☰</button>
-        <div class="container" id="container">
+    <button class="togglesidebarbutton" onclick="togglesidebarbuttonfunction()">☰</button>
+    <div class="container" id="container">
         <div class="section" id="section0">
             <div class="editor-selected-line-btns">
                   <button class="code-editor-btn disabled" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onfocus="searchcode(this)" placeholder="⌕ search"></div>
@@ -2415,342 +2415,363 @@
                 <div id="1" class="code-editor-line" contenteditable="true"></div>
             </div>
             <div class="code-editor-btns">
-                  <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
-
-    </div>
-    <div class="section" id="section1">
-        <div class="editor-selected-line-btns">
-              <button class="code-editor-btn disabled" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onfocus="searchcode(this)" placeholder="⌕ search"></div>
+                <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number">
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="editor-selected-line-btns">
+                <button class="code-editor-btn disabled" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onfocus="searchcode(this)" placeholder="⌕ search">
+            </div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="2" class="code-editor-line" contenteditable="true"></div>
             </div>
-        <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
+            <div class="code-editor-btns">
+                <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number">
+            </div>
 
-    </div>
-    <div class="section" id="section2">
-        <div class="editor-selected-line-btns">
-              <button class="code-editor-btn disabled" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onfocus="searchcode(this)" placeholder="⌕ search"></div>
+        </div>
+        <div class="section" id="section2">
+            <div class="editor-selected-line-btns">
+                <button class="code-editor-btn disabled" id="pastbtn" onclick="gobackrotateanimation(this);gobacktolastpastevent()">↺</button><button class="eslbtn disabled" id="deletebtn" onclick="deleteSelectedLines();changedeletebtn(this)">⌧</button><button class="eslbtn disabled" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantselectedlines()">⚠</button><button class="eslbtn disabled" id="upbtn" onclick="moveselectedlineup()">↑</button><button class="eslbtn disabled" id="downbtn" onclick="moveselectedlinedown()">↓</button><button class="eslbtn disabled" id="sleapbtn" onclick="changebtnnotinsquare(this);restselectedline()">☾</button><button class="eslbtn disabled" id="copybtn" onclick="changedeletebtn(this);copyselectedlinetexts()">□</button><button class="eslbtn disabled" id="trimbtn" onclick="changebtnnotinsquare(this);trimAllselectedlinetexts()">●</button><input type="text" class="code-search-input" id="code-search-input" oninput="searchcode(this)" onfocus="searchcode(this)" placeholder="⌕ search"></div>
             <div class="code-editor-container" id="linenumberingon" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUpEvent(event)" onpaste="handlePaste(event)">
                 <div id="3" class="code-editor-line" contenteditable="true"></div>
             </div>
-        <div class="code-editor-btns">
-              <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number"></div>
-
-    </div>
-    <div class="section viewcontainer" id="section3">
-      <div class="swipe-container">
-
-            <div class="view">
-                <div class="mobile-container">
-
-                    <div class="safari-header">
-                        <div class="safari-buttons">
-                            <div class="back-btn"></div>
+            <div class="code-editor-btns">
+                <button class="code-editor-btn" id="deletebtn" onclick="deleteAllLines();changedeletebtn(this)">⌧</button><button class="code-editor-btn" id="importantPinbtn" onclick="changebtnnotinsquare(this);importantalllines()">⚠</button><button class="code-editor-btn" id="leftbtn" onclick="changebtnnotinsquare(this);unselectalllines()">←</button><button class="code-editor-btn" id="rightbtn" onclick="changebtnnotinsquare(this);unfoldalllines()">→</button><button class="code-editor-btn" id="unsleeplines" onclick="changebtnnotinsquare(this);unsleepalllines()">○</button><button class="code-editor-btn" id="copybtn" onclick="changedeletebtn(this);copyalllinetexts()">□</button><button class="code-editor-btn" id="showcommandlist-btn-element" onclick="showcommandoverlay()">⌘</button><button class="code-editor-btn" id="showsignexplenationoverlay-btn-element" onclick="showsignexplenationoverlay()">?</button><input type="text" class="line-number-input" id="line-number-input" onkeydown="checkiflinenumberinputkeydownisenter(event)" placeholder="⌕ line number">
+            </div>
+        </div>
+        <div class="section viewcontainer" id="section3">
+            <div class="swipe-container">
+                <div class="view">
+                    <div class="mobile-container">
+                        <div class="safari-header">
+                            <div class="safari-buttons">
+                                <div class="back-btn"></div>
+                            </div>
+                            <div class="url-bar">
+                                <input type="text" id="mobile-url-input" placeholder="file..." list="filenameoptions">
+                                <datalist id="filenameoptions">
+                                    <option id="option0" value="index.html"></option>
+                                    <option id="option1" value="styles.css"></option>
+                                    <option id="option2" value="script.js"></option>
+                                </datalist>
+                            </div>
+                            <div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame');createConfetti()">⌕</div>
                         </div>
-                        <div class="url-bar">
-                            <input type="text" id="mobile-url-input" placeholder="file..." list="filenameoptions">
-                <datalist id="filenameoptions">
-                  <option id="option0" value="index.html"></option>
-                  <option id="option1" value="styles.css"></option>
-                  <option id="option2" value="script.js"></option>
-                </datalist>
+                        <div class="iframe-container">
+                            <iframe id="mobile-frame" loading="lazy"></iframe>
                         </div>
-                        <div class="action-btn" onclick="textCode('mobile-url-input', 'mobile-frame');createConfetti()">⌕</div>
-                    </div>
-
-
-                    <div class="iframe-container">
-                        <iframe id="mobile-frame" loading="lazy"></iframe>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="view" id="view2">
-                <div class="browser-container">
-
-                    <div class="browser-header">
-                        <div class="browser-buttons">
-                            <div class="close-btn"></div>
-                            <div class="minimize-btn"></div>
-                            <div class="maximize-btn"></div>
+                <div class="view" id="view2">
+                    <div class="browser-container">
+                        <div class="browser-header">
+                            <div class="browser-buttons">
+                                <div class="close-btn"></div>
+                                <div class="minimize-btn"></div>
+                                <div class="maximize-btn"></div>
+                            </div>
+                            <div class="url-bar">
+                                <input type="text" id="computer-url-input" placeholder="file..." list="filenameoptions">
+                            </div>
+                            <div class="btn-group">
+                                <button onclick="textCode('computer-url-input', 'computer-frame');createConfetti()">⌕</button>
+                            </div>
                         </div>
-                        <div class="url-bar">
-                            <input type="text" id="computer-url-input" placeholder="file..." list="filenameoptions">
-
+                        <div class="iframe-container">
+                            <iframe id="computer-frame" loading="lazy"></iframe>
                         </div>
-                        <div class="btn-group">
-                            <button onclick="textCode('computer-url-input', 'computer-frame');createConfetti()">⌕</button>
-                        </div>
-                    </div>
-
-
-                    <div class="iframe-container">
-                        <iframe id="computer-frame" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="codesearchresults">
+        no results
     </div>
 
-  <div class="codesearchresults">
-    no results
-  </div>
-
-  <div class="lineoptions">
-    <button onclick="swipethislineleft()">←</button>
-    <button onclick="closelineoptionscontainer()">×</button>
-    <button onclick="swipethislineright()">→</button>
-  </div>
+    <div class="lineoptions">
+        <button onclick="swipethislineleft()">←</button>
+        <button onclick="closelineoptionscontainer()">×</button>
+        <button onclick="swipethislineright()">→</button>
+    </div>
 
     <!-- Navigation Bar -->
     <div class="nav-bar" id="nav-bar">
         <div data-index="0" class="nav-dot filedot navdot0" onclick="dotonclick()">
             <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="index.html">
         </div>
-    <div data-index="1" class="nav-dot filedot navdot1" onclick="dotonclick()">
+        <div data-index="1" class="nav-dot filedot navdot1" onclick="dotonclick()">
             <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="styles.css">
         </div>
-    <div data-index="2" class="nav-dot filedot navdot2" onclick="dotonclick()">
+        <div data-index="2" class="nav-dot filedot navdot2" onclick="dotonclick()">
             <input class="filePathInput" type="text" maxlength="250" onblur="onfilepathinputblur(this)" value="script.js">
-      <!--oninput="handleFileNameInputChange(this)"-->
-    </div>
-    <div data-index="3" class="nav-dot navdot3" id="view-nav-dot" onclick="dotonclick()">
+        </div>
+        <div data-index="3" class="nav-dot navdot3" id="view-nav-dot" onclick="dotonclick()">
             <input class="filePathInput" type="text" value="view" maxlength="20" oninput="viewbottominputoninput(this)">
         </div>
     </div>
     <button id="scrolltopreviousfile" onclick="gotonextorpreviousfile('back')">←</button>
     <button id="scrolltonextfile" onclick="gotonextorpreviousfile('forward')">→</button>
-  <div class="seccontainer">
-    <div class="seccontainer-line-container">
-    <div class="seccontainer-line">
-      <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="copybtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">□</button>
-    </div>
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="deletebtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">⌧</button>
-    </div>
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="downbtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">↓</button>
-    </div> 
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="upbtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">↑</button>
-    </div> 
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="importantPinbtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">⚠</button>
-    </div>
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="sleapbtn" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">☾</button>
-    </div>
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="unsleeplines" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">○</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-checked="code-search-input" onchange="updatecheckboxed(this)" checked>
-                <span class="slider"></span>
-            </label> <button class="Symbol-Span">⌕</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-            <label class="switch">
+    <div class="seccontainer">
+        <div class="seccontainer-line-container">
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="copybtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">□</button>
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="deletebtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">⌧</button>
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="downbtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">↓</button>
+            </div> 
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="upbtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">↑</button>
+            </div> 
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="importantPinbtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">⚠</button>
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="sleapbtn" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">☾</button>
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="unsleeplines" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">○</button>
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-checked="code-search-input" onchange="updatecheckboxed(this)" checked>
+                    <span class="slider"></span>
+                </label> <button class="Symbol-Span">⌕</button>
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="line-number-input" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
                 </label> <button class="Symbol-Span">⌕</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-            <label class="switch">
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
                     <input type="checkbox" class="switchbox commandsswitch" data-checked="showcommandlist-btn-element" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
-            </label> <button class="Symbol-Span">⌘</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-            <label class="switch">
+                </label> <button class="Symbol-Span">⌘</button>
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="trimbtn" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
-            </label> <button class="Symbol-Span">●</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-            <label class="switch">
+                </label> <button class="Symbol-Span">●</button>
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="rightbtn" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
-            </label> <button class="Symbol-Span">→</button>
-    </div>
-    <div class="seccontainer-line" id="search-check">
-            <label class="switch">
+                </label> <button class="Symbol-Span">→</button>
+            </div>
+            <div class="seccontainer-line" id="search-check">
+                <label class="switch">
                     <input type="checkbox" class="switchbox" data-checked="leftbtn" onchange="updatecheckboxed(this)" checked>
                     <span class="slider"></span>
-            </label> <button class="Symbol-Span">←</button>
+                </label> <button class="Symbol-Span">←</button>
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
+                    <span class="slider"></span>
+                </label> line numbers
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-update-class="gridenabled" onchange="updategridenabledordisabledcheckbox(this)" checked>
+                    <span class="slider"></span>
+                </label> grid
+            </div>
+            <div class="seccontainer-line">
+                <label class="switch">
+                    <input type="checkbox" class="switchbox" data-update-aceclass="autocompleteenabled" onchange="updateautocompleteenabledordisabledcheckbox(this)" checked>
+                    <span class="slider"></span>
+                </label> auto complete
+            </div>
+        </div>
+        <div class="seccontainer-line" id="specialbtn" onclick="deleteAllEmptyLines()">
+            delete empty lines
+        </div>
+        <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
+            delete comments
+        </div>
     </div>
-    <div class="seccontainer-line">
-        <label class="switch">
-                <input type="checkbox" class="switchbox" data-update-id="linenumbering" onchange="updatelinenumbercheckbox(this)" checked>
-                <span class="slider"></span>
-            </label> line numbers
+    <div class="commandsoverlay-container" onclick="hideelement('class', 'commandsoverlay-container', event)">
+        <div class="commandsdisplay-container">
+            <button class="closecommandoverlaybtn" onclick="hidecommandoverlay()">×</button>
+            <br>
+            <h2>commands</h2>
+            <br>
+            <ul class="command-list">
+                <li><span class="command">/alert</span>  <button class="Symbol-Span">⚠</button></li>
+                <li><span class="command">/arrowbottomleft</span>  <button class="Symbol-Span">↙</button></li>
+                <li><span class="command">/arrowbottomright</span>  <button class="Symbol-Span">↘</button></li>
+                <li><span class="command">/arrowdown</span>  <button class="Symbol-Span">↓</button></li>
+                <li><span class="command">/arrowgoleft</span>  <button class="Symbol-Span">↤</button></li>
+                <li><span class="command">/arrowgoright</span>  <button class="Symbol-Span">↦</button></li>
+                <li><span class="command">/arrowleft</span>  <button class="Symbol-Span">←</button></li>
+                <li><span class="command">/arrowright</span>  <button class="Symbol-Span">→</button></li>
+                <li><span class="command">/arrowtopleft</span>  <button class="Symbol-Span">↖</button></li>
+                <li><span class="command">/arrowtopright</span>  <button class="Symbol-Span">↗</button></li>
+                <li><span class="command">/arrowup</span>  <button class="Symbol-Span">↑</button></li>
+                <li><span class="command">/bigspark</span>  <button class="Symbol-Span">✶</button></li>
+                <li><span class="command">/bottomleftedge</span>  <button class="Symbol-Span">◣</button></li>
+                <li><span class="command">/bottomrightedge</span>  <button class="Symbol-Span">◢</button></li>
+                <li><span class="command">/smallcheckmark</span>  <button class="Symbol-Span">✓</button></li>
+                <li><span class="command">/emptycircle</span>  <button class="Symbol-Span">◯</button></li>
+                <li><span class="command">/copyright</span>  <button class="Symbol-Span">©</button></li>
+                <li><span class="command">/bigcross</span>  <button class="Symbol-Span">✘</button></li>
+                <li><span class="command">/crossincirkle</span>  <button class="Symbol-Span">⊗</button></li>
+                <li><span class="command">/crossinsquare</span>  <button class="Symbol-Span">⌧</button></li>
+                <li><span class="command">/crossnotinsquare</span>  <button class="Symbol-Span">×</button></li>
+                <li><span class="command">/cutoutcircle</span>  <button class="Symbol-Span">◌</button></li>
+                <li><span class="command">/diamond</span>  <button class="Symbol-Span">◆</button></li>
+                <li><span class="command">/emptyspark</span>  <button class="Symbol-Span">✧</button></li>
+                <li><span class="command">/emptysquare</span>  <button class="Symbol-Span">□</button></li>
+                <li><span class="command">/emptystar</span>  <button class="Symbol-Span">☆</button></li>
+                <li><span class="command">/emptytriangleleft</span>  <button class="Symbol-Span">◁</button></li>
+                <li><span class="command">/emptytriangledown</span>  <button class="Symbol-Span">▽</button></li>
+                <li><span class="command">/emptytriangleright</span>  <button class="Symbol-Span">▷</button></li>
+                <li><span class="command">/emptytriangletop</span>  <button class="Symbol-Span">△</button></li>
+                <li><span class="command">/filledcircle</span>  <button class="Symbol-Span">●</button></li>
+                <li><span class="command">/heart</span>  <button class="Symbol-Span">♥</button></li>
+                <li><span class="command">/infinite</span>  <button class="Symbol-Span">∞</button></li>
+                <li><span class="command">/magnifyingglass</span>  <button class="Symbol-Span">⌕</button></li>
+                <li><span class="command">/minus</span>  <button class="Symbol-Span">-</button></li>
+                <li><span class="command">/moonleft</span>  <button class="Symbol-Span">☽</button></li>
+                <li><span class="command">/moonright</span>  <button class="Symbol-Span">☾</button></li>
+                <li><span class="command">/movable</span>  <button class="Symbol-Span">✣</button></li>
+                <li><span class="command">/eighthnote</span>  <button class="Symbol-Span">♪</button></li>
+                <li><span class="command">/beamednote</span>  <button class="Symbol-Span">♫</button></li>
+                <li><span class="command">/chordsymbol</span>  <button class="Symbol-Span">♬</button></li>
+                <li><span class="command">/quarter note</span>  <button class="Symbol-Span">♩</button></li>
+                <li><span class="command">/paperplane</span>  <button class="Symbol-Span">➤</button></li>
+                <li><span class="command">/pencil</span>  <button class="Symbol-Span">✎</button></li>
+                <li><span class="command">/plus</span>  <button class="Symbol-Span">+</button></li>
+                <li><span class="command">/refreshright</span>  <button class="Symbol-Span">↻</button></li>
+                <li><span class="command">/refreshleft</span>  <button class="Symbol-Span">↺</button></li>
+                <li><span class="command">/registered</span>  <button class="Symbol-Span">®</button></li>
+                <li><span class="command">/sidebar</span>  <button class="Symbol-Span">≡</button></li>
+                <li><span class="command">/smallcross</span>  <button class="Symbol-Span">×</button></li>
+                <li><span class="command">/filledspark</span>  <button class="Symbol-Span">✦</button></li>
+                <li><span class="command">/filledsquare</span>  <button class="Symbol-Span">■</button></li>
+                <li><span class="command">/filledstar</span>  <button class="Symbol-Span">★</button></li>
+                <li><span class="command">/sun</span>  <button class="Symbol-Span">☼</button></li>
+                <li><span class="command">/toprightedge</span>  <button class="Symbol-Span">◥</button></li>
+                <li><span class="command">/topleftedge</span>  <button class="Symbol-Span">◤</button></li>
+                <li><span class="command">/trademark</span>  <button class="Symbol-Span">™</button></li>
+                <li><span class="command">/triangleleft</span>  <button class="Symbol-Span">◀</button></li>
+                <li><span class="command">/triangleright</span>  <button class="Symbol-Span">▶</button></li>
+                <li><span class="command">/triangledown</span>  <button class="Symbol-Span">▼</button></li>
+                <li><span class="command">/triangletop</span>  <button class="Symbol-Span">▲</button></li>
+                <li><span class="command">/updownleftarrow</span>  <button class="Symbol-Span">↵</button></li>
+            </ul>
+            <br>
+            <h2>short-cuts</h2>
+            <br>
+            <ul class="command-list">
+                <li><span class="command">/:func</span>  <button class="Symbol-Span">function</button></li>
+                <li><span class="command">/:if</span>  <button class="Symbol-Span">if statement</button></li>
+                <li><span class="command">/:for</span>  <button class="Symbol-Span">for loop</button></li>
+                <li><span class="command">/:try</span>  <button class="Symbol-Span">try catch</button></li>
+                <li><span class="command">/:div</span>  <button class="Symbol-Span">division tag</button></li>
+                <li><span class="command">/:btn</span>  <button class="Symbol-Span">button tag</button></li>
+                <li><span class="command">/:span</span>  <button class="Symbol-Span">span tag</button></li>
+                <li><span class="command">/:image</span>  <button class="Symbol-Span">image tag</button></li>
+                <li><span class="command">/:p</span>  <button class="Symbol-Span">p tag</button></li>
+                <li><span class="command">/:h1</span>  <button class="Symbol-Span">h1 tag</button></li>
+                <li><span class="command">/:h2</span>  <button class="Symbol-Span">h2 tag</button></li>
+                <li><span class="command">/:h3</span>  <button class="Symbol-Span">h3 tag</button></li>
+                <li><span class="command">/:h4</span>  <button class="Symbol-Span">h4 tag</button></li>
+                <li><span class="command">/:h5</span>  <button class="Symbol-Span">h5 tag</button></li>
+                <li><span class="command">/:h6</span>  <button class="Symbol-Span">h6 tag</button></li>
+                <li><span class="command">/:at</span>  <button class="Symbol-Span">a tag</button></li>
+                <li><span class="command">/:ul</span>  <button class="Symbol-Span">ul tag</button></li>
+                <li><span class="command">/:li</span>  <button class="Symbol-Span">li tag</button></li>
+                <li><span class="command">/:ol</span>  <button class="Symbol-Span">ol tag</button></li>
+                <li><span class="command">/:table</span>  <button class="Symbol-Span">table tag</button></li>
+                <li><span class="command">/:tr</span>  <button class="Symbol-Span">tr tag</button></li>
+                <li><span class="command">/:td</span>  <button class="Symbol-Span">td tag</button></li>
+                <li><span class="command">/:th</span>  <button class="Symbol-Span">th tag</button></li>
+                <li><span class="command">/:input</span>  <button class="Symbol-Span">input tag</button></li>
+                <li><span class="command">/:form</span>  <button class="Symbol-Span">form tag</button></li>
+                <li><span class="command">/:label</span>  <button class="Symbol-Span">label tag</button></li>
+                <li><span class="command">/:iframe</span>  <button class="Symbol-Span">iframe tag</button></li>
+                <li><span class="command">/:nav</span>  <button class="Symbol-Span">nav tag</button></li>
+                <li><span class="command">/:header</span>  <button class="Symbol-Span">header tag</button></li>
+                <li><span class="command">/:footer</span>  <button class="Symbol-Span">footer tag</button></li>
+                <li><span class="command">/:sec</span>  <button class="Symbol-Span">sec tag</button></li>
+                <li><span class="command">/:article</span>  <button class="Symbol-Span">article tag</button></li>
+                <li><span class="command">/:aside</span>  <button class="Symbol-Span">aside tag</button></li>
+                <li><span class="command">/:main</span>  <button class="Symbol-Span">main tag</button></li>
+            </ul>
+        </div>
     </div>
-    <div class="seccontainer-line">
-    <label class="switch">
-        <input type="checkbox" class="switchbox" data-update-class="gridenabled" onchange="updategridenabledordisabledcheckbox(this)" checked>
-        <span class="slider"></span>
-    </label> grid
-</div>
- <div class="seccontainer-line">
-     <label class="switch">
-         <input type="checkbox" class="switchbox" data-update-aceclass="autocompleteenabled" onchange="updateautocompleteenabledordisabledcheckbox(this)" checked>
-         <span class="slider"></span>
-     </label> auto complete
- </div>
+    <div class="singsoverlay-container" onclick="hideelement('class', 'singsoverlay-container', event)">
+        <div class="topandbottomsignsdisplay-container">
+            <button class="closecommandoverlaybtn" onclick="hidesignexplenationoverlay()">×</button>
+            <br>
+            <h2>top - (selected)</h2>
+            <br>
+            <ul class="command-list">
+                <li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
+                <li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Pin</span></li>
+                <li><button class="Symbol-Span">↑</button><span class="symbolsignspan">Move up</span></li>
+                <li><button class="Symbol-Span">↓</button><span class="symbolsignspan">Move down</span></li>
+                <li><button class="Symbol-Span">☾</button><span class="symbolsignspan">Disable</span></li>
+                <li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
+                <li><button class="Symbol-Span">●</button><span class="symbolsignspan">trim</span></li>
+                <li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Code Search</span></li>
+            </ul>
+            <br>
+            <h2>bottom - (all)</h2>
+            <br>
+            <ul class="command-list"><li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
+                <li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Unpin</span></li>
+                <li><button class="Symbol-Span">←</button><span class="symbolsignspan">Unselect</span></li>
+                <li><button class="Symbol-Span">→</button><span class="symbolsignspan">Unfold</span></li>
+                <li><button class="Symbol-Span">○</button><span class="symbolsignspan">Enable</span></li>
+                <li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
+                <li><button class="Symbol-Span">⌘</button><span class="symbolsignspan">Commands</span></li>
+                <li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Teleport</span></li>
+            </ul>
+        </div>
     </div>
-    <div class="seccontainer-line" id="specialbtn" onclick="deleteAllEmptyLines()">
-        delete empty lines
-    </div>
-    <div class="seccontainer-line" id="specialbtn" onclick="deleteAllCommentsInLines()">
-        delete comments
-    </div>
-  </div>
-  <div class="commandsoverlay-container" onclick="hideelement('class', 'commandsoverlay-container', event)">
-      <div class="commandsdisplay-container">
-          <button class="closecommandoverlaybtn" onclick="hidecommandoverlay()">×</button>
-       <br>
-       <h2>commands</h2>
-       <br>
-           <ul class="command-list">
-<li><span class="command">/alert</span>  <button class="Symbol-Span">⚠</button></li>
-<li><span class="command">/arrowbottomleft</span>  <button class="Symbol-Span">↙</button></li>
-<li><span class="command">/arrowbottomright</span>  <button class="Symbol-Span">↘</button></li>
-<li><span class="command">/arrowdown</span>  <button class="Symbol-Span">↓</button></li>
-<li><span class="command">/arrowgoleft</span>  <button class="Symbol-Span">↤</button></li>
-<li><span class="command">/arrowgoright</span>  <button class="Symbol-Span">↦</button></li>
-<li><span class="command">/arrowleft</span>  <button class="Symbol-Span">←</button></li>
-<li><span class="command">/arrowright</span>  <button class="Symbol-Span">→</button></li>
-<li><span class="command">/arrowtopleft</span>  <button class="Symbol-Span">↖</button></li>
-<li><span class="command">/arrowtopright</span>  <button class="Symbol-Span">↗</button></li>
-<li><span class="command">/arrowup</span>  <button class="Symbol-Span">↑</button></li>
-<li><span class="command">/bigspark</span>  <button class="Symbol-Span">✶</button></li>
-<li><span class="command">/bottomleftedge</span>  <button class="Symbol-Span">◣</button></li>
-<li><span class="command">/bottomrightedge</span>  <button class="Symbol-Span">◢</button></li>
-<li><span class="command">/smallcheckmark</span>  <button class="Symbol-Span">✓</button></li>
-<li><span class="command">/emptycircle</span>  <button class="Symbol-Span">◯</button></li>
-<li><span class="command">/copyright</span>  <button class="Symbol-Span">©</button></li>
-<li><span class="command">/bigcross</span>  <button class="Symbol-Span">✘</button></li>
-<li><span class="command">/crossincirkle</span>  <button class="Symbol-Span">⊗</button></li>
-<li><span class="command">/crossinsquare</span>  <button class="Symbol-Span">⌧</button></li>
-<li><span class="command">/crossnotinsquare</span>  <button class="Symbol-Span">×</button></li>
-<li><span class="command">/cutoutcircle</span>  <button class="Symbol-Span">◌</button></li>
-<li><span class="command">/diamond</span>  <button class="Symbol-Span">◆</button></li>
-<li><span class="command">/emptyspark</span>  <button class="Symbol-Span">✧</button></li>
-<li><span class="command">/emptysquare</span>  <button class="Symbol-Span">□</button></li>
-<li><span class="command">/emptystar</span>  <button class="Symbol-Span">☆</button></li>
-<li><span class="command">/emptytriangleleft</span>  <button class="Symbol-Span">◁</button></li>
-<li><span class="command">/emptytriangledown</span>  <button class="Symbol-Span">▽</button></li>
-<li><span class="command">/emptytriangleright</span>  <button class="Symbol-Span">▷</button></li>
-<li><span class="command">/emptytriangletop</span>  <button class="Symbol-Span">△</button></li>
-<li><span class="command">/filledcircle</span>  <button class="Symbol-Span">●</button></li>
-<li><span class="command">/heart</span>  <button class="Symbol-Span">♥</button></li>
-<li><span class="command">/infinite</span>  <button class="Symbol-Span">∞</button></li>
-<li><span class="command">/magnifyingglass</span>  <button class="Symbol-Span">⌕</button></li>
-<li><span class="command">/minus</span>  <button class="Symbol-Span">-</button></li>
-<li><span class="command">/moonleft</span>  <button class="Symbol-Span">☽</button></li>
-<li><span class="command">/moonright</span>  <button class="Symbol-Span">☾</button></li>
-<li><span class="command">/movable</span>  <button class="Symbol-Span">✣</button></li>
-<li><span class="command">/eighthnote</span>  <button class="Symbol-Span">♪</button></li>
-<li><span class="command">/beamednote</span>  <button class="Symbol-Span">♫</button></li>
-<li><span class="command">/chordsymbol</span>  <button class="Symbol-Span">♬</button></li>
-<li><span class="command">/quarter note</span>  <button class="Symbol-Span">♩</button></li>
-<li><span class="command">/paperplane</span>  <button class="Symbol-Span">➤</button></li>
-<li><span class="command">/pencil</span>  <button class="Symbol-Span">✎</button></li>
-<li><span class="command">/plus</span>  <button class="Symbol-Span">+</button></li>
-<li><span class="command">/refreshright</span>  <button class="Symbol-Span">↻</button></li>
-<li><span class="command">/refreshleft</span>  <button class="Symbol-Span">↺</button></li>
-<li><span class="command">/registered</span>  <button class="Symbol-Span">®</button></li>
-<li><span class="command">/sidebar</span>  <button class="Symbol-Span">≡</button></li>
-<li><span class="command">/smallcross</span>  <button class="Symbol-Span">×</button></li>
-<li><span class="command">/filledspark</span>  <button class="Symbol-Span">✦</button></li>
-<li><span class="command">/filledsquare</span>  <button class="Symbol-Span">■</button></li>
-<li><span class="command">/filledstar</span>  <button class="Symbol-Span">★</button></li>
-<li><span class="command">/sun</span>  <button class="Symbol-Span">☼</button></li>
-<li><span class="command">/toprightedge</span>  <button class="Symbol-Span">◥</button></li>
-<li><span class="command">/topleftedge</span>  <button class="Symbol-Span">◤</button></li>
-<li><span class="command">/trademark</span>  <button class="Symbol-Span">™</button></li>
-<li><span class="command">/triangleleft</span>  <button class="Symbol-Span">◀</button></li>
-<li><span class="command">/triangleright</span>  <button class="Symbol-Span">▶</button></li>
-<li><span class="command">/triangledown</span>  <button class="Symbol-Span">▼</button></li>
-<li><span class="command">/triangletop</span>  <button class="Symbol-Span">▲</button></li>
-<li><span class="command">/updownleftarrow</span>  <button class="Symbol-Span">↵</button></li></ul>
-      <br>
-      <h2>short-cuts</h2>
-      <br>
-           <ul class="command-list">
-<li><span class="command">/:func</span>  <button class="Symbol-Span">function</button></li>
-<li><span class="command">/:if</span>  <button class="Symbol-Span">if statement</button></li>
-<li><span class="command">/:for</span>  <button class="Symbol-Span">for loop</button></li>
-<li><span class="command">/:try</span>  <button class="Symbol-Span">try catch</button></li>
-<li><span class="command">/:div</span>  <button class="Symbol-Span">division tag</button></li>
-<li><span class="command">/:btn</span>  <button class="Symbol-Span">button tag</button></li>
-<li><span class="command">/:span</span>  <button class="Symbol-Span">span tag</button></li>
-<li><span class="command">/:image</span>  <button class="Symbol-Span">image tag</button></li></ul>
-      </div>
-  </div>
-<div class="singsoverlay-container" onclick="hideelement('class', 'singsoverlay-container', event)">
-      <div class="topandbottomsignsdisplay-container">
-          <button class="closecommandoverlaybtn" onclick="hidesignexplenationoverlay()">×</button>
-       <br>
-       <h2>top - (selected)</h2>
-       <br>
-<ul class="command-list">
-<li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
-<li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Pin</span></li>
-<li><button class="Symbol-Span">↑</button><span class="symbolsignspan">Move up</span></li>
-<li><button class="Symbol-Span">↓</button><span class="symbolsignspan">Move down</span></li>
-<li><button class="Symbol-Span">☾</button><span class="symbolsignspan">Disable</span></li>
-<li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
-<li><button class="Symbol-Span">●</button><span class="symbolsignspan">trim</span></li>
-<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Code Search</span></li></ul>
-      <br>
-      <h2>bottom - (all)</h2>
-      <br>
-<ul class="command-list"><li><button class="Symbol-Span">⌧</button><span class="symbolsignspan">Delete</span></li>
-<li><button class="Symbol-Span">⚠</button><span class="symbolsignspan">Unpin</span></li>
-<li><button class="Symbol-Span">←</button><span class="symbolsignspan">Unselect</span></li>
-<li><button class="Symbol-Span">→</button><span class="symbolsignspan">Unfold</span></li>
-<li><button class="Symbol-Span">○</button><span class="symbolsignspan">Enable</span></li>
-<li><button class="Symbol-Span">□</button><span class="symbolsignspan">Copy</span></li>
-<li><button class="Symbol-Span">⌘</button><span class="symbolsignspan">Commands</span></li>
-<li><button class="Symbol-Span">⌕</button><span class="symbolsignspan">Teleport</span></li></ul>
-      </div>
-  </div>
-  <div class="closeviewthisfilebtn" onclick="closeviewthisfile()">×</div>
-  <div class="overlay-container" onclick="hideelement('class', 'overlay-container', event)">
+    <div class="closeviewthisfilebtn" onclick="closeviewthisfile()">×</div>
+        <div class="overlay-container" onclick="hideelement('class', 'overlay-container', event)">
         <!-- Content Container (mit Top Bar drin) -->
         <div class="content-container">
             <!-- Top Bar -->
             <div class="top-bar">
                 <button class="overlay-back-btn" onclick="hideelement('class', 'overlay-container', event)">×</button>
                 <button class="overlay-close-btn" onclick="hideelement('class', 'overlay-container', event)">close</button>
-        <input type="file" id="fileInput" style="display: none;" accept=".txt, .css, .js, .html, image/*" multiple>
+                <input type="file" id="fileInput" style="display: none;" accept=".txt, .css, .js, .html, image/*" multiple>
                 <button onclick="clickthiselement('#fileInput')" class="upload-btn">upload</button>
-        <button class="viewthisfile" onclick="viewthisfile()">view</button>
+                <button class="viewthisfile" onclick="viewthisfile()">view</button>
                 <button class="create-file-btn" onclick="requestcreatenewfile()">+</button>
             </div>
 
@@ -2790,210 +2811,205 @@
     <div id="theme-overlay" class="theme-overlay" onclick="hideelement('class', 'theme-overlay', event)">
         <div class="theme-option-container">
             <button class="closecommandoverlaybtn" onclick="hidethemeoverlay()">×</button>
-<h3>theme</h3>
-<br>
-<div class="themeoption" onclick="removeallthemes()">
-<span class="switchtothememaincolorspan" style="background: linear-gradient(to right, var(--rectanglecolorcolor-color), var(--background-color));"></span>
-<span class="switchtothemetitlespan">none</span>
-</div>
-            <div class="themeoption" onclick="switchtotheme('helloween-theme')"><span class="switchtothememaincolorspan" style="background: #FF6D00"></span><span class="switchtothemetitlespan">helloween</span></div>
-            
+            <h3>theme</h3>
+            <br>
+            <div class="themeoption" onclick="removeallthemes()">
+                <span class="switchtothememaincolorspan" style="background: linear-gradient(to right, var(--rectanglecolorcolor-color), var(--background-color));"></span>
+                <span class="switchtothemetitlespan">none</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('helloween-theme')"><span class="switchtothememaincolorspan" style="background: #FF6D00"></span><span class="switchtothemetitlespan">helloween</span>
+            </div>
             <div class="themeoption" onclick="switchtotheme('winter-theme')">
-  <span class="switchtothememaincolorspan" style="background: #00bcd4"></span>
-  <span class="switchtothemetitlespan">winter</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('spring-theme')">
-  <span class="switchtothememaincolorspan" style="background: #4caf50"></span>
-  <span class="switchtothemetitlespan">spring</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('ocean-theme')">
-  <span class="switchtothememaincolorspan" style="background: #00acc1"></span>
-  <span class="switchtothemetitlespan">ocean</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('autumn-theme')">
-  <span class="switchtothememaincolorspan" style="background: #ff9800"></span>
-  <span class="switchtothemetitlespan">autumn</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('nightsky-theme')">
-  <span class="switchtothememaincolorspan" style="background: #3f51b5"></span>
-  <span class="switchtothemetitlespan">nightsky</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('desert-theme')">
-  <span class="switchtothememaincolorspan" style="background: #ffcc80"></span>
-  <span class="switchtothemetitlespan">desert</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('forest-theme')">
-  <span class="switchtothememaincolorspan" style="background: #4caf50"></span>
-  <span class="switchtothemetitlespan">forest</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('galaxy-theme')">
-  <span class="switchtothememaincolorspan" style="background: #673ab7"></span>
-  <span class="switchtothemetitlespan">galaxy</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('sunset-theme')">
-  <span class="switchtothememaincolorspan" style="background: #f44336"></span>
-  <span class="switchtothemetitlespan">sunset</span>
-</div>
-<div class="themeoption" onclick="switchtotheme('neon-theme')">
-  <span class="switchtothememaincolorspan" style="background: #76ff03"></span>
-  <span class="switchtothemetitlespan">neon</span>
-</div>
-
-<div class="themeoption2" id="customthemeoption" onclick="switchtotheme('custom-theme')">
-    <div class="themeoption"><span class="switchtothememaincolorspan" style="background: var(--switchcheckedbackground-color)"></span>
-    <span class="switchtothemetitlespan">custom</span></div>
-    <div class="colorselectorcontainer">
-        <br>
-    <div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="backgroundColor" value="#0d1117" onchange="updateBackgroundColor()">
-<span class="switchtothemetitlespan">background</span>
-<input type="range" id="backgroundAlpha" min="0" max="100" value="100" onchange="updateBackgroundColor()">
-</div>
-<br>
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="accentColor" value="#161b22" onchange="updateaccentColor()">
-    <span class="switchtothemetitlespan">accent color</span>
-    <input type="range" id="accentAlpha" min="0" max="100" value="100" onchange="updateaccentColor()">
-</div>
-<br>
-
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="selectedColor" value="#28A745" onchange="updateSelectedColor()">
-    <span class="switchtothemetitlespan">special color</span>
-    <input type="range" id="selectedAlpha" min="0" max="100" value="50" onchange="updateSelectedColor()">
-</div>
-<br>
-
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="colorColor" value="#ffffff" onchange="updateColorColor()">
-    <span class="switchtothemetitlespan">text color</span>
-    <input type="range" id="colorAlpha" min="0" max="100" value="100" onchange="updateColorColor()">
-</div>
-<br>
-<div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="rectangleBorderColor" value="#161b22" onchange="updateRectangleBorderColor()">
-<span class="switchtothemetitlespan">borders</span>
-<input type="range" id="rectangleBorderAlpha" min="0" max="100" value="100" onchange="updateRectangleBorderColor()">
-</div>
-<br>
-<div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="switchCheckedBackgroundColor" value="#0156CD" onchange="updateSwitchCheckedBackgroundColor()">
-<span class="switchtothemetitlespan">secondary color</span>
-<input type="range" id="switchCheckedAlpha" min="0" max="100" value="100" onchange="updateSwitchCheckedBackgroundColor()">
-</div>
-<br>
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="codeeditoreditbtncolor" value="#ffffff" onchange="updatecodeeditoreditbtncolor()">
-    <span class="switchtothemetitlespan">functions</span>
-    <input type="range" id="codeeditoreditbtncolorAlpha" min="0" max="100" value="100" onchange="updatecodeeditoreditbtncolor()">
-</div>
-<br>
-<div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="loadingBarLoadedBackgroundColor" value="#0156CD" onchange="updateLoadingBarLoadedBackgroundColor()">
-<span class="switchtothemetitlespan">loading bar</span>
-<input type="range" id="loadingBarLoadedAlpha" min="0" max="100" value="100" onchange="updateLoadingBarLoadedBackgroundColor()">
-</div>
-<br>
-<div class="themeoption">
-<input class="switchtothememaincolorspan2" type="color" id="rectangleColorColor" value="#363736" onchange="updateRectangleColorColor()">
-<span class="switchtothemetitlespan">file container path</span>
-<input type="range" id="rectangleColorAlpha" min="0" max="100" value="100" onchange="updateRectangleColorColor()">
-</div>
-<br>
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="gridColor" value="#ffffff" onchange="updategridColorColor()">
-    <span class="switchtothemetitlespan">grid</span>
-    <input type="range" id="gridColorAlpha" min="0" max="100" value="10" onchange="updategridColorColor()">
-</div>
-<br>
-<h3>syntax</h3>
-<br>
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxblockcolor" value="#C678DD" onchange="updatesyntaxblockcolor()">
-  <span class="switchtothemetitlespan">block</span>
-  <input type="range" id="syntaxblockcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxblockcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxoperatorcolor" value="#E06C75" onchange="updatesyntaxoperatorcolor()">
-  <span class="switchtothemetitlespan">operator</span>
-  <input type="range" id="syntaxoperatorcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxoperatorcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxbracketcolor" value="#ABB2BF" onchange="updatesyntaxbracketcolor()">
-  <span class="switchtothemetitlespan">bracket</span>
-  <input type="range" id="syntaxbracketcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxbracketcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxsigncolor" value="#ABB2BF" onchange="updatesyntaxsigncolor()">
-  <span class="switchtothemetitlespan">sign</span>
-  <input type="range" id="syntaxsigncolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxsigncolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxstringcolor" value="#98C379" onchange="updatesyntaxstringcolor()">
-  <span class="switchtothemetitlespan">string</span>
-  <input type="range" id="syntaxstringcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxstringcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxnumbercolor" value="#D19A66" onchange="updatesyntaxnumbercolor()">
-  <span class="switchtothemetitlespan">number</span>
-  <input type="range" id="syntaxnumbercolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxnumbercolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxcommentcolor" value="#5C6370" onchange="updatesyntaxcommentcolor()">
-  <span class="switchtothemetitlespan">comment</span>
-  <input type="range" id="syntaxcommentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxcommentcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxvariablecolor" value="#61AFEF" onchange="updatesyntaxvariablecolor()">
-  <span class="switchtothemetitlespan">variable</span>
-  <input type="range" id="syntaxvariablecolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxvariablecolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxcommandcolor" value="#E5C07B" onchange="updatesyntaxcommandcolor()">
-  <span class="switchtothemetitlespan">command</span>
-  <input type="range" id="syntaxcommandcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxcommandcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxkeywordcolor" value="#C678DD" onchange="updatesyntaxkeywordcolor()">
-  <span class="switchtothemetitlespan">keyword</span>
-  <input type="range" id="syntaxkeywordcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxkeywordcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxhtmlcommentcolor" value="#5C6370" onchange="updatesyntaxhtmlcommentcolor()">
-  <span class="switchtothemetitlespan">html comment</span>
-  <input type="range" id="syntaxhtmlcommentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxhtmlcommentcolor()">
-</div><br>
-
-<div class="themeoption">
-  <input class="switchtothememaincolorspan2" type="color" id="syntaxregexcolor" value="#E06C75" onchange="updatesyntaxregexcolor()">
-  <span class="switchtothemetitlespan">regex</span>
-  <input type="range" id="syntaxregexcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxregexcolor()">
-</div>
-<br>
-
-<div class="themeoption">
-    <input class="switchtothememaincolorspan2" type="color" id="syntaxhtmltagcontentcolor" value="#ffffff" onchange="updatesyntaxhtmltagcontentcolor()">
-    <span class="switchtothemetitlespan">tag name</span>
-    <input type="range" id="syntaxhtmltagcontentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxhtmltagcontentcolor()">
-</div>
-<br>
-
-<div class="themeoption">
-    <input class="customthemecodeinput" type="text" id="customthemecodeinput" onchange="updatecustomtheme(this)" placeholder="enter your theme code...">
-</div>
-
-    </div>
-</div>
+                <span class="switchtothememaincolorspan" style="background: #00bcd4"></span>
+                <span class="switchtothemetitlespan">winter</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('spring-theme')">
+                <span class="switchtothememaincolorspan" style="background: #4caf50"></span>
+                <span class="switchtothemetitlespan">spring</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('ocean-theme')">
+                <span class="switchtothememaincolorspan" style="background: #00acc1"></span>
+                <span class="switchtothemetitlespan">ocean</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('autumn-theme')">
+                <span class="switchtothememaincolorspan" style="background: #ff9800"></span>
+                <span class="switchtothemetitlespan">autumn</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('nightsky-theme')">
+                <span class="switchtothememaincolorspan" style="background: #3f51b5"></span>
+                <span class="switchtothemetitlespan">nightsky</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('desert-theme')">
+                <span class="switchtothememaincolorspan" style="background: #ffcc80"></span>
+                <span class="switchtothemetitlespan">desert</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('forest-theme')">
+                <span class="switchtothememaincolorspan" style="background: #4caf50"></span>
+                <span class="switchtothemetitlespan">forest</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('galaxy-theme')">
+                <span class="switchtothememaincolorspan" style="background: #673ab7"></span>
+                <span class="switchtothemetitlespan">galaxy</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('sunset-theme')">
+                <span class="switchtothememaincolorspan" style="background: #f44336"></span>
+                <span class="switchtothemetitlespan">sunset</span>
+            </div>
+            <div class="themeoption" onclick="switchtotheme('neon-theme')">
+                <span class="switchtothememaincolorspan" style="background: #76ff03"></span>
+                <span class="switchtothemetitlespan">neon</span>
+            </div>
+            <div class="themeoption2" id="customthemeoption" onclick="switchtotheme('custom-theme')">
+                <div class="themeoption">
+                    <span class="switchtothememaincolorspan" style="background: var(--switchcheckedbackground-color)"></span>
+                    <span class="switchtothemetitlespan">custom</span></div>
+                <div class="colorselectorcontainer">
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="backgroundColor" value="#0d1117" onchange="updateBackgroundColor()">
+                        <span class="switchtothemetitlespan">background</span>
+                    <input type="range" id="backgroundAlpha" min="0" max="100" value="100" onchange="updateBackgroundColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="accentColor" value="#161b22" onchange="updateaccentColor()">
+                    <span class="switchtothemetitlespan">accent color</span>
+                    <input type="range" id="accentAlpha" min="0" max="100" value="100" onchange="updateaccentColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="selectedColor" value="#28A745" onchange="updateSelectedColor()">
+                    <span class="switchtothemetitlespan">special color</span>
+                    <input type="range" id="selectedAlpha" min="0" max="100" value="50" onchange="updateSelectedColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="colorColor" value="#ffffff" onchange="updateColorColor()">
+                    <span class="switchtothemetitlespan">text color</span>
+                    <input type="range" id="colorAlpha" min="0" max="100" value="100" onchange="updateColorColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="rectangleBorderColor" value="#161b22" onchange="updateRectangleBorderColor()">
+                    <span class="switchtothemetitlespan">borders</span>
+                    <input type="range" id="rectangleBorderAlpha" min="0" max="100" value="100" onchange="updateRectangleBorderColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="switchCheckedBackgroundColor" value="#0156CD" onchange="updateSwitchCheckedBackgroundColor()">
+                    <span class="switchtothemetitlespan">secondary color</span>
+                    <input type="range" id="switchCheckedAlpha" min="0" max="100" value="100" onchange="updateSwitchCheckedBackgroundColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="codeeditoreditbtncolor" value="#ffffff" onchange="updatecodeeditoreditbtncolor()">
+                    <span class="switchtothemetitlespan">functions</span>
+                    <input type="range" id="codeeditoreditbtncolorAlpha" min="0" max="100" value="100" onchange="updatecodeeditoreditbtncolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="loadingBarLoadedBackgroundColor" value="#0156CD" onchange="updateLoadingBarLoadedBackgroundColor()">
+                    <span class="switchtothemetitlespan">loading bar</span>
+                    <input type="range" id="loadingBarLoadedAlpha" min="0" max="100" value="100" onchange="updateLoadingBarLoadedBackgroundColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="rectangleColorColor" value="#363736" onchange="updateRectangleColorColor()">
+                    <span class="switchtothemetitlespan">file container path</span>
+                    <input type="range" id="rectangleColorAlpha" min="0" max="100" value="100" onchange="updateRectangleColorColor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="gridColor" value="#ffffff" onchange="updategridColorColor()">
+                    <span class="switchtothemetitlespan">grid</span>
+                    <input type="range" id="gridColorAlpha" min="0" max="100" value="10" onchange="updategridColorColor()">
+                </div>
+                <br>
+                <h3>syntax</h3>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxblockcolor" value="#C678DD" onchange="updatesyntaxblockcolor()">
+                    <span class="switchtothemetitlespan">block</span>
+                    <input type="range" id="syntaxblockcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxblockcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxoperatorcolor" value="#E06C75" onchange="updatesyntaxoperatorcolor()">
+                    <span class="switchtothemetitlespan">operator</span>
+                    <input type="range" id="syntaxoperatorcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxoperatorcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxbracketcolor" value="#ABB2BF" onchange="updatesyntaxbracketcolor()">
+                    <span class="switchtothemetitlespan">bracket</span>
+                    <input type="range" id="syntaxbracketcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxbracketcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxsigncolor" value="#ABB2BF" onchange="updatesyntaxsigncolor()">
+                    <span class="switchtothemetitlespan">sign</span>
+                    <input type="range" id="syntaxsigncolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxsigncolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxstringcolor" value="#98C379" onchange="updatesyntaxstringcolor()">
+                    <span class="switchtothemetitlespan">string</span>
+                    <input type="range" id="syntaxstringcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxstringcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxnumbercolor" value="#D19A66" onchange="updatesyntaxnumbercolor()">
+                    <span class="switchtothemetitlespan">number</span>
+                    <input type="range" id="syntaxnumbercolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxnumbercolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxcommentcolor" value="#5C6370" onchange="updatesyntaxcommentcolor()">
+                    <span class="switchtothemetitlespan">comment</span>
+                    <input type="range" id="syntaxcommentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxcommentcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxvariablecolor" value="#61AFEF" onchange="updatesyntaxvariablecolor()">
+                    <span class="switchtothemetitlespan">variable</span>
+                    <input type="range" id="syntaxvariablecolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxvariablecolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxcommandcolor" value="#E5C07B" onchange="updatesyntaxcommandcolor()">
+                    <span class="switchtothemetitlespan">command</span>
+                    <input type="range" id="syntaxcommandcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxcommandcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxkeywordcolor" value="#C678DD" onchange="updatesyntaxkeywordcolor()">
+                    <span class="switchtothemetitlespan">keyword</span>
+                    <input type="range" id="syntaxkeywordcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxkeywordcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxhtmlcommentcolor" value="#5C6370" onchange="updatesyntaxhtmlcommentcolor()">
+                    <span class="switchtothemetitlespan">html comment</span>
+                    <input type="range" id="syntaxhtmlcommentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxhtmlcommentcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxregexcolor" value="#E06C75" onchange="updatesyntaxregexcolor()">
+                    <span class="switchtothemetitlespan">regex</span>
+                    <input type="range" id="syntaxregexcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxregexcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="switchtothememaincolorspan2" type="color" id="syntaxhtmltagcontentcolor" value="#ffffff" onchange="updatesyntaxhtmltagcontentcolor()">
+                    <span class="switchtothemetitlespan">tag name</span>
+                    <input type="range" id="syntaxhtmltagcontentcolorAlpha" min="0" max="100" value="100" onchange="updatesyntaxhtmltagcontentcolor()">
+                </div>
+                <br>
+                <div class="themeoption">
+                    <input class="customthemecodeinput" type="text" id="customthemecodeinput" onchange="updatecustomtheme(this)" placeholder="enter your theme code...">
+                </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="custom-overlay" style="display: none;">
@@ -3008,11 +3024,11 @@
         </div>
     </div>
     <div id="overlay">
-      <div class="progress-bar-container" id="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="checkmark" id="checkmark">✓</div>
-      <div class="progress-text" id="progress-text">Analyzing</div>
+        <div class="progress-bar-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="checkmark" id="checkmark">✓</div>
+        <div class="progress-text" id="progress-text">Analyzing</div>
     </div>
     </div>
     </div>
@@ -3115,6 +3131,10 @@
                         });
                     }
                     element.element.remove();
+                }else if (element.type == "addclass"){
+                    element.element.classList.add(element.text);
+                }else if (element.type == "removeclass") {
+                    element.element.classList.remove(element.text);
                 }
             });
         }
@@ -6329,12 +6349,76 @@
         function moveselectedlineup() {
             const allselectedlines = section.querySelectorAll(".code-editor-line.selected");
             if (allselectedlines.length) {
+                let newpast = [];
                 allselectedlines.forEach(selectedline => {
                     const previousLine = selectedline.previousElementSibling;
                     if (previousLine) {
+                        let pastelement = {
+                            element: selectedline,
+                            type: "delete",
+                            index: getElementIndexInParent(selectedline)
+                        };
+                        newpast.push(pastelement);
                         selectedline.parentNode.insertBefore(selectedline, previousLine);
+                        if (previousLine.classList.contains('syntaxcomment') && !selectedline.classList.contains('syntaxcomment')) {
+                            let pastelement3 = {
+                                element: previousLine,
+                                type: "addclass",
+                                text: "syntaxcomment"
+                            };
+                            newpast.push(pastelement3);
+                            previousLine.classList.remove('syntaxcomment');
+                            addJsSyntaxHighlighting(previousLine);
+                        }
+                        if (previousLine.classList.contains('syntaxhtmlcomment') && !selectedline.classList.contains('syntaxhtmlcomment')) {
+                            let pastelement3 = {
+                                element: previousLine,
+                                type: "addclass",
+                                text: "syntaxcomment"
+                            };
+                            newpast.push(pastelement3);
+                            previousLine.classList.remove('syntaxhtmlcomment');
+                            addJsSyntaxHighlighting(previousLine);
+                        }
+                        if (selectedline.nextElementSibling) {
+                            if (!selectedline.nextElementSibling.classList.contains('syntaxcomment') && !previousLine.classList.contains('syntaxcomment') && selectedline.classList.contains('syntaxcomment')) {
+                                let pastelement3 = {
+                                    element: selectedline,
+                                    type: "addclass",
+                                    text: "syntaxcomment"
+                                };
+                                newpast.push(pastelement3);
+                                selectedline.classList.remove('syntaxcomment');
+                                addJsSyntaxHighlighting(previousLine);
+                            }
+                            if (!selectedline.nextElementSibling.classList.contains('syntaxcomment') && !previousLine.classList.contains('syntaxhtmlcomment') && selectedline.classList.contains('syntaxhtmlcomment')) {
+                                let pastelement3 = {
+                                    element: selectedline,
+                                    type: "addclass",
+                                    text: "syntaxcomment"
+                                };
+                                newpast.push(pastelement3);
+                                selectedline.classList.remove('syntaxhtmlcomment');
+                                addJsSyntaxHighlighting(nextLine);
+                            }
+                        }
+                        addJsSyntaxHighlighting(selectedline);
+                        let pastelement2 = {
+                            element: selectedline,
+                            type: "create",
+                            index: getElementIndexInParent(selectedline)
+                        };
+                        newpast.push(pastelement2);
                     }
                 });
+                if (newpast.length > 0) {
+                    if (!pastevents[lasteventsparentsection.id]) {
+                        pastevents[lasteventsparentsection.id] = [];
+                    }
+                    futureevents[lasteventsparentsection.id] = [];
+                    pastevents[lasteventsparentsection.id].push(newpast);
+                    enablepastbtn();
+                }
             }
         }
 
@@ -6342,12 +6426,77 @@
             let allselectedlines = [...section.querySelectorAll('.code-editor-line.selected')];
             allselectedlines.reverse();
             if (allselectedlines.length) {
+                let newpast = [];
                 allselectedlines.forEach(selectedline => {
                     const nextLine = selectedline.nextElementSibling;
                     if (nextLine) {
+                        let pastelement = {
+                            element: selectedline,
+                            type: "delete",
+                            index: getElementIndexInParent(selectedline)
+                        };
+                        newpast.push(pastelement);
                         selectedline.parentNode.insertBefore(nextLine, selectedline);
+                        if (nextLine.classList.contains('syntaxcomment') && !selectedline.classList.contains('syntaxcomment')){
+                            let pastelement3 = {
+                                element: nextLine,
+                                type: "addclass",
+                                text: "syntaxcomment"
+                            };
+                            newpast.push(pastelement3);
+                            nextLine.classList.remove('syntaxcomment');
+                            addJsSyntaxHighlighting(nextLine);
+                        }
+                        if (nextLine.classList.contains('syntaxhtmlcomment') && !selectedline.classList.contains('syntaxhtmlcomment')) {
+                            let pastelement3 = {
+                                element: nextLine,
+                                type: "addclass",
+                                text: "syntaxcomment"
+                            };
+                            newpast.push(pastelement3);
+                            nextLine.classList.remove('syntaxhtmlcomment');
+                            addJsSyntaxHighlighting(nextLine);
+                        }
+                        
+                        if (selectedline.previousElementSibling){
+                            if (!selectedline.previousElementSibling.classList.contains('syntaxcomment') && !nextLine.classList.contains('syntaxcomment') && selectedline.classList.contains('syntaxcomment')) {
+                                let pastelement3 = {
+                                    element: selectedline,
+                                    type: "addclass",
+                                    text: "syntaxcomment"
+                                };
+                                newpast.push(pastelement3);
+                                selectedline.classList.remove('syntaxcomment');
+                                addJsSyntaxHighlighting(nextLine);
+                            }
+                            if (!selectedline.previousElementSibling.classList.contains('syntaxcomment') && !nextLine.classList.contains('syntaxhtmlcomment') && selectedline.classList.contains('syntaxhtmlcomment')) {
+                                let pastelement3 = {
+                                    element: selectedline,
+                                    type: "addclass",
+                                    text: "syntaxcomment"
+                                };
+                                newpast.push(pastelement3);
+                                selectedline.classList.remove('syntaxhtmlcomment');
+                                addJsSyntaxHighlighting(nextLine);
+                            }
+                        }
+                        addJsSyntaxHighlighting(selectedline);
+                        let pastelement2 = {
+                            element: selectedline,
+                            type: "create",
+                            index: getElementIndexInParent(selectedline)
+                        };
+                        newpast.push(pastelement2);
                     }
                 });
+                if (newpast.length > 0) {
+                    if (!pastevents[lasteventsparentsection.id]) {
+                        pastevents[lasteventsparentsection.id] = [];
+                    }
+                    futureevents[lasteventsparentsection.id] = [];
+                    pastevents[lasteventsparentsection.id].push(newpast);
+                    enablepastbtn();
+                }
             }
         }
 
@@ -6428,6 +6577,7 @@
                     checkifselectedlines();
                 });
             }
+            
             if (newpast.length > 0) {
                 if (!pastevents[lasteventsparentsection.id]) {
                     pastevents[lasteventsparentsection.id] = [];
@@ -6884,17 +7034,14 @@
         function convertToNonBreakingSpaces(text) {
             return text.replace(/ /g, ' ').replace(/\t/g, '    ');
         }
-
-        function handleKeyUpEvent(event) {
-            let celine = document.activeElement?.closest('.code-editor-line');
-            if (!celine) return;
-
+        
+        function replaceCommandsWithSymbols(textelement) {
+            let celine = textelement;
             let selection = window.getSelection();
             if (!selection.rangeCount) return;
 
             let range = selection.getRangeAt(0);
             let cursorOffset = range.startOffset;
-
             function insertClosingCharacter(replacetext, openingChar, closingChar) {
                 let text = celine.textContent;
                 if (!text.includes(replacetext)) return;
@@ -6923,122 +7070,228 @@
                 selection.removeAllRanges();
                 selection.addRange(range);
             }
+            const commandToSymbol = {
+                "/alert": "⚠",
+                "/arrowbottomleft": "↙",
+                "/arrowbottomright": "↘",
+                "/arrowdown": "↓",
+                "/arrowgoleft": "↤",
+                "/arrowgoright": "↦",
+                "/arrowleft": "←",
+                "/arrowright": "→",
+                "/arrowtopleft": "↖",
+                "/arrowtopright": "↗",
+                "/arrowup": "↑",
+                "/bigspark": "✶",
+                "/bottomleftedge": "◣",
+                "/bottomrightedge": "◢",
+                "/smallcheckmark": "✓",
+                "/emptycircle": "◯",
+                "/copyright": "©",
+                "/bigcross": "✘",
+                "/crossincirkle": "⊗",
+                "/crossinsquare": "⌧",
+                "/crossnotinsquare": "×",
+                "/cutoutcircle": "◌",
+                "/diamond": "◆",
+                "/emptyspark": "✧",
+                "/emptysquare": "□",
+                "/emptystar": "☆",
+                "/emptytriangleleft": "◁",
+                "/emptytriangledown": "▽",
+                "/emptytriangleright": "▷",
+                "/emptytriangletop": "△",
+                "/filledcircle": "●",
+                "/heart": "♥",
+                "/infinite": "∞",
+                "/magnifyingglass": "⌕",
+                "/minus": "−",
+                "/moonleft": "☽",
+                "/moonright": "☾",
+                "/movable": "✣",
+                "/eighthnote": "♪",
+                "/beamednote": "♫",
+                "/chordsymbol": "♬",
+                "/quarternote": "♩",
+                "/paperplane": "➤",
+                "/pencil": "✎",
+                "/plus": "+",
+                "/refreshright": "↻",
+                "/refreshleft": "↺",
+                "/registered": "®",
+                "/sidebar": "≡",
+                "/smallcross": "×",
+                "/filledspark": "✦",
+                "/filledsquare": "■",
+                "/filledstar": "★",
+                "/sun": "☼",
+                "/toprightedge": "◥",
+                "/topleftedge": "◤",
+                "/trademark": "™",
+                "/triangleleft": "◀",
+                "/triangleright": "▶",
+                "/triangledown": "▼",
+                "/triangletop": "▲",
+                "/updownleftarrow": "↵",
+            };
 
-            function replaceCommandsWithSymbols(textelement) {
-                const commandToSymbol = {
-                    "/alert": "⚠",
-                    "/arrowbottomleft": "↙",
-                    "/arrowbottomright": "↘",
-                    "/arrowdown": "↓",
-                    "/arrowgoleft": "↤",
-                    "/arrowgoright": "↦",
-                    "/arrowleft": "←",
-                    "/arrowright": "→",
-                    "/arrowtopleft": "↖",
-                    "/arrowtopright": "↗",
-                    "/arrowup": "↑",
-                    "/bigspark": "✶",
-                    "/bottomleftedge": "◣",
-                    "/bottomrightedge": "◢",
-                    "/smallcheckmark": "✓",
-                    "/emptycircle": "◯",
-                    "/copyright": "©",
-                    "/bigcross": "✘",
-                    "/crossincirkle": "⊗",
-                    "/crossinsquare": "⌧",
-                    "/crossnotinsquare": "×",
-                    "/cutoutcircle": "◌",
-                    "/diamond": "◆",
-                    "/emptyspark": "✧",
-                    "/emptysquare": "□",
-                    "/emptystar": "☆",
-                    "/emptytriangleleft": "◁",
-                    "/emptytriangledown": "▽",
-                    "/emptytriangleright": "▷",
-                    "/emptytriangletop": "△",
-                    "/filledcircle": "●",
-                    "/heart": "♥",
-                    "/infinite": "∞",
-                    "/magnifyingglass": "⌕",
-                    "/minus": "−",
-                    "/moonleft": "☽",
-                    "/moonright": "☾",
-                    "/movable": "✣",
-                    "/eighthnote": "♪",
-                    "/beamednote": "♫",
-                    "/chordsymbol": "♬",
-                    "/quarternote": "♩",
-                    "/paperplane": "➤",
-                    "/pencil": "✎",
-                    "/plus": "+",
-                    "/refreshright": "↻",
-                    "/refreshleft": "↺",
-                    "/registered": "®",
-                    "/sidebar": "≡",
-                    "/smallcross": "×",
-                    "/filledspark": "✦",
-                    "/filledsquare": "■",
-                    "/filledstar": "★",
-                    "/sun": "☼",
-                    "/toprightedge": "◥",
-                    "/topleftedge": "◤",
-                    "/trademark": "™",
-                    "/triangleleft": "◀",
-                    "/triangleright": "▶",
-                    "/triangledown": "▼",
-                    "/triangletop": "▲",
-                    "/updownleftarrow": "↵",
-                };
-
-                const shortCutCommands = {
-                    "/:func": {
-                        firstpart: "function definition() {",
-                        seccondpart: "}"
-                    },
-                    "/:if": {
-                        firstpart: "if (condition) {",
-                        seccondpart: "}"
-                    },
-                    "/:for": {
-                        firstpart: "for (let i = 0; i < array.length; i++) {",
-                        seccondpart: "}"
-                    },
-                    "/:try": {
-                        firstpart: 'try {',
-                        seccondpart: "} catch (error) { console.error(error); }"
-                    },
-                    "/:div": {
-                        firstpart: '<div class="className">',
-                        seccondpart: "</div>"
-                    },
-                    "/:btn": {
-                        firstpart: '<button id="buttonId">',
-                        seccondpart: "</button>"
-                    },
-                    "/:span": {
-                        firstpart: '<span id="spanId">',
-                        seccondpart: "</span>"
-                    },
-                    "/:img": {
-                        firstpart: '<image src="',
-                        seccondpart: '">'
-                    }
-                }
-                for (const command in commandToSymbol) {
-                    const symbol = commandToSymbol[command];
-                    insertClosingCharacter(command.toUpperCase(), symbol, '');
-                }
-                for (const command in shortCutCommands) {
-                    const firstpart = shortCutCommands[command].firstpart;
-                    const seccondpart = shortCutCommands[command].seccondpart;
-                    insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
-                }
-                for (const command in shortCutCommands) {
-                    const firstpart = shortCutCommands[command].firstpart;
-                    const seccondpart = shortCutCommands[command].seccondpart;
-                    insertClosingCharacter(command, firstpart, seccondpart);
+            const shortCutCommands = {
+                "/:func": {
+                    firstpart: "function definition() {",
+                    seccondpart: "}"
+                },
+                "/:if": {
+                    firstpart: "if (condition) {",
+                    seccondpart: "}"
+                },
+                "/:for": {
+                    firstpart: "for (let i = 0; i < array.length; i++) {",
+                    seccondpart: "}"
+                },
+                "/:try": {
+                    firstpart: 'try {',
+                    seccondpart: "} catch (error) { console.error(error); }"
+                },
+                "/:div": {
+                    firstpart: '<div class="className">',
+                    seccondpart: "</div>"
+                },
+                "/:btn": {
+                    firstpart: '<button id="buttonId">',
+                    seccondpart: "</button>"
+                },
+                "/:span": {
+                    firstpart: '<span id="spanId">',
+                    seccondpart: "</span>"
+                },
+                "/:img": {
+                    firstpart: '<image src="',
+                    seccondpart: '">'
+                },
+                "/:p": {
+                    "firstpart": "<p id=\"pId\">",
+                    "seccondpart": "</p>"
+                },
+                "/:h1": {
+                    firstpart: "<h1 id=\"h1Id\">",
+                    seccondpart: "</h1>"
+                },
+                "/:h2": {
+                    firstpart: "<h2 id=\"h2Id\">",
+                    seccondpart: "</h2>"
+                },
+                "/:h3": {
+                    firstpart: "<h3 id=\"h3Id\">",
+                    seccondpart: "</h3>"
+                },
+                "/:h4": {
+                    firstpart: "<h4 id=\"h4Id\">",
+                    seccondpart: "</h4>"
+                },
+                "/:h5": {
+                    firstpart: "<h5 id=\"h5Id\">",
+                    seccondpart: "</h5>"
+                },
+                "/:h6": {
+                    firstpart: "<h6 id=\"h6Id\">",
+                    seccondpart: "</h6>"
+                },
+                "/:at": {
+                    firstpart: "<a href=\"\" id=\"aId\">",
+                    seccondpart: "</a>"
+                },
+                "/:ul": {
+                    firstpart: "<ul id=\"ulId\">",
+                    seccondpart: "</ul>"
+                },
+                "/:ol": {
+                    firstpart: "<ol id=\"olId\">",
+                    seccondpart: "</ol>"
+                },
+                "/:li": {
+                    firstpart: "<li id=\"liId\">",
+                    seccondpart: "</li>"
+                },
+                "/:table": {
+                    firstpart: "<table id=\"tableId\">",
+                    seccondpart: "</table>"
+                },
+                "/:tr": {
+                    firstpart: "<tr id=\"trId\">",
+                    seccondpart: "</tr>"
+                },
+                "/:td": {
+                    firstpart: "<td id=\"tdId\">",
+                    seccondpart: "</td>"
+                },
+                "/:th": {
+                    firstpart: "<th id=\"thId\">",
+                    seccondpart: "</th>"
+                },
+                "/:input": {
+                    firstpart: "<input type=\"",
+                    seccondpart: "\" id=\"inputId\">"
+                },
+                "/:form": {
+                    firstpart: "<form id=\"formId\">",
+                    seccondpart: "</form>"
+                },
+                "/:label": {
+                    firstpart: "<label id=\"labelId\">",
+                    seccondpart: "</label>"
+                },
+                "/:iframe": {
+                    firstpart: "<iframe src=\"\" id=\"iframeId\">",
+                    seccondpart: "</iframe>"
+                },
+                "/:nav": {
+                    firstpart: "<nav id=\"navId\">",
+                    seccondpart: "</nav>"
+                },
+                "/:header": {
+                    firstpart: "<header id=\"headerId\">",
+                    seccondpart: "</header>"
+                },
+                "/:footer": {
+                    firstpart: "<footer id=\"footerId\">",
+                    seccondpart: "</footer>"
+                },
+                "/:sec": {
+                    firstpart: "<section id=\"sectionId\">",
+                    seccondpart: "</section>"
+                },
+                "/:article": {
+                    firstpart: "<article id=\"articleId\">",
+                    seccondpart: "</article>"
+                },
+                "/:aside": {
+                    firstpart: "<aside id=\"asideId\">",
+                    seccondpart: "</aside>"
+                },
+                "/:main": {
+                    firstpart: "<main id=\"mainId\">",
+                    seccondpart: "</main>"
                 }
             }
+            for (const command in commandToSymbol) {
+                const symbol = commandToSymbol[command];
+                insertClosingCharacter(command.toUpperCase(), symbol, '');
+            }
+            for (const command in shortCutCommands) {
+                const firstpart = shortCutCommands[command].firstpart;
+                const seccondpart = shortCutCommands[command].seccondpart;
+                insertClosingCharacter(command.toUpperCase(), firstpart, seccondpart);
+            }
+            for (const command in shortCutCommands) {
+                const firstpart = shortCutCommands[command].firstpart;
+                const seccondpart = shortCutCommands[command].seccondpart;
+                insertClosingCharacter(command, firstpart, seccondpart);
+            }
+        }
+
+        function handleKeyUpEvent(event) {
+            let celine = document.activeElement?.closest('.code-editor-line');
+            if (!celine) return;
     
             setupAutocomplete(celine);
 
@@ -7131,6 +7384,22 @@
                                 colorInput.value = span.textContent;
                                 colorInput.className = "syntaxcolorinput";
                                 function colorinputoninput(colorInput) {
+                                    if (span.parentElement && span.parentElement.classList.contains('code-editor-line')){
+                                        let newpast = [];
+                                        let pastelement = {
+                                            element: span.parentElement,
+                                            type: "text",
+                                            text: span.parentElement.textContent
+                                        };
+                                        newpast.push(pastelement);
+                                        if (newpast.length > 0) {
+                                            if (!pastevents[lasteventsparentsection.id]) {
+                                                pastevents[lasteventsparentsection.id] = [];
+                                            }
+                                            pastevents[lasteventsparentsection.id].push(newpast);
+                                            enablepastbtn();
+                                        }
+                                    }
                                     span.textContent = colorInput.value;
                                     const colorInput2 = document.createElement('input');
                                     colorInput2.type = 'color';
@@ -8077,6 +8346,105 @@
                 "<audio>", "<video>", "<source>", "<track>", "<object>", "<param>", "<embed>", "<picture>", "<map>", "<area>", 
                 "<canvas>", "<iframe>", "<iframe>", "<svg>", "<use>", "<iframe>", "<style>", "<link>", "<input>", "<form>"
             ];
+            
+            const commandsice = [
+                "/ALERT",
+                "/ARROWBOTTOMLEFT",
+                "/ARROWBOTTOMRIGHT",
+                "/ARROWDOWN",
+                "/ARROWGOLEFT",
+                "/ARROWGORIGHT",
+                "/ARROWLEFT",
+                "/ARROWRIGHT",
+                "/ARROWTOPLEFT",
+                "/ARROWTOPRIGHT",
+                "/ARROWUP",
+                "/BIGSPARK",
+                "/BOTTOMLEFTEDGE",
+                "/BOTTOMRIGHTEDGE",
+                "/SMALLCHECKMARK",
+                "/EMPTYCIRCLE",
+                "/COPYRIGHT",
+                "/BIGCROSS",
+                "/CROSSINCIRKLE",
+                "/CROSSINSQUARE",
+                "/CROSSNOTINSQUARE",
+                "/CUTOUTCIRCLE",
+                "/DIAMOND",
+                "/EMPTYSPARK",
+                "/EMPTYSQUARE",
+                "/EMPTYSTAR",
+                "/EMPTYTRIANGLELEFT",
+                "/EMPTYTRIANGLEDOWN",
+                "/EMPTYTRIANGLERIGHT",
+                "/EMPTYTRIANGLETOP",
+                "/FILLEDCIRCLE",
+                "/HEART",
+                "/INFINITE",
+                "/MAGNIFYINGGLASS",
+                "/MINUS",
+                "/MOONLEFT",
+                "/MOONRIGHT",
+                "/MOVABLE",
+                "/EIGHTHNOTE",
+                "/BEAMEDNOTE",
+                "/CHORDSYMBOL",
+                "/QUARTERNOTE",
+                "/PAPERPLANE",
+                "/PENCIL",
+                "/PLUS",
+                "/REFRESHRIGHT",
+                "/REFRESHLEFT",
+                "/REGISTERED",
+                "/SIDEBAR",
+                "/SMALLCROSS",
+                "/FILLEDSPARK",
+                "/FILLEDSQUARE",
+                "/FILLEDSTAR",
+                "/SUN",
+                "/TOPRIGHTEDGE",
+                "/TOPLEFTEDGE",
+                "/TRADEMARK",
+                "/TRIANGLELEFT",
+                "/TRIANGLERIGHT",
+                "/TRIANGLEDOWN",
+                "/TRIANGLETOP",
+                "/UPDOWNLEFTARROW",
+                "/:func",
+                "/:if",
+                "/:for",
+                "/:try",
+                "/:div",
+                "/:btn",
+                "/:span",
+                "/:img",
+                "/:p",
+                "/:h1",
+                "/:h2",
+                "/:h3",
+                "/:h4",
+                "/:h5",
+                "/:h6",
+                "/:at",
+                "/:ul",
+                "/:ol",
+                "/:li",
+                "/:table",
+                "/:tr",
+                "/:td",
+                "/:th",
+                "/:input",
+                "/:form",
+                "/:label",
+                "/:iframe",
+                "/:nav",
+                "/:header",
+                "/:footer",
+                "/:sec",
+                "/:article",
+                "/:aside",
+                "/:main"
+            ];
 
             function extractUniqueValues(code) {
                 const matches = new Set();
@@ -8097,6 +8465,7 @@
                     let match;
                     while ((match = regex.exec(code)) !== null) {
                         matches.add(prefix + match[1]);
+                        matches.add(match[1]);
                     }
                 });
     
@@ -8107,6 +8476,10 @@
 
 
             const suggestionsList = [...uniquevalues, ...cssKeywordsAndProperties, ...jsKeywords, ...htmlTags];
+            
+            if (inputElement.textContent.includes('/') && document.querySelector('.commandsswitch')?.checked) {
+                suggestionsList.push(...commandsice);
+            }
 
             function getCursorPosition() {
                 const range = window.getSelection().getRangeAt(0);
@@ -8183,10 +8556,16 @@
                         inputElement.textContent = words.join(" ") + inputElement.textContent.slice(cursorPos);
                         container.innerHTML = "";
                         container.remove();
-                        addJsSyntaxHighlighting(inputElement);
-                        inputElement.focus();
+                        if (!document.querySelector('.commandsswitch')?.checked) {
+                            addJsSyntaxHighlighting(inputElement);
+                            inputElement.focus();
+                        }
                         if (cursorPosition !== null) {
                             setCursorPosition(inputElement, cursorPosition + suggestion.replace(lastword, '').length);
+                        }
+                        if (inputElement.textContent.includes('/') && document.querySelector('.commandsswitch')?.checked) {
+                            replaceCommandsWithSymbols(inputElement);
+                            preserveCursorAndHighlight(inputElement);
                         }
                     });
                     container.appendChild(option);
