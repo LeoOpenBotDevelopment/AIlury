@@ -3119,10 +3119,13 @@
                             }
                         });
                     }
+                    if (element.element) scrolltolinenumber(getElementIndexInParent(element.element));
                 }else if (element.type == "text"){
                     element.element.textContent = element.text;
                     addJsSyntaxHighlighting(element.element);
+                    if (element.element) scrolltolinenumber(getElementIndexInParent(element.element));
                 }else if (element.type == "create"){
+                    if (element.element) scrolltolinenumber(getElementIndexInParent(element.element));
                     if (!lasteventsparentsection.querySelector('.code-editor-line.selected')) {
                         lasteventsparentsection.querySelectorAll('.eslbtn').forEach(dline => {
                             if (!dline.classList.contains('disabled')) {
@@ -3132,8 +3135,10 @@
                     }
                     element.element.remove();
                 }else if (element.type == "addclass"){
+                    if (element.element) scrolltolinenumber(getElementIndexInParent(element.element));
                     element.element.classList.add(element.text);
                 }else if (element.type == "removeclass") {
+                    if (element.element) scrolltolinenumber(getElementIndexInParent(element.element));
                     element.element.classList.remove(element.text);
                 }
             });
