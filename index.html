@@ -2379,13 +2379,13 @@
         .syntaxcheckboxinput:after{
             content: "✘";
             position: absolute;
-            background: rgba(255, 0, 0, 1);
-            border: 1px solid var(--rectangleborder);
+            background: var(--background-color);
+            border: 1px solid var(--syntaxkeyword-color);
+            color: var(--syntaxkeyword-color);
             height: 1.5em;
             width: 1.5em;
             margin: -2px;
             border-radius: 2px;
-            color: white;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -2394,13 +2394,13 @@
         .syntaxcheckboxinput:checked:after {
             content: "✓";
             position: absolute;
-            background: var(--switchcheckedbackground-color);
-            border: 1px solid var(--rectangleborder);
+            background: var(--background-color);
+            border: 1px solid var(--syntaxkeyword-color);
+            color: var(--syntaxkeyword-color);
             height: 1.5em;
             width: 1.5em;
             margin: -2px;
             border-radius: 2px;
-            color: white;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -7829,6 +7829,22 @@
                                         checkBox.checked = false;
                                     }
                                     checkBox.onclick = () => {
+                                        if (span.parentElement && span.parentElement.classList.contains('code-editor-line')) {
+                                            let newpast = [];
+                                            let pastelement = {
+                                                element: span.parentElement,
+                                                type: "text",
+                                                text: span.parentElement.textContent
+                                            };
+                                            newpast.push(pastelement);
+                                            if (newpast.length > 0) {
+                                                if (!pastevents[lasteventsparentsection.id]) {
+                                                    pastevents[lasteventsparentsection.id] = [];
+                                                }
+                                                pastevents[lasteventsparentsection.id].push(newpast);
+                                                enablepastbtn();
+                                            }
+                                        }
                                         if (checkBox.checked == true){
                                             span.textContent = "true";
                                         }else {
